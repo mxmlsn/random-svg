@@ -38,6 +38,7 @@ export default function Home() {
 
     setLoading(true);
     setError(null);
+    setSvgItems([]); // Clear previous items
 
     try {
       // Determine which endpoints to use based on selected sources
@@ -55,25 +56,28 @@ export default function Home() {
         );
       }
 
-      // Fetch SVGs in parallel
-      const promises = endpoints.map(endpoint => fetch(endpoint));
-      const responses = await Promise.all(promises);
-      const data = await Promise.all(responses.map(res => res.json()));
-
-      // Filter out errors
-      const validData = data.filter((item, index) => {
-        if (!responses[index].ok) {
-          console.error('Failed to fetch SVG:', item.error);
-          return false;
+      // Fetch SVGs and show them as they arrive
+      const fetchPromises = endpoints.map(async (endpoint) => {
+        try {
+          const response = await fetch(endpoint);
+          if (response.ok) {
+            const data = await response.json();
+            // Add this item immediately to the display
+            setSvgItems(prev => [...prev, data]);
+            return data;
+          } else {
+            console.error('Failed to fetch SVG from', endpoint);
+            return null;
+          }
+        } catch (err) {
+          console.error('Error fetching from', endpoint, err);
+          return null;
         }
-        return true;
       });
 
-      if (validData.length === 0) {
-        throw new Error('Failed to fetch any SVG images');
-      }
+      // Wait for all to complete
+      await Promise.all(fetchPromises);
 
-      setSvgItems(validData);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error occurred');
     } finally {
@@ -156,19 +160,21 @@ export default function Home() {
                   </div>
                 </a>
 
-                {/* Download button overlay */}
-                <a
-                  href={item.downloadUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="absolute top-3 right-3 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
-                  title="Download SVG"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
-                </a>
+                {/* Download button overlay - only for publicdomainvectors.org */}
+                {item.source === 'publicdomainvectors.org' && (
+                  <a
+                    href={item.downloadUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="absolute top-3 right-3 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                    title="Download SVG"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                  </a>
+                )}
               </div>
             ))}
           </div>

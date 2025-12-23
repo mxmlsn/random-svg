@@ -48,14 +48,18 @@ export async function GET() {
     // Get the title from the detail page
     const title = $detail('h1').first().text().trim() || randomItem.title;
 
-    // Find the main preview image (PNG in /photos/ directory)
+    // Find the main preview image (in /photos/ directory)
     let previewImage = '';
-    const mainImg = $detail('.main-image-photo img').first();
-    const mainImgSrc = mainImg.attr('src');
 
-    if (mainImgSrc) {
-      previewImage = mainImgSrc.startsWith('http') ? mainImgSrc : `https://publicdomainvectors.org${mainImgSrc}`;
-    }
+    // Try multiple selectors to find the main preview image
+    // Images can be .png, .jpg, or other formats
+    $detail('img').each((_, element) => {
+      const src = $detail(element).attr('src');
+      if (src && src.includes('/photos/')) {
+        previewImage = src.startsWith('http') ? src : `https://publicdomainvectors.org${src}`;
+        return false; // Stop after finding first match
+      }
+    });
 
     // Fallback to thumbnail if no main image found
     if (!previewImage) {

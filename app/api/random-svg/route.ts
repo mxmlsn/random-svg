@@ -41,22 +41,26 @@ export async function GET() {
     let svgUrl = '';
     let title = '';
 
-    // Try to find the download button/link
-    $detail('a').each((_, element) => {
-      const href = $detail(element).attr('href');
-      if (href && href.endsWith('.svg')) {
-        svgUrl = href.startsWith('http') ? href : `https://freesvg.org${href}`;
-      }
-    });
-
     // Get the title
     title = $detail('h1').first().text().trim() || $detail('title').text().trim();
 
-    // If we still don't have an SVG URL, look for it in the page content
+    // Look for the download link (format: /download/{id})
+    $detail('a').each((_, element) => {
+      const href = $detail(element).attr('href');
+      const text = $detail(element).text().trim();
+
+      // Look for download link
+      if (href && (href.includes('/download/') || text.toLowerCase().includes('download svg'))) {
+        svgUrl = href.startsWith('http') ? href : `https://freesvg.org${href}`;
+        return false; // break the loop
+      }
+    });
+
+    // If still not found, try regex search
     if (!svgUrl) {
-      const svgMatch = detailHtml.match(/href="([^"]*\.svg)"/);
-      if (svgMatch) {
-        svgUrl = svgMatch[1].startsWith('http') ? svgMatch[1] : `https://freesvg.org${svgMatch[1]}`;
+      const downloadMatch = detailHtml.match(/href="(\/download\/\d+)"/);
+      if (downloadMatch) {
+        svgUrl = `https://freesvg.org${downloadMatch[1]}`;
       }
     }
 

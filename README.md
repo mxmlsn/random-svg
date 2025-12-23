@@ -4,11 +4,14 @@ A Next.js web application that displays random SVG images from various sources a
 
 ## Features
 
-- Fetches random SVG images from freesvg.org
+- Fetches random SVG images from multiple sources:
+  - freesvg.org
+  - publicdomainvectors.org
+- Source selection checkboxes (select one or both sources)
+- Automatic distribution: 6 images from one source, or 3 from each when both selected
 - Beautiful, responsive UI built with Tailwind CSS
-- Dark mode support
-- Download SVG files directly
-- Link to original source
+- Download button overlay on hover for each image
+- Click on image to visit original source page
 
 ## Tech Stack
 
@@ -45,19 +48,29 @@ This project is configured for deployment on Vercel:
 
 ## How It Works
 
-1. The app fetches a random page from freesvg.org (pages 1-2132)
-2. Parses the HTML to find all SVG preview links on that page
-3. Randomly selects one of the previews
-4. Navigates to the detail page and extracts the SVG download link
-5. Fetches and displays the SVG content
+### freesvg.org Source
+1. Fetches a random page from freesvg.org (pages 1-2132)
+2. Parses the HTML to find all SVG preview items
+3. Randomly selects one and navigates to its detail page
+4. Extracts high-quality PNG preview and download link
+5. Returns preview image for display
+
+### publicdomainvectors.org Source
+1. Fetches a random page from publicdomainvectors.org (pages 38-788)
+2. Parses the HTML to find all vector items in the grid
+3. Randomly selects one and navigates to its detail page
+4. Extracts PNG preview from the main image section
+5. Extracts SVG download link from the download button
+6. Returns preview image and direct download link
 
 ## Future Enhancements
 
-- Add more SVG sources beyond freesvg.org
+- Add more SVG sources
 - Implement caching to improve performance
 - Add ability to favorite SVGs
 - Share functionality
 - Category filtering
+- Search functionality
 
 ## License
 

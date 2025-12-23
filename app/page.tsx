@@ -1,13 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface SVGData {
-  svg: string;
   title: string;
+  previewImage: string;
   source: string;
   sourceUrl: string;
-  svgUrl: string;
+  downloadUrl: string;
 }
 
 export default function Home() {
@@ -87,8 +88,9 @@ export default function Home() {
                   View on {svgData.source}
                 </a>
                 <a
-                  href={svgData.svgUrl}
-                  download
+                  href={svgData.downloadUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-green-600 dark:text-green-400 hover:underline"
                 >
                   Download SVG
@@ -97,9 +99,11 @@ export default function Home() {
             </div>
 
             <div className="flex justify-center items-center bg-gray-50 dark:bg-gray-700 rounded-lg p-8 min-h-[400px]">
-              <div
-                dangerouslySetInnerHTML={{ __html: svgData.svg }}
-                className="max-w-full max-h-[600px] [&>svg]:max-w-full [&>svg]:max-h-[600px] [&>svg]:w-auto [&>svg]:h-auto"
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={svgData.previewImage}
+                alt={svgData.title}
+                className="max-w-full max-h-[600px] object-contain"
               />
             </div>
           </div>

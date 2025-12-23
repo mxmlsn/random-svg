@@ -14,73 +14,78 @@ export async function GET() {
     // Parse the HTML
     const $ = cheerio.load(pageHtml);
 
-    // Find all SVG preview links
-    const links: string[] = [];
-    $('.svg-image-box a').each((_, element) => {
-      const href = $(element).attr('href');
-      if (href && href.startsWith('https://freesvg.org/')) {
-        links.push(href);
+    // Find all SVG preview items with their thumbnails
+    const items: { href: string; thumb: string; title: string }[] = [];
+
+    $('.svg-image-box').each((_, element) => {
+      const link = $(element).find('a').first();
+      const href = link.attr('href');
+      const img = $(element).find('img').first();
+      const thumb = img.attr('src');
+      const title = img.attr('alt') || img.attr('title') || '';
+
+      if (href && href.startsWith('https://freesvg.org/') && thumb) {
+        items.push({
+          href,
+          thumb: thumb.startsWith('http') ? thumb : `https://freesvg.org${thumb}`,
+          title
+        });
       }
     });
 
-    if (links.length === 0) {
+    if (items.length === 0) {
       return NextResponse.json({ error: 'No SVG images found on this page' }, { status: 404 });
     }
 
-    // Step 2: Select a random link from the page
-    const randomLink = links[Math.floor(Math.random() * links.length)];
+    // Step 2: Select a random item from the page
+    const randomItem = items[Math.floor(Math.random() * items.length)];
 
-    // Fetch the detail page
-    const detailResponse = await fetch(randomLink);
+    // Fetch the detail page to get higher quality preview and download link
+    const detailResponse = await fetch(randomItem.href);
     const detailHtml = await detailResponse.text();
-
-    // Parse the detail page to find the actual SVG download link
     const $detail = cheerio.load(detailHtml);
 
-    // Look for the download link or SVG source
-    let svgUrl = '';
-    let title = '';
+    // Get the title from the detail page
+    const title = $detail('h1').first().text().trim() || randomItem.title;
 
-    // Get the title
-    title = $detail('h1').first().text().trim() || $detail('title').text().trim();
+    // Find the main preview image (higher quality PNG)
+    let previewImage = '';
 
-    // Look for the download link (format: /download/{id})
+    // Look for the main image in /img/ directory (higher quality than thumb)
+    const mainImgMatch = detailHtml.match(/content="https:\/\/freesvg\.org\/(img\/[^"]+\.png)"/);
+    if (mainImgMatch) {
+      previewImage = `https://freesvg.org/${mainImgMatch[1]}`;
+    }
+
+    // Fallback: look for contentUrl meta tag
+    if (!previewImage) {
+      const contentUrl = $detail('meta[itemprop="contentUrl"]').attr('content');
+      if (contentUrl) {
+        previewImage = contentUrl.startsWith('http') ? contentUrl : `https://freesvg.org${contentUrl}`;
+      }
+    }
+
+    // Fallback to thumbnail
+    if (!previewImage) {
+      previewImage = randomItem.thumb;
+    }
+
+    // Find the download link (for user to download SVG manually)
+    let downloadUrl = '';
     $detail('a').each((_, element) => {
       const href = $detail(element).attr('href');
-      const text = $detail(element).text().trim();
-
-      // Look for download link
-      if (href && (href.includes('/download/') || text.toLowerCase().includes('download svg'))) {
-        svgUrl = href.startsWith('http') ? href : `https://freesvg.org${href}`;
-        return false; // break the loop
+      if (href && href.includes('/download/')) {
+        downloadUrl = href.startsWith('http') ? href : `https://freesvg.org${href}`;
+        return false;
       }
     });
 
-    // If still not found, try regex search
-    if (!svgUrl) {
-      const downloadMatch = detailHtml.match(/href="(\/download\/\d+)"/);
-      if (downloadMatch) {
-        svgUrl = `https://freesvg.org${downloadMatch[1]}`;
-      }
-    }
-
-    if (!svgUrl) {
-      return NextResponse.json({
-        error: 'Could not find SVG download link',
-        detailPage: randomLink
-      }, { status: 404 });
-    }
-
-    // Fetch the actual SVG content
-    const svgResponse = await fetch(svgUrl);
-    const svgContent = await svgResponse.text();
-
     return NextResponse.json({
-      svg: svgContent,
       title,
+      previewImage,
       source: 'freesvg.org',
-      sourceUrl: randomLink,
-      svgUrl
+      sourceUrl: randomItem.href,
+      downloadUrl: downloadUrl || randomItem.href, // Link to page if no download link found
     });
 
   } catch (error) {

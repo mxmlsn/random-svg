@@ -10,13 +10,13 @@ interface SVGData {
   downloadUrl: string;
 }
 
-type SourceType = 'freesvg' | 'publicdomainvectors';
+type SourceType = 'freesvg' | 'publicdomainvectors' | 'wikimedia';
 
 export default function Home() {
   const [svgItems, setSvgItems] = useState<SVGData[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [selectedSources, setSelectedSources] = useState<SourceType[]>(['freesvg', 'publicdomainvectors']);
+  const [selectedSources, setSelectedSources] = useState<SourceType[]>(['freesvg', 'publicdomainvectors', 'wikimedia']);
 
   const toggleSource = (source: SourceType) => {
     setSelectedSources(prev => {
@@ -44,15 +44,28 @@ export default function Home() {
       // Determine which endpoints to use based on selected sources
       const endpoints: string[] = [];
 
+      const sourceToEndpoint: Record<SourceType, string> = {
+        'freesvg': '/api/random-svg',
+        'publicdomainvectors': '/api/random-svg-pdv',
+        'wikimedia': '/api/random-svg-wikimedia'
+      };
+
       if (selectedSources.length === 1) {
         // If only one source is selected, fetch all 6 from it
-        const endpoint = selectedSources[0] === 'freesvg' ? '/api/random-svg' : '/api/random-svg-pdv';
+        const endpoint = sourceToEndpoint[selectedSources[0]];
         endpoints.push(...Array(6).fill(endpoint));
-      } else {
-        // If both sources are selected, fetch 3 from each
+      } else if (selectedSources.length === 2) {
+        // If two sources are selected, fetch 3 from each
         endpoints.push(
-          ...Array(3).fill('/api/random-svg'),
-          ...Array(3).fill('/api/random-svg-pdv')
+          ...Array(3).fill(sourceToEndpoint[selectedSources[0]]),
+          ...Array(3).fill(sourceToEndpoint[selectedSources[1]])
+        );
+      } else {
+        // If all three sources are selected, fetch 2 from each
+        endpoints.push(
+          ...Array(2).fill(sourceToEndpoint['freesvg']),
+          ...Array(2).fill(sourceToEndpoint['publicdomainvectors']),
+          ...Array(2).fill(sourceToEndpoint['wikimedia'])
         );
       }
 
@@ -118,13 +131,23 @@ export default function Home() {
               />
               <span className="text-gray-700">publicdomainvectors.org</span>
             </label>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={selectedSources.includes('wikimedia')}
+                onChange={() => toggleSource('wikimedia')}
+                className="w-4 h-4 cursor-pointer"
+              />
+              <span className="text-gray-700">wikimedia.org</span>
+            </label>
           </div>
 
           {/* Get Random SVGs Button */}
           <button
             onClick={fetchRandomSVGs}
             disabled={loading}
-            className="px-8 py-4 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-semibold rounded-lg transition-all transform hover:scale-105 disabled:transform-none disabled:cursor-not-allowed"
+            className="px-8 py-4 disabled:bg-gray-400 text-white font-semibold rounded-lg transition-all transform hover:scale-105 disabled:transform-none disabled:cursor-not-allowed"
+            style={{ backgroundColor: loading ? undefined : '#C6D000' }}
           >
             {loading ? 'Loading...' : 'Get Random SVGs'}
           </button>
@@ -153,21 +176,26 @@ export default function Home() {
                   <div className="flex justify-center items-center min-h-[300px]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={item.previewImage}
+                      src={item.source === 'publicdomainvectors.org'
+                        ? `/api/proxy-image?url=${encodeURIComponent(item.previewImage)}`
+                        : item.previewImage
+                      }
                       alt={item.title}
                       className="max-w-full max-h-[300px] object-contain"
+                      crossOrigin="anonymous"
                     />
                   </div>
                 </a>
 
-                {/* Download button overlay - only for publicdomainvectors.org */}
-                {item.source === 'publicdomainvectors.org' && (
+                {/* Download button overlay - for publicdomainvectors.org and wikimedia.org */}
+                {(item.source === 'publicdomainvectors.org' || item.source === 'wikimedia.org') && (
                   <a
                     href={item.downloadUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="absolute top-3 right-3 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute top-3 right-3 text-white p-3 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                    style={{ backgroundColor: '#C6D000' }}
                     title="Download SVG"
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

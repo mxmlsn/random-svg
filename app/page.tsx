@@ -176,13 +176,12 @@ export default function Home() {
                   <div className="flex justify-center items-center min-h-[300px]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={item.source === 'publicdomainvectors.org'
-                        ? `/api/proxy-image?url=${encodeURIComponent(item.previewImage)}`
-                        : item.previewImage
+                      src={item.source === 'wikimedia.org'
+                        ? item.previewImage
+                        : `/api/proxy-image?url=${encodeURIComponent(item.previewImage)}`
                       }
                       alt={item.title}
                       className="max-w-full max-h-[300px] object-contain"
-                      crossOrigin="anonymous"
                     />
                   </div>
                 </a>

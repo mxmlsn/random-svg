@@ -19,10 +19,6 @@ export default function Home() {
   const [selectedSources, setSelectedSources] = useState<SourceType[]>(['freesvg', 'publicdomainvectors', 'wikimedia']);
   const [initialLoad, setInitialLoad] = useState(true);
 
-  // History state for undo/redo
-  const [history, setHistory] = useState<(SVGData | null)[][]>([]);
-  const [historyIndex, setHistoryIndex] = useState(-1);
-
   // Load SVGs on initial mount
   useEffect(() => {
     if (initialLoad) {
@@ -43,33 +39,6 @@ export default function Home() {
       }
     });
   };
-
-  // Save state to history with limit of 20 items
-  const saveToHistory = (items: (SVGData | null)[]) => {
-    const newHistory = history.slice(Math.max(0, historyIndex - 18), historyIndex + 1);
-    const updatedHistory = [...newHistory, items];
-    setHistory(updatedHistory);
-    setHistoryIndex(updatedHistory.length - 1);
-  };
-
-  // Undo function
-  const undo = () => {
-    if (historyIndex > 0) {
-      setHistoryIndex(historyIndex - 1);
-      setSvgItems(history[historyIndex - 1]);
-    }
-  };
-
-  // Redo function
-  const redo = () => {
-    if (historyIndex < history.length - 1) {
-      setHistoryIndex(historyIndex + 1);
-      setSvgItems(history[historyIndex + 1]);
-    }
-  };
-
-  const canUndo = historyIndex > 0;
-  const canRedo = historyIndex < history.length - 1;
 
   const fetchRandomSVGs = async () => {
     if (selectedSources.length === 0) {
@@ -120,10 +89,6 @@ export default function Home() {
             setSvgItems(prev => {
               const newItems = [...prev];
               newItems[index] = data;
-              // Save to history only after last item is loaded
-              if (index === endpoints.length - 1) {
-                saveToHistory(newItems);
-              }
               return newItems;
             });
             return data;
@@ -208,30 +173,6 @@ export default function Home() {
             />
             <span className="text-gray-700 font-medium">wikimedia.org</span>
           </label>
-
-          {/* Undo/Redo Buttons */}
-          <div className="flex gap-3 mt-4">
-            <button
-              onClick={undo}
-              disabled={!canUndo}
-              className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:border-gray-400 transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-gray-300"
-              title="Undo"
-            >
-              <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-            </button>
-            <button
-              onClick={redo}
-              disabled={!canRedo}
-              className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:border-gray-400 transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-gray-300"
-              title="Redo"
-            >
-              <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </button>
-          </div>
         </aside>
 
         {/* Right Content Area - SVG Grid */}

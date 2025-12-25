@@ -18,6 +18,8 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [selectedSources, setSelectedSources] = useState<SourceType[]>(['freesvg', 'publicdomainvectors', 'wikimedia']);
   const [initialLoad, setInitialLoad] = useState(true);
+  const [history, setHistory] = useState<(SVGData | null)[][]>([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
 
   // Load SVGs on initial mount
   useEffect(() => {
@@ -48,7 +50,8 @@ export default function Home() {
 
     setLoading(true);
     setError(null);
-    setSvgItems(Array(6).fill(null)); // Reset to 6 empty slots
+    const emptySlots = Array(6).fill(null);
+    setSvgItems(emptySlots); // Reset to 6 empty slots
 
     try {
       // Determine which endpoints to use based on selected sources
@@ -79,6 +82,8 @@ export default function Home() {
         );
       }
 
+      let newItems = [...emptySlots];
+
       // Fetch SVGs and show them as they arrive in their respective slots
       const fetchPromises = endpoints.map(async (endpoint, index) => {
         try {
@@ -87,9 +92,10 @@ export default function Home() {
             const data = await response.json();
             // Update specific slot
             setSvgItems(prev => {
-              const newItems = [...prev];
-              newItems[index] = data;
-              return newItems;
+              const updated = [...prev];
+              updated[index] = data;
+              newItems = updated;
+              return updated;
             });
             return data;
           } else {
@@ -105,10 +111,34 @@ export default function Home() {
       // Wait for all to complete
       await Promise.all(fetchPromises);
 
+      // Add to history after all items are fetched
+      setHistory(prev => {
+        const newHistory = prev.slice(0, historyIndex + 1);
+        newHistory.push([...newItems]);
+        return newHistory;
+      });
+      setHistoryIndex(prev => prev + 1);
+
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error occurred');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleUndo = () => {
+    if (historyIndex > 0) {
+      const newIndex = historyIndex - 1;
+      setHistoryIndex(newIndex);
+      setSvgItems([...history[newIndex]]);
+    }
+  };
+
+  const handleRedo = () => {
+    if (historyIndex < history.length - 1) {
+      const newIndex = historyIndex + 1;
+      setHistoryIndex(newIndex);
+      setSvgItems([...history[newIndex]]);
     }
   };
 
@@ -173,6 +203,30 @@ export default function Home() {
             />
             <span className="text-gray-700 font-medium">wikimedia.org</span>
           </label>
+
+          {/* Undo/Redo buttons */}
+          <div className="flex items-center justify-center gap-3 mt-4">
+            <button
+              onClick={handleUndo}
+              disabled={historyIndex <= 0}
+              className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:border-gray-400 transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-gray-300"
+              title="Undo"
+            >
+              <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+            </button>
+            <button
+              onClick={handleRedo}
+              disabled={historyIndex >= history.length - 1}
+              className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:border-gray-400 transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-gray-300"
+              title="Redo"
+            >
+              <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+          </div>
         </aside>
 
         {/* Right Content Area - SVG Grid */}

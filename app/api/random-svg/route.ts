@@ -70,22 +70,30 @@ export async function GET() {
       previewImage = randomItem.thumb;
     }
 
-    // Find the download link (for user to download SVG manually)
-    let downloadUrl = '';
+    // Find the download ID from the page
+    let downloadId = '';
     $detail('a').each((_, element) => {
       const href = $detail(element).attr('href');
       if (href && href.includes('/download/')) {
-        downloadUrl = href.startsWith('http') ? href : `https://freesvg.org${href}`;
+        const match = href.match(/\/download\/(\d+)/);
+        if (match) {
+          downloadId = match[1];
+        }
         return false;
       }
     });
+
+    // Use our proxy endpoint for downloading (adds required Referer header)
+    const downloadUrl = downloadId
+      ? `/api/download-freesvg?id=${downloadId}`
+      : randomItem.href;
 
     return NextResponse.json({
       title,
       previewImage,
       source: 'freesvg.org',
       sourceUrl: randomItem.href,
-      downloadUrl: downloadUrl || randomItem.href, // Link to page if no download link found
+      downloadUrl,
     });
 
   } catch (error) {

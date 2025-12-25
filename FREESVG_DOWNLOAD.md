@@ -61,20 +61,30 @@ curl -H "Referer: https://freesvg.org/" "https://freesvg.org/download/95440"
 
 ## Реализация
 
-### Вариант 1: Серверный прокси (рекомендуется)
+### Серверный прокси (ИСПОЛЬЗУЕТСЯ)
+
+Браузер не устанавливает Referer при открытии ссылки в новой вкладке, поэтому прямые ссылки не работают.
+
+**Решение:** Создан API endpoint `/api/download-freesvg?id={id}` который:
+1. Получает ID SVG
+2. Делает запрос к freesvg.org с заголовком `Referer: https://freesvg.org/`
+3. Возвращает SVG файл с `Content-Disposition: attachment`
 
 ```typescript
-// В API route добавить заголовок Referer при скачивании
-const response = await fetch(`https://freesvg.org/download/${svgId}`, {
+// app/api/download-freesvg/route.ts
+const response = await fetch(`https://freesvg.org/download/${id}`, {
   headers: {
-    'Referer': 'https://freesvg.org/'
-  }
+    'Referer': 'https://freesvg.org/',
+  },
 });
 ```
 
-### Вариант 2: Клиентское скачивание
+### Почему прямые ссылки не работают
 
-Открывать `/download/{id}` в новой вкладке - браузер автоматически установит Referer.
+Открытие `https://freesvg.org/download/95440` в новой вкладке:
+- Браузер НЕ отправляет Referer заголовок
+- Сервер freesvg.org возвращает пустой ответ
+- Скачивание не происходит
 
 ---
 

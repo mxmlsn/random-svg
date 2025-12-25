@@ -213,22 +213,20 @@ export default function Home() {
                       </div>
                     </a>
 
-                    {/* Download button overlay - for publicdomainvectors.org and wikimedia.org */}
-                    {(item.source === 'publicdomainvectors.org' || item.source === 'wikimedia.org') && (
-                      <a
-                        href={item.downloadUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="absolute top-3 right-3 text-white p-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
-                        style={{ backgroundColor: '#C6D000' }}
-                        title="Download SVG"
-                      >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                        </svg>
-                      </a>
-                    )}
+                    {/* Download button overlay - for all sources */}
+                    <a
+                      href={item.downloadUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="absolute top-3 right-3 text-white p-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                      style={{ backgroundColor: '#C6D000' }}
+                      title="Download SVG"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                      </svg>
+                    </a>
                   </>
                 ) : null}
               </div>

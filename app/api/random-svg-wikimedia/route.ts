@@ -16,6 +16,24 @@ export async function GET() {
     totalHitsUrl.searchParams.set('origin', '*');
 
     const totalResponse = await fetch(totalHitsUrl.toString());
+
+    if (!totalResponse.ok) {
+      console.error('Wikimedia API error:', totalResponse.status, totalResponse.statusText);
+      return NextResponse.json({
+        error: 'Failed to fetch from Wikimedia API',
+        details: `HTTP ${totalResponse.status}: ${totalResponse.statusText}`
+      }, { status: 502 });
+    }
+
+    const contentType = totalResponse.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      console.error('Wikimedia returned non-JSON response:', contentType);
+      return NextResponse.json({
+        error: 'Invalid response from Wikimedia API',
+        details: 'Expected JSON, got ' + contentType
+      }, { status: 502 });
+    }
+
     const totalData = await totalResponse.json();
 
     const totalHits = totalData.query?.searchinfo?.totalhits || 0;
@@ -40,6 +58,24 @@ export async function GET() {
     searchUrl.searchParams.set('origin', '*');
 
     const searchResponse = await fetch(searchUrl.toString());
+
+    if (!searchResponse.ok) {
+      console.error('Wikimedia search API error:', searchResponse.status, searchResponse.statusText);
+      return NextResponse.json({
+        error: 'Failed to search Wikimedia API',
+        details: `HTTP ${searchResponse.status}: ${searchResponse.statusText}`
+      }, { status: 502 });
+    }
+
+    const searchContentType = searchResponse.headers.get('content-type');
+    if (!searchContentType || !searchContentType.includes('application/json')) {
+      console.error('Wikimedia search returned non-JSON response:', searchContentType);
+      return NextResponse.json({
+        error: 'Invalid search response from Wikimedia API',
+        details: 'Expected JSON, got ' + searchContentType
+      }, { status: 502 });
+    }
+
     const searchData = await searchResponse.json();
 
     const file = searchData.query?.search?.[0];
@@ -62,6 +98,24 @@ export async function GET() {
     imageInfoUrl.searchParams.set('origin', '*');
 
     const imageInfoResponse = await fetch(imageInfoUrl.toString());
+
+    if (!imageInfoResponse.ok) {
+      console.error('Wikimedia imageinfo API error:', imageInfoResponse.status, imageInfoResponse.statusText);
+      return NextResponse.json({
+        error: 'Failed to get image info from Wikimedia API',
+        details: `HTTP ${imageInfoResponse.status}: ${imageInfoResponse.statusText}`
+      }, { status: 502 });
+    }
+
+    const imageInfoContentType = imageInfoResponse.headers.get('content-type');
+    if (!imageInfoContentType || !imageInfoContentType.includes('application/json')) {
+      console.error('Wikimedia imageinfo returned non-JSON response:', imageInfoContentType);
+      return NextResponse.json({
+        error: 'Invalid imageinfo response from Wikimedia API',
+        details: 'Expected JSON, got ' + imageInfoContentType
+      }, { status: 502 });
+    }
+
     const imageInfoData = await imageInfoResponse.json();
 
     const pages = imageInfoData.query?.pages || {};

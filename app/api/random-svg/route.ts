@@ -9,6 +9,15 @@ export async function GET() {
 
     // Fetch the page
     const pageResponse = await fetch(pageUrl);
+
+    if (!pageResponse.ok) {
+      console.error('FreeSVG page fetch error:', pageResponse.status, pageResponse.statusText);
+      return NextResponse.json({
+        error: 'Failed to fetch from freesvg.org',
+        details: `HTTP ${pageResponse.status}: ${pageResponse.statusText}`
+      }, { status: 502 });
+    }
+
     const pageHtml = await pageResponse.text();
 
     // Parse the HTML
@@ -42,6 +51,15 @@ export async function GET() {
 
     // Fetch the detail page to get higher quality preview and download link
     const detailResponse = await fetch(randomItem.href);
+
+    if (!detailResponse.ok) {
+      console.error('FreeSVG detail page fetch error:', detailResponse.status, detailResponse.statusText);
+      return NextResponse.json({
+        error: 'Failed to fetch detail page from freesvg.org',
+        details: `HTTP ${detailResponse.status}: ${detailResponse.statusText}`
+      }, { status: 502 });
+    }
+
     const detailHtml = await detailResponse.text();
     const $detail = cheerio.load(detailHtml);
 

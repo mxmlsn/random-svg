@@ -20,10 +20,44 @@ export default function Gallery({ onSubmitClick }: GalleryProps) {
   const [loading, setLoading] = useState(true);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [scrollOffset, setScrollOffset] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check for mobile viewport
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     fetchPosters();
   }, []);
+
+  // Parallax effect for info card
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setScrollOffset(scrollY * 0.1);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Lock body scroll when lightbox is open
+  useEffect(() => {
+    if (lightboxOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [lightboxOpen]);
 
   const fetchPosters = async () => {
     try {
@@ -72,149 +106,384 @@ export default function Gallery({ onSubmitClick }: GalleryProps) {
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
-    return date.toLocaleDateString('ru-RU', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-    });
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}.${month}.${year}`;
   };
 
   const currentPoster = posters[currentIndex];
 
   return (
-    <section className="border-t border-gray-300 bg-[#F7F7F7]">
-      {/* Gallery Header */}
-      <div className="px-8 py-6 border-b border-gray-300 flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-800">Gallery</h2>
-        <span className="text-gray-500 text-sm">{posters.length} posters</span>
-      </div>
-
-      {/* Gallery Grid */}
-      <div className="p-8">
+    <section
+      className="w-full"
+      style={{
+        padding: isMobile ? '60px 40px 40px' : '220px 40px 60px',
+      }}
+    >
+      {/* Gallery Container - horizontal scroll with inline-block */}
+      <div
+        className="text-center"
+        style={{ fontSize: 0 }}
+      >
         {loading ? (
           <div className="flex justify-center items-center py-20">
-            <div className="w-8 h-8 border-2 border-[#C6D000] border-t-transparent rounded-full animate-spin"></div>
+            <div className="w-8 h-8 border-2 border-[#c00] border-t-transparent rounded-full animate-spin"></div>
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          <>
             {/* Info Card - First position */}
-            <div className="aspect-[3/4] border border-gray-300 rounded-lg p-6 flex flex-col justify-between bg-white">
-              <div>
-                <h3 className="text-lg font-bold text-gray-800 mb-2">Share Your Work</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  Made something cool with SVGs from this site? Submit your poster and get featured in the gallery!
-                </p>
-              </div>
-              <button
-                onClick={onSubmitClick}
-                className="w-full py-3 rounded-lg text-white font-semibold transition-transform hover:scale-[1.02]"
-                style={{ backgroundColor: '#C6D000' }}
+            <div
+              onClick={onSubmitClick}
+              className="inline-block align-top text-left relative cursor-pointer transition-all duration-300"
+              style={{
+                width: isMobile ? 224 : 264,
+                height: isMobile ? 320 : 400,
+                background: '#c00',
+                borderRadius: 24,
+                transform: `rotate(-2deg) translateY(${scrollOffset}px)`,
+                marginRight: isMobile ? 16 : 31,
+                marginBottom: isMobile ? 16 : 18,
+                marginTop: isMobile ? -60 : -80,
+                padding: isMobile ? '24px 20px' : '26px 27px',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = `rotate(0deg) translateY(${scrollOffset}px)`;
+                e.currentTarget.style.boxShadow = '0 20px 50px rgba(204, 0, 0, 0.4)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = `rotate(-2deg) translateY(${scrollOffset}px)`;
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
+              <p
+                className="text-white mb-4"
+                style={{
+                  fontFamily: '"Arial Narrow", Arial, sans-serif',
+                  fontWeight: 400,
+                  fontSize: isMobile ? 14 : 18,
+                  lineHeight: 1.15,
+                }}
               >
-                Submit My Work
+                Share your posters made with random-svg on{' '}
+                <a
+                  href="https://instagram.com/randomsvg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  Instagram
+                </a>{' '}
+                <span
+                  className="inline-block"
+                  style={{ animation: 'arrow-slide 3.6s ease-in-out infinite' }}
+                >
+                  →
+                </span>
+              </p>
+
+              <button
+                className="block w-full text-center text-white underline transition-all hover:font-bold"
+                style={{
+                  fontFamily: '"Arial Narrow", Arial, sans-serif',
+                  fontSize: isMobile ? 22 : 40,
+                  fontWeight: 400,
+                  textDecorationThickness: '1.8px',
+                  textUnderlineOffset: '4px',
+                  padding: isMobile ? '24px 0' : '44px 0',
+                  lineHeight: 1.2,
+                }}
+              >
+                SUBMIT<br />MY WORK
               </button>
+
+              <p
+                className="absolute text-white"
+                style={{
+                  fontFamily: '"Arial Narrow", Arial, sans-serif',
+                  fontWeight: 400,
+                  fontSize: isMobile ? 12 : 18,
+                  bottom: isMobile ? 24 : 26,
+                  left: isMobile ? 20 : 27,
+                }}
+              >
+                by{' '}
+                <a
+                  href="https://instagram.com/randomsvg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  @randomsvg
+                </a>
+              </p>
             </div>
 
             {/* Poster Cards */}
             {posters.map((poster, index) => (
               <div
                 key={poster.id}
-                className="aspect-[3/4] border border-gray-300 rounded-lg overflow-hidden cursor-pointer hover:border-gray-400 transition-colors group relative"
+                className="inline-block align-top cursor-pointer"
+                style={{
+                  marginRight: isMobile ? 16 : 18,
+                  marginBottom: isMobile ? 16 : 18,
+                }}
                 onClick={() => openLightbox(index)}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={poster.image_url}
                   alt={poster.instagram ? `Poster by @${poster.instagram}` : 'Poster'}
-                  className="w-full h-full object-cover"
+                  className="block"
+                  style={{ height: isMobile ? 280 : 340, width: 'auto' }}
+                  loading="lazy"
                 />
-                {/* Hover overlay with instagram */}
-                {poster.instagram && (
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="text-white text-sm">@{poster.instagram}</span>
-                  </div>
-                )}
+                <div
+                  className="flex justify-center items-center mt-0.5"
+                  style={{ fontSize: 14 }}
+                >
+                  {poster.instagram ? (
+                    <a
+                      href={`https://instagram.com/${poster.instagram}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-500 no-underline transition-colors hover:text-[#c00]"
+                      style={{ fontSize: 14 }}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      @{poster.instagram}
+                    </a>
+                  ) : (
+                    <span className="text-gray-400 italic" style={{ fontSize: 14 }}>
+                      anonymous
+                    </span>
+                  )}
+                </div>
               </div>
             ))}
-          </div>
+
+            {posters.length === 0 && (
+              <div className="text-center py-20 text-gray-500" style={{ fontSize: 16 }}>
+                No posters yet. Be the first to submit!
+              </div>
+            )}
+          </>
         )}
       </div>
 
       {/* Lightbox */}
       {lightboxOpen && currentPoster && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
-          {/* Backdrop */}
+        <div
+          className="fixed inset-0 flex items-center justify-center"
+          style={{ zIndex: 2000 }}
+        >
+          {/* Backdrop with blur */}
           <div
-            className="absolute inset-0 bg-black/90"
+            className="absolute inset-0"
+            style={{
+              background: 'rgba(0, 0, 0, 0.9)',
+              backdropFilter: 'blur(4px)',
+              WebkitBackdropFilter: 'blur(4px)',
+            }}
             onClick={closeLightbox}
-          ></div>
+          />
 
           {/* Close button */}
           <button
             onClick={closeLightbox}
-            className="absolute top-6 right-6 text-white text-4xl hover:text-gray-300 transition-colors z-10"
+            className="fixed flex items-center justify-center text-white transition-colors"
+            style={{
+              top: isMobile ? 16 : 24,
+              right: isMobile ? 16 : 24,
+              width: isMobile ? 40 : 48,
+              height: isMobile ? 40 : 48,
+              border: 'none',
+              background: 'rgba(255, 255, 255, 0.1)',
+              backdropFilter: 'blur(10px)',
+              borderRadius: '50%',
+              fontSize: isMobile ? 24 : 28,
+              zIndex: 10,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+            }}
           >
-            &times;
+            ×
           </button>
 
-          {/* Navigation buttons */}
+          {/* Navigation - Previous */}
           <button
             onClick={goToPrev}
             disabled={currentIndex === 0}
-            className="absolute left-6 top-1/2 -translate-y-1/2 text-white text-2xl p-4 hover:text-gray-300 transition-colors disabled:opacity-30 disabled:cursor-not-allowed z-10"
+            className="fixed flex items-center justify-center text-white transition-all"
+            style={{
+              left: isMobile ? 16 : 24,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              width: isMobile ? 40 : 48,
+              height: isMobile ? 40 : 48,
+              border: 'none',
+              background: 'rgba(255, 255, 255, 0.1)',
+              backdropFilter: 'blur(10px)',
+              borderRadius: '50%',
+              zIndex: 10,
+              opacity: currentIndex === 0 ? 0.3 : 1,
+              cursor: currentIndex === 0 ? 'not-allowed' : 'pointer',
+            }}
+            onMouseEnter={(e) => {
+              if (currentIndex !== 0) {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+              }
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+            }}
           >
             ←
           </button>
+
+          {/* Navigation - Next */}
           <button
             onClick={goToNext}
             disabled={currentIndex === posters.length - 1}
-            className="absolute right-6 top-1/2 -translate-y-1/2 text-white text-2xl p-4 hover:text-gray-300 transition-colors disabled:opacity-30 disabled:cursor-not-allowed z-10"
+            className="fixed flex items-center justify-center text-white transition-all"
+            style={{
+              right: isMobile ? 16 : 24,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              width: isMobile ? 40 : 48,
+              height: isMobile ? 40 : 48,
+              border: 'none',
+              background: 'rgba(255, 255, 255, 0.1)',
+              backdropFilter: 'blur(10px)',
+              borderRadius: '50%',
+              zIndex: 10,
+              opacity: currentIndex === posters.length - 1 ? 0.3 : 1,
+              cursor: currentIndex === posters.length - 1 ? 'not-allowed' : 'pointer',
+            }}
+            onMouseEnter={(e) => {
+              if (currentIndex !== posters.length - 1) {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+              }
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+            }}
           >
             →
           </button>
 
           {/* Image */}
-          <div className="relative max-w-[90vw] max-h-[85vh] z-10">
+          <div
+            className="relative flex items-center justify-center"
+            style={{ maxWidth: '90vw', maxHeight: '90vh', zIndex: 1 }}
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={currentPoster.image_url}
               alt={currentPoster.instagram ? `Poster by @${currentPoster.instagram}` : 'Poster'}
-              className="max-w-full max-h-[85vh] object-contain"
+              style={{
+                maxWidth: '100%',
+                maxHeight: '90vh',
+                objectFit: 'contain',
+                borderRadius: 4,
+              }}
             />
           </div>
 
           {/* Info panel */}
-          <div className="absolute bottom-6 left-6 text-white z-10 font-mono text-sm space-y-1">
+          <div
+            className="fixed flex flex-col"
+            style={{
+              bottom: isMobile ? 16 : 15,
+              left: isMobile ? 16 : 15,
+              background: 'transparent',
+              padding: isMobile ? '10px 16px' : 8,
+              borderRadius: 3,
+              width: 192,
+              minHeight: 56,
+              gap: 4,
+              zIndex: 2001,
+              fontFamily: '"Arial Narrow", Arial, sans-serif',
+              fontSize: isMobile ? 13 : 14,
+              lineHeight: 1.3,
+            }}
+          >
             {currentPoster.instagram && (
               <a
                 href={`https://instagram.com/${currentPoster.instagram}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block hover:text-[#C6D000] transition-colors"
+                className="transition-colors no-underline hover:underline"
+                style={{
+                  fontSize: 14,
+                  color: '#d6d6d6',
+                  whiteSpace: 'pre',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#c00';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = '#d6d6d6';
+                }}
               >
-                author: @{currentPoster.instagram}
+                author:{'\t'}@{currentPoster.instagram}
               </a>
             )}
+
             {currentPoster.svg_sources && currentPoster.svg_sources.length > 0 && (
-              <div className="text-gray-300">
-                sources: {currentPoster.svg_sources.join(', ')}
+              <div className="flex flex-col" style={{ fontSize: 14, color: '#d6d6d6', gap: 0 }}>
+                {currentPoster.svg_sources.map((source, i) => (
+                  <span key={i} style={{ lineHeight: 1.3, whiteSpace: 'pre' }}>
+                    {i === 0 ? 'sources:' : ''}{'\t'}{source}
+                  </span>
+                ))}
               </div>
             )}
+
             {currentPoster.used_fonts && (
-              <a
-                href="https://random-dafont.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-gray-300 hover:text-[#C6D000] transition-colors"
-              >
-                includes assets from random-dafont.com
-              </a>
+              <div style={{ fontSize: 14, color: '#d6d6d6' }}>
+                <a
+                  href="https://random-dafont.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline transition-colors"
+                  style={{ color: '#d6d6d6', whiteSpace: 'pre-line' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = '#c00';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = '#d6d6d6';
+                  }}
+                >
+                  includes fonts from{'\n'}random-dafont.com
+                </a>
+              </div>
             )}
-            <div className="text-gray-400">
+
+            <div style={{ fontSize: 14, color: '#d6d6d6', marginTop: 8 }}>
               {formatDate(currentPoster.created_at)}
             </div>
           </div>
         </div>
       )}
+
+      {/* CSS Animation for arrow */}
+      <style jsx>{`
+        @keyframes arrow-slide {
+          0%, 100% {
+            transform: translateX(-2px);
+          }
+          50% {
+            transform: translateX(6px);
+          }
+        }
+      `}</style>
     </section>
   );
 }

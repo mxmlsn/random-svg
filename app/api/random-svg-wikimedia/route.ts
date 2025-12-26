@@ -114,7 +114,8 @@ export async function GET() {
   const live = await fetchLive();
 
   if (live) {
-    return NextResponse.json(live);
+    // DEBUG: добавляем метку источника (убрать позже)
+    return NextResponse.json({ ...live, _debug_source: 'live' });
   }
 
   // Fallback to pool
@@ -122,7 +123,8 @@ export async function GET() {
   const fromPool = getFromPool();
 
   if (fromPool) {
-    return NextResponse.json(fromPool);
+    // DEBUG: добавляем метку источника (убрать позже)
+    return NextResponse.json({ ...fromPool, _debug_source: 'pool' });
   }
 
   return NextResponse.json({

@@ -10,6 +10,7 @@ interface SVGData {
   source: string;
   sourceUrl: string;
   downloadUrl: string;
+  _debug_source?: 'live' | 'pool'; // DEBUG: убрать позже
 }
 
 type SourceType = 'freesvg' | 'publicdomainvectors' | 'wikimedia';
@@ -281,6 +282,15 @@ export default function Home() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                       </svg>
                     </a>
+
+                    {/* DEBUG: метка источника для wikimedia - убрать позже */}
+                    {item._debug_source && (
+                      <span className={`absolute bottom-2 left-2 text-xs px-1.5 py-0.5 rounded ${
+                        item._debug_source === 'live' ? 'bg-green-500 text-white' : 'bg-orange-500 text-white'
+                      }`}>
+                        {item._debug_source}
+                      </span>
+                    )}
                   </>
                 ) : null}
               </div>

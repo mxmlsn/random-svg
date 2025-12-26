@@ -3,9 +3,11 @@ import { NextResponse } from 'next/server';
 const WIKIMEDIA_API = 'https://commons.wikimedia.org/w/api.php';
 const MAX_OFFSET = 10000; // API limit
 
-// Rate limiting: simple queue to prevent 429 errors
+// Rate limiting with retry logic for 429 errors
 let lastRequestTime = 0;
-const MIN_REQUEST_INTERVAL = 300; // 300ms between requests
+const MIN_REQUEST_INTERVAL = 500; // 500ms between requests
+const MAX_RETRIES = 3;
+const BASE_DELAY = 1000; // 1 second base delay for retries
 
 async function throttledFetch(url: string): Promise<Response> {
   const now = Date.now();
@@ -17,7 +19,27 @@ async function throttledFetch(url: string): Promise<Response> {
   }
 
   lastRequestTime = Date.now();
-  return fetch(url);
+
+  for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+    const response = await fetch(url);
+
+    if (response.status === 429) {
+      // Exponential backoff: 1s, 2s, 4s
+      const retryDelay = BASE_DELAY * Math.pow(2, attempt);
+      console.log(`Wikimedia 429 - retrying in ${retryDelay}ms (attempt ${attempt + 1}/${MAX_RETRIES})`);
+      await new Promise(resolve => setTimeout(resolve, retryDelay));
+      lastRequestTime = Date.now();
+      continue;
+    }
+
+    return response;
+  }
+
+  // All retries exhausted, return a 429 response
+  return new Response(JSON.stringify({ error: 'Rate limited after retries' }), {
+    status: 429,
+    headers: { 'Content-Type': 'application/json' }
+  });
 }
 
 export async function GET() {

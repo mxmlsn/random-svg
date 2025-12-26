@@ -99,11 +99,18 @@ export async function POST(request: NextRequest) {
 
     // Send Telegram notification
     if (telegramBotToken && telegramChatId) {
-      const svgSourcesText = svgSources?.length ? `\nSVG sources: ${svgSources.join(', ')}` : '';
-      const fontsText = usedFonts ? '\n🔤 Also uses random-dafont.com' : '';
-      const instagramText = cleanInstagram ? `\n@${cleanInstagram}` : '\n(anonymous)';
+      // Line 1: source
+      const sourceLine = usedFonts ? 'svg + dafont' : 'svg';
 
-      const caption = `📥 New SVG poster submission${instagramText}${svgSourcesText}${fontsText}`;
+      // Line 2: author with hyperlink (or anonymous)
+      const authorLine = cleanInstagram
+        ? `<a href="https://instagram.com/${cleanInstagram}">@${cleanInstagram}</a>`
+        : 'anonymous';
+
+      // Line 3: fonts (empty for svg submissions, but could be added later)
+      const fontsLine = ''; // SVG site doesn't collect fonts
+
+      const caption = `${sourceLine}\n${authorLine}${fontsLine}`;
 
       // Send photo with inline keyboard
       await fetch(`https://api.telegram.org/bot${telegramBotToken}/sendPhoto`, {
@@ -113,6 +120,7 @@ export async function POST(request: NextRequest) {
           chat_id: telegramChatId,
           photo: imageUrl,
           caption: caption,
+          parse_mode: 'HTML',
           reply_markup: {
             inline_keyboard: [
               [

@@ -261,10 +261,7 @@ export default function Home() {
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={item.source === 'wikimedia.org'
-                          ? item.previewImage
-                          : `/api/proxy-image?url=${encodeURIComponent(item.previewImage)}`
-                        }
+                        src={`/api/proxy-image?url=${encodeURIComponent(item.previewImage)}`}
                         alt={item.title}
                         className="max-w-full max-h-full object-contain"
                       />

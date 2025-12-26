@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
 
   try {
     // Only allow proxying from known domains
-    const allowedDomains = ['publicdomainvectors.org', 'freesvg.org'];
+    const allowedDomains = ['publicdomainvectors.org', 'freesvg.org', 'upload.wikimedia.org', 'commons.wikimedia.org'];
     const urlObj = new URL(url);
 
     if (!allowedDomains.some(domain => urlObj.hostname.includes(domain))) {

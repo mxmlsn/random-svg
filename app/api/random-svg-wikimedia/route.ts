@@ -157,10 +157,18 @@ export async function GET() {
       return NextResponse.json(svg);
     }
 
-    // Cache empty - fetch directly (first request or cache depleted)
+    // Cache empty - fetch directly with retries
     console.log('Cache empty - fetching directly');
 
-    const svg = await fetchSingleSvg();
+    let svg: CachedSvg | null = null;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      svg = await fetchSingleSvg();
+      if (svg) break;
+      // Wait longer on each retry: 3s, 5s, 7s
+      const delay = 3000 + attempt * 2000;
+      console.log(`Direct fetch failed, retry ${attempt + 1}/3 in ${delay}ms`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
 
     if (!svg) {
       return NextResponse.json({

@@ -233,21 +233,23 @@ export default function Home() {
         </aside>
 
         {/* Right Content Area - SVG Grid */}
-        <main className="flex-1 p-6 relative">
+        <main className="flex-1 p-6 relative overflow-hidden">
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            <div className="absolute top-6 left-6 right-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-20">
               <p className="font-semibold">Error:</p>
               <p>{error}</p>
             </div>
           )}
 
-          {/* Static Grid - Always 6 slots */}
-          <div className="h-full grid grid-cols-3 grid-rows-2 gap-4">
+          {/* Static Grid - Always 6 slots with fixed layout */}
+          <div
+            className="grid grid-cols-3 gap-4 h-full"
+            style={{ gridTemplateRows: 'repeat(2, 1fr)' }}
+          >
             {svgItems.map((item, index) => (
               <div
                 key={index}
-                className="relative border border-[#D9D9D9] rounded-lg p-4 hover:border-gray-400 transition-colors group overflow-hidden"
-                style={{ minHeight: '0' }}
+                className="relative border border-[#D9D9D9] rounded-lg hover:border-gray-400 transition-colors group overflow-hidden aspect-square"
               >
                 {item ? (
                   <>
@@ -255,19 +257,17 @@ export default function Home() {
                       href={item.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block h-full"
+                      className="absolute inset-4 flex justify-center items-center"
                     >
-                      <div className="flex justify-center items-center h-full">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={item.source === 'wikimedia.org'
-                            ? item.previewImage
-                            : `/api/proxy-image?url=${encodeURIComponent(item.previewImage)}`
-                          }
-                          alt={item.title}
-                          className="max-w-full max-h-full object-contain"
-                        />
-                      </div>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={item.source === 'wikimedia.org'
+                          ? item.previewImage
+                          : `/api/proxy-image?url=${encodeURIComponent(item.previewImage)}`
+                        }
+                        alt={item.title}
+                        className="max-w-full max-h-full object-contain"
+                      />
                     </a>
 
                     {/* Download button overlay - for all sources */}
@@ -276,7 +276,7 @@ export default function Home() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="absolute top-3 right-3 text-white p-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                      className="absolute top-3 right-3 text-white p-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-10"
                       style={{ backgroundColor: '#C6D000' }}
                       title="Download SVG"
                     >

@@ -1,0 +1,139 @@
+import { NextRequest, NextResponse } from 'next/server';
+
+interface SubmitPosterBody {
+  instagram?: string;
+  svgSources?: string[];
+  usedFonts: boolean;
+  imageBase64: string;
+  fileName: string;
+  fileType: string;
+}
+
+export async function POST(request: NextRequest) {
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
+  const cloudinaryCloudName = process.env.CLOUDINARY_CLOUD_NAME;
+  const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
+  const telegramChatId = process.env.TELEGRAM_CHAT_ID;
+
+  if (!supabaseUrl || !supabaseServiceKey || !cloudinaryCloudName) {
+    return NextResponse.json(
+      { error: 'Server configuration error' },
+      { status: 500 }
+    );
+  }
+
+  try {
+    const body: SubmitPosterBody = await request.json();
+    const { instagram, svgSources, usedFonts, imageBase64, fileName, fileType } = body;
+
+    // Validate required fields
+    if (!imageBase64 || !fileName || !fileType) {
+      return NextResponse.json(
+        { error: 'Missing required fields' },
+        { status: 400 }
+      );
+    }
+
+    // Clean instagram handle
+    const cleanInstagram = instagram?.replace('@', '').trim() || null;
+
+    // Upload to Cloudinary
+    const publicId = `poster-svg-${Date.now()}`;
+    const cloudinaryResponse = await fetch(
+      `https://api.cloudinary.com/v1_1/${cloudinaryCloudName}/image/upload`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          file: imageBase64,
+          upload_preset: 'unsigned_posters',
+          public_id: publicId,
+        }),
+      }
+    );
+
+    if (!cloudinaryResponse.ok) {
+      const errorData = await cloudinaryResponse.text();
+      console.error('Cloudinary error:', errorData);
+      throw new Error('Failed to upload image');
+    }
+
+    const cloudinaryData = await cloudinaryResponse.json();
+    const imageUrl = cloudinaryData.secure_url;
+
+    // Insert into Supabase
+    const posterData = {
+      instagram: cleanInstagram,
+      svg_sources: svgSources || [],
+      used_fonts: usedFonts || false,
+      used_svg: true, // Always true since submitted from SVG site
+      image_url: imageUrl,
+      status: 'pending',
+      source: 'svg',
+    };
+
+    const supabaseResponse = await fetch(
+      `${supabaseUrl}/rest/v1/posters`,
+      {
+        method: 'POST',
+        headers: {
+          'apikey': supabaseServiceKey,
+          'Authorization': `Bearer ${supabaseServiceKey}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=representation',
+        },
+        body: JSON.stringify(posterData),
+      }
+    );
+
+    if (!supabaseResponse.ok) {
+      const errorData = await supabaseResponse.text();
+      console.error('Supabase error:', errorData);
+      throw new Error('Failed to save poster');
+    }
+
+    const [savedPoster] = await supabaseResponse.json();
+
+    // Send Telegram notification
+    if (telegramBotToken && telegramChatId) {
+      const svgSourcesText = svgSources?.length ? `\nSVG sources: ${svgSources.join(', ')}` : '';
+      const fontsText = usedFonts ? '\n🔤 Also uses random-dafont.com' : '';
+      const instagramText = cleanInstagram ? `\n@${cleanInstagram}` : '\n(anonymous)';
+
+      const caption = `📥 New SVG poster submission${instagramText}${svgSourcesText}${fontsText}`;
+
+      // Send photo with inline keyboard
+      await fetch(`https://api.telegram.org/bot${telegramBotToken}/sendPhoto`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: telegramChatId,
+          photo: imageUrl,
+          caption: caption,
+          reply_markup: {
+            inline_keyboard: [
+              [
+                { text: '✅ Approve', callback_data: `approve:${savedPoster.id}` },
+                { text: '❌ Reject', callback_data: `reject:${savedPoster.id}` },
+              ],
+            ],
+          },
+        }),
+      });
+    }
+
+    return NextResponse.json(
+      { success: true, message: 'Poster submitted for review' },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error('Error submitting poster:', error);
+    return NextResponse.json(
+      { error: 'Failed to submit poster' },
+      { status: 500 }
+    );
+  }
+}

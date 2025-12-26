@@ -3,6 +3,23 @@ import { NextResponse } from 'next/server';
 const WIKIMEDIA_API = 'https://commons.wikimedia.org/w/api.php';
 const MAX_OFFSET = 10000; // API limit
 
+// Rate limiting: simple queue to prevent 429 errors
+let lastRequestTime = 0;
+const MIN_REQUEST_INTERVAL = 300; // 300ms between requests
+
+async function throttledFetch(url: string): Promise<Response> {
+  const now = Date.now();
+  const timeSinceLastRequest = now - lastRequestTime;
+
+  if (timeSinceLastRequest < MIN_REQUEST_INTERVAL) {
+    const delay = MIN_REQUEST_INTERVAL - timeSinceLastRequest;
+    await new Promise(resolve => setTimeout(resolve, delay));
+  }
+
+  lastRequestTime = Date.now();
+  return fetch(url);
+}
+
 export async function GET() {
   try {
     // Step 1: Get total number of SVG files
@@ -15,7 +32,7 @@ export async function GET() {
     totalHitsUrl.searchParams.set('format', 'json');
     totalHitsUrl.searchParams.set('origin', '*');
 
-    const totalResponse = await fetch(totalHitsUrl.toString());
+    const totalResponse = await throttledFetch(totalHitsUrl.toString());
 
     if (!totalResponse.ok) {
       console.error('Wikimedia API error:', totalResponse.status, totalResponse.statusText);
@@ -57,7 +74,7 @@ export async function GET() {
     searchUrl.searchParams.set('format', 'json');
     searchUrl.searchParams.set('origin', '*');
 
-    const searchResponse = await fetch(searchUrl.toString());
+    const searchResponse = await throttledFetch(searchUrl.toString());
 
     if (!searchResponse.ok) {
       console.error('Wikimedia search API error:', searchResponse.status, searchResponse.statusText);
@@ -97,7 +114,7 @@ export async function GET() {
     imageInfoUrl.searchParams.set('format', 'json');
     imageInfoUrl.searchParams.set('origin', '*');
 
-    const imageInfoResponse = await fetch(imageInfoUrl.toString());
+    const imageInfoResponse = await throttledFetch(imageInfoUrl.toString());
 
     if (!imageInfoResponse.ok) {
       console.error('Wikimedia imageinfo API error:', imageInfoResponse.status, imageInfoResponse.statusText);

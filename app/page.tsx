@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Gallery from './components/Gallery';
+import SubmitModal from './components/SubmitModal';
 
 interface SVGData {
   title: string;
@@ -20,6 +22,7 @@ export default function Home() {
   const [initialLoad, setInitialLoad] = useState(true);
   const [history, setHistory] = useState<(SVGData | null)[][]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
+  const [submitModalOpen, setSubmitModalOpen] = useState(false);
 
   // Load SVGs on initial mount
   useEffect(() => {
@@ -143,7 +146,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden" style={{ backgroundColor: '#F7F7F7' }}>
+    <div className="flex flex-col min-h-screen" style={{ backgroundColor: '#F7F7F7' }}>
       {/* Header */}
       <header className="flex items-center justify-between px-8 py-6 border-b border-gray-300">
         <h1 className="text-3xl font-bold text-gray-800">
@@ -160,7 +163,7 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 min-h-[600px]">
         {/* Left Sidebar - Source Selection */}
         <aside className="w-80 p-6 flex flex-col gap-4">
           <h2 className="text-lg font-semibold text-gray-700 mb-2">Sources</h2>
@@ -230,7 +233,7 @@ export default function Home() {
         </aside>
 
         {/* Right Content Area - SVG Grid */}
-        <main className="flex-1 p-6 relative overflow-hidden">
+        <main className="flex-1 p-6 relative">
           {error && (
             <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
               <p className="font-semibold">Error:</p>
@@ -311,6 +314,15 @@ export default function Home() {
           </button>
         </main>
       </div>
+
+      {/* Gallery Section */}
+      <Gallery onSubmitClick={() => setSubmitModalOpen(true)} />
+
+      {/* Submit Modal */}
+      <SubmitModal
+        isOpen={submitModalOpen}
+        onClose={() => setSubmitModalOpen(false)}
+      />
     </div>
   );
 }

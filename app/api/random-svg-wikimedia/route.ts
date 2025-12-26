@@ -3,89 +3,39 @@ import { NextResponse } from 'next/server';
 const WIKIMEDIA_API = 'https://commons.wikimedia.org/w/api.php';
 const MAX_OFFSET = 10000; // API limit
 
-// Rate limiting with retry logic for 429 errors
-let lastRequestTime = 0;
-const MIN_REQUEST_INTERVAL = 500; // 500ms between requests
-const MAX_RETRIES = 3;
-const BASE_DELAY = 1000; // 1 second base delay for retries
+// Cache configuration
+const CACHE_SIZE = 30; // Keep 30 items in cache
+const MIN_CACHE_SIZE = 5; // Start refilling when below this
+const REFILL_DELAY = 2000; // 2s between API calls when refilling
 
-async function throttledFetch(url: string): Promise<Response> {
-  const now = Date.now();
-  const timeSinceLastRequest = now - lastRequestTime;
-
-  if (timeSinceLastRequest < MIN_REQUEST_INTERVAL) {
-    const delay = MIN_REQUEST_INTERVAL - timeSinceLastRequest;
-    await new Promise(resolve => setTimeout(resolve, delay));
-  }
-
-  lastRequestTime = Date.now();
-
-  for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
-    const response = await fetch(url);
-
-    if (response.status === 429) {
-      // Exponential backoff: 1s, 2s, 4s
-      const retryDelay = BASE_DELAY * Math.pow(2, attempt);
-      console.log(`Wikimedia 429 - retrying in ${retryDelay}ms (attempt ${attempt + 1}/${MAX_RETRIES})`);
-      await new Promise(resolve => setTimeout(resolve, retryDelay));
-      lastRequestTime = Date.now();
-      continue;
-    }
-
-    return response;
-  }
-
-  // All retries exhausted, return a 429 response
-  return new Response(JSON.stringify({ error: 'Rate limited after retries' }), {
-    status: 429,
-    headers: { 'Content-Type': 'application/json' }
-  });
+interface CachedSvg {
+  title: string;
+  previewImage: string;
+  source: string;
+  sourceUrl: string;
+  downloadUrl: string;
 }
 
-export async function GET() {
+// In-memory cache
+const svgCache: CachedSvg[] = [];
+let isRefilling = false;
+let lastApiCall = 0;
+
+// Fetch single SVG from Wikimedia (internal use)
+async function fetchSingleSvg(): Promise<CachedSvg | null> {
+  // Rate limit: wait at least REFILL_DELAY between calls
+  const now = Date.now();
+  const timeSinceLastCall = now - lastApiCall;
+  if (timeSinceLastCall < REFILL_DELAY) {
+    await new Promise(resolve => setTimeout(resolve, REFILL_DELAY - timeSinceLastCall));
+  }
+  lastApiCall = Date.now();
+
   try {
-    // Step 1: Get total number of SVG files
-    const totalHitsUrl = new URL(WIKIMEDIA_API);
-    totalHitsUrl.searchParams.set('action', 'query');
-    totalHitsUrl.searchParams.set('list', 'search');
-    totalHitsUrl.searchParams.set('srsearch', 'filemime:image/svg+xml');
-    totalHitsUrl.searchParams.set('srnamespace', '6');
-    totalHitsUrl.searchParams.set('srlimit', '1');
-    totalHitsUrl.searchParams.set('format', 'json');
-    totalHitsUrl.searchParams.set('origin', '*');
+    // Step 1: Generate random offset
+    const randomOffset = Math.floor(Math.random() * MAX_OFFSET);
 
-    const totalResponse = await throttledFetch(totalHitsUrl.toString());
-
-    if (!totalResponse.ok) {
-      console.error('Wikimedia API error:', totalResponse.status, totalResponse.statusText);
-      return NextResponse.json({
-        error: 'Failed to fetch from Wikimedia API',
-        details: `HTTP ${totalResponse.status}: ${totalResponse.statusText}`
-      }, { status: 502 });
-    }
-
-    const contentType = totalResponse.headers.get('content-type');
-    if (!contentType || !contentType.includes('application/json')) {
-      console.error('Wikimedia returned non-JSON response:', contentType);
-      return NextResponse.json({
-        error: 'Invalid response from Wikimedia API',
-        details: 'Expected JSON, got ' + contentType
-      }, { status: 502 });
-    }
-
-    const totalData = await totalResponse.json();
-
-    const totalHits = totalData.query?.searchinfo?.totalhits || 0;
-
-    if (totalHits === 0) {
-      return NextResponse.json({ error: 'No SVG files found' }, { status: 404 });
-    }
-
-    // Step 2: Generate random offset (limited to MAX_OFFSET)
-    const maxOffset = Math.min(totalHits - 1, MAX_OFFSET);
-    const randomOffset = Math.floor(Math.random() * maxOffset);
-
-    // Step 3: Get random file
+    // Step 2: Get random file
     const searchUrl = new URL(WIKIMEDIA_API);
     searchUrl.searchParams.set('action', 'query');
     searchUrl.searchParams.set('list', 'search');
@@ -96,37 +46,28 @@ export async function GET() {
     searchUrl.searchParams.set('format', 'json');
     searchUrl.searchParams.set('origin', '*');
 
-    const searchResponse = await throttledFetch(searchUrl.toString());
+    const searchResponse = await fetch(searchUrl.toString());
 
-    if (!searchResponse.ok) {
-      console.error('Wikimedia search API error:', searchResponse.status, searchResponse.statusText);
-      return NextResponse.json({
-        error: 'Failed to search Wikimedia API',
-        details: `HTTP ${searchResponse.status}: ${searchResponse.statusText}`
-      }, { status: 502 });
+    if (searchResponse.status === 429) {
+      console.log('Wikimedia 429 - backing off');
+      return null;
     }
 
-    const searchContentType = searchResponse.headers.get('content-type');
-    if (!searchContentType || !searchContentType.includes('application/json')) {
-      console.error('Wikimedia search returned non-JSON response:', searchContentType);
-      return NextResponse.json({
-        error: 'Invalid search response from Wikimedia API',
-        details: 'Expected JSON, got ' + searchContentType
-      }, { status: 502 });
+    if (!searchResponse.ok) {
+      console.error('Wikimedia search API error:', searchResponse.status);
+      return null;
     }
 
     const searchData = await searchResponse.json();
-
     const file = searchData.query?.search?.[0];
 
     if (!file) {
-      return NextResponse.json({ error: 'No file found at offset' }, { status: 404 });
+      return null;
     }
 
-    // Step 4: Get file title
     const title = file.title;
 
-    // Step 5: Get image info with preview URL
+    // Step 3: Get image info with preview URL
     const imageInfoUrl = new URL(WIKIMEDIA_API);
     imageInfoUrl.searchParams.set('action', 'query');
     imageInfoUrl.searchParams.set('titles', title);
@@ -136,48 +77,102 @@ export async function GET() {
     imageInfoUrl.searchParams.set('format', 'json');
     imageInfoUrl.searchParams.set('origin', '*');
 
-    const imageInfoResponse = await throttledFetch(imageInfoUrl.toString());
+    // Wait before second request
+    await new Promise(resolve => setTimeout(resolve, REFILL_DELAY));
+    lastApiCall = Date.now();
 
-    if (!imageInfoResponse.ok) {
-      console.error('Wikimedia imageinfo API error:', imageInfoResponse.status, imageInfoResponse.statusText);
-      return NextResponse.json({
-        error: 'Failed to get image info from Wikimedia API',
-        details: `HTTP ${imageInfoResponse.status}: ${imageInfoResponse.statusText}`
-      }, { status: 502 });
+    const imageInfoResponse = await fetch(imageInfoUrl.toString());
+
+    if (imageInfoResponse.status === 429) {
+      console.log('Wikimedia 429 on imageinfo - backing off');
+      return null;
     }
 
-    const imageInfoContentType = imageInfoResponse.headers.get('content-type');
-    if (!imageInfoContentType || !imageInfoContentType.includes('application/json')) {
-      console.error('Wikimedia imageinfo returned non-JSON response:', imageInfoContentType);
-      return NextResponse.json({
-        error: 'Invalid imageinfo response from Wikimedia API',
-        details: 'Expected JSON, got ' + imageInfoContentType
-      }, { status: 502 });
+    if (!imageInfoResponse.ok) {
+      console.error('Wikimedia imageinfo API error:', imageInfoResponse.status);
+      return null;
     }
 
     const imageInfoData = await imageInfoResponse.json();
-
     const pages = imageInfoData.query?.pages || {};
     const pageId = Object.keys(pages)[0];
     const imageInfo = pages[pageId]?.imageinfo?.[0];
 
     if (!imageInfo) {
-      return NextResponse.json({ error: 'Could not get image info' }, { status: 404 });
+      return null;
     }
 
-    // Extract title without "File:" prefix
     const cleanTitle = title.replace('File:', '');
-
-    // Add ?download parameter to enable direct download
     const downloadUrl = imageInfo.url ? `${imageInfo.url}?download` : imageInfo.url;
 
-    return NextResponse.json({
+    return {
       title: cleanTitle,
       previewImage: imageInfo.thumburl || imageInfo.url,
       source: 'wikimedia.org',
       sourceUrl: imageInfo.descriptionurl,
       downloadUrl: downloadUrl,
-    });
+    };
+  } catch (error) {
+    console.error('Error fetching SVG:', error);
+    return null;
+  }
+}
+
+// Background refill of cache
+async function refillCache() {
+  if (isRefilling) return;
+  isRefilling = true;
+
+  console.log(`Cache refill started. Current size: ${svgCache.length}`);
+
+  while (svgCache.length < CACHE_SIZE) {
+    const svg = await fetchSingleSvg();
+    if (svg) {
+      svgCache.push(svg);
+      console.log(`Cache refilled: ${svgCache.length}/${CACHE_SIZE}`);
+    }
+    // Extra delay between fetches to avoid 429
+    await new Promise(resolve => setTimeout(resolve, 1000));
+  }
+
+  isRefilling = false;
+  console.log('Cache refill complete');
+}
+
+export async function GET() {
+  try {
+    // If cache has items, return from cache immediately
+    if (svgCache.length > 0) {
+      // Get random item from cache
+      const randomIndex = Math.floor(Math.random() * svgCache.length);
+      const svg = svgCache.splice(randomIndex, 1)[0];
+
+      console.log(`Served from cache. Remaining: ${svgCache.length}`);
+
+      // Trigger background refill if running low
+      if (svgCache.length < MIN_CACHE_SIZE) {
+        refillCache(); // Don't await - run in background
+      }
+
+      return NextResponse.json(svg);
+    }
+
+    // Cache empty - fetch directly (first request or cache depleted)
+    console.log('Cache empty - fetching directly');
+
+    const svg = await fetchSingleSvg();
+
+    if (!svg) {
+      return NextResponse.json({
+        error: 'Failed to fetch from Wikimedia API',
+        details: 'Rate limited or API error'
+      }, { status: 502 });
+    }
+
+    // Start background refill
+    refillCache();
+
+    return NextResponse.json(svg);
 
   } catch (error) {
     console.error('Error fetching random SVG from Wikimedia:', error);

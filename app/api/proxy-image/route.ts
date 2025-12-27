@@ -21,7 +21,7 @@ const MAX_CACHE_SIZE = 100;
 // Shared rate limit state for Wikimedia CDN
 // Exported so wikimedia route can check it
 export let wikimediaRateLimitedUntil: number = 0;
-const RATE_LIMIT_COOLDOWN = 20 * 1000; // 20 seconds
+const RATE_LIMIT_COOLDOWN = 40 * 1000; // 40 seconds
 
 export function isWikimediaRateLimited(): boolean {
   return Date.now() < wikimediaRateLimitedUntil;

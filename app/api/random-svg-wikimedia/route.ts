@@ -46,7 +46,7 @@ import { isWikimediaRateLimited } from '../proxy-image/route';
 const WIKIMEDIA_API = 'https://commons.wikimedia.org/w/api.php';
 const MAX_OFFSET = 10000;
 const LIVE_TIMEOUT = 3000; // 3 seconds max for live request
-const RATE_LIMIT_COOLDOWN = 20 * 1000; // 20 seconds cooldown after 429
+const RATE_LIMIT_COOLDOWN = 40 * 1000; // 40 seconds cooldown after 429
 
 // =============================================================================
 // RATE LIMIT STATE

@@ -217,7 +217,8 @@ export default function Home() {
         // During cooldown, skip wikimedia API requests - use archive directly on client
         if (endpoint.includes('wikimedia') && wikiCooldownRef.current > 0) {
           // Add staggered delay for archive loading (similar to live mode feel)
-          await new Promise(resolve => setTimeout(resolve, index * 300));
+          // First card also has delay (300ms base + index * 300ms)
+          await new Promise(resolve => setTimeout(resolve, 300 + index * 300));
           try {
             const archiveRes = await fetch('/wikimedia-archive/index.json');
             if (archiveRes.ok) {
@@ -486,16 +487,27 @@ export default function Home() {
           {/* Wikimedia cooldown countdown */}
           <div
             style={{
-              marginTop: '5px',
+              marginTop: '10px',
               fontFamily: 'monospace',
               fontSize: '11px',
               color: '#9ca3af',
               textAlign: 'center',
               opacity: wikiCooldown > 0 ? 1 : 0,
               transition: 'opacity 0.15s ease-out',
-              pointerEvents: 'none'
+              pointerEvents: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px'
             }}
           >
+            <span style={{
+              width: '8px',
+              height: '8px',
+              borderRadius: '50%',
+              backgroundColor: '#9ca3af',
+              flexShrink: 0
+            }} />
             {wikiCooldown} sec until live images from wiki, now you see archives
           </div>
         </div>
@@ -792,25 +804,20 @@ export default function Home() {
                       />
                     </a>
 
-                    {/* Source badge for wikimedia: LIVE (green) or ARCHIVE (gray) */}
-                    {item.source === 'wikimedia.org' && item._debug_source && (
+                    {/* Archive indicator: small gray circle for archive items only */}
+                    {item.source === 'wikimedia.org' && item._debug_source === 'archive' && (
                       <div
                         style={{
                           position: 'absolute',
-                          top: '8px',
-                          left: '8px',
-                          padding: '4px 8px',
-                          borderRadius: '6px',
-                          fontSize: '10px',
-                          fontFamily: 'Arial',
-                          fontWeight: 'bold',
-                          color: 'white',
-                          backgroundColor: item._debug_source === 'live' ? '#22c55e' : '#9ca3af',
+                          top: '12px',
+                          left: '12px',
+                          width: '8px',
+                          height: '8px',
+                          borderRadius: '50%',
+                          backgroundColor: '#9ca3af',
                           zIndex: 10
                         }}
-                      >
-                        {item._debug_source === 'live' ? 'LIVE' : 'ARCHIVE'}
-                      </div>
+                      />
                     )}
 
                     {/* Download button overlay - for all sources */}

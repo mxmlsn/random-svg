@@ -195,7 +195,7 @@ export default function Home() {
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#F4F4F4' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#F4F4F4', alignItems: 'flex-start' }}>
       {/* Left Column - 30% */}
       <aside style={{ width: '30%', padding: '36px', display: 'flex', flexDirection: 'column', gap: '24px', opacity: isMinimized ? 0.2 : 1, transition: 'opacity 0.3s' }}>
         {/* Logo */}
@@ -354,17 +354,15 @@ export default function Home() {
         </div>
 
         {/* Submit Card - Centered */}
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: 20 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: 60 }}>
           <div
-            onClick={() => setSubmitModalOpen(true)}
             style={{
-              width: 264,
-              height: 400,
+              width: 334,
+              height: 500,
               background: '#C5E02D',
               borderRadius: 24,
               padding: '26px 27px',
               position: 'relative',
-              cursor: 'pointer',
               transition: 'all 0.3s',
               textAlign: 'left',
               transform: `rotate(-2deg) translateY(${scrollOffset}px)`
@@ -380,15 +378,37 @@ export default function Home() {
           >
             <p
               style={{
-                fontFamily: '"Arial Narrow", Arial, sans-serif',
+                fontFamily: 'HealTheWeb, Arial, sans-serif',
                 fontWeight: 400,
                 fontSize: 18,
                 lineHeight: 1.15,
                 color: 'white',
-                marginBottom: '16px'
+                marginBottom: '16px',
+                letterSpacing: '-0.3px'
               }}
             >
-              Share your posters made with random-svg on{' '}
+              free website to get random SVG's and share posters made with them
+            </p>
+
+            <p
+              style={{
+                fontFamily: 'HealTheWeb, Arial, sans-serif',
+                fontWeight: 400,
+                fontSize: 18,
+                lineHeight: 1.15,
+                color: 'white',
+                marginTop: '16px',
+                letterSpacing: '-0.3px'
+              }}
+            >
+              here is community works{' '}
+              <span
+                className="arrow-animate"
+              >
+                →
+              </span>
+              <br />
+              featured on{' '}
               <a
                 href="https://instagram.com/randomsvg"
                 target="_blank"
@@ -396,32 +416,31 @@ export default function Home() {
                 style={{ color: 'white', textDecoration: 'underline' }}
                 onClick={(e) => e.stopPropagation()}
               >
-                Instagram
-              </a>{' '}
-              <span
-                style={{ display: 'inline-block', animation: 'arrow-slide 3.6s ease-in-out infinite' }}
-              >
-                →
-              </span>
+                instagram
+              </a>
+              {' '}as well
             </p>
 
             <button
+              className="submit-btn"
+              onClick={() => setSubmitModalOpen(true)}
               style={{
                 display: 'block',
                 width: '100%',
                 textAlign: 'center',
                 color: 'white',
                 textDecoration: 'underline',
-                fontFamily: '"Arial Narrow", Arial, sans-serif',
+                fontFamily: 'HealTheWeb, Arial, sans-serif',
                 fontSize: 40,
                 fontWeight: 400,
                 textDecorationThickness: '1.8px',
                 textUnderlineOffset: '4px',
-                padding: '44px 0',
+                padding: '108px 0',
                 lineHeight: 1.2,
                 background: 'none',
                 border: 'none',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                letterSpacing: '-0.5px'
               }}
             >
               SUBMIT<br />MY WORK
@@ -430,35 +449,75 @@ export default function Home() {
             <p
               style={{
                 position: 'absolute',
-                fontFamily: '"Arial Narrow", Arial, sans-serif',
+                fontFamily: 'HealTheWeb, Arial, sans-serif',
                 fontWeight: 400,
                 fontSize: 18,
                 bottom: 26,
                 left: 27,
-                color: 'white'
+                color: 'white',
+                letterSpacing: '-0.3px'
               }}
             >
-              by{' '}
+              made by{' '}
               <a
-                href="https://instagram.com/randomsvg"
+                href="https://instagram.com/mxmlsn"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color: 'white', textDecoration: 'underline' }}
                 onClick={(e) => e.stopPropagation()}
               >
-                @randomsvg
+                @mxmlsn
               </a>
             </p>
           </div>
         </div>
 
-        {/* Info Card */}
-        <div style={{ padding: '16px', backgroundColor: 'white', borderRadius: '8px', border: '1px solid #DEDEDE' }}>
-          <p style={{ fontSize: '12px', color: '#6b7280' }}>
-            Public domain SVG images from free sources. Click to view source, hover for download.
-          </p>
+        {/* Random Dafont Card */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: 24 }}>
+          <a
+            href="https://random-dafont.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              width: 334,
+              height: 125,
+              background: '#c00',
+              borderRadius: 24,
+              padding: '20px 27px',
+              position: 'relative',
+              transition: 'all 0.3s',
+              textAlign: 'left',
+              transform: `rotate(-2deg) translateY(${scrollOffset}px)`,
+              display: 'flex',
+              alignItems: 'center',
+              textDecoration: 'none'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = `rotate(0deg) translateY(${scrollOffset}px)`;
+              e.currentTarget.style.boxShadow = '0 20px 50px rgba(204, 0, 0, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = `rotate(-2deg) translateY(${scrollOffset}px)`;
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            <p
+              style={{
+                fontFamily: 'HealTheWeb, Arial, sans-serif',
+                fontWeight: 400,
+                fontSize: 18,
+                lineHeight: 1.15,
+                color: 'white',
+                letterSpacing: '-0.3px',
+                textDecoration: 'underline'
+              }}
+            >
+              random-dafont.com
+            </p>
+          </a>
         </div>
-      </aside>
+
+        </aside>
 
       {/* Right Column - 70% */}
       <main style={{ width: '70%', display: 'flex', flexDirection: 'column' }}>
@@ -762,6 +821,13 @@ export default function Home() {
         }
         .checkbox-label:hover {
           background-color: rgba(0, 0, 0, 0.05) !important;
+        }
+        .arrow-animate {
+          display: inline-block;
+          animation: arrow-slide 3.6s ease-in-out infinite;
+        }
+        .submit-btn:hover {
+          font-weight: bold !important;
         }
       `}</style>
     </div>

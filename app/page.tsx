@@ -242,7 +242,7 @@ export default function Home() {
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#F4F4F4', alignItems: 'flex-start' }}>
       {/* Left Column - 30% */}
-      <aside style={{ width: '30%', padding: '36px', display: 'flex', flexDirection: 'column', gap: '52px', opacity: isMinimized ? 0.2 : 1, transition: 'opacity 0.3s' }}>
+      <aside style={{ width: '30%', padding: '36px', display: 'flex', flexDirection: 'column', gap: '52px', opacity: isMinimized ? 0.1 : 1, transition: 'opacity 0.3s' }}>
         {/* Logo */}
         <div style={{ marginTop: '30px', marginBottom: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div dangerouslySetInnerHTML={{ __html: `<svg width="181" height="105" viewBox="0 0 181 105" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -399,7 +399,7 @@ export default function Home() {
         </div>
 
         {/* Cards Container */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', marginTop: '24px' }}>
           {/* Submit Card */}
           <div
             style={{
@@ -407,7 +407,7 @@ export default function Home() {
               height: 500,
               background: ACCENT_COLOR,
               borderRadius: 24,
-              padding: '36px 27px 26px 27px',
+              padding: '27px 27px 26px 27px',
               position: 'relative',
               transition: 'all 0.3s',
               textAlign: 'left',
@@ -426,7 +426,7 @@ export default function Home() {
               style={{
                 fontFamily: 'HealTheWeb, Arial, sans-serif',
                 fontWeight: 400,
-                fontSize: 18,
+                fontSize: 14,
                 lineHeight: 1.15,
                 color: 'black',
                 marginBottom: '16px',
@@ -440,7 +440,7 @@ export default function Home() {
               style={{
                 fontFamily: 'HealTheWeb, Arial, sans-serif',
                 fontWeight: 400,
-                fontSize: 18,
+                fontSize: 14,
                 lineHeight: 1.15,
                 color: 'black',
                 marginTop: '16px',
@@ -477,12 +477,12 @@ export default function Home() {
                 color: 'black',
                 textDecoration: 'underline',
                 fontFamily: 'HealTheWeb, Arial, sans-serif',
-                fontSize: 40,
+                fontSize: 50,
                 fontWeight: 400,
                 textDecorationThickness: '1.8px',
                 textUnderlineOffset: '4px',
-                padding: '108px 0',
-                lineHeight: 1.2,
+                padding: '112px 0',
+                lineHeight: 1.,
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
@@ -497,7 +497,7 @@ export default function Home() {
                 position: 'absolute',
                 fontFamily: 'HealTheWeb, Arial, sans-serif',
                 fontWeight: 400,
-                fontSize: 18,
+                fontSize: 14,
                 bottom: 26,
                 left: 27,
                 color: 'black',
@@ -524,7 +524,7 @@ export default function Home() {
             rel="noopener noreferrer"
             style={{
               width: 334,
-              height: 125,
+              height: 70,
               background: '#c00',
               borderRadius: 24,
               padding: '20px 27px',
@@ -549,7 +549,7 @@ export default function Home() {
               style={{
                 fontFamily: 'HealTheWeb, Arial, sans-serif',
                 fontWeight: 400,
-                fontSize: 18,
+                fontSize: 14,
                 lineHeight: 1.15,
                 color: 'white',
                 letterSpacing: '-0.3px',

@@ -451,7 +451,7 @@ export default function Home() {
           {/* Wikimedia cooldown countdown */}
           <div
             style={{
-              marginTop: '15px',
+              marginTop: '5px',
               fontFamily: 'monospace',
               fontSize: '11px',
               color: '#9ca3af',

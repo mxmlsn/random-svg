@@ -53,7 +53,8 @@ const RATE_LIMIT_COOLDOWN = 40 * 1000; // 40 seconds cooldown after 429
 // =============================================================================
 
 // Local rate limit tracking (from API responses)
-let apiRateLimitedUntil: number = 0;
+// Exported so status endpoint can check it
+export let apiRateLimitedUntil: number = 0;
 
 function isRateLimited(): boolean {
   // Check both: local API rate limit AND proxy CDN rate limit

@@ -37,6 +37,7 @@ export default function Home() {
   const [showWarning, setShowWarning] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [scrollOffset, setScrollOffset] = useState(0);
+  const [wikiCooldown, setWikiCooldown] = useState(0); // seconds remaining until live wiki
   const [downloadBtnOpacities, setDownloadBtnOpacities] = useState<number[]>(Array(6).fill(0));
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const btnRefs = useRef<(HTMLAnchorElement | null)[]>([]);
@@ -109,6 +110,31 @@ export default function Home() {
       setInitialLoad(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Poll wikimedia rate limit status for countdown
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null;
+
+    const checkStatus = async () => {
+      try {
+        const res = await fetch('/api/wikimedia-status');
+        if (res.ok) {
+          const data = await res.json();
+          setWikiCooldown(data.secondsRemaining);
+        }
+      } catch {
+        // Ignore errors
+      }
+    };
+
+    // Start polling when cooldown is active
+    checkStatus();
+    interval = setInterval(checkStatus, 1000);
+
+    return () => {
+      if (interval) clearInterval(interval);
+    };
   }, []);
 
   const toggleSource = (source: SourceType) => {
@@ -421,6 +447,22 @@ export default function Home() {
               <div style={{ fontFamily: 'Arial', fontSize: '11px', color: '#9ca3af', lineHeight: '1.1', marginTop: '2px' }}>too many hieroglyphs and maps<br />but has unique scientific graphics</div>
             </div>
           </label>
+
+          {/* Wikimedia cooldown countdown */}
+          <div
+            style={{
+              marginTop: '15px',
+              fontFamily: 'monospace',
+              fontSize: '11px',
+              color: '#9ca3af',
+              textAlign: 'center',
+              opacity: wikiCooldown > 0 ? 1 : 0,
+              transition: 'opacity 0.15s ease-out',
+              pointerEvents: 'none'
+            }}
+          >
+            {wikiCooldown} sec until live images from wiki, now you see archives
+          </div>
         </div>
 
         {/* Cards Container */}

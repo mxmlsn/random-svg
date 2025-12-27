@@ -282,7 +282,12 @@ export default function Home() {
                 <div
                   key={originalIndex}
                   onClick={() => {
-                    setLogoVisibility([false, false, false, false, false, false]);
+                    const allHidden = logoVisibility.every(v => !v);
+                    if (allHidden) {
+                      setLogoVisibility([true, true, true, true, true, true]);
+                    } else {
+                      setLogoVisibility([false, false, false, false, false, false]);
+                    }
                   }}
                   className="logo-svg-container"
                 style={{
@@ -687,6 +692,7 @@ export default function Home() {
           <button
             onClick={fetchRandomSVGs}
             disabled={loading}
+            className="update-btn"
             style={{
               position: 'absolute',
               top: 'calc(50% + 26px)',
@@ -697,7 +703,7 @@ export default function Home() {
               borderRadius: '9999px',
               color: 'black',
               fontWeight: '600',
-              boxShadow: '0 25px 50px -12px rgba(248, 197, 43, 0.4)',
+              boxShadow: loading ? 'none' : '0 25px 50px -12px rgba(248, 197, 43, 0.4)',
               transition: 'all 0.2s',
               display: 'flex',
               alignItems: 'center',
@@ -783,6 +789,7 @@ export default function Home() {
           {/* Minimize button - Right aligned to grid */}
           <button
             onClick={() => setIsMinimized(!isMinimized)}
+            className={`minimize-btn${isMinimized ? ' minimized' : ''}`}
             style={{
               position: 'absolute',
               bottom: '-58px',
@@ -790,17 +797,18 @@ export default function Home() {
               width: '40px',
               height: '40px',
               borderRadius: '9999px',
-              border: '1px solid #DEDEDE',
+              border: isMinimized ? 'none' : '1px solid #DEDEDE',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
-              backgroundColor: 'transparent'
+              backgroundColor: isMinimized ? ACCENT_COLOR : 'transparent',
+              transition: 'background-color 0.2s'
             }}
             title={isMinimized ? 'Show sidebar' : 'Hide sidebar'}
           >
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="6" cy="6" r="5.5" stroke="#AEAEAE" strokeWidth="1" fill={isMinimized ? '#AEAEAE' : 'none'}/>
+              <circle cx="6" cy="6" r="5.5" stroke={isMinimized ? 'black' : '#AEAEAE'} strokeWidth="1" fill={isMinimized ? 'black' : 'none'}/>
             </svg>
           </button>
         </div>
@@ -875,6 +883,18 @@ export default function Home() {
         }
         .logo-svg-container:hover {
           transform: translateY(var(--offset-y)) rotate(var(--rotation)) scale(1.1) !important;
+        }
+        .download-btn {
+          transition: opacity 0.05s, transform 0.1s !important;
+        }
+        .download-btn:hover {
+          transform: scale(1.06) !important;
+        }
+        .update-btn:hover:not(:disabled) {
+          transform: translate(-50%, -50%) scale(1.06) !important;
+        }
+        .minimize-btn:not(.minimized):hover {
+          background-color: rgba(0, 0, 0, 0.05) !important;
         }
       `}</style>
     </div>

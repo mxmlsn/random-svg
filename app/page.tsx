@@ -245,7 +245,7 @@ export default function Home() {
               alignItems: 'center',
               height: '86px',
               padding: '0 10px',
-              border: '1px solid #E8E8E8',
+              border: '1px solid #DEDEDE',
               borderRadius: '9999px',
               cursor: 'pointer',
               backgroundColor: 'transparent',
@@ -263,7 +263,7 @@ export default function Home() {
               height: '66px',
               borderRadius: '9999px',
               backgroundColor: selectedSources.includes('publicdomainvectors') ? '#C6D000' : 'transparent',
-              border: selectedSources.includes('publicdomainvectors') ? 'none' : '1px solid #E8E8E8',
+              border: selectedSources.includes('publicdomainvectors') ? 'none' : '1px solid #DEDEDE',
               flexShrink: 0
             }} />
             <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
@@ -279,7 +279,7 @@ export default function Home() {
               alignItems: 'center',
               height: '86px',
               padding: '0 10px',
-              border: '1px solid #E8E8E8',
+              border: '1px solid #DEDEDE',
               borderRadius: '9999px',
               cursor: 'pointer',
               backgroundColor: 'transparent',
@@ -297,7 +297,7 @@ export default function Home() {
               height: '66px',
               borderRadius: '9999px',
               backgroundColor: selectedSources.includes('freesvg') ? '#C6D000' : 'transparent',
-              border: selectedSources.includes('freesvg') ? 'none' : '1px solid #E8E8E8',
+              border: selectedSources.includes('freesvg') ? 'none' : '1px solid #DEDEDE',
               flexShrink: 0
             }} />
             <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
@@ -313,7 +313,7 @@ export default function Home() {
               alignItems: 'center',
               height: '86px',
               padding: '0 10px',
-              border: '1px solid #E8E8E8',
+              border: '1px solid #DEDEDE',
               borderRadius: '9999px',
               cursor: 'pointer',
               backgroundColor: 'transparent',
@@ -331,7 +331,7 @@ export default function Home() {
               height: '66px',
               borderRadius: '9999px',
               backgroundColor: selectedSources.includes('wikimedia') ? '#C6D000' : 'transparent',
-              border: selectedSources.includes('wikimedia') ? 'none' : '1px solid #E8E8E8',
+              border: selectedSources.includes('wikimedia') ? 'none' : '1px solid #DEDEDE',
               flexShrink: 0
             }} />
             <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
@@ -341,54 +341,8 @@ export default function Home() {
           </label>
         </div>
 
-        {/* Undo/Redo buttons */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <button
-            onClick={handleUndo}
-            disabled={historyIndex <= 0}
-            style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '9999px',
-              border: '1px solid #E8E8E8',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: historyIndex <= 0 ? 'not-allowed' : 'pointer',
-              opacity: historyIndex <= 0 ? 0.3 : 1,
-              backgroundColor: 'transparent'
-            }}
-            title="Undo"
-          >
-            <svg style={{ width: '20px', height: '20px', color: '#374151' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-          </button>
-          <button
-            onClick={handleRedo}
-            disabled={historyIndex >= history.length - 1}
-            style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '9999px',
-              border: '1px solid #E8E8E8',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: historyIndex >= history.length - 1 ? 'not-allowed' : 'pointer',
-              opacity: historyIndex >= history.length - 1 ? 0.3 : 1,
-              backgroundColor: 'transparent'
-            }}
-            title="Redo"
-          >
-            <svg style={{ width: '20px', height: '20px', color: '#374151' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </button>
-        </div>
-
         {/* Info Card */}
-        <div style={{ marginTop: 'auto', padding: '16px', backgroundColor: 'white', borderRadius: '8px', border: '1px solid #E8E8E8' }}>
+        <div style={{ marginTop: 'auto', padding: '16px', backgroundColor: 'white', borderRadius: '8px', border: '1px solid #DEDEDE' }}>
           <p style={{ fontSize: '12px', color: '#6b7280' }}>
             Public domain SVG images from free sources. Click to view source, hover for download.
           </p>
@@ -433,7 +387,7 @@ export default function Home() {
                 className="svg-cell"
                 style={{
                   position: 'relative',
-                  border: '1px solid #E8E8E8',
+                  border: '1px solid #DEDEDE',
                   borderRadius: '20px',
                   overflow: 'hidden',
                   aspectRatio: '10/11'
@@ -552,6 +506,62 @@ export default function Home() {
               />
             </svg>
           </button>
+
+          {/* Undo/Redo buttons - Below grid, centered */}
+          <div style={{
+            position: 'absolute',
+            bottom: '-58px',
+            left: 'calc(50% - 26px)',
+            transform: 'translateX(-50%)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}>
+            <button
+              onClick={handleUndo}
+              disabled={historyIndex <= 0}
+              style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '9999px',
+                border: '1px solid #DEDEDE',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: historyIndex <= 0 ? 'not-allowed' : 'pointer',
+                opacity: historyIndex <= 0 ? 0.3 : 1,
+                backgroundColor: 'transparent'
+              }}
+              title="Undo"
+            >
+              <svg style={{ width: '23.4px', height: '23.4px', transform: 'rotate(90deg)' }} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 13.2188L12.9674 25.1862L24.9371 13.2165" stroke="#AEAEAE" strokeWidth="0.500991" strokeLinecap="round"/>
+                <path d="M12.9683 1.61304L12.9683 25.2298" stroke="#AEAEAE" strokeWidth="0.500991" strokeLinecap="round"/>
+              </svg>
+            </button>
+            <button
+              onClick={handleRedo}
+              disabled={historyIndex >= history.length - 1}
+              style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '9999px',
+                border: '1px solid #DEDEDE',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: historyIndex >= history.length - 1 ? 'not-allowed' : 'pointer',
+                opacity: historyIndex >= history.length - 1 ? 0.3 : 1,
+                backgroundColor: 'transparent'
+              }}
+              title="Redo"
+            >
+              <svg style={{ width: '23.4px', height: '23.4px', transform: 'rotate(-90deg)' }} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 13.2188L12.9674 25.1862L24.9371 13.2165" stroke="#AEAEAE" strokeWidth="0.500991" strokeLinecap="round"/>
+                <path d="M12.9683 1.61304L12.9683 25.2298" stroke="#AEAEAE" strokeWidth="0.500991" strokeLinecap="round"/>
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Gallery Section */}

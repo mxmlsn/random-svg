@@ -26,6 +26,9 @@ export default function Home() {
   const [submitModalOpen, setSubmitModalOpen] = useState(false);
   const [logoSvgs, setLogoSvgs] = useState<string[]>(Array(6).fill(''));
   const [logoRotations, setLogoRotations] = useState<number[]>(Array(6).fill(0));
+  const [logoDirections, setLogoDirections] = useState<number[]>(() =>
+    Array(6).fill(0).map(() => Math.random() > 0.5 ? 1 : -1)
+  );
 
   // Load logo SVGs
   useEffect(() => {
@@ -65,8 +68,8 @@ export default function Home() {
       return;
     }
 
-    // Randomize logo rotations
-    setLogoRotations(Array(6).fill(0).map(() => Math.random() * 12 - 6));
+    // Rotate logos by ~25.7 degrees (360/14) in their random directions
+    setLogoRotations(prev => prev.map((rot, i) => rot + logoDirections[i] * (360 / 14)));
 
     setLoading(true);
     setError(null);
@@ -182,7 +185,7 @@ export default function Home() {
           {/* Logo SVG row */}
           <div style={{ display: 'flex', height: '90px', overflow: 'visible', alignItems: 'flex-end', marginTop: '-6px', marginLeft: '20px' }}>
             {logoSvgs.map((svg, index) => {
-              const offsetY = (index === 0 || index === 5) ? -60 : (index === 1 || index === 4) ? -25 : 0;
+              const offsetY = (index === 0 || index === 5) ? -80 : (index === 1 || index === 4) ? -41 : 0;
               const processedSvg = svg.replace(/<svg([^>]*)>/, (_, attrs) => {
                 const widthMatch = attrs.match(/width="([^"]*)"/);
                 const heightMatch = attrs.match(/height="([^"]*)"/);
@@ -538,7 +541,7 @@ export default function Home() {
         onClose={() => setSubmitModalOpen(false)}
       />
 
-      <style jsx>{`
+      <style jsx global>{`
         @keyframes spin {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }

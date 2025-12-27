@@ -549,10 +549,11 @@ export default function Home() {
             flexShrink: 0,
             marginTop: '3px'
           }} />
-          <span style={{ textAlign: 'center', lineHeight: '1.3' }}>
-            temporarily showing cached <em>wiki</em> images<br />
-            to avoid server overload.<br />
-            live results will come back in <span style={{ display: 'inline-block', minWidth: '18px', textAlign: 'center' }}>{wikiCooldown}</span> sec
+          <span style={{ textAlign: 'center', lineHeight: '1.3', fontFamily: 'GeistMono, monospace' }}>
+            temporarily showing cached<br />
+            <em>wiki</em> images to avoid server<br />
+            overload. live results will<br />
+            come back in <span style={{ display: 'inline-block', minWidth: '18px', textAlign: 'center' }}>{wikiCooldown}</span> sec
             <span
               onClick={() => {
                 // Deselect wikimedia, select both others
@@ -563,7 +564,7 @@ export default function Home() {
               }}
               style={{
                 display: 'block',
-                marginTop: '6px',
+                marginTop: '4px',
                 textDecoration: 'underline',
                 cursor: 'pointer',
                 pointerEvents: 'auto',

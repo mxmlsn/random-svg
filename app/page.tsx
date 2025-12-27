@@ -7,10 +7,11 @@ import SubmitModal from './components/SubmitModal';
 interface SVGData {
   title: string;
   previewImage: string;
+  originalSvgUrl?: string;
   source: string;
   sourceUrl: string;
   downloadUrl: string;
-  _debug_source?: 'live' | 'pool';
+  _debug_source?: 'live' | 'archive';  // live = from Wikimedia API, archive = from local cache
 }
 
 type SourceType = 'freesvg' | 'publicdomainvectors' | 'wikimedia';
@@ -183,8 +184,12 @@ export default function Home() {
 
       let newItems = [...emptySlots];
 
-      // Fetch SVGs and show them as they arrive in their respective slots
+      // Fetch SVGs with staggered timing for wikimedia to avoid rate limits
       const fetchPromises = endpoints.map(async (endpoint, index) => {
+        // Add delay for wikimedia requests to avoid CDN rate limits (500ms between each)
+        if (endpoint.includes('wikimedia')) {
+          await new Promise(resolve => setTimeout(resolve, index * 500));
+        }
         try {
           const response = await fetch(endpoint);
           if (response.ok) {
@@ -649,13 +654,35 @@ export default function Home() {
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={`/api/proxy-image?url=${encodeURIComponent(item.previewImage)}`}
+                        src={
+                          // Archive images are served directly from /public, no proxy needed
+                          item.previewImage.startsWith('/wikimedia-archive/')
+                            ? item.previewImage
+                            : `/api/proxy-image?url=${encodeURIComponent(item.previewImage)}`
+                        }
                         alt={item.title}
+                        loading="lazy"
                         style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+                        onError={(e) => {
+                          const img = e.currentTarget;
+                          // Try originalSvgUrl as fallback (only for live wikimedia)
+                          if (item.originalSvgUrl && !img.dataset.triedFallback) {
+                            img.dataset.triedFallback = 'true';
+                            img.src = `/api/proxy-image?url=${encodeURIComponent(item.originalSvgUrl)}`;
+                          } else if (!img.dataset.triedPlaceholder) {
+                            // Final fallback: show title as placeholder
+                            img.dataset.triedPlaceholder = 'true';
+                            img.style.display = 'none';
+                            const placeholder = document.createElement('div');
+                            placeholder.style.cssText = 'padding: 20px; text-align: center; color: #9ca3af; font-family: Arial; font-size: 12px; word-break: break-word;';
+                            placeholder.textContent = item.title;
+                            img.parentElement?.appendChild(placeholder);
+                          }
+                        }}
                       />
                     </a>
 
-                    {/* Debug source badge for wikimedia */}
+                    {/* Source badge for wikimedia: LIVE (green) or ARCHIVE (gray) */}
                     {item.source === 'wikimedia.org' && item._debug_source && (
                       <div
                         style={{
@@ -668,11 +695,11 @@ export default function Home() {
                           fontFamily: 'Arial',
                           fontWeight: 'bold',
                           color: 'white',
-                          backgroundColor: item._debug_source === 'live' ? '#22c55e' : '#3b82f6',
+                          backgroundColor: item._debug_source === 'live' ? '#22c55e' : '#9ca3af',
                           zIndex: 10
                         }}
                       >
-                        {item._debug_source === 'live' ? 'LIVE' : 'POOL'}
+                        {item._debug_source === 'live' ? 'LIVE' : 'ARCHIVE'}
                       </div>
                     )}
 

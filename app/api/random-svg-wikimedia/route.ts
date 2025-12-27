@@ -1,44 +1,129 @@
+/**
+ * WIKIMEDIA SVG API ROUTE
+ * =======================
+ *
+ * This route fetches random SVGs from Wikimedia Commons with smart fallback:
+ *
+ * 1. LIVE MODE (default): Fetches random SVG from Wikimedia API
+ *    - Returns fresh, random SVGs from Wikimedia Commons
+ *    - Badge: green "LIVE"
+ *
+ * 2. ARCHIVE MODE (fallback): When rate-limited (429 error)
+ *    - Returns SVG from local archive (/public/wikimedia-archive/)
+ *    - Activates 30-second cooldown before trying LIVE again
+ *    - Badge: gray "ARCHIVE"
+ *
+ * RATE LIMIT HANDLING:
+ * - Wikimedia CDN blocks frequent requests (429 Too Many Requests)
+ * - When 429 is detected, we switch to ARCHIVE mode
+ * - After 30 seconds cooldown, we try LIVE mode again
+ *
+ * ARCHIVE STRUCTURE:
+ * /public/wikimedia-archive/
+ *   ├── index.json          - List of archived SVGs with metadata
+ *   ├── example.svg         - Actual SVG file
+ *   └── ...
+ *
+ * index.json format:
+ * [
+ *   {
+ *     "filename": "example.svg",
+ *     "title": "Example Title",
+ *     "wikimediaUrl": "https://commons.wikimedia.org/wiki/File:Example.svg"
+ *   }
+ * ]
+ */
+
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+// =============================================================================
+// CONFIGURATION
+// =============================================================================
+
 const WIKIMEDIA_API = 'https://commons.wikimedia.org/w/api.php';
 const MAX_OFFSET = 10000;
-const LIVE_TIMEOUT = 2000; // 2 seconds max for live request
+const LIVE_TIMEOUT = 3000; // 3 seconds max for live request
+const RATE_LIMIT_COOLDOWN = 30 * 1000; // 30 seconds cooldown after 429
+
+// =============================================================================
+// RATE LIMIT STATE
+// =============================================================================
+
+// Tracks when we hit rate limit - shared across requests
+let rateLimitedUntil: number = 0;
+
+function isRateLimited(): boolean {
+  return Date.now() < rateLimitedUntil;
+}
+
+function setRateLimited(): void {
+  rateLimitedUntil = Date.now() + RATE_LIMIT_COOLDOWN;
+  console.log(`[wikimedia] Rate limited! Cooldown until ${new Date(rateLimitedUntil).toISOString()}`);
+}
+
+// =============================================================================
+// TYPES
+// =============================================================================
 
 interface SvgItem {
   title: string;
-  previewImage: string;
-  source: string;
-  sourceUrl: string;
-  downloadUrl: string;
+  previewImage: string;      // URL for preview (local path for archive, wikimedia URL for live)
+  originalSvgUrl?: string;   // Original wikimedia URL (for fallback)
+  source: string;            // Always 'wikimedia.org'
+  sourceUrl: string;         // Link to wikimedia page
+  downloadUrl: string;       // Direct download link
 }
 
-// Static pool as fallback
-let svgPool: SvgItem[] = [];
+interface ArchiveItem {
+  filename: string;
+  title: string;
+  wikimediaUrl: string;
+}
 
-function loadPool() {
-  if (svgPool.length > 0) return;
+// =============================================================================
+// ARCHIVE FUNCTIONS
+// =============================================================================
+
+let archiveIndex: ArchiveItem[] | null = null;
+
+function loadArchive(): ArchiveItem[] {
+  if (archiveIndex !== null) return archiveIndex;
 
   try {
-    const poolPath = path.join(process.cwd(), 'data', 'wikimedia-svg-pool.json');
-    const data = fs.readFileSync(poolPath, 'utf-8');
-    svgPool = JSON.parse(data);
-    console.log(`Loaded ${svgPool.length} SVGs from Wikimedia pool`);
+    const indexPath = path.join(process.cwd(), 'public', 'wikimedia-archive', 'index.json');
+    const data = fs.readFileSync(indexPath, 'utf-8');
+    archiveIndex = JSON.parse(data);
+    console.log(`[wikimedia] Loaded ${archiveIndex!.length} SVGs from archive`);
+    return archiveIndex!;
   } catch (error) {
-    console.error('Failed to load Wikimedia SVG pool:', error);
-    svgPool = [];
+    console.error('[wikimedia] Failed to load archive:', error);
+    archiveIndex = [];
+    return [];
   }
 }
 
-function getFromPool(): SvgItem | null {
-  loadPool();
-  if (svgPool.length === 0) return null;
-  const randomIndex = Math.floor(Math.random() * svgPool.length);
-  return svgPool[randomIndex];
+function getFromArchive(): SvgItem | null {
+  const archive = loadArchive();
+  if (archive.length === 0) return null;
+
+  const randomIndex = Math.floor(Math.random() * archive.length);
+  const item = archive[randomIndex];
+
+  return {
+    title: item.title,
+    previewImage: `/wikimedia-archive/${item.filename}`, // Served from public folder
+    source: 'wikimedia.org',
+    sourceUrl: item.wikimediaUrl,
+    downloadUrl: item.wikimediaUrl, // Download from original wikimedia
+  };
 }
 
-// Try live fetch with timeout
+// =============================================================================
+// LIVE FETCH FUNCTIONS
+// =============================================================================
+
 async function fetchLive(): Promise<SvgItem | null> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), LIVE_TIMEOUT);
@@ -46,7 +131,7 @@ async function fetchLive(): Promise<SvgItem | null> {
   try {
     const randomOffset = Math.floor(Math.random() * MAX_OFFSET);
 
-    // Get random file
+    // Step 1: Search for random SVG file
     const searchUrl = new URL(WIKIMEDIA_API);
     searchUrl.searchParams.set('action', 'query');
     searchUrl.searchParams.set('list', 'search');
@@ -60,6 +145,9 @@ async function fetchLive(): Promise<SvgItem | null> {
     const searchResponse = await fetch(searchUrl.toString(), { signal: controller.signal });
 
     if (!searchResponse.ok) {
+      if (searchResponse.status === 429) {
+        setRateLimited();
+      }
       return null;
     }
 
@@ -69,7 +157,7 @@ async function fetchLive(): Promise<SvgItem | null> {
 
     const title = file.title;
 
-    // Get image info
+    // Step 2: Get image info (URL, thumbnail, etc.)
     const imageInfoUrl = new URL(WIKIMEDIA_API);
     imageInfoUrl.searchParams.set('action', 'query');
     imageInfoUrl.searchParams.set('titles', title);
@@ -82,6 +170,9 @@ async function fetchLive(): Promise<SvgItem | null> {
     const imageInfoResponse = await fetch(imageInfoUrl.toString(), { signal: controller.signal });
 
     if (!imageInfoResponse.ok) {
+      if (imageInfoResponse.status === 429) {
+        setRateLimited();
+      }
       return null;
     }
 
@@ -93,13 +184,15 @@ async function fetchLive(): Promise<SvgItem | null> {
     if (!imageInfo) return null;
 
     const cleanTitle = title.replace('File:', '');
+    const svgUrl = imageInfo.url;
 
     return {
       title: cleanTitle,
-      previewImage: imageInfo.thumburl || imageInfo.url,
+      previewImage: imageInfo.thumburl || svgUrl,
+      originalSvgUrl: svgUrl,
       source: 'wikimedia.org',
       sourceUrl: imageInfo.descriptionurl,
-      downloadUrl: `${imageInfo.url}?download`,
+      downloadUrl: `${svgUrl}?download`,
     };
   } catch {
     // Timeout or network error
@@ -109,26 +202,38 @@ async function fetchLive(): Promise<SvgItem | null> {
   }
 }
 
+// =============================================================================
+// MAIN HANDLER
+// =============================================================================
+
 export async function GET() {
-  // Try live first
+  // Check if we're in cooldown from previous rate limit
+  if (isRateLimited()) {
+    console.log('[wikimedia] In cooldown, using archive');
+    const fromArchive = getFromArchive();
+    if (fromArchive) {
+      return NextResponse.json({ ...fromArchive, _debug_source: 'archive' });
+    }
+  }
+
+  // Try live fetch first
   const live = await fetchLive();
 
   if (live) {
-    // DEBUG: добавляем метку источника (убрать позже)
     return NextResponse.json({ ...live, _debug_source: 'live' });
   }
 
-  // Fallback to pool
-  console.log('Live fetch failed, using pool');
-  const fromPool = getFromPool();
+  // Live failed - use archive as fallback
+  console.log('[wikimedia] Live fetch failed, using archive');
+  const fromArchive = getFromArchive();
 
-  if (fromPool) {
-    // DEBUG: добавляем метку источника (убрать позже)
-    return NextResponse.json({ ...fromPool, _debug_source: 'pool' });
+  if (fromArchive) {
+    return NextResponse.json({ ...fromArchive, _debug_source: 'archive' });
   }
 
+  // Nothing available
   return NextResponse.json({
     error: 'No SVG available',
-    details: 'Live fetch failed and pool is empty'
+    details: 'Live fetch failed and archive is empty'
   }, { status: 503 });
 }

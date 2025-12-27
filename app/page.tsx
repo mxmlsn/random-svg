@@ -758,8 +758,8 @@ export default function Home() {
               title="Undo"
             >
               <svg style={{ width: '21.06px', height: '21.06px', transform: 'rotate(90deg)' }} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 13.2188L12.9674 25.1862L24.9371 13.2165" stroke="#AEAEAE" strokeWidth="0.500991" strokeLinecap="round"/>
-                <path d="M12.9683 1.61304L12.9683 25.2298" stroke="#AEAEAE" strokeWidth="0.500991" strokeLinecap="round"/>
+                <path d="M1 13.2188L12.9674 25.1862L24.9371 13.2165" stroke="#AEAEAE" strokeWidth="1" strokeLinecap="round"/>
+                <path d="M12.9683 1.61304L12.9683 25.2298" stroke="#AEAEAE" strokeWidth="1" strokeLinecap="round"/>
               </svg>
             </button>
             <button
@@ -780,37 +780,59 @@ export default function Home() {
               title="Redo"
             >
               <svg style={{ width: '21.06px', height: '21.06px', transform: 'rotate(-90deg)' }} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 13.2188L12.9674 25.1862L24.9371 13.2165" stroke="#AEAEAE" strokeWidth="0.500991" strokeLinecap="round"/>
-                <path d="M12.9683 1.61304L12.9683 25.2298" stroke="#AEAEAE" strokeWidth="0.500991" strokeLinecap="round"/>
+                <path d="M1 13.2188L12.9674 25.1862L24.9371 13.2165" stroke="#AEAEAE" strokeWidth="1" strokeLinecap="round"/>
+                <path d="M12.9683 1.61304L12.9683 25.2298" stroke="#AEAEAE" strokeWidth="1" strokeLinecap="round"/>
               </svg>
             </button>
           </div>
 
           {/* Minimize button - Right aligned to grid */}
-          <button
-            onClick={() => setIsMinimized(!isMinimized)}
-            className={`minimize-btn${isMinimized ? ' minimized' : ''}`}
+          <div
+            className={`minimize-btn-wrapper${isMinimized ? ' minimized' : ''}`}
             style={{
               position: 'absolute',
               bottom: '-58px',
               right: '52px',
-              width: '40px',
-              height: '40px',
-              borderRadius: '9999px',
-              border: isMinimized ? 'none' : '1px solid #DEDEDE',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              backgroundColor: isMinimized ? ACCENT_COLOR : 'transparent',
-              transition: 'background-color 0.2s'
+              gap: '8px'
             }}
-            title={isMinimized ? 'Show sidebar' : 'Hide sidebar'}
           >
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="6" cy="6" r="5.5" stroke={isMinimized ? 'black' : '#AEAEAE'} strokeWidth="1" fill={isMinimized ? 'black' : 'none'}/>
-            </svg>
-          </button>
+            <span
+              className="minimize-label"
+              style={{
+                fontFamily: 'Arial',
+                fontSize: '11px',
+                color: '#9ca3af',
+                opacity: 0,
+                transition: 'opacity 0.2s',
+                whiteSpace: 'nowrap'
+              }}
+            >
+              {isMinimized ? 'show sidebar' : 'hide sidebar'}
+            </span>
+            <button
+              onClick={() => setIsMinimized(!isMinimized)}
+              className={`minimize-btn${isMinimized ? ' minimized' : ''}`}
+              style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '9999px',
+                border: isMinimized ? 'none' : '1px solid #DEDEDE',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                backgroundColor: isMinimized ? ACCENT_COLOR : 'transparent',
+                transition: 'background-color 0.2s'
+              }}
+              title={isMinimized ? 'Show sidebar' : 'Hide sidebar'}
+            >
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="6" cy="6" r="5.5" stroke={isMinimized ? 'black' : '#AEAEAE'} strokeWidth="1" fill={isMinimized ? 'black' : 'none'}/>
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Gallery Section */}
@@ -888,13 +910,16 @@ export default function Home() {
           transition: opacity 0.05s, transform 0.1s !important;
         }
         .download-btn:hover {
-          transform: scale(1.06) !important;
+          transform: scale(1.16) !important;
         }
         .update-btn:hover:not(:disabled) {
           transform: translate(-50%, -50%) scale(1.06) !important;
         }
         .minimize-btn:not(.minimized):hover {
           background-color: rgba(0, 0, 0, 0.05) !important;
+        }
+        .minimize-btn-wrapper:hover .minimize-label {
+          opacity: 1 !important;
         }
       `}</style>
     </div>

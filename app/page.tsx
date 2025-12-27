@@ -291,8 +291,8 @@ export default function Home() {
 
             // If wikimedia returned archive, set client-side cooldown timer
             if (endpoint.includes('wikimedia') && data._debug_source === 'archive') {
-              // Set 40 second cooldown from now on client side
-              wikiCooldownEndRef.current = Date.now() + 40 * 1000;
+              // Set 60 second cooldown from now on client side
+              wikiCooldownEndRef.current = Date.now() + 60 * 1000;
             }
 
             // Update specific slot
@@ -451,7 +451,7 @@ export default function Home() {
             }} />
             <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
               <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: selectedSources.includes('publicdomainvectors') ? '#374151' : '#9ca3af', lineHeight: '1.1', transition: 'color 0.2s' }}>publicdomainvectors.org</div>
-              <div style={{ fontFamily: 'Arial', fontSize: '11px', color: '#9ca3af', lineHeight: '1.1', marginTop: '2px' }}>may contain boring memphis corporate</div>
+              <div style={{ fontFamily: 'Arial', fontSize: '11px', color: '#9ca3af', lineHeight: '1.1', marginTop: '2px' }}>may contain boring corporate memphis</div>
             </div>
           </label>
 
@@ -547,11 +547,12 @@ export default function Home() {
             borderRadius: '50%',
             backgroundColor: '#9ca3af',
             flexShrink: 0,
-            marginTop: '5px'
+            marginTop: '3px'
           }} />
           <span style={{ textAlign: 'center', lineHeight: '1.3' }}>
-            using wiki archive temporarily<br />
-            real-time results in <span style={{ display: 'inline-block', minWidth: '18px', textAlign: 'center' }}>{wikiCooldown}</span> sec<br />
+            temporarily showing cached <em>wiki</em> images<br />
+            to avoid server overload.<br />
+            live results will come back in <span style={{ display: 'inline-block', minWidth: '18px', textAlign: 'center' }}>{wikiCooldown}</span> sec
             <span
               onClick={() => {
                 // Deselect wikimedia, select both others
@@ -561,9 +562,12 @@ export default function Home() {
                 fetchRandomSVGs(newSources);
               }}
               style={{
+                display: 'block',
+                marginTop: '6px',
                 textDecoration: 'underline',
                 cursor: 'pointer',
-                pointerEvents: 'auto'
+                pointerEvents: 'auto',
+                opacity: 0.8
               }}
             >
               use other sources instead?
@@ -818,7 +822,7 @@ export default function Home() {
                           if (item.source === 'wikimedia.org' && item._debug_source === 'live' && !img.dataset.triedArchive) {
                             img.dataset.triedArchive = 'true';
                             // Set client-side cooldown since we're falling back to archive
-                            wikiCooldownEndRef.current = Date.now() + 40 * 1000;
+                            wikiCooldownEndRef.current = Date.now() + 60 * 1000;
                             try {
                               // Fetch archive index directly - no API call to avoid rate limit issues
                               const archiveRes = await fetch('/wikimedia-archive/index.json');

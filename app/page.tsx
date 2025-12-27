@@ -38,6 +38,7 @@ export default function Home() {
   const [isMinimized, setIsMinimized] = useState(false);
   const [scrollOffset, setScrollOffset] = useState(0);
   const [wikiCooldown, setWikiCooldown] = useState(0); // seconds remaining until live wiki
+  const wikiCooldownRef = useRef(0); // ref for callbacks to access current cooldown
   const [downloadBtnOpacities, setDownloadBtnOpacities] = useState<number[]>(Array(6).fill(0));
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const btnRefs = useRef<(HTMLAnchorElement | null)[]>([]);
@@ -122,6 +123,7 @@ export default function Home() {
         if (res.ok) {
           const data = await res.json();
           setWikiCooldown(data.secondsRemaining);
+          wikiCooldownRef.current = data.secondsRemaining;
         }
       } catch {
         // Ignore errors
@@ -212,6 +214,37 @@ export default function Home() {
 
       // Fetch SVGs with staggered timing for wikimedia to avoid rate limits
       const fetchPromises = endpoints.map(async (endpoint, index) => {
+        // During cooldown, skip wikimedia API requests - use archive directly on client
+        if (endpoint.includes('wikimedia') && wikiCooldownRef.current > 0) {
+          try {
+            const archiveRes = await fetch('/wikimedia-archive/index.json');
+            if (archiveRes.ok) {
+              const archive = await archiveRes.json();
+              if (archive.length > 0) {
+                const randomItem = archive[Math.floor(Math.random() * archive.length)];
+                const archiveData = {
+                  title: randomItem.title,
+                  previewImage: `/wikimedia-archive/${randomItem.filename}`,
+                  source: 'wikimedia.org',
+                  sourceUrl: randomItem.wikimediaUrl,
+                  downloadUrl: randomItem.wikimediaUrl,
+                  _debug_source: 'archive' as const
+                };
+                setSvgItems(prev => {
+                  const updated = [...prev];
+                  updated[index] = archiveData;
+                  newItems = updated;
+                  return updated;
+                });
+                return archiveData;
+              }
+            }
+          } catch {
+            // Skip wikimedia during cooldown
+          }
+          return null;
+        }
+
         // Add delay for wikimedia requests to avoid CDN rate limits (500ms between each)
         if (endpoint.includes('wikimedia')) {
           await new Promise(resolve => setTimeout(resolve, index * 500));
@@ -708,20 +741,28 @@ export default function Home() {
                         onError={async (e) => {
                           const img = e.currentTarget;
 
-                          // For wikimedia live items: on error, fetch archive version
+                          // For wikimedia live items: on error, fetch archive directly (no API call)
                           if (item.source === 'wikimedia.org' && item._debug_source === 'live' && !img.dataset.triedArchive) {
                             img.dataset.triedArchive = 'true';
                             try {
-                              // Re-fetch from API - it will return archive due to rate limit
-                              const res = await fetch('/api/random-svg-wikimedia');
-                              if (res.ok) {
-                                const archiveItem = await res.json();
-                                if (archiveItem.previewImage?.startsWith('/wikimedia-archive/')) {
-                                  img.src = archiveItem.previewImage;
-                                  // Update the card data
+                              // Fetch archive index directly - no API call to avoid rate limit issues
+                              const archiveRes = await fetch('/wikimedia-archive/index.json');
+                              if (archiveRes.ok) {
+                                const archive = await archiveRes.json();
+                                if (archive.length > 0) {
+                                  const randomItem = archive[Math.floor(Math.random() * archive.length)];
+                                  const archiveData = {
+                                    title: randomItem.title,
+                                    previewImage: `/wikimedia-archive/${randomItem.filename}`,
+                                    source: 'wikimedia.org',
+                                    sourceUrl: randomItem.wikimediaUrl,
+                                    downloadUrl: randomItem.wikimediaUrl,
+                                    _debug_source: 'archive' as const
+                                  };
+                                  img.src = archiveData.previewImage;
                                   setSvgItems(prev => {
                                     const updated = [...prev];
-                                    updated[index] = archiveItem;
+                                    updated[index] = archiveData;
                                     return updated;
                                   });
                                   return;
@@ -732,8 +773,8 @@ export default function Home() {
                             }
                           }
 
-                          // Try originalSvgUrl as fallback (only for live wikimedia)
-                          if (item.originalSvgUrl && !img.dataset.triedFallback) {
+                          // Try originalSvgUrl as fallback (only for live wikimedia, and only if not in cooldown)
+                          if (item.originalSvgUrl && !img.dataset.triedFallback && wikiCooldownRef.current === 0) {
                             img.dataset.triedFallback = 'true';
                             img.src = `/api/proxy-image?url=${encodeURIComponent(item.originalSvgUrl)}`;
                           } else if (!img.dataset.triedPlaceholder) {

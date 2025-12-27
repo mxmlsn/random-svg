@@ -529,7 +529,7 @@ export default function Home() {
         {/* Wikimedia cooldown countdown - separate from checkboxes */}
         <div
           style={{
-            marginTop: '-41px',
+            marginTop: '-35px',
             fontFamily: 'monospace',
             fontSize: '11px',
             color: '#9ca3af',
@@ -538,7 +538,7 @@ export default function Home() {
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'center',
-            gap: '6px'
+            gap: '7px'
           }}
         >
           <span style={{
@@ -547,9 +547,9 @@ export default function Home() {
             borderRadius: '50%',
             backgroundColor: '#9ca3af',
             flexShrink: 0,
-            marginTop: '3px'
+            marginTop: '2px'
           }} />
-          <span style={{ textAlign: 'center', lineHeight: '1.3', fontFamily: 'GeistMono, monospace' }}>
+          <span style={{ textAlign: 'left', lineHeight: '1.3', fontFamily: 'GeistMono, monospace' }}>
             temporarily showing cached<br />
             <em>wiki</em> images to avoid server<br />
             overload. live results will<br />
@@ -564,7 +564,7 @@ export default function Home() {
               }}
               style={{
                 display: 'block',
-                marginTop: '4px',
+                marginTop: '2px',
                 textDecoration: 'underline',
                 cursor: 'pointer',
                 pointerEvents: 'auto',

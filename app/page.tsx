@@ -43,6 +43,7 @@ export default function Home() {
   const prevCooldownRef = useRef(0); // track previous cooldown for transition detection
   const wikiCooldownEndRef = useRef(0); // client-side timestamp when cooldown ends (survives server restarts)
   const [downloadBtnOpacities, setDownloadBtnOpacities] = useState<number[]>(Array(6).fill(0));
+  const [shownArchiveFiles, setShownArchiveFiles] = useState<Set<string>>(new Set()); // Track shown wiki archive files to avoid repeats
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const btnRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
@@ -268,9 +269,10 @@ export default function Home() {
         );
       } else {
         // If all three sources are selected, fetch 2 from each
+        // Order: publicdomainvectors (1-2), freesvg (3-4), wikimedia (5-6)
         endpoints.push(
-          ...Array(2).fill(sourceToEndpoint['freesvg']),
           ...Array(2).fill(sourceToEndpoint['publicdomainvectors']),
+          ...Array(2).fill(sourceToEndpoint['freesvg']),
           ...Array(2).fill(sourceToEndpoint['wikimedia'])
         );
       }
@@ -289,7 +291,20 @@ export default function Home() {
             if (archiveRes.ok) {
               const archive = await archiveRes.json();
               if (archive.length > 0) {
-                const randomItem = archive[Math.floor(Math.random() * archive.length)];
+                // Filter out already shown files
+                let availableItems = archive.filter((item: { filename: string }) => !shownArchiveFiles.has(item.filename));
+
+                // If all files have been shown, reset the tracking
+                if (availableItems.length === 0) {
+                  setShownArchiveFiles(new Set());
+                  availableItems = archive;
+                }
+
+                const randomItem = availableItems[Math.floor(Math.random() * availableItems.length)];
+
+                // Track this file as shown
+                setShownArchiveFiles(prev => new Set(prev).add(randomItem.filename));
+
                 const archiveData = {
                   title: randomItem.title,
                   previewImage: `/wikimedia-archive/${randomItem.filename}`,

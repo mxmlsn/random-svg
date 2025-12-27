@@ -149,20 +149,20 @@ export default function Home() {
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#F7F7F7' }}>
       {/* Left Column - 30% */}
-      <aside style={{ width: '30%', padding: '24px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <aside style={{ width: '30%', padding: '36px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
         {/* Logo */}
         <div style={{ marginBottom: '16px', textAlign: 'center' }}>
           <h1 style={{ fontSize: '24px', fontWeight: 'bold', color: '#1f2937' }}>Random SVG</h1>
         </div>
 
         {/* Filters */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '19px' }}>
           <label
             style={{
               display: 'flex',
               alignItems: 'center',
               height: '86px',
-              padding: '0 20px',
+              padding: '0 10px',
               border: '1px solid #d1d5db',
               borderRadius: '9999px',
               cursor: 'pointer',
@@ -176,14 +176,17 @@ export default function Home() {
               style={{ display: 'none' }}
             />
             <div style={{
-              width: '46px',
-              height: '46px',
+              width: '66px',
+              height: '66px',
               borderRadius: '9999px',
               backgroundColor: selectedSources.includes('freesvg') ? '#C6D000' : 'transparent',
               border: selectedSources.includes('freesvg') ? 'none' : '1px solid #d1d5db',
               flexShrink: 0
             }} />
-            <span style={{ color: '#374151', fontSize: '14px', flex: 1, textAlign: 'center' }}>freesvg.org</span>
+            <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
+              <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: '#374151', lineHeight: '1.1' }}>freesvg.org</div>
+              <div style={{ fontFamily: 'Arial', fontSize: '11px', color: '#9ca3af', lineHeight: '1.1', marginTop: '2px' }}>perfect balance</div>
+            </div>
           </label>
 
           <label
@@ -191,7 +194,7 @@ export default function Home() {
               display: 'flex',
               alignItems: 'center',
               height: '86px',
-              padding: '0 20px',
+              padding: '0 10px',
               border: '1px solid #d1d5db',
               borderRadius: '9999px',
               cursor: 'pointer',
@@ -205,14 +208,17 @@ export default function Home() {
               style={{ display: 'none' }}
             />
             <div style={{
-              width: '46px',
-              height: '46px',
+              width: '66px',
+              height: '66px',
               borderRadius: '9999px',
               backgroundColor: selectedSources.includes('publicdomainvectors') ? '#C6D000' : 'transparent',
               border: selectedSources.includes('publicdomainvectors') ? 'none' : '1px solid #d1d5db',
               flexShrink: 0
             }} />
-            <span style={{ color: '#374151', fontSize: '14px', flex: 1, textAlign: 'center' }}>publicdomainvectors.org</span>
+            <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
+              <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: '#374151', lineHeight: '1.1' }}>publicdomainvectors.org</div>
+              <div style={{ fontFamily: 'Arial', fontSize: '11px', color: '#9ca3af', lineHeight: '1.1', marginTop: '2px' }}>may contain boring memphis corporate</div>
+            </div>
           </label>
 
           <label
@@ -220,7 +226,7 @@ export default function Home() {
               display: 'flex',
               alignItems: 'center',
               height: '86px',
-              padding: '0 20px',
+              padding: '0 10px',
               border: '1px solid #d1d5db',
               borderRadius: '9999px',
               cursor: 'pointer',
@@ -234,14 +240,17 @@ export default function Home() {
               style={{ display: 'none' }}
             />
             <div style={{
-              width: '46px',
-              height: '46px',
+              width: '66px',
+              height: '66px',
               borderRadius: '9999px',
               backgroundColor: selectedSources.includes('wikimedia') ? '#C6D000' : 'transparent',
               border: selectedSources.includes('wikimedia') ? 'none' : '1px solid #d1d5db',
               flexShrink: 0
             }} />
-            <span style={{ color: '#374151', fontSize: '14px', flex: 1, textAlign: 'center' }}>wikimedia.org</span>
+            <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
+              <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: '#374151', lineHeight: '1.1' }}>wikimedia.org</div>
+              <div style={{ fontFamily: 'Arial', fontSize: '11px', color: '#9ca3af', lineHeight: '1.1', marginTop: '2px' }}>too many hieroglyphs and maps<br />but has unique scientific graphics</div>
+            </div>
           </label>
         </div>
 
@@ -377,11 +386,11 @@ export default function Home() {
                       className="download-btn"
                       style={{
                         position: 'absolute',
-                        top: '12px',
-                        right: '12px',
+                        top: '8px',
+                        right: '8px',
                         color: 'white',
-                        padding: '8px',
-                        borderRadius: '8px',
+                        padding: '16px',
+                        borderRadius: '16px',
                         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
                         opacity: 0,
                         transition: 'opacity 0.2s',
@@ -390,7 +399,7 @@ export default function Home() {
                       }}
                       title="Download SVG"
                     >
-                      <svg style={{ width: '16px', height: '16px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg style={{ width: '32px', height: '32px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                       </svg>
                     </a>

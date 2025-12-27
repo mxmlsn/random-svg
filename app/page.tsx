@@ -413,7 +413,7 @@ export default function Home() {
         </div>
 
         {/* Cards Container */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', marginTop: '24px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', marginTop: '29px' }}>
           {/* Submit Card */}
           <div
             style={{
@@ -545,17 +545,17 @@ export default function Home() {
               position: 'relative',
               transition: 'all 0.3s',
               textAlign: 'left',
-              transform: `rotate(-2deg) translateY(${scrollOffset}px)`,
+              transform: `rotate(-2deg) translateY(${scrollOffset}px) translateX(11px)`,
               display: 'flex',
               alignItems: 'center',
               textDecoration: 'none'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = `rotate(0deg) translateY(${scrollOffset}px)`;
+              e.currentTarget.style.transform = `rotate(0deg) translateY(${scrollOffset}px) translateX(11px)`;
               e.currentTarget.style.boxShadow = '0 20px 50px rgba(204, 0, 0, 0.4)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.transform = `rotate(-2deg) translateY(${scrollOffset}px)`;
+              e.currentTarget.style.transform = `rotate(-2deg) translateY(${scrollOffset}px) translateX(11px)`;
               e.currentTarget.style.boxShadow = 'none';
             }}
           >

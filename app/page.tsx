@@ -29,6 +29,7 @@ export default function Home() {
   const [logoDirections, setLogoDirections] = useState<number[]>(() =>
     Array(6).fill(0).map(() => Math.random() > 0.5 ? 1 : -1)
   );
+  const [showWarning, setShowWarning] = useState(false);
 
   // Load logo SVGs
   useEffect(() => {
@@ -55,7 +56,23 @@ export default function Home() {
       if (prev.includes(source)) {
         // Don't allow deselecting if it's the only one selected
         if (prev.length === 1) return prev;
-        return prev.filter(s => s !== source);
+        const newSources = prev.filter(s => s !== source);
+        // Show warning when going from 3 to 2 sources
+        if (prev.length === 3 && newSources.length === 2) {
+          setShowWarning(true);
+          // After fade in animation completes, wait 2 seconds at full opacity, then fade out over 6 seconds
+          setTimeout(() => {
+            const warningEl = document.getElementById('sources-warning');
+            if (warningEl) {
+              warningEl.style.animation = 'fadeOutSlow 6s ease-out forwards';
+            }
+          }, 2200); // 200ms fade in + 2000ms pause
+          // Remove warning from DOM after all animations complete
+          setTimeout(() => {
+            setShowWarning(false);
+          }, 8200); // 200ms + 2000ms + 6000ms
+        }
+        return newSources;
       } else {
         return [...prev, source];
       }
@@ -166,11 +183,11 @@ export default function Home() {
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#F7F7F7' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#F4F4F4' }}>
       {/* Left Column - 30% */}
       <aside style={{ width: '30%', padding: '36px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
         {/* Logo */}
-        <div style={{ marginTop: '20px', marginBottom: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ marginTop: '30px', marginBottom: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div dangerouslySetInnerHTML={{ __html: `<svg width="181" height="105" viewBox="0 0 181 105" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M106.153 102.483C98.5441 102.483 93.0339 98.3507 94.7959 92.2478C95.6608 89.0442 98.6722 85.8886 103.782 83.8543C105.304 83.1976 105.688 82.2205 105.031 81.2274C103.718 79.1931 104.118 76.2457 107.402 73.9552C108.443 73.2343 108.571 72.049 107.851 71.3923C104.775 68.5731 103.99 64.6326 105.095 60.9004C106.617 55.5184 111.983 50.6649 119.672 50.6649C123.676 50.6649 125.118 51.8983 126.624 51.8983C127.28 51.8983 129.042 51.8342 130.949 51.5779C136.074 50.793 134.761 56.111 131.141 55.3101C128.594 54.7975 126.88 55.6465 127.28 58.4016C127.537 60.0995 127.409 61.7494 126.944 63.3192C125.374 68.8294 119.736 73.1543 113.04 73.1543C111.983 73.1543 111.326 73.3625 110.606 74.0192C108.571 75.8453 108.443 78.28 111.134 79.5935L117.574 82.8131C122.491 85.2319 123.869 88.916 122.876 92.3279C121.37 97.5658 114.418 102.483 106.153 102.483ZM100.835 91.2066C99.5853 95.5956 101.828 100.385 107.594 100.385C112.448 100.385 116.052 97.1814 117.045 93.7695C117.83 91.0144 116.917 88.1151 113.697 86.6094L110.285 85.0397C108.78 84.3188 107.466 84.447 106.089 85.1037C103.269 86.4813 101.555 88.7719 100.835 91.2066ZM110.606 62.4702C109.372 66.9232 109.693 71.2 113.008 71.2C116.644 71.2 119.928 66.2024 121.306 61.413C122.619 56.96 122.219 52.6992 118.855 52.6992C115.267 52.6992 111.983 57.6808 110.606 62.4702Z" fill="black"/>
 <path d="M82.4929 84.6392C80.7149 86.225 79.2733 85.5042 79.2733 83.534C79.2092 79.129 79.1451 74.2114 78.8088 61.6212C78.7447 57.9371 77.8957 56.2392 76.5502 56.2392C75.5411 56.2392 74.3557 57.2163 72.85 59.5229C71.4725 61.4771 69.4382 60.3078 70.4794 58.4016C73.8912 52.4269 77.0468 50.6649 79.2092 50.6649C83.1497 50.6649 83.8705 55.5184 83.9986 59.9073C84.2549 69.9506 84.319 73.2343 84.3991 76.3739C84.4631 78.1519 85.8407 78.8727 87.2823 77.1588C88.0352 76.3418 88.756 75.5249 89.4287 74.724C92.6804 70.8637 94.971 67.2436 96.0122 63.7196C96.7971 61.0286 96.5888 59.9714 94.4905 57.873C93.0488 56.4955 92.7285 54.7975 93.1129 53.42C93.5774 51.8342 94.8909 50.6649 96.7971 50.6649C101.25 50.6649 101.122 56.8318 99.8085 61.2208C98.527 65.7539 95.5316 70.8637 90.4859 76.5981C89.7811 77.399 89.0283 78.216 88.2434 79.0489C86.5135 80.8589 84.6073 82.717 82.4929 84.6392Z" fill="black"/>
@@ -222,47 +239,17 @@ export default function Home() {
         {/* Filters */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '19px' }}>
           <label
+            className="checkbox-label"
             style={{
               display: 'flex',
               alignItems: 'center',
               height: '86px',
               padding: '0 10px',
-              border: '1px solid #d1d5db',
+              border: '1px solid #E8E8E8',
               borderRadius: '9999px',
               cursor: 'pointer',
-              backgroundColor: 'transparent'
-            }}
-          >
-            <input
-              type="checkbox"
-              checked={selectedSources.includes('freesvg')}
-              onChange={() => toggleSource('freesvg')}
-              style={{ display: 'none' }}
-            />
-            <div style={{
-              width: '66px',
-              height: '66px',
-              borderRadius: '9999px',
-              backgroundColor: selectedSources.includes('freesvg') ? '#C6D000' : 'transparent',
-              border: selectedSources.includes('freesvg') ? 'none' : '1px solid #d1d5db',
-              flexShrink: 0
-            }} />
-            <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
-              <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: '#374151', lineHeight: '1.1' }}>freesvg.org</div>
-              <div style={{ fontFamily: 'Arial', fontSize: '11px', color: '#9ca3af', lineHeight: '1.1', marginTop: '2px' }}>perfect balance</div>
-            </div>
-          </label>
-
-          <label
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              height: '86px',
-              padding: '0 10px',
-              border: '1px solid #d1d5db',
-              borderRadius: '9999px',
-              cursor: 'pointer',
-              backgroundColor: 'transparent'
+              backgroundColor: 'transparent',
+              transition: 'background-color 0.2s'
             }}
           >
             <input
@@ -276,7 +263,7 @@ export default function Home() {
               height: '66px',
               borderRadius: '9999px',
               backgroundColor: selectedSources.includes('publicdomainvectors') ? '#C6D000' : 'transparent',
-              border: selectedSources.includes('publicdomainvectors') ? 'none' : '1px solid #d1d5db',
+              border: selectedSources.includes('publicdomainvectors') ? 'none' : '1px solid #E8E8E8',
               flexShrink: 0
             }} />
             <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
@@ -286,15 +273,51 @@ export default function Home() {
           </label>
 
           <label
+            className="checkbox-label"
             style={{
               display: 'flex',
               alignItems: 'center',
               height: '86px',
               padding: '0 10px',
-              border: '1px solid #d1d5db',
+              border: '1px solid #E8E8E8',
               borderRadius: '9999px',
               cursor: 'pointer',
-              backgroundColor: 'transparent'
+              backgroundColor: 'transparent',
+              transition: 'background-color 0.2s'
+            }}
+          >
+            <input
+              type="checkbox"
+              checked={selectedSources.includes('freesvg')}
+              onChange={() => toggleSource('freesvg')}
+              style={{ display: 'none' }}
+            />
+            <div style={{
+              width: '66px',
+              height: '66px',
+              borderRadius: '9999px',
+              backgroundColor: selectedSources.includes('freesvg') ? '#C6D000' : 'transparent',
+              border: selectedSources.includes('freesvg') ? 'none' : '1px solid #E8E8E8',
+              flexShrink: 0
+            }} />
+            <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
+              <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: '#374151', lineHeight: '1.1' }}>freesvg.org</div>
+              <div style={{ fontFamily: 'Arial', fontSize: '11px', color: '#9ca3af', lineHeight: '1.1', marginTop: '2px' }}>perfect balance</div>
+            </div>
+          </label>
+
+          <label
+            className="checkbox-label"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              height: '86px',
+              padding: '0 10px',
+              border: '1px solid #E8E8E8',
+              borderRadius: '9999px',
+              cursor: 'pointer',
+              backgroundColor: 'transparent',
+              transition: 'background-color 0.2s'
             }}
           >
             <input
@@ -308,7 +331,7 @@ export default function Home() {
               height: '66px',
               borderRadius: '9999px',
               backgroundColor: selectedSources.includes('wikimedia') ? '#C6D000' : 'transparent',
-              border: selectedSources.includes('wikimedia') ? 'none' : '1px solid #d1d5db',
+              border: selectedSources.includes('wikimedia') ? 'none' : '1px solid #E8E8E8',
               flexShrink: 0
             }} />
             <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
@@ -327,7 +350,7 @@ export default function Home() {
               width: '40px',
               height: '40px',
               borderRadius: '9999px',
-              border: '1px solid #d1d5db',
+              border: '1px solid #E8E8E8',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -348,7 +371,7 @@ export default function Home() {
               width: '40px',
               height: '40px',
               borderRadius: '9999px',
-              border: '1px solid #d1d5db',
+              border: '1px solid #E8E8E8',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -365,7 +388,7 @@ export default function Home() {
         </div>
 
         {/* Info Card */}
-        <div style={{ marginTop: 'auto', padding: '16px', backgroundColor: 'white', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
+        <div style={{ marginTop: 'auto', padding: '16px', backgroundColor: 'white', borderRadius: '8px', border: '1px solid #E8E8E8' }}>
           <p style={{ fontSize: '12px', color: '#6b7280' }}>
             Public domain SVG images from free sources. Click to view source, hover for download.
           </p>
@@ -410,7 +433,7 @@ export default function Home() {
                 className="svg-cell"
                 style={{
                   position: 'relative',
-                  border: '1px solid #D9D9D9',
+                  border: '1px solid #E8E8E8',
                   borderRadius: '20px',
                   overflow: 'hidden',
                   aspectRatio: '10/11'
@@ -541,13 +564,51 @@ export default function Home() {
         onClose={() => setSubmitModalOpen(false)}
       />
 
+      {/* Warning Message - Floating overlay */}
+      {showWarning && (
+        <div
+          id="sources-warning"
+          style={{
+            position: 'fixed',
+            top: 'calc(30px + 105px + 90px - 21px + 20px + 24px - 60px + 20px + 20px - 10px)',
+            left: '15%',
+            transform: 'translateX(-50%) rotate(-2deg)',
+            transformOrigin: 'center center',
+            backgroundColor: '#C6D000',
+            padding: '12px 24px',
+            borderRadius: '12px',
+            opacity: 0,
+            textAlign: 'center',
+            zIndex: 1000,
+            pointerEvents: 'none',
+            width: 'fit-content',
+            animation: 'fadeInFast 0.2s ease-out forwards'
+          }}
+        >
+          <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: 'black', whiteSpace: 'nowrap' }}>
+            works faster with all sources enabled
+          </div>
+        </div>
+      )}
+
       <style jsx global>{`
         @keyframes spin {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
         }
+        @keyframes fadeInFast {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes fadeOutSlow {
+          from { opacity: 1; }
+          to { opacity: 0; }
+        }
         .svg-cell:hover .download-btn {
           opacity: 1 !important;
+        }
+        .checkbox-label:hover {
+          background-color: rgba(0, 0, 0, 0.05) !important;
         }
       `}</style>
     </div>

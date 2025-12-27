@@ -25,6 +25,7 @@ export default function Home() {
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [submitModalOpen, setSubmitModalOpen] = useState(false);
   const [logoSvgs, setLogoSvgs] = useState<string[]>(Array(6).fill(''));
+  const [logoRotations, setLogoRotations] = useState<number[]>(Array(6).fill(0));
 
   // Load logo SVGs
   useEffect(() => {
@@ -63,6 +64,9 @@ export default function Home() {
       setError('Please select at least one source');
       return;
     }
+
+    // Randomize logo rotations
+    setLogoRotations(Array(6).fill(0).map(() => Math.random() * 12 - 6));
 
     setLoading(true);
     setError(null);
@@ -178,7 +182,7 @@ export default function Home() {
           {/* Logo SVG row */}
           <div style={{ display: 'flex', height: '90px', overflow: 'visible', alignItems: 'flex-end', marginTop: '-6px', marginLeft: '20px' }}>
             {logoSvgs.map((svg, index) => {
-              const offsetY = (index === 0 || index === 5) ? -30 : (index === 1 || index === 4) ? -10 : 0;
+              const offsetY = (index === 0 || index === 5) ? -60 : (index === 1 || index === 4) ? -25 : 0;
               const processedSvg = svg.replace(/<svg([^>]*)>/, (_, attrs) => {
                 const widthMatch = attrs.match(/width="([^"]*)"/);
                 const heightMatch = attrs.match(/height="([^"]*)"/);
@@ -201,8 +205,9 @@ export default function Home() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    transform: `translateY(${offsetY}px)`,
-                    marginLeft: '-20px'
+                    transform: `translateY(${offsetY}px) rotate(${logoRotations[index]}deg)`,
+                    marginLeft: '-20px',
+                    transition: 'transform 0.3s ease-in-out'
                   }}
                   dangerouslySetInnerHTML={{ __html: processedSvg }}
                 />

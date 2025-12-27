@@ -39,6 +39,8 @@ export default function Home() {
   const [scrollOffset, setScrollOffset] = useState(0);
   const [wikiCooldown, setWikiCooldown] = useState(0); // seconds remaining until live wiki
   const wikiCooldownRef = useRef(0); // ref for callbacks to access current cooldown
+  const [wikiGlow, setWikiGlow] = useState(false); // glow effect when cooldown ends
+  const prevCooldownRef = useRef(0); // track previous cooldown for transition detection
   const [downloadBtnOpacities, setDownloadBtnOpacities] = useState<number[]>(Array(6).fill(0));
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const btnRefs = useRef<(HTMLAnchorElement | null)[]>([]);
@@ -122,6 +124,12 @@ export default function Home() {
         const res = await fetch('/api/wikimedia-status');
         if (res.ok) {
           const data = await res.json();
+          // Detect transition from >0 to 0 for glow effect
+          if (prevCooldownRef.current > 0 && data.secondsRemaining === 0) {
+            setWikiGlow(true);
+            setTimeout(() => setWikiGlow(false), 1000);
+          }
+          prevCooldownRef.current = data.secondsRemaining;
           setWikiCooldown(data.secondsRemaining);
           wikiCooldownRef.current = data.secondsRemaining;
         }
@@ -476,7 +484,9 @@ export default function Home() {
               borderRadius: '9999px',
               backgroundColor: selectedSources.includes('wikimedia') ? ACCENT_COLOR : 'transparent',
               border: selectedSources.includes('wikimedia') ? 'none' : '1px solid #DEDEDE',
-              flexShrink: 0
+              flexShrink: 0,
+              boxShadow: wikiGlow ? `0 0 20px 8px ${ACCENT_COLOR}` : 'none',
+              transition: 'box-shadow 0.3s ease-out'
             }} />
             <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
               <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: selectedSources.includes('wikimedia') ? '#374151' : '#9ca3af', lineHeight: '1.1', transition: 'color 0.2s' }}>wikimedia.org</div>
@@ -488,13 +498,12 @@ export default function Home() {
         {/* Wikimedia cooldown countdown - separate from checkboxes */}
         <div
           style={{
-            marginTop: '10px',
+            marginTop: '-20px',
             fontFamily: 'monospace',
             fontSize: '11px',
             color: '#9ca3af',
             opacity: wikiCooldown > 0 ? 1 : 0,
             transition: 'opacity 0.15s ease-out',
-            pointerEvents: 'none',
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'center',
@@ -507,11 +516,28 @@ export default function Home() {
             borderRadius: '50%',
             backgroundColor: '#9ca3af',
             flexShrink: 0,
-            marginTop: '3px'
+            marginTop: '5px'
           }} />
           <span style={{ textAlign: 'center' }}>
             using wiki archive temporarily<br />
-            real-time results in <span style={{ display: 'inline-block', minWidth: '18px', textAlign: 'right' }}>{wikiCooldown}</span> sec
+            real-time results in <span style={{ display: 'inline-block', minWidth: '18px', textAlign: 'center' }}>{wikiCooldown}</span> sec<br />
+            <span
+              onClick={() => {
+                // Deselect wikimedia, select both others
+                setSelectedSources(['freesvg', 'publicdomainvectors']);
+                // Trigger refresh
+                setTimeout(() => {
+                  fetchRandomSVGs();
+                }, 50);
+              }}
+              style={{
+                textDecoration: 'underline',
+                cursor: 'pointer',
+                pointerEvents: 'auto'
+              }}
+            >
+              use other sources instead?
+            </span>
           </span>
         </div>
 

@@ -16,8 +16,9 @@ const WIKIMEDIA_API = 'https://commons.wikimedia.org/w/api.php';
 const MAX_OFFSET = 10000;
 const ARCHIVE_DIR = path.join(process.cwd(), 'public', 'wikimedia-archive');
 const INDEX_PATH = path.join(ARCHIVE_DIR, 'index.json');
-const COOLDOWN_MS = 2 * 60 * 1000; // 2 минуты
-const DELAY_BETWEEN_FETCHES_MS = 3000; // 3 секунды между запросами
+const COOLDOWN_MS = 3 * 60 * 1000; // 3 минуты
+const DELAY_BETWEEN_DOWNLOADS_MS = 3000; // 3 секунды между скачиваниями (rate limited)
+const DELAY_BETWEEN_SKIPS_MS = 500; // 0.5 секунды между пропусками (free API calls)
 
 // Слова для фильтрации (в нижнем регистре)
 const BLOCKED_WORDS = ['sans', 'noto', 'plex', 'map', 'mono'];
@@ -205,7 +206,8 @@ async function sleep(ms: number): Promise<void> {
 async function main() {
   console.log('🚀 Wikimedia Archive Collector started');
   console.log(`📁 Archive directory: ${ARCHIVE_DIR}`);
-  console.log(`⏱️  Delay between fetches: ${DELAY_BETWEEN_FETCHES_MS / 1000}s`);
+  console.log(`⏱️  Delay between downloads: ${DELAY_BETWEEN_DOWNLOADS_MS / 1000}s`);
+  console.log(`⏱️  Delay between skips: ${DELAY_BETWEEN_SKIPS_MS / 1000}s`);
   console.log(`⏱️  Cooldown after rate limit: ${COOLDOWN_MS / 1000}s`);
   console.log('');
   console.log('Press Ctrl+C to stop');
@@ -226,12 +228,14 @@ async function main() {
       sessionCollected = 0;
       await sleep(COOLDOWN_MS);
       console.log('🔄 Resuming...');
+    } else if (result === 'success') {
+      totalCollected++;
+      sessionCollected++;
+      // Wait longer after successful download (rate limited operation)
+      await sleep(DELAY_BETWEEN_DOWNLOADS_MS);
     } else {
-      if (result === 'success') {
-        totalCollected++;
-        sessionCollected++;
-      }
-      await sleep(DELAY_BETWEEN_FETCHES_MS);
+      // Skip/error - only API calls were made (free), short delay
+      await sleep(DELAY_BETWEEN_SKIPS_MS);
     }
   }
 }

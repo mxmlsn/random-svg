@@ -147,117 +147,185 @@ export default function Home() {
   };
 
   return (
-    <div className="flex min-h-screen" style={{ backgroundColor: '#F7F7F7' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#F7F7F7' }}>
       {/* Left Column - 30% */}
-      <aside className="w-[30%] p-6 flex flex-col gap-6">
+      <aside style={{ width: '30%', padding: '24px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
         {/* Logo */}
-        <div className="mb-4 text-center">
-          <h1 className="text-2xl font-bold text-gray-800">Random SVG</h1>
+        <div style={{ marginBottom: '16px', textAlign: 'center' }}>
+          <h1 style={{ fontSize: '24px', fontWeight: 'bold', color: '#1f2937' }}>Random SVG</h1>
           <a
             href="https://random-dafont.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+            style={{ fontSize: '14px', color: '#6b7280', textDecoration: 'none' }}
           >
             random-dafont.com →
           </a>
         </div>
 
         {/* Filters */}
-        <div className="flex flex-col gap-3">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <label
-            className="flex items-center gap-3 p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-gray-400 transition-colors"
-            style={{ backgroundColor: selectedSources.includes('freesvg') ? '#F7F7F7' : 'transparent' }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              padding: '12px',
+              border: '1px solid #d1d5db',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              backgroundColor: selectedSources.includes('freesvg') ? '#F7F7F7' : 'transparent'
+            }}
           >
             <input
               type="checkbox"
               checked={selectedSources.includes('freesvg')}
               onChange={() => toggleSource('freesvg')}
-              className="w-4 h-4 cursor-pointer"
+              style={{ width: '16px', height: '16px', cursor: 'pointer' }}
             />
-            <span className="text-gray-700 text-sm">freesvg.org</span>
+            <span style={{ color: '#374151', fontSize: '14px' }}>freesvg.org</span>
           </label>
 
           <label
-            className="flex items-center gap-3 p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-gray-400 transition-colors"
-            style={{ backgroundColor: selectedSources.includes('publicdomainvectors') ? '#F7F7F7' : 'transparent' }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              padding: '12px',
+              border: '1px solid #d1d5db',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              backgroundColor: selectedSources.includes('publicdomainvectors') ? '#F7F7F7' : 'transparent'
+            }}
           >
             <input
               type="checkbox"
               checked={selectedSources.includes('publicdomainvectors')}
               onChange={() => toggleSource('publicdomainvectors')}
-              className="w-4 h-4 cursor-pointer"
+              style={{ width: '16px', height: '16px', cursor: 'pointer' }}
             />
-            <span className="text-gray-700 text-sm">publicdomainvectors.org</span>
+            <span style={{ color: '#374151', fontSize: '14px' }}>publicdomainvectors.org</span>
           </label>
 
           <label
-            className="flex items-center gap-3 p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-gray-400 transition-colors"
-            style={{ backgroundColor: selectedSources.includes('wikimedia') ? '#F7F7F7' : 'transparent' }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              padding: '12px',
+              border: '1px solid #d1d5db',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              backgroundColor: selectedSources.includes('wikimedia') ? '#F7F7F7' : 'transparent'
+            }}
           >
             <input
               type="checkbox"
               checked={selectedSources.includes('wikimedia')}
               onChange={() => toggleSource('wikimedia')}
-              className="w-4 h-4 cursor-pointer"
+              style={{ width: '16px', height: '16px', cursor: 'pointer' }}
             />
-            <span className="text-gray-700 text-sm">wikimedia.org</span>
+            <span style={{ color: '#374151', fontSize: '14px' }}>wikimedia.org</span>
           </label>
         </div>
 
         {/* Undo/Redo buttons */}
-        <div className="flex items-center gap-3">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <button
             onClick={handleUndo}
             disabled={historyIndex <= 0}
-            className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:border-gray-400 transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-gray-300"
+            style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '9999px',
+              border: '1px solid #d1d5db',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: historyIndex <= 0 ? 'not-allowed' : 'pointer',
+              opacity: historyIndex <= 0 ? 0.3 : 1,
+              backgroundColor: 'transparent'
+            }}
             title="Undo"
           >
-            <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg style={{ width: '20px', height: '20px', color: '#374151' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
           </button>
           <button
             onClick={handleRedo}
             disabled={historyIndex >= history.length - 1}
-            className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:border-gray-400 transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-gray-300"
+            style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '9999px',
+              border: '1px solid #d1d5db',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: historyIndex >= history.length - 1 ? 'not-allowed' : 'pointer',
+              opacity: historyIndex >= history.length - 1 ? 0.3 : 1,
+              backgroundColor: 'transparent'
+            }}
             title="Redo"
           >
-            <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg style={{ width: '20px', height: '20px', color: '#374151' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </button>
         </div>
 
         {/* Info Card */}
-        <div className="mt-auto p-4 bg-white rounded-lg border border-gray-200">
-          <p className="text-xs text-gray-500">
+        <div style={{ marginTop: 'auto', padding: '16px', backgroundColor: 'white', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
+          <p style={{ fontSize: '12px', color: '#6b7280' }}>
             Public domain SVG images from free sources. Click to view source, hover for download.
           </p>
         </div>
       </aside>
 
       {/* Right Column - 70% */}
-      <main className="w-[70%] flex flex-col">
+      <main style={{ width: '70%', display: 'flex', flexDirection: 'column' }}>
         {/* SVG Grid */}
-        <div className="flex-1 relative" style={{ padding: '52px 52px 0 0' }}>
+        <div style={{ flex: 1, position: 'relative', padding: '52px 52px 0 0' }}>
           {error && (
-            <div className="absolute top-6 left-6 right-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-20">
-              <p className="font-semibold">Error:</p>
+            <div style={{
+              position: 'absolute',
+              top: '24px',
+              left: '24px',
+              right: '24px',
+              backgroundColor: '#fee2e2',
+              border: '1px solid #f87171',
+              color: '#b91c1c',
+              padding: '12px 16px',
+              borderRadius: '4px',
+              zIndex: 20
+            }}>
+              <p style={{ fontWeight: '600' }}>Error:</p>
               <p>{error}</p>
             </div>
           )}
 
           {/* Static Grid - Always 6 slots with fixed layout */}
           <div
-            className="grid grid-cols-3 gap-8 h-full"
-            style={{ gridTemplateRows: 'repeat(2, 1fr)' }}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gridTemplateRows: 'repeat(2, 1fr)',
+              gap: '32px',
+              height: '100%'
+            }}
           >
             {svgItems.map((item, index) => (
               <div
                 key={index}
-                className="relative border border-[#D9D9D9] rounded-lg hover:border-gray-400 transition-colors group overflow-hidden"
-                style={{ aspectRatio: '10/11' }}
+                className="svg-cell"
+                style={{
+                  position: 'relative',
+                  border: '1px solid #D9D9D9',
+                  borderRadius: '20px',
+                  overflow: 'hidden',
+                  aspectRatio: '10/11'
+                }}
               >
                 {item ? (
                   <>
@@ -265,13 +333,22 @@ export default function Home() {
                       href={item.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="absolute inset-4 flex justify-center items-center"
+                      style={{
+                        position: 'absolute',
+                        top: '16px',
+                        right: '16px',
+                        bottom: '16px',
+                        left: '16px',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                      }}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={`/api/proxy-image?url=${encodeURIComponent(item.previewImage)}`}
                         alt={item.title}
-                        className="max-w-full max-h-full object-contain"
+                        style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
                       />
                     </a>
 
@@ -281,20 +358,39 @@ export default function Home() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="absolute top-3 right-3 text-white p-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-10"
-                      style={{ backgroundColor: '#C6D000' }}
+                      className="download-btn"
+                      style={{
+                        position: 'absolute',
+                        top: '12px',
+                        right: '12px',
+                        color: 'white',
+                        padding: '8px',
+                        borderRadius: '8px',
+                        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                        opacity: 0,
+                        transition: 'opacity 0.2s',
+                        zIndex: 10,
+                        backgroundColor: '#C6D000'
+                      }}
                       title="Download SVG"
                     >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg style={{ width: '16px', height: '16px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                       </svg>
                     </a>
 
                     {/* DEBUG: метка источника для wikimedia - убрать позже */}
                     {item._debug_source && (
-                      <span className={`absolute bottom-2 left-2 text-xs px-1.5 py-0.5 rounded ${
-                        item._debug_source === 'live' ? 'bg-green-500 text-white' : 'bg-orange-500 text-white'
-                      }`}>
+                      <span style={{
+                        position: 'absolute',
+                        bottom: '8px',
+                        left: '8px',
+                        fontSize: '12px',
+                        padding: '2px 6px',
+                        borderRadius: '4px',
+                        backgroundColor: item._debug_source === 'live' ? '#22c55e' : '#f97316',
+                        color: 'white'
+                      }}>
                         {item._debug_source}
                       </span>
                     )}
@@ -308,12 +404,30 @@ export default function Home() {
           <button
             onClick={fetchRandomSVGs}
             disabled={loading}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full text-white font-semibold shadow-2xl transition-all hover:scale-110 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center z-10"
-            style={{ backgroundColor: loading ? undefined : '#C6D000' }}
+            style={{
+              position: 'absolute',
+              top: 'calc(50% + 26px)',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '80px',
+              height: '80px',
+              borderRadius: '9999px',
+              color: 'white',
+              fontWeight: '600',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+              transition: 'all 0.2s',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 10,
+              backgroundColor: loading ? '#9ca3af' : '#C6D000',
+              cursor: loading ? 'not-allowed' : 'pointer',
+              border: 'none'
+            }}
             title={loading ? 'Loading...' : 'Update SVGs'}
           >
             <svg
-              className={`w-8 h-8 ${loading ? 'animate-spin' : ''}`}
+              style={{ width: '40px', height: '40px', animation: loading ? 'spin 1s linear infinite' : 'none' }}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -337,6 +451,16 @@ export default function Home() {
         isOpen={submitModalOpen}
         onClose={() => setSubmitModalOpen(false)}
       />
+
+      <style jsx>{`
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .svg-cell:hover .download-btn {
+          opacity: 1 !important;
+        }
+      `}</style>
     </div>
   );
 }

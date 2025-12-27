@@ -29,11 +29,9 @@ export default function Home() {
   // Load logo SVGs
   useEffect(() => {
     const fetchLogoSvgs = async () => {
-      const promises = Array(6).fill(null).map(async () => {
-        const res = await fetch('/api/random-logo-svg');
-        return res.text();
-      });
-      const svgs = await Promise.all(promises);
+      const res = await fetch('/api/random-logo-svg?count=6');
+      const data = await res.json();
+      const svgs = data.map((item: { content: string }) => item.content);
       setLogoSvgs(svgs);
     };
     fetchLogoSvgs();
@@ -178,7 +176,7 @@ export default function Home() {
 <path d="M24.3166 11.9275V34.141H14.4439V24.2683H9.50756V46.4818H2.92578V11.9275H24.3166Z" fill="black"/>
 </svg>` }} />
           {/* Logo SVG row */}
-          <div style={{ display: 'flex', height: '90px', overflow: 'visible', alignItems: 'flex-end', gap: '-20px', marginLeft: '-20px' }}>
+          <div style={{ display: 'flex', height: '90px', overflow: 'visible', alignItems: 'flex-end', marginTop: '-6px', marginLeft: '20px' }}>
             {logoSvgs.map((svg, index) => {
               const offsetY = (index === 0 || index === 5) ? -30 : (index === 1 || index === 4) ? -10 : 0;
               const processedSvg = svg.replace(/<svg([^>]*)>/, (_, attrs) => {

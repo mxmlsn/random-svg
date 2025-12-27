@@ -11,16 +11,11 @@ interface Poster {
   created_at: string;
 }
 
-interface GalleryProps {
-  onSubmitClick: () => void;
-}
-
-export default function Gallery({ onSubmitClick }: GalleryProps) {
+export default function Gallery() {
   const [posters, setPosters] = useState<Poster[]>([]);
   const [loading, setLoading] = useState(true);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [scrollOffset, setScrollOffset] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
   // Check for mobile viewport
@@ -35,16 +30,6 @@ export default function Gallery({ onSubmitClick }: GalleryProps) {
 
   useEffect(() => {
     fetchPosters();
-  }, []);
-
-  // Parallax effect for info card
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setScrollOffset(scrollY * 0.1);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Lock body scroll when lightbox is open
@@ -132,95 +117,6 @@ export default function Gallery({ onSubmitClick }: GalleryProps) {
           </div>
         ) : (
           <>
-            {/* Info Card - First position */}
-            <div
-              onClick={onSubmitClick}
-              className="inline-block align-top text-left relative cursor-pointer transition-all duration-300"
-              style={{
-                width: isMobile ? 224 : 264,
-                height: isMobile ? 320 : 400,
-                background: '#c00',
-                borderRadius: 24,
-                transform: `rotate(-2deg) translateY(${scrollOffset}px)`,
-                marginRight: isMobile ? 16 : 31,
-                marginBottom: isMobile ? 16 : 18,
-                marginTop: isMobile ? -60 : -80,
-                padding: isMobile ? '24px 20px' : '26px 27px',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = `rotate(0deg) translateY(${scrollOffset}px)`;
-                e.currentTarget.style.boxShadow = '0 20px 50px rgba(204, 0, 0, 0.4)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = `rotate(-2deg) translateY(${scrollOffset}px)`;
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            >
-              <p
-                className="text-white mb-4"
-                style={{
-                  fontFamily: '"Arial Narrow", Arial, sans-serif',
-                  fontWeight: 400,
-                  fontSize: isMobile ? 14 : 18,
-                  lineHeight: 1.15,
-                }}
-              >
-                Share your posters made with random-svg on{' '}
-                <a
-                  href="https://instagram.com/randomsvg"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  Instagram
-                </a>{' '}
-                <span
-                  className="inline-block"
-                  style={{ animation: 'arrow-slide 3.6s ease-in-out infinite' }}
-                >
-                  →
-                </span>
-              </p>
-
-              <button
-                className="block w-full text-center text-white underline transition-all hover:font-bold"
-                style={{
-                  fontFamily: '"Arial Narrow", Arial, sans-serif',
-                  fontSize: isMobile ? 22 : 40,
-                  fontWeight: 400,
-                  textDecorationThickness: '1.8px',
-                  textUnderlineOffset: '4px',
-                  padding: isMobile ? '24px 0' : '44px 0',
-                  lineHeight: 1.2,
-                }}
-              >
-                SUBMIT<br />MY WORK
-              </button>
-
-              <p
-                className="absolute text-white"
-                style={{
-                  fontFamily: '"Arial Narrow", Arial, sans-serif',
-                  fontWeight: 400,
-                  fontSize: isMobile ? 12 : 18,
-                  bottom: isMobile ? 24 : 26,
-                  left: isMobile ? 20 : 27,
-                }}
-              >
-                by{' '}
-                <a
-                  href="https://instagram.com/randomsvg"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  @randomsvg
-                </a>
-              </p>
-            </div>
-
             {/* Poster Cards */}
             {posters.map((poster, index) => (
               <div

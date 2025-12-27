@@ -31,6 +31,17 @@ export default function Home() {
   );
   const [showWarning, setShowWarning] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
+  const [scrollOffset, setScrollOffset] = useState(0);
+
+  // Parallax effect for submit card
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setScrollOffset(scrollY * 0.1);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Load logo SVGs
   useEffect(() => {
@@ -342,8 +353,107 @@ export default function Home() {
           </label>
         </div>
 
+        {/* Submit Card - Centered */}
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: 20 }}>
+          <div
+            onClick={() => setSubmitModalOpen(true)}
+            style={{
+              width: 264,
+              height: 400,
+              background: '#C5E02D',
+              borderRadius: 24,
+              padding: '26px 27px',
+              position: 'relative',
+              cursor: 'pointer',
+              transition: 'all 0.3s',
+              textAlign: 'left',
+              transform: `rotate(-2deg) translateY(${scrollOffset}px)`
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = `rotate(0deg) translateY(${scrollOffset}px)`;
+              e.currentTarget.style.boxShadow = '0 20px 50px rgba(197, 224, 45, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = `rotate(-2deg) translateY(${scrollOffset}px)`;
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            <p
+              style={{
+                fontFamily: '"Arial Narrow", Arial, sans-serif',
+                fontWeight: 400,
+                fontSize: 18,
+                lineHeight: 1.15,
+                color: 'white',
+                marginBottom: '16px'
+              }}
+            >
+              Share your posters made with random-svg on{' '}
+              <a
+                href="https://instagram.com/randomsvg"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: 'white', textDecoration: 'underline' }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                Instagram
+              </a>{' '}
+              <span
+                style={{ display: 'inline-block', animation: 'arrow-slide 3.6s ease-in-out infinite' }}
+              >
+                →
+              </span>
+            </p>
+
+            <button
+              style={{
+                display: 'block',
+                width: '100%',
+                textAlign: 'center',
+                color: 'white',
+                textDecoration: 'underline',
+                fontFamily: '"Arial Narrow", Arial, sans-serif',
+                fontSize: 40,
+                fontWeight: 400,
+                textDecorationThickness: '1.8px',
+                textUnderlineOffset: '4px',
+                padding: '44px 0',
+                lineHeight: 1.2,
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+            >
+              SUBMIT<br />MY WORK
+            </button>
+
+            <p
+              style={{
+                position: 'absolute',
+                fontFamily: '"Arial Narrow", Arial, sans-serif',
+                fontWeight: 400,
+                fontSize: 18,
+                bottom: 26,
+                left: 27,
+                color: 'white'
+              }}
+            >
+              by{' '}
+              <a
+                href="https://instagram.com/randomsvg"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: 'white', textDecoration: 'underline' }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                @randomsvg
+              </a>
+            </p>
+          </div>
+        </div>
+
         {/* Info Card */}
-        <div style={{ marginTop: 'auto', padding: '16px', backgroundColor: 'white', borderRadius: '8px', border: '1px solid #DEDEDE' }}>
+        <div style={{ padding: '16px', backgroundColor: 'white', borderRadius: '8px', border: '1px solid #DEDEDE' }}>
           <p style={{ fontSize: '12px', color: '#6b7280' }}>
             Public domain SVG images from free sources. Click to view source, hover for download.
           </p>
@@ -590,7 +700,7 @@ export default function Home() {
         </div>
 
         {/* Gallery Section */}
-        <Gallery onSubmitClick={() => setSubmitModalOpen(true)} />
+        <Gallery />
       </main>
 
       {/* Submit Modal */}
@@ -638,6 +748,14 @@ export default function Home() {
         @keyframes fadeOutSlow {
           from { opacity: 1; }
           to { opacity: 0; }
+        }
+        @keyframes arrow-slide {
+          0%, 100% {
+            transform: translateX(-2px);
+          }
+          50% {
+            transform: translateX(6px);
+          }
         }
         .svg-cell:hover .download-btn {
           opacity: 1 !important;

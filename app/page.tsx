@@ -43,6 +43,8 @@ export default function Home() {
   const prevCooldownRef = useRef(0); // track previous cooldown for transition detection
   const wikiCooldownEndRef = useRef(0); // client-side timestamp when cooldown ends (survives server restarts)
   const [downloadBtnOpacities, setDownloadBtnOpacities] = useState<number[]>(Array(6).fill(0));
+  const [devMode, setDevMode] = useState(false);
+  const [savingToArchive, setSavingToArchive] = useState<number | null>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const btnRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
@@ -84,6 +86,82 @@ export default function Home() {
       newOpacities[index] = 0;
       return newOpacities;
     });
+  }, []);
+
+  const handleDownload = useCallback(async (item: SVGData, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Determine the correct download URL based on source
+    let downloadUrl = item.downloadUrl;
+
+    if (item.source === 'wikimedia.org') {
+      // For wikimedia, use proxy to download the actual SVG
+      const svgUrl = item.originalSvgUrl || item.previewImage;
+      if (item.previewImage.startsWith('/wikimedia-archive/')) {
+        // Archive file - download directly
+        downloadUrl = item.previewImage;
+      } else {
+        downloadUrl = `/api/download-wikimedia?url=${encodeURIComponent(svgUrl)}`;
+      }
+    } else if (item.source === 'publicdomainvectors.org') {
+      // For PDV, use proxy
+      if (item.downloadUrl.includes('download.php')) {
+        downloadUrl = `/api/download-pdv?url=${encodeURIComponent(item.downloadUrl)}`;
+      }
+    }
+    // For freesvg.org, downloadUrl is already correct (/api/download-freesvg?id=...)
+
+    // Trigger download
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = '';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, []);
+
+  const handleSaveToArchive = useCallback(async (item: SVGData, index: number) => {
+    if (item.source !== 'wikimedia.org' || item._debug_source === 'archive') return;
+
+    setSavingToArchive(index);
+
+    try {
+      const response = await fetch('/api/save-to-archive', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          svgUrl: item.originalSvgUrl || item.previewImage,
+          title: item.title,
+          wikimediaUrl: item.sourceUrl,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        // Update the item to show it's now in archive
+        setSvgItems(prev => {
+          const updated = [...prev];
+          if (updated[index]) {
+            updated[index] = {
+              ...updated[index]!,
+              previewImage: `/wikimedia-archive/${result.filename}`,
+              _debug_source: 'archive',
+            };
+          }
+          return updated;
+        });
+      } else {
+        console.error('Failed to save:', result.error);
+        alert(result.error || 'Failed to save to archive');
+      }
+    } catch (error) {
+      console.error('Error saving to archive:', error);
+      alert('Failed to save to archive');
+    } finally {
+      setSavingToArchive(null);
+    }
   }, []);
 
   // Parallax effect for submit card
@@ -887,12 +965,9 @@ export default function Home() {
                     )}
 
                     {/* Download button overlay - for all sources */}
-                    <a
-                      href={item.downloadUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ref={(el) => { btnRefs.current[index] = el; }}
-                      onClick={(e) => e.stopPropagation()}
+                    <button
+                      ref={(el) => { btnRefs.current[index] = el as unknown as HTMLAnchorElement; }}
+                      onClick={(e) => handleDownload(item, e)}
                       className="download-btn"
                       style={{
                         position: 'absolute',
@@ -905,14 +980,43 @@ export default function Home() {
                         opacity: downloadBtnOpacities[index],
                         transition: 'opacity 0.05s',
                         zIndex: 10,
-                        backgroundColor: ACCENT_COLOR
+                        backgroundColor: ACCENT_COLOR,
+                        border: 'none',
+                        cursor: 'pointer'
                       }}
                       title="Download SVG"
                     >
                       <svg style={{ width: '27px', height: '27px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                       </svg>
-                    </a>
+                    </button>
+
+                    {/* Dev mode: Add to archive button for live wiki items */}
+                    {devMode && item.source === 'wikimedia.org' && item._debug_source === 'live' && (
+                      <button
+                        onClick={() => handleSaveToArchive(item, index)}
+                        disabled={savingToArchive === index}
+                        style={{
+                          position: 'absolute',
+                          bottom: '8px',
+                          right: '8px',
+                          color: 'black',
+                          padding: '8px 12px',
+                          borderRadius: '13px',
+                          boxShadow: '0 25px 50px -12px rgba(248, 197, 43, 0.4)',
+                          zIndex: 10,
+                          backgroundColor: savingToArchive === index ? '#9ca3af' : ACCENT_COLOR,
+                          border: 'none',
+                          cursor: savingToArchive === index ? 'not-allowed' : 'pointer',
+                          fontSize: '18px',
+                          fontWeight: 'bold',
+                          lineHeight: 1
+                        }}
+                        title="Save to archive"
+                      >
+                        {savingToArchive === index ? '...' : '+'}
+                      </button>
+                    )}
 
                   </>
                 ) : null}
@@ -1069,6 +1173,32 @@ export default function Home() {
 
         {/* Gallery Section */}
         <Gallery />
+
+        {/* Dev Mode Toggle */}
+        <div style={{
+          position: 'fixed',
+          bottom: '20px',
+          right: '20px',
+          zIndex: 100
+        }}>
+          <button
+            onClick={() => setDevMode(!devMode)}
+            style={{
+              padding: '8px 16px',
+              borderRadius: '20px',
+              border: devMode ? 'none' : '1px solid #DEDEDE',
+              backgroundColor: devMode ? ACCENT_COLOR : 'rgba(244, 244, 244, 0.9)',
+              color: 'black',
+              fontSize: '11px',
+              fontFamily: 'monospace',
+              cursor: 'pointer',
+              backdropFilter: 'blur(10px)',
+              transition: 'all 0.2s'
+            }}
+          >
+            dev {devMode ? 'on' : 'off'}
+          </button>
+        </div>
       </main>
 
       {/* Submit Modal */}

@@ -41,6 +41,7 @@ export default function Home() {
   const wikiCooldownRef = useRef(0); // ref for callbacks to access current cooldown
   const [wikiGlow, setWikiGlow] = useState(false); // glow effect when cooldown ends
   const prevCooldownRef = useRef(0); // track previous cooldown for transition detection
+  const wikiCooldownEndRef = useRef(0); // client-side timestamp when cooldown ends (survives server restarts)
   const [downloadBtnOpacities, setDownloadBtnOpacities] = useState<number[]>(Array(6).fill(0));
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const btnRefs = useRef<(HTMLAnchorElement | null)[]>([]);
@@ -120,21 +121,43 @@ export default function Home() {
     let interval: NodeJS.Timeout | null = null;
 
     const checkStatus = async () => {
+      const now = Date.now();
+
+      // First check client-side timer (survives server restarts)
+      const clientSecondsRemaining = wikiCooldownEndRef.current > now
+        ? Math.ceil((wikiCooldownEndRef.current - now) / 1000)
+        : 0;
+
       try {
         const res = await fetch('/api/wikimedia-status');
         if (res.ok) {
           const data = await res.json();
+
+          // Use server value if it's greater (new rate limit detected)
+          // Otherwise use client value (server might have restarted)
+          let effectiveSeconds = data.secondsRemaining;
+          if (clientSecondsRemaining > data.secondsRemaining) {
+            effectiveSeconds = clientSecondsRemaining;
+          } else if (data.secondsRemaining > 0 && data.limitedUntil) {
+            // Server has new/valid cooldown - update client timestamp
+            wikiCooldownEndRef.current = data.limitedUntil;
+          }
+
           // Detect transition from >0 to 0 for glow effect (only if wikimedia is NOT selected)
-          if (prevCooldownRef.current > 0 && data.secondsRemaining === 0 && !selectedSources.includes('wikimedia')) {
+          if (prevCooldownRef.current > 0 && effectiveSeconds === 0 && !selectedSources.includes('wikimedia')) {
             setWikiGlow(true);
             setTimeout(() => setWikiGlow(false), 1000);
           }
-          prevCooldownRef.current = data.secondsRemaining;
-          setWikiCooldown(data.secondsRemaining);
-          wikiCooldownRef.current = data.secondsRemaining;
+          prevCooldownRef.current = effectiveSeconds;
+          setWikiCooldown(effectiveSeconds);
+          wikiCooldownRef.current = effectiveSeconds;
         }
       } catch {
-        // Ignore errors
+        // On error, still use client-side timer if available
+        if (clientSecondsRemaining > 0) {
+          setWikiCooldown(clientSecondsRemaining);
+          wikiCooldownRef.current = clientSecondsRemaining;
+        }
       }
     };
 
@@ -265,6 +288,13 @@ export default function Home() {
           const response = await fetch(endpoint);
           if (response.ok) {
             const data = await response.json();
+
+            // If wikimedia returned archive, set client-side cooldown timer
+            if (endpoint.includes('wikimedia') && data._debug_source === 'archive') {
+              // Set 40 second cooldown from now on client side
+              wikiCooldownEndRef.current = Date.now() + 40 * 1000;
+            }
+
             // Update specific slot
             setSvgItems(prev => {
               const updated = [...prev];
@@ -499,7 +529,7 @@ export default function Home() {
         {/* Wikimedia cooldown countdown - separate from checkboxes */}
         <div
           style={{
-            marginTop: '-20px',
+            marginTop: '-41px',
             fontFamily: 'monospace',
             fontSize: '11px',
             color: '#9ca3af',
@@ -787,6 +817,8 @@ export default function Home() {
                           // For wikimedia live items: on error, fetch archive directly (no API call)
                           if (item.source === 'wikimedia.org' && item._debug_source === 'live' && !img.dataset.triedArchive) {
                             img.dataset.triedArchive = 'true';
+                            // Set client-side cooldown since we're falling back to archive
+                            wikiCooldownEndRef.current = Date.now() + 40 * 1000;
                             try {
                               // Fetch archive index directly - no API call to avoid rate limit issues
                               const archiveRes = await fetch('/wikimedia-archive/index.json');

@@ -37,6 +37,7 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { isWikimediaRateLimited } from '../proxy-image/route';
 
 // =============================================================================
 // CONFIGURATION
@@ -51,16 +52,17 @@ const RATE_LIMIT_COOLDOWN = 30 * 1000; // 30 seconds cooldown after 429
 // RATE LIMIT STATE
 // =============================================================================
 
-// Tracks when we hit rate limit - shared across requests
-let rateLimitedUntil: number = 0;
+// Local rate limit tracking (from API responses)
+let apiRateLimitedUntil: number = 0;
 
 function isRateLimited(): boolean {
-  return Date.now() < rateLimitedUntil;
+  // Check both: local API rate limit AND proxy CDN rate limit
+  return Date.now() < apiRateLimitedUntil || isWikimediaRateLimited();
 }
 
 function setRateLimited(): void {
-  rateLimitedUntil = Date.now() + RATE_LIMIT_COOLDOWN;
-  console.log(`[wikimedia] Rate limited! Cooldown until ${new Date(rateLimitedUntil).toISOString()}`);
+  apiRateLimitedUntil = Date.now() + RATE_LIMIT_COOLDOWN;
+  console.log(`[wikimedia] API rate limited! Cooldown until ${new Date(apiRateLimitedUntil).toISOString()}`);
 }
 
 // =============================================================================

@@ -663,8 +663,33 @@ export default function Home() {
                         alt={item.title}
                         loading="lazy"
                         style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
-                        onError={(e) => {
+                        onError={async (e) => {
                           const img = e.currentTarget;
+
+                          // For wikimedia live items: on error, fetch archive version
+                          if (item.source === 'wikimedia.org' && item._debug_source === 'live' && !img.dataset.triedArchive) {
+                            img.dataset.triedArchive = 'true';
+                            try {
+                              // Re-fetch from API - it will return archive due to rate limit
+                              const res = await fetch('/api/random-svg-wikimedia');
+                              if (res.ok) {
+                                const archiveItem = await res.json();
+                                if (archiveItem.previewImage?.startsWith('/wikimedia-archive/')) {
+                                  img.src = archiveItem.previewImage;
+                                  // Update the card data
+                                  setSvgItems(prev => {
+                                    const updated = [...prev];
+                                    updated[index] = archiveItem;
+                                    return updated;
+                                  });
+                                  return;
+                                }
+                              }
+                            } catch {
+                              // Continue to fallback
+                            }
+                          }
+
                           // Try originalSvgUrl as fallback (only for live wikimedia)
                           if (item.originalSvgUrl && !img.dataset.triedFallback) {
                             img.dataset.triedFallback = 'true';

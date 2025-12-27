@@ -282,11 +282,7 @@ export default function Home() {
                 <div
                   key={originalIndex}
                   onClick={() => {
-                    setLogoVisibility(prev => {
-                      const newVisibility = [...prev];
-                      newVisibility[originalIndex] = false;
-                      return newVisibility;
-                    });
+                    setLogoVisibility([false, false, false, false, false, false]);
                   }}
                   className="logo-svg-container"
                 style={{

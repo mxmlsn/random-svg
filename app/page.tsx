@@ -660,16 +660,18 @@ export default function Home() {
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={`/api/proxy-image?url=${encodeURIComponent(item.previewImage)}`}
+                        src={item.previewImage.startsWith('/') ? item.previewImage : `/api/proxy-image?url=${encodeURIComponent(item.previewImage)}`}
                         alt={item.title}
                         style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
                         onError={(e) => {
                           const img = e.currentTarget;
-                          // Try fallback to original SVG for Wikimedia
-                          const svgUrl = getWikimediaSvgUrl(item.previewImage);
-                          if (svgUrl && !img.dataset.triedFallback) {
-                            img.dataset.triedFallback = 'true';
-                            img.src = `/api/proxy-image?url=${encodeURIComponent(svgUrl)}`;
+                          // Try fallback to original SVG for Wikimedia (only for remote URLs)
+                          if (!item.previewImage.startsWith('/')) {
+                            const svgUrl = getWikimediaSvgUrl(item.previewImage);
+                            if (svgUrl && !img.dataset.triedFallback) {
+                              img.dataset.triedFallback = 'true';
+                              img.src = `/api/proxy-image?url=${encodeURIComponent(svgUrl)}`;
+                            }
                           }
                         }}
                       />

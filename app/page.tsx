@@ -216,6 +216,8 @@ export default function Home() {
       const fetchPromises = endpoints.map(async (endpoint, index) => {
         // During cooldown, skip wikimedia API requests - use archive directly on client
         if (endpoint.includes('wikimedia') && wikiCooldownRef.current > 0) {
+          // Add staggered delay for archive loading (similar to live mode feel)
+          await new Promise(resolve => setTimeout(resolve, index * 300));
           try {
             const archiveRes = await fetch('/wikimedia-archive/index.json');
             if (archiveRes.ok) {

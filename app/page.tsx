@@ -124,8 +124,8 @@ export default function Home() {
         const res = await fetch('/api/wikimedia-status');
         if (res.ok) {
           const data = await res.json();
-          // Detect transition from >0 to 0 for glow effect
-          if (prevCooldownRef.current > 0 && data.secondsRemaining === 0) {
+          // Detect transition from >0 to 0 for glow effect (only if wikimedia is NOT selected)
+          if (prevCooldownRef.current > 0 && data.secondsRemaining === 0 && !selectedSources.includes('wikimedia')) {
             setWikiGlow(true);
             setTimeout(() => setWikiGlow(false), 1000);
           }
@@ -145,7 +145,7 @@ export default function Home() {
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, []);
+  }, [selectedSources]);
 
   const toggleSource = (source: SourceType) => {
     setSelectedSources(prev => {
@@ -175,8 +175,9 @@ export default function Home() {
     });
   };
 
-  const fetchRandomSVGs = async () => {
-    if (selectedSources.length === 0) {
+  const fetchRandomSVGs = async (overrideSources?: SourceType[]) => {
+    const sources = overrideSources || selectedSources;
+    if (sources.length === 0) {
       setError('Please select at least one source');
       return;
     }
@@ -199,15 +200,15 @@ export default function Home() {
         'wikimedia': '/api/random-svg-wikimedia'
       };
 
-      if (selectedSources.length === 1) {
+      if (sources.length === 1) {
         // If only one source is selected, fetch all 6 from it
-        const endpoint = sourceToEndpoint[selectedSources[0]];
+        const endpoint = sourceToEndpoint[sources[0]];
         endpoints.push(...Array(6).fill(endpoint));
-      } else if (selectedSources.length === 2) {
+      } else if (sources.length === 2) {
         // If two sources are selected, fetch 3 from each
         endpoints.push(
-          ...Array(3).fill(sourceToEndpoint[selectedSources[0]]),
-          ...Array(3).fill(sourceToEndpoint[selectedSources[1]])
+          ...Array(3).fill(sourceToEndpoint[sources[0]]),
+          ...Array(3).fill(sourceToEndpoint[sources[1]])
         );
       } else {
         // If all three sources are selected, fetch 2 from each
@@ -518,17 +519,16 @@ export default function Home() {
             flexShrink: 0,
             marginTop: '5px'
           }} />
-          <span style={{ textAlign: 'center' }}>
+          <span style={{ textAlign: 'center', lineHeight: '1.3' }}>
             using wiki archive temporarily<br />
             real-time results in <span style={{ display: 'inline-block', minWidth: '18px', textAlign: 'center' }}>{wikiCooldown}</span> sec<br />
             <span
               onClick={() => {
                 // Deselect wikimedia, select both others
-                setSelectedSources(['freesvg', 'publicdomainvectors']);
-                // Trigger refresh
-                setTimeout(() => {
-                  fetchRandomSVGs();
-                }, 50);
+                const newSources: SourceType[] = ['freesvg', 'publicdomainvectors'];
+                setSelectedSources(newSources);
+                // Trigger refresh with explicit sources (state not updated yet)
+                fetchRandomSVGs(newSources);
               }}
               style={{
                 textDecoration: 'underline',
@@ -885,7 +885,7 @@ export default function Home() {
 
           {/* Circular Update Button - Centered over grid */}
           <button
-            onClick={fetchRandomSVGs}
+            onClick={() => fetchRandomSVGs()}
             disabled={loading}
             className="update-btn"
             style={{

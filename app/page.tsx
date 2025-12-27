@@ -30,6 +30,7 @@ export default function Home() {
     Array(6).fill(0).map(() => Math.random() > 0.5 ? 1 : -1)
   );
   const [showWarning, setShowWarning] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
 
   // Load logo SVGs
   useEffect(() => {
@@ -185,7 +186,7 @@ export default function Home() {
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#F4F4F4' }}>
       {/* Left Column - 30% */}
-      <aside style={{ width: '30%', padding: '36px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <aside style={{ width: '30%', padding: '36px', display: 'flex', flexDirection: 'column', gap: '24px', opacity: isMinimized ? 0.2 : 1, transition: 'opacity 0.3s' }}>
         {/* Logo */}
         <div style={{ marginTop: '30px', marginBottom: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div dangerouslySetInnerHTML={{ __html: `<svg width="181" height="105" viewBox="0 0 181 105" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -262,7 +263,7 @@ export default function Home() {
               width: '66px',
               height: '66px',
               borderRadius: '9999px',
-              backgroundColor: selectedSources.includes('publicdomainvectors') ? '#C6D000' : 'transparent',
+              backgroundColor: selectedSources.includes('publicdomainvectors') ? '#C5E02D' : 'transparent',
               border: selectedSources.includes('publicdomainvectors') ? 'none' : '1px solid #DEDEDE',
               flexShrink: 0
             }} />
@@ -296,7 +297,7 @@ export default function Home() {
               width: '66px',
               height: '66px',
               borderRadius: '9999px',
-              backgroundColor: selectedSources.includes('freesvg') ? '#C6D000' : 'transparent',
+              backgroundColor: selectedSources.includes('freesvg') ? '#C5E02D' : 'transparent',
               border: selectedSources.includes('freesvg') ? 'none' : '1px solid #DEDEDE',
               flexShrink: 0
             }} />
@@ -330,7 +331,7 @@ export default function Home() {
               width: '66px',
               height: '66px',
               borderRadius: '9999px',
-              backgroundColor: selectedSources.includes('wikimedia') ? '#C6D000' : 'transparent',
+              backgroundColor: selectedSources.includes('wikimedia') ? '#C5E02D' : 'transparent',
               border: selectedSources.includes('wikimedia') ? 'none' : '1px solid #DEDEDE',
               flexShrink: 0
             }} />
@@ -436,7 +437,7 @@ export default function Home() {
                         opacity: 0,
                         transition: 'opacity 0.2s',
                         zIndex: 10,
-                        backgroundColor: '#C6D000'
+                        backgroundColor: '#C5E02D'
                       }}
                       title="Download SVG"
                     >
@@ -454,7 +455,7 @@ export default function Home() {
                         fontSize: '12px',
                         padding: '2px 6px',
                         borderRadius: '4px',
-                        backgroundColor: item._debug_source === 'live' ? '#22c55e' : '#f97316',
+                        backgroundColor: item._debug_source === 'live' ? '#C5E02D' : '#f97316',
                         color: 'white'
                       }}>
                         {item._debug_source}
@@ -486,7 +487,7 @@ export default function Home() {
               alignItems: 'center',
               justifyContent: 'center',
               zIndex: 10,
-              backgroundColor: loading ? '#9ca3af' : '#C6D000',
+              backgroundColor: loading ? '#9ca3af' : '#C5E02D',
               cursor: loading ? 'not-allowed' : 'pointer',
               border: 'none'
             }}
@@ -534,7 +535,7 @@ export default function Home() {
               }}
               title="Undo"
             >
-              <svg style={{ width: '23.4px', height: '23.4px', transform: 'rotate(90deg)' }} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg style={{ width: '21.06px', height: '21.06px', transform: 'rotate(90deg)' }} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 13.2188L12.9674 25.1862L24.9371 13.2165" stroke="#AEAEAE" strokeWidth="0.500991" strokeLinecap="round"/>
                 <path d="M12.9683 1.61304L12.9683 25.2298" stroke="#AEAEAE" strokeWidth="0.500991" strokeLinecap="round"/>
               </svg>
@@ -556,12 +557,36 @@ export default function Home() {
               }}
               title="Redo"
             >
-              <svg style={{ width: '23.4px', height: '23.4px', transform: 'rotate(-90deg)' }} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg style={{ width: '21.06px', height: '21.06px', transform: 'rotate(-90deg)' }} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 13.2188L12.9674 25.1862L24.9371 13.2165" stroke="#AEAEAE" strokeWidth="0.500991" strokeLinecap="round"/>
                 <path d="M12.9683 1.61304L12.9683 25.2298" stroke="#AEAEAE" strokeWidth="0.500991" strokeLinecap="round"/>
               </svg>
             </button>
           </div>
+
+          {/* Minimize button - Right aligned to grid */}
+          <button
+            onClick={() => setIsMinimized(!isMinimized)}
+            style={{
+              position: 'absolute',
+              bottom: '-58px',
+              right: '52px',
+              width: '40px',
+              height: '40px',
+              borderRadius: '9999px',
+              border: '1px solid #DEDEDE',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              backgroundColor: 'transparent'
+            }}
+            title={isMinimized ? 'Show sidebar' : 'Hide sidebar'}
+          >
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="6" cy="6" r="5.5" stroke="#AEAEAE" strokeWidth="1" fill={isMinimized ? '#AEAEAE' : 'none'}/>
+            </svg>
+          </button>
         </div>
 
         {/* Gallery Section */}
@@ -584,7 +609,7 @@ export default function Home() {
             left: '15%',
             transform: 'translateX(-50%) rotate(-2deg)',
             transformOrigin: 'center center',
-            backgroundColor: '#C6D000',
+            backgroundColor: '#C5E02D',
             padding: '12px 24px',
             borderRadius: '12px',
             opacity: 0,

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { wikimediaRateLimitedUntil } from '../proxy-image/route';
 
 const WIKIMEDIA_API = 'https://commons.wikimedia.org/w/api.php';
 const MAX_OFFSET = 10000;
@@ -107,6 +108,15 @@ async function fetchLive(): Promise<SvgItem | null> {
 }
 
 export async function GET() {
+  // Skip live if rate limited
+  if (Date.now() < wikimediaRateLimitedUntil) {
+    const fromPool = getFromPool();
+    if (fromPool) {
+      // DEBUG_LABEL: источник данных
+      return NextResponse.json({ ...fromPool, _debugSource: 'pool' });
+    }
+  }
+
   // Try live first
   const live = await fetchLive();
 
@@ -116,7 +126,6 @@ export async function GET() {
   }
 
   // Fallback to pool
-  console.log('Live fetch failed, using pool');
   const fromPool = getFromPool();
 
   if (fromPool) {

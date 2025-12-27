@@ -4,7 +4,10 @@ const PROXY_TIMEOUT = 5000; // 5 seconds max for image fetch
 const MAX_RETRIES = 2;
 const CACHE_MAX_SIZE = 100; // Max cached images
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
-const WIKIMEDIA_MIN_DELAY = 200; // Min ms between Wikimedia requests
+
+// Exported for wikimedia route to check
+export let wikimediaRateLimitedUntil = 0;
+const RATE_LIMIT_COOLDOWN = 30000; // 30 seconds after 429
 
 // In-memory cache to avoid hitting Wikimedia rate limits
 interface CacheEntry {
@@ -14,37 +17,6 @@ interface CacheEntry {
 }
 const imageCache = new Map<string, CacheEntry>();
 
-// Rate limiting for Wikimedia
-let lastWikimediaRequest = 0;
-const wikimediaQueue: Array<() => void> = [];
-let processingQueue = false;
-
-async function waitForWikimediaSlot(): Promise<void> {
-  return new Promise((resolve) => {
-    wikimediaQueue.push(resolve);
-    processWikimediaQueue();
-  });
-}
-
-async function processWikimediaQueue() {
-  if (processingQueue || wikimediaQueue.length === 0) return;
-  processingQueue = true;
-
-  while (wikimediaQueue.length > 0) {
-    const now = Date.now();
-    const timeSinceLastRequest = now - lastWikimediaRequest;
-
-    if (timeSinceLastRequest < WIKIMEDIA_MIN_DELAY) {
-      await new Promise(r => setTimeout(r, WIKIMEDIA_MIN_DELAY - timeSinceLastRequest));
-    }
-
-    lastWikimediaRequest = Date.now();
-    const resolve = wikimediaQueue.shift();
-    if (resolve) resolve();
-  }
-
-  processingQueue = false;
-}
 
 function cleanCache() {
   const now = Date.now();
@@ -127,11 +99,7 @@ export async function GET(request: NextRequest) {
       },
     };
 
-    // Rate limit Wikimedia requests
     const isWikimedia = urlObj.hostname.includes('wikimedia.org');
-    if (isWikimedia) {
-      await waitForWikimediaSlot();
-    }
 
     let response: Response | null = null;
     let usedFallback = false;
@@ -142,6 +110,11 @@ export async function GET(request: NextRequest) {
       try {
         response = await fetchWithTimeout(url, fetchOptions, PROXY_TIMEOUT);
         if (response.ok) break;
+        // Set rate limit flag on 429
+        if (response.status === 429 && isWikimedia) {
+          wikimediaRateLimitedUntil = Date.now() + RATE_LIMIT_COOLDOWN;
+          console.log(`Wikimedia rate limited, cooling down for ${RATE_LIMIT_COOLDOWN / 1000}s`);
+        }
         lastError = new Error(`HTTP ${response.status}`);
         response = null;
       } catch (e) {

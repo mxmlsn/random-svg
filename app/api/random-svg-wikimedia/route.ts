@@ -4,7 +4,7 @@ import path from 'path';
 
 const WIKIMEDIA_API = 'https://commons.wikimedia.org/w/api.php';
 const MAX_OFFSET = 10000;
-const LIVE_TIMEOUT = 2000; // 2 seconds max for live request
+const LIVE_TIMEOUT = 2000;
 
 interface SvgItem {
   title: string;
@@ -46,7 +46,6 @@ async function fetchLive(): Promise<SvgItem | null> {
   try {
     const randomOffset = Math.floor(Math.random() * MAX_OFFSET);
 
-    // Get random file
     const searchUrl = new URL(WIKIMEDIA_API);
     searchUrl.searchParams.set('action', 'query');
     searchUrl.searchParams.set('list', 'search');
@@ -69,7 +68,6 @@ async function fetchLive(): Promise<SvgItem | null> {
 
     const title = file.title;
 
-    // Get image info
     const imageInfoUrl = new URL(WIKIMEDIA_API);
     imageInfoUrl.searchParams.set('action', 'query');
     imageInfoUrl.searchParams.set('titles', title);
@@ -102,7 +100,6 @@ async function fetchLive(): Promise<SvgItem | null> {
       downloadUrl: `${imageInfo.url}?download`,
     };
   } catch {
-    // Timeout or network error
     return null;
   } finally {
     clearTimeout(timeout);
@@ -114,8 +111,8 @@ export async function GET() {
   const live = await fetchLive();
 
   if (live) {
-    // DEBUG: добавляем метку источника (убрать позже)
-    return NextResponse.json({ ...live, _debug_source: 'live' });
+    // DEBUG_LABEL: источник данных
+    return NextResponse.json({ ...live, _debugSource: 'live' });
   }
 
   // Fallback to pool
@@ -123,8 +120,8 @@ export async function GET() {
   const fromPool = getFromPool();
 
   if (fromPool) {
-    // DEBUG: добавляем метку источника (убрать позже)
-    return NextResponse.json({ ...fromPool, _debug_source: 'pool' });
+    // DEBUG_LABEL: источник данных
+    return NextResponse.json({ ...fromPool, _debugSource: 'pool' });
   }
 
   return NextResponse.json({

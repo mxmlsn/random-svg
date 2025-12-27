@@ -10,12 +10,24 @@ interface SVGData {
   source: string;
   sourceUrl: string;
   downloadUrl: string;
+  // DEBUG_LABEL: источник данных
+  _debugSource?: 'live' | 'pool';
 }
 
 type SourceType = 'freesvg' | 'publicdomainvectors' | 'wikimedia';
 
 // Акцентный цвет - меняй здесь
 const ACCENT_COLOR = '#f8c52bff';
+
+// Convert Wikimedia PNG thumbnail URL to original SVG URL for fallback
+function getWikimediaSvgUrl(previewUrl: string): string | null {
+  // Pattern: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Filename.svg/330px-Filename.svg.png
+  const thumbMatch = previewUrl.match(/^(https:\/\/upload\.wikimedia\.org\/wikipedia\/commons)\/thumb\/([a-f0-9]\/[a-f0-9]{2})\/([^/]+\.svg)\/\d+px-[^/]+\.png$/i);
+  if (thumbMatch) {
+    return `${thumbMatch[1]}/${thumbMatch[2]}/${thumbMatch[3]}`;
+  }
+  return null;
+}
 
 export default function Home() {
   const [svgItems, setSvgItems] = useState<(SVGData | null)[]>(Array(6).fill(null));
@@ -651,8 +663,35 @@ export default function Home() {
                         src={`/api/proxy-image?url=${encodeURIComponent(item.previewImage)}`}
                         alt={item.title}
                         style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+                        onError={(e) => {
+                          const img = e.currentTarget;
+                          // Try fallback to original SVG for Wikimedia
+                          const svgUrl = getWikimediaSvgUrl(item.previewImage);
+                          if (svgUrl && !img.dataset.triedFallback) {
+                            img.dataset.triedFallback = 'true';
+                            img.src = `/api/proxy-image?url=${encodeURIComponent(svgUrl)}`;
+                          }
+                        }}
                       />
                     </a>
+
+                    {/* DEBUG_LABEL: показываем источник данных */}
+                    {item._debugSource && (
+                      <div style={{
+                        position: 'absolute',
+                        bottom: '8px',
+                        left: '8px',
+                        fontSize: '10px',
+                        fontFamily: 'monospace',
+                        color: item._debugSource === 'live' ? '#22c55e' : '#f59e0b',
+                        backgroundColor: 'rgba(255,255,255,0.9)',
+                        padding: '2px 6px',
+                        borderRadius: '4px',
+                        zIndex: 5
+                      }}>
+                        {item._debugSource}
+                      </div>
+                    )}
 
                     {/* Download button overlay - for all sources */}
                     <a

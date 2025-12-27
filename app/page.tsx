@@ -127,49 +127,38 @@ export default function Home() {
     setSavingToArchive(index);
 
     try {
-      const svgUrl = item.originalSvgUrl || item.previewImage;
-
-      // Generate filename from title
-      const sanitizedTitle = item.title
-        .replace(/[^a-zA-Z0-9\s_-]/g, '')
-        .replace(/\s+/g, '_')
-        .substring(0, 100);
-      const filename = `${sanitizedTitle}.svg`;
-
-      // Download the SVG file
-      const downloadUrl = `/api/download-wikimedia?url=${encodeURIComponent(svgUrl)}`;
-      const link = document.createElement('a');
-      link.href = downloadUrl;
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      // Copy index.json entry to clipboard
-      const indexEntry = {
-        filename,
-        title: item.title,
-        wikimediaUrl: item.sourceUrl,
-      };
-
-      await navigator.clipboard.writeText(JSON.stringify(indexEntry, null, 2));
-
-      // Update UI to show it's been processed
-      setSvgItems(prev => {
-        const updated = [...prev];
-        if (updated[index]) {
-          updated[index] = {
-            ...updated[index]!,
-            _debug_source: 'archive',
-          };
-        }
-        return updated;
+      const response = await fetch('/api/save-to-archive', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          svgUrl: item.originalSvgUrl || item.previewImage,
+          title: item.title,
+          wikimediaUrl: item.sourceUrl,
+        }),
       });
 
-      console.log('Downloaded SVG and copied index entry:', indexEntry);
+      const result = await response.json();
+
+      if (response.ok) {
+        // Update the item to show it's now in archive
+        setSvgItems(prev => {
+          const updated = [...prev];
+          if (updated[index]) {
+            updated[index] = {
+              ...updated[index]!,
+              previewImage: `/wikimedia-archive/${result.filename}`,
+              _debug_source: 'archive',
+            };
+          }
+          return updated;
+        });
+      } else {
+        console.error('Failed to save:', result.error);
+        alert(result.error || 'Failed to save to archive');
+      }
     } catch (error) {
-      console.error('Error:', error);
-      alert('Failed to download SVG');
+      console.error('Error saving to archive:', error);
+      alert('Failed to save to archive');
     } finally {
       setSavingToArchive(null);
     }

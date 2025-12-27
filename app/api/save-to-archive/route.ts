@@ -34,17 +34,27 @@ export async function POST(request: NextRequest) {
     }
 
     // Fetch SVG content
+    console.log('[save-to-archive] Fetching SVG from:', svgUrl);
+
     const response = await fetch(svgUrl, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'image/svg+xml,image/*,*/*',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Referer': 'https://commons.wikimedia.org/',
       },
     });
 
+    console.log('[save-to-archive] Response status:', response.status);
+
     if (!response.ok) {
-      return NextResponse.json({ error: 'Failed to fetch SVG' }, { status: response.status });
+      const errorText = await response.text().catch(() => 'Unknown error');
+      console.error('[save-to-archive] Fetch failed:', errorText.substring(0, 200));
+      return NextResponse.json({ error: `Failed to fetch SVG: ${response.status}` }, { status: response.status });
     }
 
     const svgContent = await response.text();
+    console.log('[save-to-archive] Content length:', svgContent.length, 'First 100 chars:', svgContent.substring(0, 100));
 
     // Verify it's actually SVG
     if (!svgContent.includes('<svg') && !svgContent.includes('<?xml')) {

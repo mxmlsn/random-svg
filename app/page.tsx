@@ -343,7 +343,7 @@ export default function Home() {
               flexShrink: 0
             }} />
             <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
-              <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: '#374151', lineHeight: '1.1' }}>publicdomainvectors.org</div>
+              <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: selectedSources.includes('publicdomainvectors') ? '#374151' : '#9ca3af', lineHeight: '1.1', transition: 'color 0.2s' }}>publicdomainvectors.org</div>
               <div style={{ fontFamily: 'Arial', fontSize: '11px', color: '#9ca3af', lineHeight: '1.1', marginTop: '2px' }}>may contain boring memphis corporate</div>
             </div>
           </label>
@@ -377,7 +377,7 @@ export default function Home() {
               flexShrink: 0
             }} />
             <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
-              <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: '#374151', lineHeight: '1.1' }}>freesvg.org</div>
+              <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: selectedSources.includes('freesvg') ? '#374151' : '#9ca3af', lineHeight: '1.1', transition: 'color 0.2s' }}>freesvg.org</div>
               <div style={{ fontFamily: 'Arial', fontSize: '11px', color: '#9ca3af', lineHeight: '1.1', marginTop: '2px' }}>perfect balance</div>
             </div>
           </label>
@@ -411,7 +411,7 @@ export default function Home() {
               flexShrink: 0
             }} />
             <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
-              <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: '#374151', lineHeight: '1.1' }}>wikimedia.org</div>
+              <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: selectedSources.includes('wikimedia') ? '#374151' : '#9ca3af', lineHeight: '1.1', transition: 'color 0.2s' }}>wikimedia.org</div>
               <div style={{ fontFamily: 'Arial', fontSize: '11px', color: '#9ca3af', lineHeight: '1.1', marginTop: '2px' }}>too many hieroglyphs and maps<br />but has unique scientific graphics</div>
             </div>
           </label>
@@ -610,7 +610,7 @@ export default function Home() {
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
               gridTemplateRows: 'repeat(2, 1fr)',
-              gap: '32px',
+              gap: '21px',
               height: '100%'
             }}
           >

@@ -18,14 +18,29 @@ interface SvgItem {
 // Static pool as fallback
 let svgPool: SvgItem[] = [];
 
+// Convert PNG thumbnail URL to original SVG URL
+function convertThumbToSvg(url: string): string {
+  // Pattern: .../thumb/c/c5/Filename.svg/330px-Filename.svg.png -> .../c/c5/Filename.svg
+  const thumbMatch = url.match(/^(https:\/\/upload\.wikimedia\.org\/wikipedia\/commons)\/thumb\/([a-f0-9]\/[a-f0-9]{2})\/([^/]+\.svg)\/\d+px-[^/]+\.png$/i);
+  if (thumbMatch) {
+    return `${thumbMatch[1]}/${thumbMatch[2]}/${thumbMatch[3]}`;
+  }
+  return url;
+}
+
 function loadPool() {
   if (svgPool.length > 0) return;
 
   try {
     const poolPath = path.join(process.cwd(), 'data', 'wikimedia-svg-pool.json');
     const data = fs.readFileSync(poolPath, 'utf-8');
-    svgPool = JSON.parse(data);
-    console.log(`Loaded ${svgPool.length} SVGs from Wikimedia pool`);
+    const rawPool = JSON.parse(data);
+    // Convert PNG thumbnails to SVG URLs - they don't get rate limited
+    svgPool = rawPool.map((item: SvgItem) => ({
+      ...item,
+      previewImage: convertThumbToSvg(item.previewImage)
+    }));
+    console.log(`Loaded ${svgPool.length} SVGs from Wikimedia pool (converted to SVG URLs)`);
   } catch (error) {
     console.error('Failed to load Wikimedia SVG pool:', error);
     svgPool = [];
@@ -95,7 +110,8 @@ async function fetchLive(): Promise<SvgItem | null> {
 
     return {
       title: cleanTitle,
-      previewImage: imageInfo.thumburl || imageInfo.url,
+      // Always use original SVG URL - PNG thumbnails get rate limited
+      previewImage: imageInfo.url,
       source: 'wikimedia.org',
       sourceUrl: imageInfo.descriptionurl,
       downloadUrl: `${imageInfo.url}?download`,

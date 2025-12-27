@@ -161,63 +161,87 @@ export default function Home() {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '12px',
-              padding: '18px 12px',
+              height: '86px',
+              padding: '0 20px',
               border: '1px solid #d1d5db',
               borderRadius: '9999px',
               cursor: 'pointer',
-              backgroundColor: selectedSources.includes('freesvg') ? '#F7F7F7' : 'transparent'
+              backgroundColor: 'transparent'
             }}
           >
             <input
               type="checkbox"
               checked={selectedSources.includes('freesvg')}
               onChange={() => toggleSource('freesvg')}
-              style={{ width: '16px', height: '16px', cursor: 'pointer' }}
+              style={{ display: 'none' }}
             />
-            <span style={{ color: '#374151', fontSize: '14px' }}>freesvg.org</span>
+            <div style={{
+              width: '46px',
+              height: '46px',
+              borderRadius: '9999px',
+              backgroundColor: selectedSources.includes('freesvg') ? '#C6D000' : 'transparent',
+              border: selectedSources.includes('freesvg') ? 'none' : '1px solid #d1d5db',
+              flexShrink: 0
+            }} />
+            <span style={{ color: '#374151', fontSize: '14px', flex: 1, textAlign: 'center' }}>freesvg.org</span>
           </label>
 
           <label
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '12px',
-              padding: '18px 12px',
+              height: '86px',
+              padding: '0 20px',
               border: '1px solid #d1d5db',
               borderRadius: '9999px',
               cursor: 'pointer',
-              backgroundColor: selectedSources.includes('publicdomainvectors') ? '#F7F7F7' : 'transparent'
+              backgroundColor: 'transparent'
             }}
           >
             <input
               type="checkbox"
               checked={selectedSources.includes('publicdomainvectors')}
               onChange={() => toggleSource('publicdomainvectors')}
-              style={{ width: '16px', height: '16px', cursor: 'pointer' }}
+              style={{ display: 'none' }}
             />
-            <span style={{ color: '#374151', fontSize: '14px' }}>publicdomainvectors.org</span>
+            <div style={{
+              width: '46px',
+              height: '46px',
+              borderRadius: '9999px',
+              backgroundColor: selectedSources.includes('publicdomainvectors') ? '#C6D000' : 'transparent',
+              border: selectedSources.includes('publicdomainvectors') ? 'none' : '1px solid #d1d5db',
+              flexShrink: 0
+            }} />
+            <span style={{ color: '#374151', fontSize: '14px', flex: 1, textAlign: 'center' }}>publicdomainvectors.org</span>
           </label>
 
           <label
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '12px',
-              padding: '18px 12px',
+              height: '86px',
+              padding: '0 20px',
               border: '1px solid #d1d5db',
               borderRadius: '9999px',
               cursor: 'pointer',
-              backgroundColor: selectedSources.includes('wikimedia') ? '#F7F7F7' : 'transparent'
+              backgroundColor: 'transparent'
             }}
           >
             <input
               type="checkbox"
               checked={selectedSources.includes('wikimedia')}
               onChange={() => toggleSource('wikimedia')}
-              style={{ width: '16px', height: '16px', cursor: 'pointer' }}
+              style={{ display: 'none' }}
             />
-            <span style={{ color: '#374151', fontSize: '14px' }}>wikimedia.org</span>
+            <div style={{
+              width: '46px',
+              height: '46px',
+              borderRadius: '9999px',
+              backgroundColor: selectedSources.includes('wikimedia') ? '#C6D000' : 'transparent',
+              border: selectedSources.includes('wikimedia') ? 'none' : '1px solid #d1d5db',
+              flexShrink: 0
+            }} />
+            <span style={{ color: '#374151', fontSize: '14px', flex: 1, textAlign: 'center' }}>wikimedia.org</span>
           </label>
         </div>
 

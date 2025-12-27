@@ -153,14 +153,6 @@ export default function Home() {
         {/* Logo */}
         <div style={{ marginBottom: '16px', textAlign: 'center' }}>
           <h1 style={{ fontSize: '24px', fontWeight: 'bold', color: '#1f2937' }}>Random SVG</h1>
-          <a
-            href="https://random-dafont.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ fontSize: '14px', color: '#6b7280', textDecoration: 'none' }}
-          >
-            random-dafont.com →
-          </a>
         </div>
 
         {/* Filters */}
@@ -170,9 +162,9 @@ export default function Home() {
               display: 'flex',
               alignItems: 'center',
               gap: '12px',
-              padding: '12px',
+              padding: '18px 12px',
               border: '1px solid #d1d5db',
-              borderRadius: '8px',
+              borderRadius: '9999px',
               cursor: 'pointer',
               backgroundColor: selectedSources.includes('freesvg') ? '#F7F7F7' : 'transparent'
             }}
@@ -191,9 +183,9 @@ export default function Home() {
               display: 'flex',
               alignItems: 'center',
               gap: '12px',
-              padding: '12px',
+              padding: '18px 12px',
               border: '1px solid #d1d5db',
-              borderRadius: '8px',
+              borderRadius: '9999px',
               cursor: 'pointer',
               backgroundColor: selectedSources.includes('publicdomainvectors') ? '#F7F7F7' : 'transparent'
             }}
@@ -212,9 +204,9 @@ export default function Home() {
               display: 'flex',
               alignItems: 'center',
               gap: '12px',
-              padding: '12px',
+              padding: '18px 12px',
               border: '1px solid #d1d5db',
-              borderRadius: '8px',
+              borderRadius: '9999px',
               cursor: 'pointer',
               backgroundColor: selectedSources.includes('wikimedia') ? '#F7F7F7' : 'transparent'
             }}
@@ -407,7 +399,7 @@ export default function Home() {
             style={{
               position: 'absolute',
               top: 'calc(50% + 26px)',
-              left: '50%',
+              left: 'calc(50% - 26px)',
               transform: 'translate(-50%, -50%)',
               width: '80px',
               height: '80px',

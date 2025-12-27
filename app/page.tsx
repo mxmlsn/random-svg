@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Gallery from './components/Gallery';
 import SubmitModal from './components/SubmitModal';
 
@@ -10,7 +10,6 @@ interface SVGData {
   source: string;
   sourceUrl: string;
   downloadUrl: string;
-  _debug_source?: 'live' | 'pool'; // DEBUG: убрать позже
 }
 
 type SourceType = 'freesvg' | 'publicdomainvectors' | 'wikimedia';
@@ -32,6 +31,49 @@ export default function Home() {
   const [showWarning, setShowWarning] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [scrollOffset, setScrollOffset] = useState(0);
+  const [downloadBtnOpacities, setDownloadBtnOpacities] = useState<number[]>(Array(6).fill(0));
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const btnRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+
+  const handleCardMouseMove = useCallback((e: React.MouseEvent, index: number) => {
+    const card = cardRefs.current[index];
+    const btn = btnRefs.current[index];
+    if (!card || !btn) return;
+
+    const btnRect = btn.getBoundingClientRect();
+    const btnCenterX = btnRect.left + btnRect.width / 2;
+    const btnCenterY = btnRect.top + btnRect.height / 2;
+
+    const distance = Math.sqrt(
+      Math.pow(e.clientX - btnCenterX, 2) + Math.pow(e.clientY - btnCenterY, 2)
+    );
+
+    const cardRect = card.getBoundingClientRect();
+    const maxDistance = Math.sqrt(Math.pow(cardRect.width, 2) + Math.pow(cardRect.height, 2));
+
+    // 10px radius = full opacity, then fade based on distance
+    let opacity: number;
+    if (distance <= 10) {
+      opacity = 1;
+    } else {
+      // Linear fade from 1 to 0.15 based on distance (10px to maxDistance)
+      opacity = Math.max(0.15, 1 - (distance - 10) / (maxDistance - 10));
+    }
+
+    setDownloadBtnOpacities(prev => {
+      const newOpacities = [...prev];
+      newOpacities[index] = opacity;
+      return newOpacities;
+    });
+  }, []);
+
+  const handleCardMouseLeave = useCallback((index: number) => {
+    setDownloadBtnOpacities(prev => {
+      const newOpacities = [...prev];
+      newOpacities[index] = 0;
+      return newOpacities;
+    });
+  }, []);
 
   // Parallax effect for submit card
   useEffect(() => {
@@ -197,7 +239,7 @@ export default function Home() {
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#F4F4F4', alignItems: 'flex-start' }}>
       {/* Left Column - 30% */}
-      <aside style={{ width: '30%', padding: '36px', display: 'flex', flexDirection: 'column', gap: '24px', opacity: isMinimized ? 0.2 : 1, transition: 'opacity 0.3s' }}>
+      <aside style={{ width: '30%', padding: '36px', display: 'flex', flexDirection: 'column', gap: '52px', opacity: isMinimized ? 0.2 : 1, transition: 'opacity 0.3s' }}>
         {/* Logo */}
         <div style={{ marginTop: '30px', marginBottom: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div dangerouslySetInnerHTML={{ __html: `<svg width="181" height="105" viewBox="0 0 181 105" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -274,7 +316,7 @@ export default function Home() {
               width: '66px',
               height: '66px',
               borderRadius: '9999px',
-              backgroundColor: selectedSources.includes('publicdomainvectors') ? '#C5E02D' : 'transparent',
+              backgroundColor: selectedSources.includes('publicdomainvectors') ? '#895FE4' : 'transparent',
               border: selectedSources.includes('publicdomainvectors') ? 'none' : '1px solid #DEDEDE',
               flexShrink: 0
             }} />
@@ -308,7 +350,7 @@ export default function Home() {
               width: '66px',
               height: '66px',
               borderRadius: '9999px',
-              backgroundColor: selectedSources.includes('freesvg') ? '#C5E02D' : 'transparent',
+              backgroundColor: selectedSources.includes('freesvg') ? '#895FE4' : 'transparent',
               border: selectedSources.includes('freesvg') ? 'none' : '1px solid #DEDEDE',
               flexShrink: 0
             }} />
@@ -342,7 +384,7 @@ export default function Home() {
               width: '66px',
               height: '66px',
               borderRadius: '9999px',
-              backgroundColor: selectedSources.includes('wikimedia') ? '#C5E02D' : 'transparent',
+              backgroundColor: selectedSources.includes('wikimedia') ? '#895FE4' : 'transparent',
               border: selectedSources.includes('wikimedia') ? 'none' : '1px solid #DEDEDE',
               flexShrink: 0
             }} />
@@ -353,13 +395,14 @@ export default function Home() {
           </label>
         </div>
 
-        {/* Submit Card - Centered */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: 60 }}>
+        {/* Cards Container */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
+          {/* Submit Card */}
           <div
             style={{
               width: 334,
               height: 500,
-              background: '#C5E02D',
+              background: '#895FE4',
               borderRadius: 24,
               padding: '26px 27px',
               position: 'relative',
@@ -369,7 +412,7 @@ export default function Home() {
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = `rotate(0deg) translateY(${scrollOffset}px)`;
-              e.currentTarget.style.boxShadow = '0 20px 50px rgba(197, 224, 45, 0.4)';
+              e.currentTarget.style.boxShadow = '0 20px 50px rgba(137, 95, 228, 0.4)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = `rotate(-2deg) translateY(${scrollOffset}px)`;
@@ -470,10 +513,8 @@ export default function Home() {
               </a>
             </p>
           </div>
-        </div>
 
-        {/* Random Dafont Card */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: 24 }}>
+          {/* Random Dafont Card */}
           <a
             href="https://random-dafont.vercel.app/"
             target="_blank"
@@ -554,7 +595,10 @@ export default function Home() {
             {svgItems.map((item, index) => (
               <div
                 key={index}
+                ref={(el) => { cardRefs.current[index] = el; }}
                 className="svg-cell"
+                onMouseMove={(e) => handleCardMouseMove(e, index)}
+                onMouseLeave={() => handleCardMouseLeave(index)}
                 style={{
                   position: 'relative',
                   border: '1px solid #DEDEDE',
@@ -593,6 +637,7 @@ export default function Home() {
                       href={item.downloadUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      ref={(el) => { btnRefs.current[index] = el; }}
                       onClick={(e) => e.stopPropagation()}
                       className="download-btn"
                       style={{
@@ -600,36 +645,21 @@ export default function Home() {
                         top: '8px',
                         right: '8px',
                         color: 'white',
-                        padding: '16px',
-                        borderRadius: '16px',
+                        padding: '13px',
+                        borderRadius: '13px',
                         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-                        opacity: 0,
-                        transition: 'opacity 0.2s',
+                        opacity: downloadBtnOpacities[index],
+                        transition: 'opacity 0.05s',
                         zIndex: 10,
-                        backgroundColor: '#C5E02D'
+                        backgroundColor: '#895FE4'
                       }}
                       title="Download SVG"
                     >
-                      <svg style={{ width: '32px', height: '32px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg style={{ width: '27px', height: '27px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                       </svg>
                     </a>
 
-                    {/* DEBUG: метка источника для wikimedia - убрать позже */}
-                    {item._debug_source && (
-                      <span style={{
-                        position: 'absolute',
-                        bottom: '8px',
-                        left: '8px',
-                        fontSize: '12px',
-                        padding: '2px 6px',
-                        borderRadius: '4px',
-                        backgroundColor: item._debug_source === 'live' ? '#C5E02D' : '#f97316',
-                        color: 'white'
-                      }}>
-                        {item._debug_source}
-                      </span>
-                    )}
                   </>
                 ) : null}
               </div>
@@ -656,7 +686,7 @@ export default function Home() {
               alignItems: 'center',
               justifyContent: 'center',
               zIndex: 10,
-              backgroundColor: loading ? '#9ca3af' : '#C5E02D',
+              backgroundColor: loading ? '#9ca3af' : '#895FE4',
               cursor: loading ? 'not-allowed' : 'pointer',
               border: 'none'
             }}
@@ -778,7 +808,7 @@ export default function Home() {
             left: '15%',
             transform: 'translateX(-50%) rotate(-2deg)',
             transformOrigin: 'center center',
-            backgroundColor: '#C5E02D',
+            backgroundColor: '#895FE4',
             padding: '12px 24px',
             borderRadius: '12px',
             opacity: 0,
@@ -816,10 +846,7 @@ export default function Home() {
             transform: translateX(6px);
           }
         }
-        .svg-cell:hover .download-btn {
-          opacity: 1 !important;
-        }
-        .checkbox-label:hover {
+                .checkbox-label:hover {
           background-color: rgba(0, 0, 0, 0.05) !important;
         }
         .arrow-animate {

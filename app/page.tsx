@@ -43,7 +43,7 @@ export default function Home() {
   const prevCooldownRef = useRef(0); // track previous cooldown for transition detection
   const wikiCooldownEndRef = useRef(0); // client-side timestamp when cooldown ends (survives server restarts)
   const [downloadBtnOpacities, setDownloadBtnOpacities] = useState<number[]>(Array(6).fill(0));
-  const [shownArchiveFiles, setShownArchiveFiles] = useState<Set<string>>(new Set()); // Track shown wiki archive files to avoid repeats
+  const shownArchiveFilesRef = useRef<Set<string>>(new Set()); // Track shown wiki archive files to avoid repeats (ref for sync access)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const btnRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
@@ -291,19 +291,19 @@ export default function Home() {
             if (archiveRes.ok) {
               const archive = await archiveRes.json();
               if (archive.length > 0) {
-                // Filter out already shown files
-                let availableItems = archive.filter((item: { filename: string }) => !shownArchiveFiles.has(item.filename));
+                // Filter out already shown files (using ref for synchronous access across parallel fetches)
+                let availableItems = archive.filter((item: { filename: string }) => !shownArchiveFilesRef.current.has(item.filename));
 
                 // If all files have been shown, reset the tracking
                 if (availableItems.length === 0) {
-                  setShownArchiveFiles(new Set());
+                  shownArchiveFilesRef.current = new Set();
                   availableItems = archive;
                 }
 
                 const randomItem = availableItems[Math.floor(Math.random() * availableItems.length)];
 
-                // Track this file as shown
-                setShownArchiveFiles(prev => new Set(prev).add(randomItem.filename));
+                // Track this file as shown immediately (synchronous, prevents duplicates in parallel fetches)
+                shownArchiveFilesRef.current.add(randomItem.filename);
 
                 const archiveData = {
                   title: randomItem.title,
@@ -625,7 +625,7 @@ export default function Home() {
         </div>
 
         {/* Cards Container */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', marginTop: '29px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', marginTop: '0px' }}>
           {/* Submit Card */}
           <div
             style={{

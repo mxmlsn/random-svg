@@ -14,6 +14,9 @@ interface SVGData {
 
 type SourceType = 'freesvg' | 'publicdomainvectors' | 'wikimedia';
 
+// Акцентный цвет - меняй здесь
+const ACCENT_COLOR = '#f8c52bff';
+
 export default function Home() {
   const [svgItems, setSvgItems] = useState<(SVGData | null)[]>(Array(6).fill(null));
   const [loading, setLoading] = useState(false);
@@ -316,7 +319,7 @@ export default function Home() {
               width: '66px',
               height: '66px',
               borderRadius: '9999px',
-              backgroundColor: selectedSources.includes('publicdomainvectors') ? '#895FE4' : 'transparent',
+              backgroundColor: selectedSources.includes('publicdomainvectors') ? ACCENT_COLOR : 'transparent',
               border: selectedSources.includes('publicdomainvectors') ? 'none' : '1px solid #DEDEDE',
               flexShrink: 0
             }} />
@@ -350,7 +353,7 @@ export default function Home() {
               width: '66px',
               height: '66px',
               borderRadius: '9999px',
-              backgroundColor: selectedSources.includes('freesvg') ? '#895FE4' : 'transparent',
+              backgroundColor: selectedSources.includes('freesvg') ? ACCENT_COLOR : 'transparent',
               border: selectedSources.includes('freesvg') ? 'none' : '1px solid #DEDEDE',
               flexShrink: 0
             }} />
@@ -384,7 +387,7 @@ export default function Home() {
               width: '66px',
               height: '66px',
               borderRadius: '9999px',
-              backgroundColor: selectedSources.includes('wikimedia') ? '#895FE4' : 'transparent',
+              backgroundColor: selectedSources.includes('wikimedia') ? ACCENT_COLOR : 'transparent',
               border: selectedSources.includes('wikimedia') ? 'none' : '1px solid #DEDEDE',
               flexShrink: 0
             }} />
@@ -402,9 +405,9 @@ export default function Home() {
             style={{
               width: 334,
               height: 500,
-              background: '#895FE4',
+              background: ACCENT_COLOR,
               borderRadius: 24,
-              padding: '26px 27px',
+              padding: '36px 27px 26px 27px',
               position: 'relative',
               transition: 'all 0.3s',
               textAlign: 'left',
@@ -412,7 +415,7 @@ export default function Home() {
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = `rotate(0deg) translateY(${scrollOffset}px)`;
-              e.currentTarget.style.boxShadow = '0 20px 50px rgba(137, 95, 228, 0.4)';
+              e.currentTarget.style.boxShadow = '0 20px 50px rgba(248, 197, 43, 0.4)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = `rotate(-2deg) translateY(${scrollOffset}px)`;
@@ -425,7 +428,7 @@ export default function Home() {
                 fontWeight: 400,
                 fontSize: 18,
                 lineHeight: 1.15,
-                color: 'white',
+                color: 'black',
                 marginBottom: '16px',
                 letterSpacing: '-0.3px'
               }}
@@ -439,7 +442,7 @@ export default function Home() {
                 fontWeight: 400,
                 fontSize: 18,
                 lineHeight: 1.15,
-                color: 'white',
+                color: 'black',
                 marginTop: '16px',
                 letterSpacing: '-0.3px'
               }}
@@ -456,7 +459,7 @@ export default function Home() {
                 href="https://instagram.com/randomsvg"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ color: 'white', textDecoration: 'underline' }}
+                style={{ color: 'black', textDecoration: 'underline' }}
                 onClick={(e) => e.stopPropagation()}
               >
                 instagram
@@ -471,7 +474,7 @@ export default function Home() {
                 display: 'block',
                 width: '100%',
                 textAlign: 'center',
-                color: 'white',
+                color: 'black',
                 textDecoration: 'underline',
                 fontFamily: 'HealTheWeb, Arial, sans-serif',
                 fontSize: 40,
@@ -497,7 +500,7 @@ export default function Home() {
                 fontSize: 18,
                 bottom: 26,
                 left: 27,
-                color: 'white',
+                color: 'black',
                 letterSpacing: '-0.3px'
               }}
             >
@@ -506,7 +509,7 @@ export default function Home() {
                 href="https://instagram.com/mxmlsn"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ color: 'white', textDecoration: 'underline' }}
+                style={{ color: 'black', textDecoration: 'underline' }}
                 onClick={(e) => e.stopPropagation()}
               >
                 @mxmlsn
@@ -644,14 +647,14 @@ export default function Home() {
                         position: 'absolute',
                         top: '8px',
                         right: '8px',
-                        color: 'white',
+                        color: 'black',
                         padding: '13px',
                         borderRadius: '13px',
-                        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                        boxShadow: '0 25px 50px -12px rgba(248, 197, 43, 0.4)',
                         opacity: downloadBtnOpacities[index],
                         transition: 'opacity 0.05s',
                         zIndex: 10,
-                        backgroundColor: '#895FE4'
+                        backgroundColor: ACCENT_COLOR
                       }}
                       title="Download SVG"
                     >
@@ -678,15 +681,15 @@ export default function Home() {
               width: '80px',
               height: '80px',
               borderRadius: '9999px',
-              color: 'white',
+              color: 'black',
               fontWeight: '600',
-              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+              boxShadow: '0 25px 50px -12px rgba(248, 197, 43, 0.4)',
               transition: 'all 0.2s',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               zIndex: 10,
-              backgroundColor: loading ? '#9ca3af' : '#895FE4',
+              backgroundColor: loading ? '#9ca3af' : ACCENT_COLOR,
               cursor: loading ? 'not-allowed' : 'pointer',
               border: 'none'
             }}
@@ -808,7 +811,7 @@ export default function Home() {
             left: '15%',
             transform: 'translateX(-50%) rotate(-2deg)',
             transformOrigin: 'center center',
-            backgroundColor: '#895FE4',
+            backgroundColor: ACCENT_COLOR,
             padding: '12px 24px',
             borderRadius: '12px',
             opacity: 0,

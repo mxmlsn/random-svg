@@ -31,6 +31,7 @@ export default function Home() {
   const [logoDirections, setLogoDirections] = useState<number[]>(() =>
     Array(6).fill(0).map(() => Math.random() > 0.5 ? 1 : -1)
   );
+  const [logoVisibility, setLogoVisibility] = useState<boolean[]>(Array(6).fill(true));
   const [showWarning, setShowWarning] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [scrollOffset, setScrollOffset] = useState(0);
@@ -258,8 +259,9 @@ export default function Home() {
 </svg>` }} />
           {/* Logo SVG row */}
           <div style={{ display: 'flex', height: '90px', overflow: 'visible', alignItems: 'flex-end', marginTop: '-21px', marginLeft: '20px' }}>
-            {logoSvgs.map((svg, index) => {
-              const offsetY = (index === 0 || index === 5) ? -80 : (index === 1 || index === 4) ? -41 : 0;
+            {logoSvgs.filter((_, i) => i !== 2).map((svg, index) => {
+              const originalIndex = index >= 2 ? index + 1 : index;
+              const offsetY = (originalIndex === 0 || originalIndex === 5) ? -80 : (originalIndex === 1 || originalIndex === 4) ? -41 : 0;
               const processedSvg = svg.replace(/<svg([^>]*)>/, (_, attrs) => {
                 const widthMatch = attrs.match(/width="([^"]*)"/);
                 const heightMatch = attrs.match(/height="([^"]*)"/);
@@ -274,17 +276,29 @@ export default function Home() {
               });
               return (
                 <div
-                  key={index}
-                  style={{
+                  key={originalIndex}
+                  onClick={() => {
+                    setLogoVisibility(prev => {
+                      const newVisibility = [...prev];
+                      newVisibility[originalIndex] = false;
+                      return newVisibility;
+                    });
+                  }}
+                  className="logo-svg-container"
+                style={{
                     width: '70px',
                     height: '90px',
                     overflow: 'visible',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    transform: `translateY(${offsetY}px) rotate(${logoRotations[index]}deg)`,
+                    transform: `translateY(${offsetY}px) rotate(${logoRotations[originalIndex]}deg)`,
                     marginLeft: '-20px',
-                    transition: 'transform 0.3s ease-in-out'
+                    transition: 'transform 0.1s ease-out, opacity 0.15s ease-out',
+                    opacity: logoVisibility[originalIndex] ? 1 : 0,
+                    cursor: 'pointer',
+                    ['--offset-y' as string]: `${offsetY}px`,
+                    ['--rotation' as string]: `${logoRotations[originalIndex]}deg`
                   }}
                   dangerouslySetInnerHTML={{ __html: processedSvg }}
                 />
@@ -858,6 +872,9 @@ export default function Home() {
         }
         .submit-btn:hover {
           font-weight: bold !important;
+        }
+        .logo-svg-container:hover {
+          transform: translateY(var(--offset-y)) rotate(var(--rotation)) scale(1.1) !important;
         }
       `}</style>
     </div>

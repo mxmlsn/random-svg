@@ -33,28 +33,20 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'File already exists in archive', filename }, { status: 409 });
     }
 
-    // Fetch SVG content
-    console.log('[save-to-archive] Fetching SVG from:', svgUrl);
+    // Fetch SVG content via internal proxy to avoid rate limits
+    const proxyUrl = `http://localhost:3000/api/proxy-image?url=${encodeURIComponent(svgUrl)}`;
+    console.log('[save-to-archive] Fetching SVG via proxy');
 
-    const response = await fetch(svgUrl, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept': 'image/svg+xml,image/*,*/*',
-        'Accept-Language': 'en-US,en;q=0.9',
-        'Referer': 'https://commons.wikimedia.org/',
-      },
-    });
+    const response = await fetch(proxyUrl);
 
     console.log('[save-to-archive] Response status:', response.status);
 
     if (!response.ok) {
-      const errorText = await response.text().catch(() => 'Unknown error');
-      console.error('[save-to-archive] Fetch failed:', errorText.substring(0, 200));
       return NextResponse.json({ error: `Failed to fetch SVG: ${response.status}` }, { status: response.status });
     }
 
     const svgContent = await response.text();
-    console.log('[save-to-archive] Content length:', svgContent.length, 'First 100 chars:', svgContent.substring(0, 100));
+    console.log('[save-to-archive] Content length:', svgContent.length);
 
     // Verify it's actually SVG
     if (!svgContent.includes('<svg') && !svgContent.includes('<?xml')) {

@@ -43,8 +43,6 @@ export default function Home() {
   const prevCooldownRef = useRef(0); // track previous cooldown for transition detection
   const wikiCooldownEndRef = useRef(0); // client-side timestamp when cooldown ends (survives server restarts)
   const [downloadBtnOpacities, setDownloadBtnOpacities] = useState<number[]>(Array(6).fill(0));
-  const [devMode, setDevMode] = useState(false);
-  const [savingToArchive, setSavingToArchive] = useState<number | null>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const btnRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
@@ -119,49 +117,6 @@ export default function Home() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  }, []);
-
-  const handleSaveToArchive = useCallback(async (item: SVGData, index: number) => {
-    if (item.source !== 'wikimedia.org' || item._debug_source === 'archive') return;
-
-    setSavingToArchive(index);
-
-    try {
-      const response = await fetch('/api/save-to-archive', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          svgUrl: item.originalSvgUrl || item.previewImage,
-          title: item.title,
-          wikimediaUrl: item.sourceUrl,
-        }),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        // Update the item to show it's now in archive
-        setSvgItems(prev => {
-          const updated = [...prev];
-          if (updated[index]) {
-            updated[index] = {
-              ...updated[index]!,
-              previewImage: `/wikimedia-archive/${result.filename}`,
-              _debug_source: 'archive',
-            };
-          }
-          return updated;
-        });
-      } else {
-        console.error('Failed to save:', result.error);
-        alert(result.error || 'Failed to save to archive');
-      }
-    } catch (error) {
-      console.error('Error saving to archive:', error);
-      alert('Failed to save to archive');
-    } finally {
-      setSavingToArchive(null);
-    }
   }, []);
 
   // Parallax effect for submit card
@@ -991,33 +946,6 @@ export default function Home() {
                       </svg>
                     </button>
 
-                    {/* Dev mode: Add to archive button for live wiki items */}
-                    {devMode && item.source === 'wikimedia.org' && item._debug_source === 'live' && (
-                      <button
-                        onClick={() => handleSaveToArchive(item, index)}
-                        disabled={savingToArchive === index}
-                        style={{
-                          position: 'absolute',
-                          bottom: '8px',
-                          right: '8px',
-                          color: 'black',
-                          padding: '8px 12px',
-                          borderRadius: '13px',
-                          boxShadow: '0 25px 50px -12px rgba(248, 197, 43, 0.4)',
-                          zIndex: 10,
-                          backgroundColor: savingToArchive === index ? '#9ca3af' : ACCENT_COLOR,
-                          border: 'none',
-                          cursor: savingToArchive === index ? 'not-allowed' : 'pointer',
-                          fontSize: '18px',
-                          fontWeight: 'bold',
-                          lineHeight: 1
-                        }}
-                        title="Save to archive"
-                      >
-                        {savingToArchive === index ? '...' : '+'}
-                      </button>
-                    )}
-
                   </>
                 ) : null}
               </div>
@@ -1173,32 +1101,6 @@ export default function Home() {
 
         {/* Gallery Section */}
         <Gallery />
-
-        {/* Dev Mode Toggle */}
-        <div style={{
-          position: 'fixed',
-          bottom: '20px',
-          right: '20px',
-          zIndex: 100
-        }}>
-          <button
-            onClick={() => setDevMode(!devMode)}
-            style={{
-              padding: '8px 16px',
-              borderRadius: '20px',
-              border: devMode ? 'none' : '1px solid #DEDEDE',
-              backgroundColor: devMode ? ACCENT_COLOR : 'rgba(244, 244, 244, 0.9)',
-              color: 'black',
-              fontSize: '11px',
-              fontFamily: 'monospace',
-              cursor: 'pointer',
-              backdropFilter: 'blur(10px)',
-              transition: 'all 0.2s'
-            }}
-          >
-            dev {devMode ? 'on' : 'off'}
-          </button>
-        </div>
       </main>
 
       {/* Submit Modal */}

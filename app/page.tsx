@@ -483,33 +483,36 @@ export default function Home() {
               <div style={{ fontFamily: 'Arial', fontSize: '11px', color: '#9ca3af', lineHeight: '1.1', marginTop: '2px' }}>too many hieroglyphs and maps<br />but has unique scientific graphics</div>
             </div>
           </label>
+        </div>
 
-          {/* Wikimedia cooldown countdown */}
-          <div
-            style={{
-              marginTop: '10px',
-              fontFamily: 'monospace',
-              fontSize: '11px',
-              color: '#9ca3af',
-              textAlign: 'center',
-              opacity: wikiCooldown > 0 ? 1 : 0,
-              transition: 'opacity 0.15s ease-out',
-              pointerEvents: 'none',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '6px'
-            }}
-          >
-            <span style={{
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              backgroundColor: '#9ca3af',
-              flexShrink: 0
-            }} />
-            {wikiCooldown} sec until live images from wiki, now you see archives
-          </div>
+        {/* Wikimedia cooldown countdown - separate from checkboxes */}
+        <div
+          style={{
+            marginTop: '10px',
+            fontFamily: 'monospace',
+            fontSize: '11px',
+            color: '#9ca3af',
+            opacity: wikiCooldown > 0 ? 1 : 0,
+            transition: 'opacity 0.15s ease-out',
+            pointerEvents: 'none',
+            display: 'flex',
+            alignItems: 'flex-start',
+            justifyContent: 'center',
+            gap: '6px'
+          }}
+        >
+          <span style={{
+            width: '8px',
+            height: '8px',
+            borderRadius: '50%',
+            backgroundColor: '#9ca3af',
+            flexShrink: 0,
+            marginTop: '3px'
+          }} />
+          <span style={{ textAlign: 'center' }}>
+            using wiki archive temporarily<br />
+            real-time results in <span style={{ display: 'inline-block', minWidth: '18px', textAlign: 'right' }}>{wikiCooldown}</span> sec
+          </span>
         </div>
 
         {/* Cards Container */}

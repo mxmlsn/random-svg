@@ -10,6 +10,7 @@ interface SVGData {
   source: string;
   sourceUrl: string;
   downloadUrl: string;
+  _debug_source?: 'live' | 'pool';
 }
 
 type SourceType = 'freesvg' | 'publicdomainvectors' | 'wikimedia';
@@ -653,6 +654,27 @@ export default function Home() {
                         style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
                       />
                     </a>
+
+                    {/* Debug source badge for wikimedia */}
+                    {item.source === 'wikimedia.org' && item._debug_source && (
+                      <div
+                        style={{
+                          position: 'absolute',
+                          top: '8px',
+                          left: '8px',
+                          padding: '4px 8px',
+                          borderRadius: '6px',
+                          fontSize: '10px',
+                          fontFamily: 'Arial',
+                          fontWeight: 'bold',
+                          color: 'white',
+                          backgroundColor: item._debug_source === 'live' ? '#22c55e' : '#3b82f6',
+                          zIndex: 10
+                        }}
+                      >
+                        {item._debug_source === 'live' ? 'LIVE' : 'POOL'}
+                      </div>
+                    )}
 
                     {/* Download button overlay - for all sources */}
                     <a

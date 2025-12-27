@@ -11,7 +11,7 @@ interface SVGData {
   sourceUrl: string;
   downloadUrl: string;
   // DEBUG_LABEL: источник данных
-  _debugSource?: 'live' | 'pool';
+  _debugSource?: 'live' | 'pool' | 'local';
 }
 
 type SourceType = 'freesvg' | 'publicdomainvectors' | 'wikimedia';
@@ -683,7 +683,7 @@ export default function Home() {
                         left: '8px',
                         fontSize: '10px',
                         fontFamily: 'monospace',
-                        color: item._debugSource === 'live' ? '#22c55e' : '#f59e0b',
+                        color: item._debugSource === 'live' ? '#22c55e' : item._debugSource === 'local' ? '#3b82f6' : '#f59e0b',
                         backgroundColor: 'rgba(255,255,255,0.9)',
                         padding: '2px 6px',
                         borderRadius: '4px',

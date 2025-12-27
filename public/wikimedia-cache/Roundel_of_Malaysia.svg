@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="601"
+   height="601"
+   viewBox="0 0 601 601.00002"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="Roundel_of_the_Royal_Malaysian_Air_Force.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="35.419055"
+     inkscape:cy="32.637872"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:snap-global="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-521.51965)">
+    <circle
+       style="opacity:1;fill:#3296ff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.89189011;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+       id="path815"
+       cx="300.5"
+       cy="822.01965"
+       r="300" />
+    <circle
+       r="210"
+       cy="822.01965"
+       cx="300.5"
+       id="circle837"
+       style="opacity:1;fill:#001432;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.62432259;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+    <path
+       transform="scale(1,-1)"
+       d="m 300.50019,-642.01965 -18.42474,-99.27598 -59.67434,81.45037 26.47412,-97.43875 -89.10471,47.49252 66.12945,-76.30259 -100.88681,4.1282 92.68703,-40.05377 -92.68703,-40.05377 100.8868,4.1282 -66.12945,-76.30259 89.10472,47.49251 -26.47412,-97.43875 59.67434,81.45037 18.42473,-99.27602 18.42474,99.27602 59.67433,-81.45037 -26.47411,97.43875 89.10471,-47.49252 -66.12945,76.30259 100.88681,-4.1282 -92.68703,40.05378 92.68703,40.05376 -100.88681,-4.12819 66.12945,76.30259 -89.10471,-47.49252 26.47412,97.43875 -59.67434,-81.45037 z"
+       inkscape:randomized="0"
+       inkscape:rounded="-3.469447e-018"
+       inkscape:flatsided="false"
+       sodipodi:arg2="1.7951958"
+       sodipodi:arg1="1.5707963"
+       sodipodi:r2="82.799995"
+       sodipodi:r1="180"
+       sodipodi:cy="-822.01965"
+       sodipodi:cx="300.50018"
+       sodipodi:sides="14"
+       id="path847"
+       style="fill:#fad214;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.74116838"
+       sodipodi:type="star" />
+  </g>
+</svg>

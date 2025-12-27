@@ -1,0 +1,196 @@
+{
+  "items": [
+    {
+      "id": "AmbigramJAG",
+      "title": "AmbigramJAG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:AmbigramJAG.svg",
+      "localFile": "AmbigramJAG.svg"
+    },
+    {
+      "id": "Android_robot",
+      "title": "Android robot",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Android_robot.svg",
+      "localFile": "Android_robot.svg"
+    },
+    {
+      "id": "Angular_logo",
+      "title": "Angular logo",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Angular_logo.svg",
+      "localFile": "Angular_logo.svg"
+    },
+    {
+      "id": "Apple_logo",
+      "title": "Apple logo",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Apple_logo.svg",
+      "localFile": "Apple_logo.svg"
+    },
+    {
+      "id": "Bananas",
+      "title": "Bananas",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bananas.svg",
+      "localFile": "Bananas.svg"
+    },
+    {
+      "id": "Bitmap_VS_SVG",
+      "title": "Bitmap VS SVG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bitmap_VS_SVG.svg",
+      "localFile": "Bitmap_VS_SVG.svg"
+    },
+    {
+      "id": "CSS3_logo",
+      "title": "CSS3 logo",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:CSS3_logo.svg",
+      "localFile": "CSS3_logo.svg"
+    },
+    {
+      "id": "Camponotus_flavomarginatus_ant",
+      "title": "Camponotus flavomarginatus ant",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Camponotus_flavomarginatus_ant.svg",
+      "localFile": "Camponotus_flavomarginatus_ant.svg"
+    },
+    {
+      "id": "Creative_Commons_logo",
+      "title": "Creative Commons logo",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Creative_Commons_logo.svg",
+      "localFile": "Creative_Commons_logo.svg"
+    },
+    {
+      "id": "Docker_logo",
+      "title": "Docker logo",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Docker_logo.svg",
+      "localFile": "Docker_logo.svg"
+    },
+    {
+      "id": "Firefox_logo_2019",
+      "title": "Firefox logo 2019",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Firefox_logo_2019.svg",
+      "localFile": "Firefox_logo_2019.svg"
+    },
+    {
+      "id": "Git_icon",
+      "title": "Git icon",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Git_icon.svg",
+      "localFile": "Git_icon.svg"
+    },
+    {
+      "id": "HTML5_logo",
+      "title": "HTML5 logo",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:HTML5_logo.svg",
+      "localFile": "HTML5_logo.svg"
+    },
+    {
+      "id": "JavaScript_logo",
+      "title": "JavaScript logo",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:JavaScript_logo.svg",
+      "localFile": "JavaScript_logo.svg"
+    },
+    {
+      "id": "Kubernetes_logo",
+      "title": "Kubernetes logo",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kubernetes_logo.svg",
+      "localFile": "Kubernetes_logo.svg"
+    },
+    {
+      "id": "Laserprofilometer_DE",
+      "title": "Laserprofilometer DE",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Laserprofilometer_DE.svg",
+      "localFile": "Laserprofilometer_DE.svg"
+    },
+    {
+      "id": "Linear_visible_spectrum",
+      "title": "Linear visible spectrum",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Linear_visible_spectrum.svg",
+      "localFile": "Linear_visible_spectrum.svg"
+    },
+    {
+      "id": "Linux_penguin",
+      "title": "Linux penguin",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Linux_penguin.svg",
+      "localFile": "Linux_penguin.svg"
+    },
+    {
+      "id": "MongoDB_logo",
+      "title": "MongoDB logo",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:MongoDB_logo.svg",
+      "localFile": "MongoDB_logo.svg"
+    },
+    {
+      "id": "Moulin_Olynthe",
+      "title": "Moulin Olynthe",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Moulin_Olynthe.svg",
+      "localFile": "Moulin_Olynthe.svg"
+    },
+    {
+      "id": "NewTux",
+      "title": "NewTux",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:NewTux.svg",
+      "localFile": "NewTux.svg"
+    },
+    {
+      "id": "Node.js_logo",
+      "title": "Node.js logo",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Node.js_logo.svg",
+      "localFile": "Node.js_logo.svg"
+    },
+    {
+      "id": "PostgreSQL_logo",
+      "title": "PostgreSQL logo",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:PostgreSQL_logo.svg",
+      "localFile": "PostgreSQL_logo.svg"
+    },
+    {
+      "id": "Python_logo",
+      "title": "Python logo",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Python_logo.svg",
+      "localFile": "Python_logo.svg"
+    },
+    {
+      "id": "React-icon",
+      "title": "React icon",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:React-icon.svg",
+      "localFile": "React-icon.svg"
+    },
+    {
+      "id": "Redis_logo",
+      "title": "Redis logo",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Redis_logo.svg",
+      "localFile": "Redis_logo.svg"
+    },
+    {
+      "id": "Roundel_of_Malaysia",
+      "title": "Roundel of Malaysia",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Roundel_of_Malaysia.svg",
+      "localFile": "Roundel_of_Malaysia.svg"
+    },
+    {
+      "id": "SNice",
+      "title": "SNice",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:SNice.svg",
+      "localFile": "SNice.svg"
+    },
+    {
+      "id": "SVG_logo",
+      "title": "SVG logo",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:SVG_logo.svg",
+      "localFile": "SVG_logo.svg"
+    },
+    {
+      "id": "Typescript_logo_2020",
+      "title": "Typescript logo 2020",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Typescript_logo_2020.svg",
+      "localFile": "Typescript_logo_2020.svg"
+    },
+    {
+      "id": "Vue.js_logo",
+      "title": "Vue.js logo",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vue.js_logo.svg",
+      "localFile": "Vue.js_logo.svg"
+    },
+    {
+      "id": "Wikipedia_logo",
+      "title": "Wikipedia logo",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wikipedia_logo.svg",
+      "localFile": "Wikipedia_logo.svg"
+    }
+  ]
+}

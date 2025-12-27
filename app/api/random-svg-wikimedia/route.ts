@@ -15,8 +15,22 @@ interface SvgItem {
   downloadUrl: string;
 }
 
-// Static pool as fallback
+interface LocalCacheItem {
+  id: string;
+  title: string;
+  sourceUrl: string;
+  localFile: string;
+}
+
+interface LocalCacheIndex {
+  items: LocalCacheItem[];
+}
+
+// Static pool as fallback (remote URLs)
 let svgPool: SvgItem[] = [];
+
+// Local cache (files in public/wikimedia-cache)
+let localCache: LocalCacheItem[] = [];
 
 // Convert PNG thumbnail URL to original SVG URL
 function convertThumbToSvg(url: string): string {
@@ -45,6 +59,39 @@ function loadPool() {
     console.error('Failed to load Wikimedia SVG pool:', error);
     svgPool = [];
   }
+}
+
+function loadLocalCache() {
+  if (localCache.length > 0) return;
+
+  try {
+    const indexPath = path.join(process.cwd(), 'public', 'wikimedia-cache', 'index.json');
+    const data = fs.readFileSync(indexPath, 'utf-8');
+    const index: LocalCacheIndex = JSON.parse(data);
+    localCache = index.items;
+    console.log(`Loaded ${localCache.length} SVGs from local cache`);
+  } catch (error) {
+    console.error('Failed to load local cache:', error);
+    localCache = [];
+  }
+}
+
+// Get from LOCAL cache - no network requests needed
+function getFromLocalCache(): SvgItem | null {
+  loadLocalCache();
+  if (localCache.length === 0) return null;
+
+  const randomIndex = Math.floor(Math.random() * localCache.length);
+  const item = localCache[randomIndex];
+
+  return {
+    title: item.title,
+    // Local file served from public folder - no proxy needed!
+    previewImage: `/wikimedia-cache/${item.localFile}`,
+    source: 'wikimedia.org',
+    sourceUrl: item.sourceUrl,
+    downloadUrl: `/wikimedia-cache/${item.localFile}`,
+  };
 }
 
 function getFromPool(): SvgItem | null {
@@ -124,12 +171,12 @@ async function fetchLive(): Promise<SvgItem | null> {
 }
 
 export async function GET() {
-  // Skip live if rate limited
+  // Skip live if rate limited - use LOCAL cache (no network!)
   if (Date.now() < wikimediaRateLimitedUntil) {
-    const fromPool = getFromPool();
-    if (fromPool) {
+    const fromLocal = getFromLocalCache();
+    if (fromLocal) {
       // DEBUG_LABEL: источник данных
-      return NextResponse.json({ ...fromPool, _debugSource: 'pool' });
+      return NextResponse.json({ ...fromLocal, _debugSource: 'local' });
     }
   }
 
@@ -141,7 +188,14 @@ export async function GET() {
     return NextResponse.json({ ...live, _debugSource: 'live' });
   }
 
-  // Fallback to pool
+  // Fallback to LOCAL cache first (no network)
+  const fromLocal = getFromLocalCache();
+  if (fromLocal) {
+    // DEBUG_LABEL: источник данных
+    return NextResponse.json({ ...fromLocal, _debugSource: 'local' });
+  }
+
+  // Last resort - remote pool (will still hit rate limits)
   const fromPool = getFromPool();
 
   if (fromPool) {

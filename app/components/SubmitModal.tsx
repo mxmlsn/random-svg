@@ -23,6 +23,7 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
   const [usedFonts, setUsedFonts] = useState(false);
   const [fontNames, setFontNames] = useState<string[]>(['']);
   const [showAnonymousHint, setShowAnonymousHint] = useState(false);
+  const [isAnonymousConfirmed, setIsAnonymousConfirmed] = useState(false);
   const [showFontAddBtn, setShowFontAddBtn] = useState(false);
   const [isUploadHovered, setIsUploadHovered] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
@@ -62,6 +63,7 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
     setUsedFonts(false);
     setFontNames(['']);
     setShowAnonymousHint(false);
+    setIsAnonymousConfirmed(false);
     setShowFontAddBtn(false);
   };
 
@@ -142,8 +144,9 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
       return;
     }
 
-    if (!instagram.trim() && !showAnonymousHint) {
+    if (!instagram.trim() && !isAnonymousConfirmed) {
       setShowAnonymousHint(true);
+      setIsAnonymousConfirmed(true);
       setTimeout(() => setShowAnonymousHint(false), 2000);
       return;
     }
@@ -212,7 +215,7 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
       {/* Anonymous message */}
       <div style={{
         position: 'fixed',
-        top: 'calc(31.5% + 45vh)',
+        top: 'calc(31.5% + 45vh - 10px)',
         left: '50%',
         transform: 'translateX(-50%)',
         fontFamily: 'HealTheWeb, Arial, sans-serif',
@@ -246,7 +249,7 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
           <div style={{ textAlign: 'center', padding: '20px 0' }}>
             <h4 style={{ fontSize: '20px', fontWeight: 700, color: '#222', marginBottom: '8px' }}>Thank you!</h4>
             <p style={{ fontSize: '14px', color: '#666', marginBottom: '24px' }}>
-              Your poster has been submitted for review. It will appear in the gallery once approved.
+              If your poster passes review, it typically appears in the gallery within 1-7 days. If it hasn&apos;t shown up after 2 weeks, either I&apos;m dead or it didn&apos;t make the cut—please don&apos;t resubmit it.
             </p>
             <button
               onClick={handleSubmitAnother}
@@ -415,6 +418,7 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
                     if (val.startsWith('@')) val = val.substring(1);
                     setInstagram(val);
                     setShowAnonymousHint(false);
+                    setIsAnonymousConfirmed(false);
                   }}
                   placeholder="instagram_username"
                   maxLength={30}
@@ -527,8 +531,7 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
                   padding: '0 12px',
                   height: '42px',
                   boxSizing: 'border-box',
-                  whiteSpace: 'nowrap',
-                  flex: 1
+                  whiteSpace: 'nowrap'
                 }}>
                   <input
                     type="checkbox"
@@ -594,22 +597,22 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
                   disabled={!imageData || state === 'uploading'}
                   style={{
                     padding: '0 20px',
-                    background: showAnonymousHint ? '#22c55e' : (!imageData ? '#999' : ACCENT_COLOR),
+                    background: isAnonymousConfirmed ? '#22c55e' : (!imageData ? '#999' : ACCENT_COLOR),
                     border: 'none',
                     borderRadius: '8px',
                     fontFamily: 'HealTheWeb, Arial, sans-serif',
                     fontSize: '14px',
                     fontWeight: 400,
-                    color: '#000',
+                    color: !imageData ? '#fff' : '#000',
                     cursor: !imageData || state === 'uploading' ? 'not-allowed' : 'pointer',
                     minWidth: '120px',
                     height: '42px',
                     boxShadow: showAnonymousHint ? '0 0 0 6px rgba(34, 197, 94, 0.25)' : 'none',
-                    transition: 'background 0.2s, box-shadow 0.2s',
-                    flexShrink: 0
+                    transition: 'box-shadow 0.2s',
+                    flex: 1
                   }}
                 >
-                  {state === 'uploading' ? 'uploading...' : (showAnonymousHint ? 'yes' : 'submit')}
+                  {state === 'uploading' ? 'uploading...' : (isAnonymousConfirmed ? 'yes' : 'submit')}
                 </button>
               </div>
             </div>

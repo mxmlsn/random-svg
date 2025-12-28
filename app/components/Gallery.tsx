@@ -104,7 +104,7 @@ export default function Gallery() {
     <section
       className="w-full"
       style={{
-        padding: isMobile ? '60px 40px 40px' : '120px 52px 20px 0',
+        padding: isMobile ? '20px 3px' : '120px 52px 20px 0',
       }}
     >
       {/* Gallery Container - horizontal scroll with inline-block */}

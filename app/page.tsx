@@ -45,38 +45,19 @@ export default function Home() {
   const [downloadBtnOpacities, setDownloadBtnOpacities] = useState<number[]>(Array(6).fill(0));
   const shownArchiveFilesRef = useRef<Set<string>>(new Set()); // Track shown wiki archive files to avoid repeats (ref for sync access)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [updateBtnRotation, setUpdateBtnRotation] = useState(0); // Current rotation angle
   const [updateBtnHovered, setUpdateBtnHovered] = useState(false);
-  const updateBtnSpinning = useRef(false); // Is currently spinning (during loading)
-  const updateBtnRotationRef = useRef(0); // Ref for animation loop access
+  const [updateBtnSpinning, setUpdateBtnSpinning] = useState(false); // CSS animation trigger
+  const [updateBtnSlowingDown, setUpdateBtnSlowingDown] = useState(false); // Slowing down phase
   const btnRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
-  // Start spinning animation for update button
-  // SPEED CONFIG: Change this value to adjust spin speed (degrees per frame at 60fps)
-  // Higher = faster spin. Default: 6 degrees/frame = ~1 rotation per second
-  const UPDATE_BTN_SPIN_SPEED = 6;
-
-  const startUpdateBtnSpin = useCallback((currentRotation: number) => {
-    if (updateBtnSpinning.current) return;
-    updateBtnSpinning.current = true;
-
-    // Sync ref with current rotation value before starting
-    // This prevents the jerk when animation starts
-    updateBtnRotationRef.current = currentRotation;
-
-    const spin = () => {
-      if (!updateBtnSpinning.current) return;
-      updateBtnRotationRef.current += UPDATE_BTN_SPIN_SPEED;
-      setUpdateBtnRotation(updateBtnRotationRef.current);
-      requestAnimationFrame(spin);
-    };
-    requestAnimationFrame(spin);
-  }, []);
-
-  const stopUpdateBtnSpin = useCallback(() => {
-    updateBtnSpinning.current = false;
-    // Sync state with ref to prevent jerk when hover triggers after stop
-    setUpdateBtnRotation(updateBtnRotationRef.current);
+  // Start slowing down animation, then stop
+  const stopSpinning = useCallback(() => {
+    setUpdateBtnSlowingDown(true);
+    // After slow-down animation completes (500ms), fully stop
+    setTimeout(() => {
+      setUpdateBtnSpinning(false);
+      setUpdateBtnSlowingDown(false);
+    }, 500);
   }, []);
 
   const handleCardMouseMove = useCallback((e: React.MouseEvent, index: number) => {
@@ -274,8 +255,8 @@ export default function Home() {
     // Rotate logos by ~25.7 degrees (360/14) in their random directions
     setLogoRotations(prev => prev.map((rot, i) => rot + logoDirections[i] * (360 / 14)));
 
-    // Start update button spinning (pass current rotation to sync ref)
-    startUpdateBtnSpin(updateBtnRotation);
+    // Start update button spinning
+    setUpdateBtnSpinning(true);
 
     setLoading(true);
     setError(null);
@@ -424,7 +405,7 @@ export default function Home() {
     } finally {
       // Stop update button spinning after 500ms delay
       setTimeout(() => {
-        stopUpdateBtnSpin();
+        stopSpinning();
       }, 500);
       setLoading(false);
     }
@@ -1060,7 +1041,7 @@ export default function Home() {
             disabled={loading}
             onMouseEnter={() => setUpdateBtnHovered(true)}
             onMouseLeave={() => setUpdateBtnHovered(false)}
-            className="update-btn"
+            className={`update-btn${updateBtnSpinning ? ' update-btn-spinning' : ''}`}
             style={{
               position: 'absolute',
               top: 'calc(50% + 26px)',
@@ -1071,13 +1052,13 @@ export default function Home() {
               borderRadius: '9999px',
               color: 'black',
               fontWeight: '600',
-              boxShadow: '0 25px 50px -12px rgba(248, 197, 43, 0.4)',
+              boxShadow: updateBtnSpinning ? '0 25px 50px -12px rgba(193, 193, 193, 0.4)' : '0 25px 50px -12px rgba(248, 197, 43, 0.4)',
               transition: 'all 0.2s',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               zIndex: 10,
-              backgroundColor: ACCENT_COLOR,
+              backgroundColor: updateBtnSpinning ? '#C1C1C1' : ACCENT_COLOR,
               cursor: loading ? 'not-allowed' : 'pointer',
               border: 'none'
             }}
@@ -1089,9 +1070,10 @@ export default function Home() {
               viewBox="0 0 103 103"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className={updateBtnSpinning ? (updateBtnSlowingDown ? 'update-icon-slowing' : 'update-icon-spinning') : ''}
               style={{
-                transform: `rotate(${updateBtnRotation + (updateBtnHovered && !loading ? -10 : 0)}deg)`,
-                transition: loading ? 'none' : 'transform 0.2s ease-out'
+                transform: updateBtnHovered && !updateBtnSpinning ? 'rotate(-10deg)' : undefined,
+                transition: updateBtnSpinning ? 'none' : 'transform 0.2s ease-out'
               }}
             >
               <path fillRule="evenodd" clipRule="evenodd" d="M52.4326 45.0536L71.4989 69.2294L90.7128 44.5257L79.4378 44.5468C79.4378 44.5468 80.8736 34.2642 75.1727 28.1833C69.4719 22.0812 56.2333 22.1235 56.2333 22.1235C56.2333 22.1235 62.1242 25.4806 64.2778 31.6671C66.4526 37.8536 65.3124 44.8847 65.3124 44.8847L52.4326 45.0536Z" fill="#C1C1C1" stroke="#323232" strokeWidth="1.5314"/>
@@ -1258,6 +1240,16 @@ export default function Home() {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
         }
+        .update-icon-spinning {
+          animation: spin 1s linear infinite;
+        }
+        .update-icon-slowing {
+          animation: spinSlow 0.5s ease-out forwards;
+        }
+        @keyframes spinSlow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(180deg); }
+        }
         @keyframes fadeInFast {
           from { opacity: 0; }
           to { opacity: 1; }
@@ -1296,7 +1288,7 @@ export default function Home() {
         .download-btn:hover {
           transform: scale(1.16) !important;
         }
-        .update-btn:hover:not(:disabled) {
+        .update-btn:hover:not(:disabled):not(.update-btn-spinning) {
           transform: translate(-50%, -50%) scale(1.06) !important;
         }
         .minimize-btn:not(.minimized):hover {

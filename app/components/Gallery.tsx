@@ -107,10 +107,18 @@ export default function Gallery() {
         padding: isMobile ? '20px 3px' : '120px 52px 20px 0',
       }}
     >
-      {/* Gallery Container - horizontal scroll with inline-block */}
+      {/* Gallery Container */}
       <div
-        className="text-center"
-        style={{ fontSize: 0 }}
+        style={{
+          fontSize: 0,
+          ...(isMobile ? {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'stretch'
+          } : {
+            textAlign: 'center'
+          })
+        }}
       >
         {loading ? (
           <div className="flex justify-center items-center py-20">
@@ -122,10 +130,11 @@ export default function Gallery() {
             {posters.map((poster, index) => (
               <div
                 key={poster.id}
-                className="inline-block align-top cursor-pointer poster-card"
+                className={isMobile ? "cursor-pointer" : "inline-block align-top cursor-pointer poster-card"}
                 style={{
-                  marginRight: isMobile ? 16 : 18,
-                  marginBottom: 18,
+                  marginRight: isMobile ? 0 : 18,
+                  marginBottom: isMobile ? 16 : 18,
+                  width: isMobile ? '100%' : 'auto',
                   transition: 'transform 0.1s ease-out'
                 }}
                 onClick={() => openLightbox(index)}
@@ -135,7 +144,7 @@ export default function Gallery() {
                   src={poster.image_url}
                   alt={poster.instagram ? `Poster by @${poster.instagram}` : 'Poster'}
                   className="block"
-                  style={{ height: isMobile ? 280 : 340, width: 'auto' }}
+                  style={isMobile ? { width: '100%', height: 'auto' } : { height: 340, width: 'auto' }}
                   loading="lazy"
                 />
                 <div

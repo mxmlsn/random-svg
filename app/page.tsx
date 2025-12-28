@@ -253,14 +253,19 @@ export default function Home() {
       }
     };
 
-    // Start polling when cooldown is active
-    checkStatus();
-    interval = setInterval(checkStatus, 1000);
+    // Only start polling if there's an active cooldown
+    const now = Date.now();
+    const hasActiveCooldown = wikiCooldownEndRef.current > now;
+
+    if (hasActiveCooldown) {
+      checkStatus();
+      interval = setInterval(checkStatus, 1000);
+    }
 
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [selectedSources]);
+  }, [selectedSources, wikiCooldown]);
 
   const toggleSource = (source: SourceType) => {
     setSelectedSources(prev => {
@@ -1420,8 +1425,8 @@ export default function Home() {
               zIndex: 10,
               backgroundColor: updateBtnSpinning ? '#C1C1C1' : ACCENT_COLOR,
               cursor: loading ? 'not-allowed' : 'pointer',
-              border: '3px solid #FFD34F',
-              outline: '2px solid #FFD34F',
+              border: updateBtnSpinning ? '3px solid #C1C1C1' : '3px solid #FFD34F',
+              outline: updateBtnSpinning ? '2px solid #C1C1C1' : '2px solid #FFD34F',
               outlineOffset: '2px'
             }}
           >

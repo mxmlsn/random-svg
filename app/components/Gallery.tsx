@@ -322,7 +322,7 @@ export default function Gallery() {
                   whiteSpace: 'pre',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#c00';
+                  e.currentTarget.style.color = '#f8c52bff';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.color = '#d6d6d6';
@@ -361,13 +361,13 @@ export default function Gallery() {
                   className="underline transition-colors"
                   style={{ color: '#d6d6d6', whiteSpace: 'pre-line' }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = '#c00';
+                    e.currentTarget.style.color = '#f8c52bff';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.color = '#d6d6d6';
                   }}
                 >
-                  include assets from{'\n'}random-svg.com
+                  include fonts from{'\n'}random-dafont.com
                 </a>
               </div>
             )}

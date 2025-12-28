@@ -1424,9 +1424,7 @@ export default function Home() {
               zIndex: 10,
               backgroundColor: updateBtnSpinning ? '#C1C1C1' : ACCENT_COLOR,
               cursor: loading ? 'not-allowed' : 'pointer',
-              border: 'none',
-              outline: updateBtnSpinning ? '3px solid #C1C1C1' : '3px solid #FFD34F',
-              outlineOffset: '0px',
+              border: updateBtnSpinning ? '3px solid #C1C1C1' : '3px solid #FFD34F',
               overflow: 'visible'
             }}
           >
@@ -1434,8 +1432,9 @@ export default function Home() {
               src="/upd_icon.svg?v=2"
               alt="Update"
               style={{
-                width: '200px',
-                height: '200px',
+                width: '105px',
+                height: '105px',
+                maxWidth: 'none',
                 transform: `rotate(${updateBtnRotation + (updateBtnHovered && !updateBtnSpinning ? -10 : 0)}deg)`,
                 transition: updateBtnSpinning ? 'none' : 'transform 0.2s ease-out',
                 pointerEvents: 'none'

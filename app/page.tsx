@@ -253,19 +253,14 @@ export default function Home() {
       }
     };
 
-    // Only start polling if there's an active cooldown
-    const now = Date.now();
-    const hasActiveCooldown = wikiCooldownEndRef.current > now;
-
-    if (hasActiveCooldown) {
-      checkStatus();
-      interval = setInterval(checkStatus, 1000);
-    }
+    // Start polling when cooldown is active
+    checkStatus();
+    interval = setInterval(checkStatus, 1000);
 
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [selectedSources, wikiCooldown]);
+  }, [selectedSources]);
 
   const toggleSource = (source: SourceType) => {
     setSelectedSources(prev => {

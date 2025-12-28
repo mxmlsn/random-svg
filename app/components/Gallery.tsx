@@ -103,7 +103,7 @@ export default function Gallery() {
     <section
       className="w-full"
       style={{
-        padding: isMobile ? '60px 40px 40px' : '220px 40px 60px',
+        padding: isMobile ? '60px 40px 40px' : '90px 52px 20px 0',
       }}
     >
       {/* Gallery Container - horizontal scroll with inline-block */}
@@ -136,11 +136,11 @@ export default function Gallery() {
                   style={{ height: isMobile ? 280 : 340, width: 'auto' }}
                   loading="lazy"
                 />
-                <div
-                  className="flex justify-center items-center mt-0.5"
-                  style={{ fontSize: 14 }}
-                >
-                  {poster.instagram ? (
+                {poster.instagram && (
+                  <div
+                    className="flex justify-center items-center mt-0.5"
+                    style={{ fontSize: 14 }}
+                  >
                     <a
                       href={`https://instagram.com/${poster.instagram}`}
                       target="_blank"
@@ -151,12 +151,8 @@ export default function Gallery() {
                     >
                       @{poster.instagram}
                     </a>
-                  ) : (
-                    <span className="text-gray-400 italic" style={{ fontSize: 14 }}>
-                      anonymous
-                    </span>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             ))}
 

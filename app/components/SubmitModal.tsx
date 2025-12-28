@@ -361,10 +361,10 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
                     </svg>
                   </div>
                   {/* Scattered labels */}
-                  <span className="upload-label-float" style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translate(-50%, -50%) rotate(-6deg)', fontSize: '14px', color: isUploadHovered ? ACCENT_COLOR : '#777', whiteSpace: 'nowrap', transition: 'color 0.2s' }}>required*</span>
+                  <span className="upload-label-required" style={{ position: 'absolute', top: '20%', left: '50%', fontSize: '14px', color: isUploadHovered ? ACCENT_COLOR : '#777', whiteSpace: 'nowrap', transition: 'color 0.2s' }}>required*</span>
                   <span style={{ position: 'absolute', top: '18px', left: '24px', transform: 'rotate(-12deg)', fontSize: '14px', color: isUploadHovered ? ACCENT_COLOR : '#777', transition: 'color 0.2s' }}>any ratio</span>
                   <span style={{ position: 'absolute', top: '22px', right: '20px', transform: 'rotate(10deg)', fontSize: '14px', color: isUploadHovered ? ACCENT_COLOR : '#777', transition: 'color 0.2s' }}>png, jpg, webp</span>
-                  <span className="upload-label-float" style={{ position: 'absolute', bottom: '28px', left: '28px', transform: 'rotate(8deg)', fontSize: '14px', color: isUploadHovered ? ACCENT_COLOR : '#777', transition: 'color 0.2s' }}>click or drag-n-drop</span>
+                  <span className="upload-label-dragndrop" style={{ position: 'absolute', bottom: '28px', left: '28px', fontSize: '14px', color: isUploadHovered ? ACCENT_COLOR : '#777', transition: 'color 0.2s' }}>click or drag-n-drop</span>
                   <span style={{ position: 'absolute', bottom: '24px', right: '24px', transform: 'rotate(-11deg)', fontSize: '14px', color: isUploadHovered ? ACCENT_COLOR : '#777', transition: 'color 0.2s' }}>3mb max</span>
                 </div>
               )}
@@ -514,7 +514,7 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
               )}
 
               {/* Checkbox and Submit Row */}
-              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '9px' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '9px' }}>
                 <label style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -527,7 +527,8 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
                   padding: '0 12px',
                   height: '42px',
                   boxSizing: 'border-box',
-                  whiteSpace: 'nowrap'
+                  whiteSpace: 'nowrap',
+                  flex: 1
                 }}>
                   <input
                     type="checkbox"
@@ -621,12 +622,19 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
           from { opacity: 0; transform: translateY(-8px); }
           to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes floatUpDown {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-5px); }
+        @keyframes floatRequired {
+          0%, 100% { transform: translate(-50%, -50%) rotate(-6deg) translateY(0); }
+          50% { transform: translate(-50%, -50%) rotate(-6deg) translateY(-5px); }
         }
-        .upload-label-float {
-          animation: floatUpDown 2.5s ease-in-out infinite;
+        @keyframes floatDragndrop {
+          0%, 100% { transform: rotate(8deg) translateY(0); }
+          50% { transform: rotate(8deg) translateY(-5px); }
+        }
+        .upload-label-required {
+          animation: floatRequired 2.5s ease-in-out infinite;
+        }
+        .upload-label-dragndrop {
+          animation: floatDragndrop 2.5s ease-in-out infinite;
         }
       `}</style>
     </div>

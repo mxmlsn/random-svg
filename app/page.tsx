@@ -407,6 +407,8 @@ export default function Home() {
             if (endpoint.includes('wikimedia') && data._debug_source === 'archive') {
               // Set 60 second cooldown from now on client side
               wikiCooldownEndRef.current = Date.now() + 60 * 1000;
+              setWikiCooldown(60);
+              wikiCooldownRef.current = 60;
             }
 
             // Update specific slot
@@ -1272,6 +1274,8 @@ export default function Home() {
                             img.dataset.triedArchive = 'true';
                             // Set client-side cooldown since we're falling back to archive
                             wikiCooldownEndRef.current = Date.now() + 60 * 1000;
+                            setWikiCooldown(60);
+                            wikiCooldownRef.current = 60;
                             try {
                               // Fetch archive index directly - no API call to avoid rate limit issues
                               const archiveRes = await fetch('/wikimedia-archive/index.json');

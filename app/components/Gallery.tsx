@@ -125,7 +125,7 @@ export default function Gallery() {
                 style={{
                   marginRight: isMobile ? 16 : 18,
                   marginBottom: isMobile ? 16 * 0.6 : 18 * 0.6,
-                  transition: 'transform 0.2s ease-out'
+                  transition: 'transform 0.1s ease-out'
                 }}
                 onClick={() => openLightbox(index)}
               >
@@ -379,7 +379,7 @@ export default function Gallery() {
           }
         }
         .poster-card:hover {
-          transform: translateY(-4px) !important;
+          transform: translateY(-3px) !important;
         }
       `}</style>
     </section>

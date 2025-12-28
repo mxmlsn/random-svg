@@ -1605,10 +1605,10 @@ export default function Home() {
         }
         @keyframes arrow-slide {
           0%, 100% {
-            transform: translateX(-2px) rotate(24deg);
+            transform: translateX(-2px);
           }
           50% {
-            transform: translateX(6px) rotate(24deg);
+            transform: translateX(6px);
           }
         }
                 .checkbox-label:hover {

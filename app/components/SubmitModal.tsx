@@ -416,6 +416,8 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
                   onChange={(e) => {
                     let val = e.target.value;
                     if (val.startsWith('@')) val = val.substring(1);
+                    // Allow only Latin letters, numbers, dots, and underscores (Instagram username rules)
+                    val = val.replace(/[^a-zA-Z0-9._]/g, '');
                     setInstagram(val);
                     setShowAnonymousHint(false);
                     setIsAnonymousConfirmed(false);

@@ -19,6 +19,20 @@ type SourceType = 'freesvg' | 'publicdomainvectors' | 'wikimedia';
 // Акцентный цвет - меняй здесь
 const ACCENT_COLOR = '#f8c52bff';
 
+// Hook for detecting mobile
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  return isMobile;
+}
+
 export default function Home() {
   const [svgItems, setSvgItems] = useState<(SVGData | null)[]>(Array(6).fill(null));
   const [loading, setLoading] = useState(false);
@@ -28,6 +42,7 @@ export default function Home() {
   const [history, setHistory] = useState<(SVGData | null)[][]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [submitModalOpen, setSubmitModalOpen] = useState(false);
+  const isMobile = useIsMobile();
   const [logoSvgs, setLogoSvgs] = useState<string[]>(Array(6).fill(''));
   const [logoRotations, setLogoRotations] = useState<number[]>(Array(6).fill(0));
   const [logoDirections, setLogoDirections] = useState<number[]>(() =>
@@ -467,6 +482,407 @@ export default function Home() {
     }
   };
 
+  // Mobile Layout
+  if (isMobile) {
+    return (
+      <div style={{ minHeight: '100vh', backgroundColor: '#F4F4F4', padding: '4px' }}>
+        {/* 1. Logo */}
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '16px 0 12px' }}>
+          <div dangerouslySetInnerHTML={{ __html: `<svg width="120" height="70" viewBox="0 0 181 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M106.153 102.483C98.5441 102.483 93.0339 98.3507 94.7959 92.2478C95.6608 89.0442 98.6722 85.8886 103.782 83.8543C105.304 83.1976 105.688 82.2205 105.031 81.2274C103.718 79.1931 104.118 76.2457 107.402 73.9552C108.443 73.2343 108.571 72.049 107.851 71.3923C104.775 68.5731 103.99 64.6326 105.095 60.9004C106.617 55.5184 111.983 50.6649 119.672 50.6649C123.676 50.6649 125.118 51.8983 126.624 51.8983C127.28 51.8983 129.042 51.8342 130.949 51.5779C136.074 50.793 134.761 56.111 131.141 55.3101C128.594 54.7975 126.88 55.6465 127.28 58.4016C127.537 60.0995 127.409 61.7494 126.944 63.3192C125.374 68.8294 119.736 73.1543 113.04 73.1543C111.983 73.1543 111.326 73.3625 110.606 74.0192C108.571 75.8453 108.443 78.28 111.134 79.5935L117.574 82.8131C122.491 85.2319 123.869 88.916 122.876 92.3279C121.37 97.5658 114.418 102.483 106.153 102.483ZM100.835 91.2066C99.5853 95.5956 101.828 100.385 107.594 100.385C112.448 100.385 116.052 97.1814 117.045 93.7695C117.83 91.0144 116.917 88.1151 113.697 86.6094L110.285 85.0397C108.78 84.3188 107.466 84.447 106.089 85.1037C103.269 86.4813 101.555 88.7719 100.835 91.2066ZM110.606 62.4702C109.372 66.9232 109.693 71.2 113.008 71.2C116.644 71.2 119.928 66.2024 121.306 61.413C122.619 56.96 122.219 52.6992 118.855 52.6992C115.267 52.6992 111.983 57.6808 110.606 62.4702Z" fill="black"/>
+<path d="M82.4929 84.6392C80.7149 86.225 79.2733 85.5042 79.2733 83.534C79.2092 79.129 79.1451 74.2114 78.8088 61.6212C78.7447 57.9371 77.8957 56.2392 76.5502 56.2392C75.5411 56.2392 74.3557 57.2163 72.85 59.5229C71.4725 61.4771 69.4382 60.3078 70.4794 58.4016C73.8912 52.4269 77.0468 50.6649 79.2092 50.6649C83.1497 50.6649 83.8705 55.5184 83.9986 59.9073C84.2549 69.9506 84.319 73.2343 84.3991 76.3739C84.4631 78.1519 85.8407 78.8727 87.2823 77.1588C88.0352 76.3418 88.756 75.5249 89.4287 74.724C92.6804 70.8637 94.971 67.2436 96.0122 63.7196C96.7971 61.0286 96.5888 59.9714 94.4905 57.873C93.0488 56.4955 92.7285 54.7975 93.1129 53.42C93.5774 51.8342 94.8909 50.6649 96.7971 50.6649C101.25 50.6649 101.122 56.8318 99.8085 61.2208C98.527 65.7539 95.5316 70.8637 90.4859 76.5981C89.7811 77.399 89.0283 78.216 88.2434 79.0489C86.5135 80.8589 84.6073 82.717 82.4929 84.6392Z" fill="black"/>
+<path d="M51.3528 85.4241C47.6046 85.4241 44.0005 84.2548 43.8724 81.3555C43.8083 79.5935 45.1218 77.8796 47.0279 77.8796C48.2613 77.8796 49.1904 78.5363 49.9112 79.8498C52.2018 83.9184 57.8401 83.598 59.0895 79.8498C60.0826 76.9666 57.9843 73.5547 54.3642 69.358C50.8242 65.2253 49.6389 61.8775 50.632 58.5938C52.0736 53.9966 57.5198 50.6649 62.3092 50.6649C66.8423 50.6649 69.5974 53.7404 68.2198 56.4955C67.0986 58.6579 64.4075 58.722 62.7737 56.2392C60.7394 53.0836 56.0141 53.0195 55.085 56.3673C54.5084 58.4016 55.4214 61.413 59.3618 66.0102C63.2222 70.6715 65.0643 74.0833 63.8149 77.8796C62.4373 82.2846 57.3275 85.4241 51.3528 85.4241Z" fill="black"/>
+<path d="M177.282 11.9275V46.4818H167.409V34.141H162.473V46.4818H157.537V34.141H152.6V46.4818H146.019V11.9275H177.282Z" fill="black"/>
+<path d="M132.861 11.9275L142.734 24.2683V34.141L132.861 46.4818H121.343L111.471 34.141V24.2683L121.343 11.9275H132.861ZM122.166 34.141H132.039V24.2683H122.166V34.141Z" fill="black"/>
+<path d="M96.6723 11.9275V2.05481H108.19V46.4818H94.2041L81.8633 34.141V24.2683L96.6723 11.9275ZM91.736 34.141H100.786V24.2683H91.736V34.141Z" fill="black"/>
+<path d="M78.584 11.9275V46.4818H68.7113V34.141H58.8386V46.4818H52.2568V11.9275H78.584Z" fill="black"/>
+<path d="M27.5918 11.9275H48.9826V46.4818H34.1736L27.5918 34.141L37.4645 24.2683H27.5918V11.9275ZM43.2235 39.0773V29.2047H38.2872V39.0773H43.2235Z" fill="black"/>
+<path d="M24.3166 11.9275V34.141H14.4439V24.2683H9.50756V46.4818H2.92578V11.9275H24.3166Z" fill="black"/>
+</svg>` }} />
+        </div>
+
+        {/* 2. SVG Cards - 2 per row, 3 rows */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: '4px',
+          padding: '0'
+        }}>
+          {svgItems.map((item, index) => (
+            <div
+              key={index}
+              ref={(el) => { cardRefs.current[index] = el; }}
+              style={{
+                position: 'relative',
+                border: '1px solid #DEDEDE',
+                borderRadius: '12px',
+                overflow: 'hidden',
+                aspectRatio: '1/1',
+                backgroundColor: '#fff'
+              }}
+            >
+              {item ? (
+                <>
+                  <a
+                    href={item.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      position: 'absolute',
+                      top: '8px',
+                      right: '8px',
+                      bottom: '8px',
+                      left: '8px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center'
+                    }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={
+                        item.previewImage.startsWith('/wikimedia-archive/')
+                          ? item.previewImage
+                          : `/api/proxy-image?url=${encodeURIComponent(item.previewImage)}`
+                      }
+                      alt={item.title}
+                      loading="lazy"
+                      style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+                    />
+                  </a>
+
+                  {/* Archive indicator */}
+                  {item.source === 'wikimedia.org' && item._debug_source === 'archive' && (
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '8px',
+                        left: '8px',
+                        width: '6px',
+                        height: '6px',
+                        borderRadius: '50%',
+                        backgroundColor: '#9ca3af',
+                        zIndex: 10
+                      }}
+                    />
+                  )}
+
+                  {/* Download button */}
+                  <button
+                    onClick={(e) => handleDownload(item, e)}
+                    style={{
+                      position: 'absolute',
+                      bottom: '6px',
+                      right: '6px',
+                      color: 'black',
+                      padding: '8px',
+                      borderRadius: '10px',
+                      zIndex: 10,
+                      backgroundColor: ACCENT_COLOR,
+                      border: 'none',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fillRule="evenodd" clipRule="evenodd" d="M9.58678 31.5308C9.58305 31.4999 9.59243 31.4793 9.59976 31.4668C9.7731 31.1711 16.1797 30.9809 24.1942 30.9041V8.3548H41.8135V30.9041C49.8281 30.9809 56.2345 31.1711 56.408 31.4668C56.8762 32.2656 33.947 55.6279 33.0094 55.6279C32.0877 55.6279 9.83342 33.4778 9.58634 31.5307L9.58678 31.5308Z" fill="#D4A109"/>
+                      <path fillRule="evenodd" clipRule="evenodd" d="M25.5027 9.99382C25.475 17.0333 25.5579 24.0845 25.4618 31.1163C25.058 32.3747 23.424 32.3993 22.3428 32.2262C18.8556 32.3311 15.361 32.2577 11.8809 32.5429C17.6577 39.3635 24.1476 45.5622 30.5375 51.7788C31.3458 52.5326 32.1714 53.2559 33.0084 53.9783C40.4143 47.1803 47.3607 39.8976 54.1211 32.4565C49.5834 32.3131 45.0435 32.2638 40.5043 32.1907V9.66588H25.5018V9.82951V9.99313L25.5027 9.99382Z" fill="#FFEEBC"/>
+                    </svg>
+                  </button>
+                </>
+              ) : null}
+            </div>
+          ))}
+        </div>
+
+        {/* 3. Controls - Undo/Redo left, Update center */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '12px',
+          padding: '16px 0'
+        }}>
+          {/* Undo button */}
+          <button
+            onClick={handleUndo}
+            disabled={historyIndex <= 0}
+            style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: '9999px',
+              border: '1px solid #DEDEDE',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: historyIndex <= 0 ? 'not-allowed' : 'pointer',
+              opacity: historyIndex <= 0 ? 0.3 : 1,
+              backgroundColor: 'transparent'
+            }}
+          >
+            <svg style={{ width: '16px', height: '16px', transform: 'rotate(90deg)' }} viewBox="0 0 26 26" fill="none">
+              <path d="M1 13.2188L12.9674 25.1862L24.9371 13.2165" stroke="#AEAEAE" strokeWidth="1" strokeLinecap="round"/>
+              <path d="M12.9683 1.61304L12.9683 25.2298" stroke="#AEAEAE" strokeWidth="1" strokeLinecap="round"/>
+            </svg>
+          </button>
+
+          {/* Redo button */}
+          <button
+            onClick={handleRedo}
+            disabled={historyIndex >= history.length - 1}
+            style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: '9999px',
+              border: '1px solid #DEDEDE',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: historyIndex >= history.length - 1 ? 'not-allowed' : 'pointer',
+              opacity: historyIndex >= history.length - 1 ? 0.3 : 1,
+              backgroundColor: 'transparent'
+            }}
+          >
+            <svg style={{ width: '16px', height: '16px', transform: 'rotate(-90deg)' }} viewBox="0 0 26 26" fill="none">
+              <path d="M1 13.2188L12.9674 25.1862L24.9371 13.2165" stroke="#AEAEAE" strokeWidth="1" strokeLinecap="round"/>
+              <path d="M12.9683 1.61304L12.9683 25.2298" stroke="#AEAEAE" strokeWidth="1" strokeLinecap="round"/>
+            </svg>
+          </button>
+
+          {/* Update button */}
+          <button
+            onClick={() => fetchRandomSVGs()}
+            disabled={loading}
+            style={{
+              width: '60px',
+              height: '60px',
+              borderRadius: '9999px',
+              color: 'black',
+              fontWeight: '600',
+              boxShadow: updateBtnSpinning ? '0 15px 40px -8px rgba(193, 193, 193, 0.6)' : '0 15px 40px -8px rgba(248, 197, 43, 0.6)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: updateBtnSpinning ? '#C1C1C1' : ACCENT_COLOR,
+              cursor: loading ? 'not-allowed' : 'pointer',
+              border: updateBtnSpinning ? '2px solid #bdbdbd' : '2px solid #F3C233',
+              overflow: 'visible'
+            }}
+          >
+            <img
+              src="/upd_icon.svg?v=2"
+              alt="Update"
+              style={{
+                width: '75px',
+                height: '75px',
+                maxWidth: 'none',
+                transform: `rotate(${updateBtnRotation}deg)`,
+                pointerEvents: 'none'
+              }}
+            />
+          </button>
+        </div>
+
+        {/* 4. Checkboxes - 3 rows, one per row */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: '0 0 16px' }}>
+          {/* publicdomainvectors */}
+          <label
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              height: '56px',
+              padding: '0 8px',
+              border: '1px solid #DEDEDE',
+              borderRadius: '9999px',
+              cursor: 'pointer',
+              backgroundColor: 'transparent'
+            }}
+          >
+            <input
+              type="checkbox"
+              checked={selectedSources.includes('publicdomainvectors')}
+              onChange={() => toggleSource('publicdomainvectors')}
+              style={{ display: 'none' }}
+            />
+            <div style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '9999px',
+              backgroundColor: selectedSources.includes('publicdomainvectors') ? ACCENT_COLOR : 'transparent',
+              border: selectedSources.includes('publicdomainvectors') ? 'none' : '1px solid #DEDEDE',
+              flexShrink: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              {selectedSources.includes('publicdomainvectors') && (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12L10 17L19 8" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              )}
+            </div>
+            <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
+              <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '12px', color: selectedSources.includes('publicdomainvectors') ? '#374151' : '#9ca3af' }}>publicdomainvectors.org</div>
+            </div>
+          </label>
+
+          {/* freesvg */}
+          <label
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              height: '56px',
+              padding: '0 8px',
+              border: '1px solid #DEDEDE',
+              borderRadius: '9999px',
+              cursor: 'pointer',
+              backgroundColor: 'transparent'
+            }}
+          >
+            <input
+              type="checkbox"
+              checked={selectedSources.includes('freesvg')}
+              onChange={() => toggleSource('freesvg')}
+              style={{ display: 'none' }}
+            />
+            <div style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '9999px',
+              backgroundColor: selectedSources.includes('freesvg') ? ACCENT_COLOR : 'transparent',
+              border: selectedSources.includes('freesvg') ? 'none' : '1px solid #DEDEDE',
+              flexShrink: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              {selectedSources.includes('freesvg') && (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12L10 17L19 8" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              )}
+            </div>
+            <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
+              <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '12px', color: selectedSources.includes('freesvg') ? '#374151' : '#9ca3af' }}>freesvg.org</div>
+            </div>
+          </label>
+
+          {/* wikimedia */}
+          <label
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              height: '56px',
+              padding: '0 8px',
+              border: '1px solid #DEDEDE',
+              borderRadius: '9999px',
+              cursor: 'pointer',
+              backgroundColor: 'transparent'
+            }}
+          >
+            <input
+              type="checkbox"
+              checked={selectedSources.includes('wikimedia')}
+              onChange={() => toggleSource('wikimedia')}
+              style={{ display: 'none' }}
+            />
+            <div style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '9999px',
+              backgroundColor: selectedSources.includes('wikimedia') ? ACCENT_COLOR : 'transparent',
+              border: selectedSources.includes('wikimedia') ? 'none' : '1px solid #DEDEDE',
+              flexShrink: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              {selectedSources.includes('wikimedia') && (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12L10 17L19 8" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              )}
+            </div>
+            <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
+              <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '12px', color: selectedSources.includes('wikimedia') ? '#374151' : '#9ca3af' }}>wikimedia.org</div>
+              {wikiCooldown > 0 && (
+                <div style={{ fontFamily: 'monospace', fontSize: '10px', color: '#9ca3af' }}>
+                  cached ({wikiCooldown}s)
+                </div>
+              )}
+            </div>
+          </label>
+        </div>
+
+        {/* 5. Yellow and Red cards */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: '0 0 16px' }}>
+          {/* Submit Card (Yellow) */}
+          <div
+            style={{
+              background: ACCENT_COLOR,
+              borderRadius: '16px',
+              padding: '16px',
+              textAlign: 'center'
+            }}
+          >
+            <p style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '12px', color: 'black', marginBottom: '8px' }}>
+              free website to get random SVG&apos;s and share posters
+            </p>
+            <button
+              onClick={() => setSubmitModalOpen(true)}
+              style={{
+                color: 'black',
+                textDecoration: 'underline',
+                fontFamily: 'HealTheWeb, Arial',
+                fontSize: '24px',
+                fontWeight: 400,
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '8px 0'
+              }}
+            >
+              SUBMIT MY WORK
+            </button>
+            <p style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '11px', color: 'black', marginTop: '8px' }}>
+              made by{' '}
+              <a href="https://instagram.com/mxmlsn" target="_blank" rel="noopener noreferrer" style={{ color: 'black', textDecoration: 'underline' }}>
+                @mxmlsn
+              </a>
+            </p>
+          </div>
+
+          {/* Random Dafont Card (Red) */}
+          <a
+            href="https://random-dafont.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              background: '#c00',
+              borderRadius: '16px',
+              padding: '16px',
+              textAlign: 'center',
+              textDecoration: 'none'
+            }}
+          >
+            <p style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '12px', color: 'white', textDecoration: 'underline' }}>
+              random-dafont.com
+            </p>
+          </a>
+        </div>
+
+        {/* 6. Gallery */}
+        <Gallery />
+
+        {/* Submit Modal */}
+        <SubmitModal
+          isOpen={submitModalOpen}
+          onClose={() => setSubmitModalOpen(false)}
+        />
+      </div>
+    );
+  }
+
+  // Desktop Layout
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#F4F4F4' }}>
       {/* Left Column - 30% */}

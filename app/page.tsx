@@ -46,18 +46,63 @@ export default function Home() {
   const shownArchiveFilesRef = useRef<Set<string>>(new Set()); // Track shown wiki archive files to avoid repeats (ref for sync access)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [updateBtnHovered, setUpdateBtnHovered] = useState(false);
-  const [updateBtnSpinning, setUpdateBtnSpinning] = useState(false); // CSS animation trigger
-  const [updateBtnSlowingDown, setUpdateBtnSlowingDown] = useState(false); // Slowing down phase
+  const [updateBtnSpinning, setUpdateBtnSpinning] = useState(false);
+  const [updateBtnRotation, setUpdateBtnRotation] = useState(0);
+  const updateBtnAnimationRef = useRef<number | null>(null);
+  const updateBtnSpeedRef = useRef(0); // Current speed in deg/frame
   const btnRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
-  // Start slowing down animation, then stop
+  // Animation constants
+  const SPIN_SPEED = 6; // degrees per frame at 60fps
+  const DECEL_DURATION = 500; // ms to slow down
+
+  // Start spinning
+  const startSpinning = useCallback(() => {
+    if (updateBtnAnimationRef.current) return;
+    setUpdateBtnSpinning(true);
+    updateBtnSpeedRef.current = SPIN_SPEED;
+
+    const animate = () => {
+      setUpdateBtnRotation(prev => prev + updateBtnSpeedRef.current);
+      updateBtnAnimationRef.current = requestAnimationFrame(animate);
+    };
+    updateBtnAnimationRef.current = requestAnimationFrame(animate);
+  }, []);
+
+  // Stop spinning with deceleration
   const stopSpinning = useCallback(() => {
-    setUpdateBtnSlowingDown(true);
-    // After slow-down animation completes (500ms), fully stop
-    setTimeout(() => {
-      setUpdateBtnSpinning(false);
-      setUpdateBtnSlowingDown(false);
-    }, 500);
+    if (!updateBtnAnimationRef.current) return;
+
+    const startSpeed = updateBtnSpeedRef.current;
+    const startTime = performance.now();
+
+    const decelerate = () => {
+      const elapsed = performance.now() - startTime;
+      const progress = Math.min(elapsed / DECEL_DURATION, 1);
+      // Ease-out deceleration
+      const easeOut = 1 - Math.pow(1 - progress, 2);
+      updateBtnSpeedRef.current = startSpeed * (1 - easeOut);
+
+      setUpdateBtnRotation(prev => prev + updateBtnSpeedRef.current);
+
+      if (progress < 1) {
+        updateBtnAnimationRef.current = requestAnimationFrame(decelerate);
+      } else {
+        // Fully stopped
+        if (updateBtnAnimationRef.current) {
+          cancelAnimationFrame(updateBtnAnimationRef.current);
+          updateBtnAnimationRef.current = null;
+        }
+        setUpdateBtnSpinning(false);
+        updateBtnSpeedRef.current = 0;
+      }
+    };
+
+    // Cancel current animation and start deceleration
+    if (updateBtnAnimationRef.current) {
+      cancelAnimationFrame(updateBtnAnimationRef.current);
+    }
+    updateBtnAnimationRef.current = requestAnimationFrame(decelerate);
   }, []);
 
   const handleCardMouseMove = useCallback((e: React.MouseEvent, index: number) => {
@@ -256,7 +301,7 @@ export default function Home() {
     setLogoRotations(prev => prev.map((rot, i) => rot + logoDirections[i] * (360 / 14)));
 
     // Start update button spinning
-    setUpdateBtnSpinning(true);
+    startSpinning();
 
     setLoading(true);
     setError(null);
@@ -1070,9 +1115,8 @@ export default function Home() {
               viewBox="0 0 103 103"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className={updateBtnSpinning ? (updateBtnSlowingDown ? 'update-icon-slowing' : 'update-icon-spinning') : ''}
               style={{
-                transform: updateBtnHovered && !updateBtnSpinning ? 'rotate(-10deg)' : undefined,
+                transform: `rotate(${updateBtnRotation + (updateBtnHovered && !updateBtnSpinning ? -10 : 0)}deg)`,
                 transition: updateBtnSpinning ? 'none' : 'transform 0.2s ease-out'
               }}
             >
@@ -1239,16 +1283,6 @@ export default function Home() {
         @keyframes spin {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
-        }
-        .update-icon-spinning {
-          animation: spin 1s linear infinite;
-        }
-        .update-icon-slowing {
-          animation: spinSlow 0.5s ease-out forwards;
-        }
-        @keyframes spinSlow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(180deg); }
         }
         @keyframes fadeInFast {
           from { opacity: 0; }

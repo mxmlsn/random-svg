@@ -208,59 +208,63 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Poll wikimedia rate limit status for countdown
+  // Check server for initial cooldown status (once on mount)
   useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
-
-    const checkStatus = async () => {
-      const now = Date.now();
-
-      // First check client-side timer (survives server restarts)
-      const clientSecondsRemaining = wikiCooldownEndRef.current > now
-        ? Math.ceil((wikiCooldownEndRef.current - now) / 1000)
-        : 0;
-
+    const checkInitialStatus = async () => {
       try {
         const res = await fetch('/api/wikimedia-status');
         if (res.ok) {
           const data = await res.json();
-
-          // Use server value if it's greater (new rate limit detected)
-          // Otherwise use client value (server might have restarted)
-          let effectiveSeconds = data.secondsRemaining;
-          if (clientSecondsRemaining > data.secondsRemaining) {
-            effectiveSeconds = clientSecondsRemaining;
-          } else if (data.secondsRemaining > 0 && data.limitedUntil) {
-            // Server has new/valid cooldown - update client timestamp
+          if (data.secondsRemaining > 0 && data.limitedUntil) {
             wikiCooldownEndRef.current = data.limitedUntil;
+            setWikiCooldown(data.secondsRemaining);
+            wikiCooldownRef.current = data.secondsRemaining;
           }
-
-          // Detect transition from >0 to 0 for glow effect (only if wikimedia is NOT selected)
-          if (prevCooldownRef.current > 0 && effectiveSeconds === 0 && !selectedSources.includes('wikimedia')) {
-            setWikiGlow(true);
-            setTimeout(() => setWikiGlow(false), 1000);
-          }
-          prevCooldownRef.current = effectiveSeconds;
-          setWikiCooldown(effectiveSeconds);
-          wikiCooldownRef.current = effectiveSeconds;
         }
       } catch {
-        // On error, still use client-side timer if available
-        if (clientSecondsRemaining > 0) {
-          setWikiCooldown(clientSecondsRemaining);
-          wikiCooldownRef.current = clientSecondsRemaining;
-        }
+        // Ignore errors on initial check
+      }
+    };
+    checkInitialStatus();
+  }, []);
+
+  // Client-side countdown timer (no server requests)
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null;
+
+    const tick = () => {
+      const now = Date.now();
+      const secondsRemaining = wikiCooldownEndRef.current > now
+        ? Math.ceil((wikiCooldownEndRef.current - now) / 1000)
+        : 0;
+
+      // Detect transition from >0 to 0 for glow effect (only if wikimedia is NOT selected)
+      if (prevCooldownRef.current > 0 && secondsRemaining === 0 && !selectedSources.includes('wikimedia')) {
+        setWikiGlow(true);
+        setTimeout(() => setWikiGlow(false), 1000);
+      }
+
+      prevCooldownRef.current = secondsRemaining;
+      setWikiCooldown(secondsRemaining);
+      wikiCooldownRef.current = secondsRemaining;
+
+      // Stop interval when cooldown ends
+      if (secondsRemaining === 0 && interval) {
+        clearInterval(interval);
+        interval = null;
       }
     };
 
-    // Start polling when cooldown is active
-    checkStatus();
-    interval = setInterval(checkStatus, 1000);
+    // Only start interval if there's an active cooldown
+    if (wikiCooldownEndRef.current > Date.now()) {
+      tick();
+      interval = setInterval(tick, 1000);
+    }
 
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [selectedSources]);
+  }, [selectedSources, wikiCooldown > 0]);
 
   const toggleSource = (source: SourceType) => {
     setSelectedSources(prev => {
@@ -1422,14 +1426,15 @@ export default function Home() {
               cursor: loading ? 'not-allowed' : 'pointer',
               border: 'none',
               outline: updateBtnSpinning ? '3px solid #C1C1C1' : '3px solid #FFD34F',
-              outlineOffset: '0px'
+              outlineOffset: '0px',
+              overflow: 'visible'
             }}
           >
             <img
               src="/upd_icon.svg"
               alt="Update"
-              width="96"
-              height="96"
+              width="300"
+              height="300"
               style={{
                 transform: `rotate(${updateBtnRotation + (updateBtnHovered && !updateBtnSpinning ? -10 : 0)}deg)`,
                 transition: updateBtnSpinning ? 'none' : 'transform 0.2s ease-out',

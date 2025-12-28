@@ -1362,7 +1362,7 @@ export default function Home() {
                         cursor: 'pointer'
                       }}
                     >
-                      <svg width="32" height="32" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg width="38.4" height="38.4" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'translateY(2px)' }}>
                         <g clipPath="url(#clip0_download)">
                           <g filter="url(#filter0_download)">
                             <path fillRule="evenodd" clipRule="evenodd" d="M9.58678 31.5308C9.58305 31.4999 9.59243 31.4793 9.59976 31.4668C9.7731 31.1711 16.1797 30.9809 24.1942 30.9041V8.3548H41.8135V30.9041C49.8281 30.9809 56.2345 31.1711 56.408 31.4668C56.8762 32.2656 33.947 55.6279 33.0094 55.6279C32.0877 55.6279 9.83342 33.4778 9.58634 31.5307L9.58678 31.5308Z" fill="#D4A109" stroke="#C39816" strokeWidth="0.818131" strokeLinecap="round"/>
@@ -1427,7 +1427,7 @@ export default function Home() {
               zIndex: 10,
               backgroundColor: updateBtnSpinning ? '#C1C1C1' : ACCENT_COLOR,
               cursor: loading ? 'not-allowed' : 'pointer',
-              border: updateBtnSpinning ? '3px solid #bdbdbdff' : '3px solid #FFD34F',
+              border: updateBtnSpinning ? '3px solid #bdbdbdff' : '3px solid #F3C233',
               overflow: 'visible'
             }}
           >
@@ -1605,14 +1605,14 @@ export default function Home() {
         }
         @keyframes arrow-slide {
           0%, 100% {
-            transform: translateX(-2px);
+            transform: translateX(-2px) rotate(24deg);
           }
           50% {
-            transform: translateX(6px);
+            transform: translateX(6px) rotate(24deg);
           }
         }
                 .checkbox-label:hover {
-          background-color: rgba(0, 0, 0, 0.05) !important;
+          background-color: rgba(255, 235, 175, 0.3) !important;
         }
         .checkbox-label:hover .checkbox-hover-text {
           opacity: 1 !important;
@@ -1647,7 +1647,7 @@ export default function Home() {
           transform: translate(-50%, -50%) scale(1.06) !important;
         }
         .minimize-btn:not(.minimized):hover {
-          background-color: rgba(0, 0, 0, 0.05) !important;
+          background-color: rgba(255, 235, 175, 0.3) !important;
         }
         .minimize-btn-wrapper:hover .minimize-label {
           opacity: 1 !important;

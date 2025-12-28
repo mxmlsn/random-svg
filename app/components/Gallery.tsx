@@ -121,10 +121,11 @@ export default function Gallery() {
             {posters.map((poster, index) => (
               <div
                 key={poster.id}
-                className="inline-block align-top cursor-pointer"
+                className="inline-block align-top cursor-pointer poster-card"
                 style={{
                   marginRight: isMobile ? 16 : 18,
-                  marginBottom: isMobile ? 16 : 18,
+                  marginBottom: isMobile ? 16 * 0.6 : 18 * 0.6,
+                  transition: 'transform 0.2s ease-out'
                 }}
                 onClick={() => openLightbox(index)}
               >
@@ -376,6 +377,9 @@ export default function Gallery() {
           50% {
             transform: translateX(6px);
           }
+        }
+        .poster-card:hover {
+          transform: translateY(-4px) !important;
         }
       `}</style>
     </section>

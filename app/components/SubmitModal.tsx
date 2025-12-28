@@ -249,7 +249,7 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
           <div style={{ textAlign: 'center', padding: '20px 0' }}>
             <h4 style={{ fontSize: '20px', fontWeight: 700, color: '#222', marginBottom: '8px' }}>done!</h4>
             <p style={{ fontSize: '14px', color: '#666', marginBottom: '24px' }}>
-              approved posters go live within 1-7 days. if you don&apos;t see yours after 2 weeks, either I&apos;m dead or it wasn&apos;t accepted—please submit something new instead.
+              approved posters are posted within 1&#8209;7&nbsp;days. if you don&apos;t see yours after 2&nbsp;weeks, either I&apos;m dead or it wasn&apos;t accepted — please submit something new instead.
             </p>
             <button
               onClick={handleSubmitAnother}

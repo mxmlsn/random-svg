@@ -517,8 +517,7 @@ export default function Home() {
                 border: '1px solid #DEDEDE',
                 borderRadius: '12px',
                 overflow: 'hidden',
-                aspectRatio: '1/1',
-                backgroundColor: '#fff'
+                aspectRatio: '1/1'
               }}
             >
               {item ? (
@@ -850,6 +849,24 @@ export default function Home() {
               </a>
             </p>
           </div>
+
+          {/* Instagram Card (Yellow) */}
+          <a
+            href="https://instagram.com/randomsvg"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              background: ACCENT_COLOR,
+              borderRadius: '16px',
+              padding: '16px',
+              textAlign: 'center',
+              textDecoration: 'none'
+            }}
+          >
+            <p style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '11px', color: 'black', textDecoration: 'underline' }}>
+              see all posters on our instagram
+            </p>
+          </a>
 
           {/* Random Dafont Card (Red) */}
           <a

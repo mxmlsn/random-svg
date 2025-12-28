@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 
 interface SubmitPosterBody {
   instagram?: string;
-  svgSources?: string[];
   usedFonts: boolean;
+  fontNames?: string[];
   imageBase64: string;
   fileName: string;
   fileType: string;
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const body: SubmitPosterBody = await request.json();
-    const { instagram, svgSources, usedFonts, imageBase64, fileName, fileType } = body;
+    const { instagram, usedFonts, fontNames, imageBase64, fileName, fileType } = body;
 
     // Validate required fields
     if (!imageBase64 || !fileName || !fileType) {
@@ -65,11 +65,12 @@ export async function POST(request: NextRequest) {
     const imageUrl = cloudinaryData.secure_url;
 
     // Insert into Supabase
+    const cleanFontNames = fontNames?.filter(f => f.trim()) || [];
     const posterData = {
       instagram: cleanInstagram,
-      svg_sources: svgSources || [],
+      svg_sources: cleanFontNames, // Reusing svg_sources field for font names
       used_fonts: usedFonts || false,
-      used_svg: true, // Always true since submitted from SVG site
+      used_svg: true,
       image_url: imageUrl,
       status: 'pending',
       source: 'svg',
@@ -107,8 +108,10 @@ export async function POST(request: NextRequest) {
         ? `<a href="https://instagram.com/${cleanInstagram}">@${cleanInstagram}</a>`
         : 'anonymous';
 
-      // Line 3: fonts (empty for svg submissions, but could be added later)
-      const fontsLine = ''; // SVG site doesn't collect fonts
+      // Line 3: fonts (if usedFonts is true and fontNames provided)
+      const fontsLine = usedFonts && cleanFontNames.length > 0
+        ? `\n${cleanFontNames.join(', ')}`
+        : '';
 
       const caption = `${sourceLine}\n${authorLine}${fontsLine}`;
 

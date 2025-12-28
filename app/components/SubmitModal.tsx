@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, ChangeEvent } from 'react';
+import { useState, useRef, ChangeEvent, useEffect } from 'react';
 
 interface SubmitModalProps {
   isOpen: boolean;
@@ -9,16 +9,49 @@ interface SubmitModalProps {
 
 type SubmitState = 'form' | 'uploading' | 'success' | 'error';
 
+// Accent color from random-svg
+const ACCENT_COLOR = '#f8c52b';
+const ACCENT_COLOR_LIGHT = 'rgba(248, 197, 43, 0.1)';
+const ACCENT_COLOR_GLOW = 'rgba(248, 197, 43, 0.25)';
+
 export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
   const [state, setState] = useState<SubmitState>('form');
   const [error, setError] = useState<string | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [imageData, setImageData] = useState<{ base64: string; name: string; type: string } | null>(null);
   const [instagram, setInstagram] = useState('');
-  const [svgSources, setSvgSources] = useState<string[]>(['']);
   const [usedFonts, setUsedFonts] = useState(false);
+  const [fontNames, setFontNames] = useState<string[]>(['']);
   const [showAnonymousHint, setShowAnonymousHint] = useState(false);
+  const [showFontAddBtn, setShowFontAddBtn] = useState(false);
+  const [isUploadHovered, setIsUploadHovered] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const fontInputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  // Auto-resize font inputs
+  const autoResizeFontInput = (input: HTMLInputElement) => {
+    const span = document.createElement('span');
+    span.style.visibility = 'hidden';
+    span.style.position = 'absolute';
+    span.style.whiteSpace = 'pre';
+    span.style.font = window.getComputedStyle(input).font;
+    span.textContent = input.value || input.placeholder;
+    document.body.appendChild(span);
+    const textWidth = span.offsetWidth;
+    document.body.removeChild(span);
+    const minWidth = 85;
+    const maxWidth = 300;
+    const newWidth = Math.min(Math.max(textWidth + 24, minWidth), maxWidth);
+    input.style.width = newWidth + 'px';
+  };
+
+  // Initialize font input widths
+  useEffect(() => {
+    fontInputRefs.current.forEach(input => {
+      if (input) autoResizeFontInput(input);
+    });
+  }, [fontNames.length]);
 
   const resetForm = () => {
     setState('form');
@@ -26,9 +59,10 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
     setImagePreview(null);
     setImageData(null);
     setInstagram('');
-    setSvgSources(['']);
     setUsedFonts(false);
+    setFontNames(['']);
     setShowAnonymousHint(false);
+    setShowFontAddBtn(false);
   };
 
   const handleClose = () => {
@@ -40,14 +74,12 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Validate file type
     const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
     if (!validTypes.includes(file.type)) {
       setError('Please upload a JPG, PNG, or WebP image');
       return;
     }
 
-    // Validate file size (3MB max)
     if (file.size > 3 * 1024 * 1024) {
       setError('Image must be less than 3MB');
       return;
@@ -55,7 +87,6 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
 
     setError(null);
 
-    // Create preview and base64
     const reader = new FileReader();
     reader.onload = (event) => {
       const base64 = event.target?.result as string;
@@ -80,22 +111,29 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
     }
   };
 
-  const addSvgSource = () => {
-    if (svgSources.length < 10) {
-      setSvgSources([...svgSources, '']);
+  const clearFileSelection = () => {
+    setImagePreview(null);
+    setImageData(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
     }
   };
 
-  const removeSvgSource = (index: number) => {
-    if (svgSources.length > 1) {
-      setSvgSources(svgSources.filter((_, i) => i !== index));
+  const addFontName = () => {
+    if (fontNames.length < 10) {
+      const lastFont = fontNames[fontNames.length - 1];
+      if (!lastFont.trim()) {
+        fontInputRefs.current[fontNames.length - 1]?.focus();
+        return;
+      }
+      setFontNames([...fontNames, '']);
     }
   };
 
-  const updateSvgSource = (index: number, value: string) => {
-    const updated = [...svgSources];
+  const updateFontName = (index: number, value: string) => {
+    const updated = [...fontNames];
     updated[index] = value;
-    setSvgSources(updated);
+    setFontNames(updated);
   };
 
   const handleSubmit = async () => {
@@ -104,9 +142,9 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
       return;
     }
 
-    // Check if instagram is empty and show hint
     if (!instagram.trim() && !showAnonymousHint) {
       setShowAnonymousHint(true);
+      setTimeout(() => setShowAnonymousHint(false), 2000);
       return;
     }
 
@@ -119,8 +157,8 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           instagram: instagram.trim() || null,
-          svgSources: svgSources.filter(s => s.trim()),
           usedFonts,
+          fontNames: usedFonts ? fontNames.filter(f => f.trim()) : [],
           imageBase64: imageData.base64,
           fileName: imageData.name,
           fileType: imageData.type,
@@ -146,191 +184,449 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      zIndex: 1000,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}>
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/50"
         onClick={handleClose}
-      ></div>
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'rgba(0, 0, 0, 0.6)',
+          backdropFilter: 'blur(4px)'
+        }}
+      />
+
+      {/* Anonymous message */}
+      <div style={{
+        position: 'fixed',
+        top: 'calc(31.5% + 45vh)',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        fontFamily: 'HealTheWeb, Arial, sans-serif',
+        fontSize: '48px',
+        fontWeight: 400,
+        color: '#22c55e',
+        zIndex: 1001,
+        pointerEvents: 'none',
+        opacity: showAnonymousHint ? 1 : 0,
+        transition: 'opacity 0.3s'
+      }}>
+        wanna stay anonymous?
+      </div>
 
       {/* Modal */}
-      <div className="relative bg-white rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto m-4">
-        {/* Close button */}
-        <button
-          onClick={handleClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl"
-        >
-          &times;
-        </button>
-
-        <div className="p-8">
-          {state === 'success' ? (
-            /* Success State */
-            <div className="text-center py-8">
-              <div className="text-6xl mb-4">🎉</div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">Thank you!</h3>
-              <p className="text-gray-600 mb-6">
-                Your poster has been submitted and is awaiting moderation.
-              </p>
-              <div className="flex gap-4 justify-center">
-                <button
-                  onClick={handleSubmitAnother}
-                  className="px-6 py-3 rounded-lg text-white font-semibold transition-transform hover:scale-[1.02]"
-                  style={{ backgroundColor: '#C6D000' }}
-                >
-                  Submit Another
-                </button>
-                <button
-                  onClick={handleClose}
-                  className="px-6 py-3 rounded-lg border border-gray-300 text-gray-700 font-semibold hover:border-gray-400 transition-colors"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          ) : (
-            /* Form State */
-            <>
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">Submit Your Poster</h3>
-
-              {/* Image Upload */}
-              <div
-                className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-colors mb-6 ${
-                  imagePreview ? 'border-[#C6D000]' : 'border-gray-300 hover:border-gray-400'
-                }`}
-                onClick={() => fileInputRef.current?.click()}
-                onDrop={handleDrop}
-                onDragOver={(e) => e.preventDefault()}
-              >
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/jpeg,image/png,image/webp"
-                  onChange={handleFileChange}
-                  className="hidden"
-                />
-                {imagePreview ? (
-                  <div className="relative">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={imagePreview}
-                      alt="Preview"
-                      className="max-h-48 mx-auto rounded-lg"
-                    />
-                    <p className="text-sm text-gray-500 mt-2">Click to change</p>
+      <div style={{
+        position: 'relative',
+        background: '#fff',
+        borderRadius: '22px',
+        padding: '22px',
+        maxWidth: '540px',
+        width: '90%',
+        maxHeight: '80vh',
+        overflowY: 'auto',
+        boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+        fontFamily: 'HealTheWeb, Arial, sans-serif',
+        fontSize: '14px'
+      }}>
+        {state === 'success' ? (
+          /* Success State */
+          <div style={{ textAlign: 'center', padding: '20px 0' }}>
+            <h4 style={{ fontSize: '20px', fontWeight: 700, color: '#222', marginBottom: '8px' }}>Thank you!</h4>
+            <p style={{ fontSize: '14px', color: '#666', marginBottom: '24px' }}>
+              Your poster has been submitted for review. It will appear in the gallery once approved.
+            </p>
+            <button
+              onClick={handleSubmitAnother}
+              style={{
+                padding: '0 20px',
+                background: ACCENT_COLOR,
+                border: 'none',
+                borderRadius: '8px',
+                fontFamily: 'HealTheWeb, Arial, sans-serif',
+                fontSize: '14px',
+                fontWeight: 400,
+                color: '#fff',
+                cursor: 'pointer',
+                minWidth: '120px',
+                height: '42px'
+              }}
+            >
+              Submit Another
+            </button>
+          </div>
+        ) : (
+          /* Form State */
+          <form
+            onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}
+            onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
+            style={{ display: 'flex', flexDirection: 'column', gap: '17px' }}
+          >
+            {/* File Upload */}
+            <div
+              onClick={() => fileInputRef.current?.click()}
+              onDrop={handleDrop}
+              onDragOver={(e) => e.preventDefault()}
+              onMouseEnter={() => setIsUploadHovered(true)}
+              onMouseLeave={() => setIsUploadHovered(false)}
+              style={{
+                position: 'relative',
+                border: `2px dashed ${isUploadHovered && !imagePreview ? ACCENT_COLOR : '#ddd'}`,
+                borderRadius: '8px',
+                minHeight: '240px',
+                background: imagePreview ? 'transparent' : (isUploadHovered ? ACCENT_COLOR_LIGHT : '#e5e5e5'),
+                cursor: 'pointer',
+                transition: 'border-color 0.2s, background 0.2s'
+              }}
+            >
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                onChange={handleFileChange}
+                style={{
+                  display: 'none'
+                }}
+              />
+              {imagePreview ? (
+                <div style={{ position: 'relative', padding: '12px', zIndex: 15 }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={imagePreview}
+                    alt="Preview"
+                    style={{ width: '100%', maxHeight: '200px', objectFit: 'contain', borderRadius: '6px' }}
+                  />
+                  <button
+                    type="button"
+                    onClick={(e) => { e.stopPropagation(); clearFileSelection(); }}
+                    style={{
+                      position: 'absolute',
+                      top: '20px',
+                      right: '20px',
+                      width: '28px',
+                      height: '28px',
+                      border: '1px solid rgba(0, 0, 0, 0.3)',
+                      background: 'transparent',
+                      borderRadius: '50%',
+                      color: '#666',
+                      fontSize: '18px',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      zIndex: 20
+                    }}
+                  >
+                    &times;
+                  </button>
+                </div>
+              ) : (
+                <div style={{
+                  position: 'relative',
+                  padding: '32px 20px',
+                  textAlign: 'center',
+                  color: '#888',
+                  minHeight: '240px'
+                }}>
+                  {/* Placeholder SVG */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: `translate(-50%, -50%) scale(${isUploadHovered ? 1.15 : 1})`,
+                    opacity: isUploadHovered ? 0.7 : 0.5,
+                    transition: 'transform 0.15s ease, opacity 0.2s'
+                  }}>
+                    <svg width="207" height="65" viewBox="0 0 376 117" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: isUploadHovered ? ACCENT_COLOR : '#919191', transition: 'color 0.2s' }}>
+                      <rect x="174.235" y="6.68277" width="76.858" height="103.67" rx="6" stroke="currentColor" strokeWidth="2"/>
+                      <rect x="1" y="-1" width="152.018" height="103.67" rx="6" transform="matrix(1 0 0 -1 5.95117 109.353)" stroke="currentColor" strokeWidth="2"/>
+                      <rect x="266.359" y="6.68277" width="103.674" height="103.67" rx="6" stroke="currentColor" strokeWidth="2"/>
+                      <path d="M73.4058 59.9155L79.9379 67.4468L94.7257 47.4947" stroke="currentColor" strokeWidth="2"/>
+                      <path d="M203.11 59.9155L209.642 67.4468L224.43 47.4947" stroke="currentColor" strokeWidth="2"/>
+                      <path d="M307.536 59.9155L314.068 67.4468L328.856 47.4947" stroke="currentColor" strokeWidth="2"/>
+                    </svg>
                   </div>
-                ) : (
-                  <>
-                    <div className="text-4xl mb-2">📷</div>
-                    <p className="text-gray-600 font-medium">Drop your poster here</p>
-                    <p className="text-gray-400 text-sm mt-1">or click to browse</p>
-                    <p className="text-gray-400 text-xs mt-2">JPG, PNG, WebP • Max 3MB</p>
-                  </>
-                )}
-              </div>
-
-              {/* Error message */}
-              {error && (
-                <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg mb-6">
-                  {error}
+                  {/* Scattered labels */}
+                  <span className="upload-label-float" style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translate(-50%, -50%) rotate(-6deg)', fontSize: '14px', color: isUploadHovered ? ACCENT_COLOR : '#777', whiteSpace: 'nowrap', transition: 'color 0.2s' }}>required*</span>
+                  <span style={{ position: 'absolute', top: '18px', left: '24px', transform: 'rotate(-12deg)', fontSize: '14px', color: isUploadHovered ? ACCENT_COLOR : '#777', transition: 'color 0.2s' }}>any ratio</span>
+                  <span style={{ position: 'absolute', top: '22px', right: '20px', transform: 'rotate(10deg)', fontSize: '14px', color: isUploadHovered ? ACCENT_COLOR : '#777', transition: 'color 0.2s' }}>png, jpg, webp</span>
+                  <span className="upload-label-float" style={{ position: 'absolute', bottom: '28px', left: '28px', transform: 'rotate(8deg)', fontSize: '14px', color: isUploadHovered ? ACCENT_COLOR : '#777', transition: 'color 0.2s' }}>click or drag-n-drop</span>
+                  <span style={{ position: 'absolute', bottom: '24px', right: '24px', transform: 'rotate(-11deg)', fontSize: '14px', color: isUploadHovered ? ACCENT_COLOR : '#777', transition: 'color 0.2s' }}>3mb max</span>
                 </div>
               )}
+            </div>
 
-              {/* Optional section */}
-              <div className="space-y-4">
-                <p className="text-sm text-gray-500 font-medium">Optional</p>
+            {/* Error message */}
+            {error && (
+              <div style={{
+                background: '#fee2e2',
+                border: '1px solid #fca5a5',
+                color: '#dc2626',
+                padding: '10px 14px',
+                borderRadius: '8px',
+                fontSize: '14px'
+              }}>
+                {error}
+              </div>
+            )}
 
-                {/* Instagram */}
-                <div className={`relative ${showAnonymousHint ? 'ring-2 ring-[#C6D000] rounded-lg' : ''}`}>
-                  <input
-                    type="text"
-                    value={instagram}
-                    onChange={(e) => {
-                      setInstagram(e.target.value);
-                      setShowAnonymousHint(false);
-                    }}
-                    placeholder="@instagram"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400"
-                  />
-                  {showAnonymousHint && (
-                    <p className="text-sm text-[#C6D000] mt-1">
-                      Want to stay anonymous? Click submit again to confirm.
-                    </p>
-                  )}
-                </div>
+            {/* Optional section */}
+            <div style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '9px' }}>
+              {/* Instagram */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                border: showAnonymousHint ? '1px solid #22c55e' : '1px solid #ddd',
+                borderRadius: '8px',
+                overflow: 'hidden',
+                transition: 'border-color 0.2s, box-shadow 0.2s',
+                boxShadow: showAnonymousHint ? '0 0 0 6px rgba(34, 197, 94, 0.25)' : 'none',
+                height: '42px'
+              }}>
+                <span style={{
+                  fontSize: '14px',
+                  color: '#666',
+                  padding: '0 12px 0 14px',
+                  borderRight: '1px solid #ddd',
+                  background: 'transparent',
+                  height: '100%',
+                  display: 'flex',
+                  alignItems: 'center'
+                }}>@</span>
+                <input
+                  type="text"
+                  value={instagram}
+                  onChange={(e) => {
+                    let val = e.target.value;
+                    if (val.startsWith('@')) val = val.substring(1);
+                    setInstagram(val);
+                    setShowAnonymousHint(false);
+                  }}
+                  placeholder="instagram_username"
+                  maxLength={30}
+                  style={{
+                    flex: 1,
+                    border: 'none',
+                    padding: '0 16px 0 12px',
+                    fontFamily: 'HealTheWeb, Arial, sans-serif',
+                    fontSize: '14px',
+                    outline: 'none',
+                    height: '100%'
+                  }}
+                />
+              </div>
 
-                {/* SVG Sources */}
-                <div className="space-y-2">
-                  <label className="text-sm text-gray-600">SVG sources used</label>
-                  {svgSources.map((source, index) => (
-                    <div key={index} className="flex gap-2">
+              {/* Font Names - shown only when checkbox is checked, ABOVE the checkbox */}
+              {usedFonts && (
+                <div style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: '8px',
+                  alignItems: 'center',
+                  animation: 'fadeIn 0.2s ease-out'
+                }}>
+                  {fontNames.map((font, index) => (
+                    <div key={index} style={{ display: 'inline-flex', gap: '4px', alignItems: 'center' }}>
                       <input
+                        ref={(el) => { fontInputRefs.current[index] = el; }}
                         type="text"
-                        value={source}
-                        onChange={(e) => updateSvgSource(index, e.target.value)}
-                        placeholder="e.g. freesvg.org, wikimedia.org"
-                        className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 text-sm"
+                        value={font}
+                        onChange={(e) => {
+                          updateFontName(index, e.target.value);
+                          autoResizeFontInput(e.target);
+                        }}
+                        onFocus={() => setShowFontAddBtn(true)}
+                        placeholder="font name"
+                        maxLength={50}
+                        style={{
+                          width: '110px',
+                          maxWidth: '200px',
+                          padding: '0 12px',
+                          border: '1px solid #ddd',
+                          borderRadius: '8px',
+                          fontFamily: 'HealTheWeb, Arial, sans-serif',
+                          fontSize: '14px',
+                          fontWeight: 400,
+                          height: '42px',
+                          boxSizing: 'border-box',
+                          textAlign: 'center',
+                          transition: 'border-color 0.2s, box-shadow 0.2s, width 0.15s ease'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.borderColor = ACCENT_COLOR;
+                          e.currentTarget.style.boxShadow = `0 0 0 3px ${ACCENT_COLOR_GLOW}`;
+                        }}
+                        onMouseLeave={(e) => {
+                          if (document.activeElement !== e.currentTarget) {
+                            e.currentTarget.style.borderColor = '#ddd';
+                            e.currentTarget.style.boxShadow = 'none';
+                          }
+                        }}
                       />
-                      {svgSources.length > 1 && (
+                      {index === fontNames.length - 1 && showFontAddBtn && fontNames.length < 10 && (
                         <button
-                          onClick={() => removeSvgSource(index)}
-                          className="px-3 py-2 text-gray-400 hover:text-gray-600"
+                          type="button"
+                          onClick={addFontName}
+                          style={{
+                            width: '42px',
+                            height: '42px',
+                            borderRadius: '50%',
+                            border: '1px solid #ddd',
+                            background: 'transparent',
+                            fontSize: '20px',
+                            fontWeight: 400,
+                            color: '#b5b5b5',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            transition: 'border-color 0.2s, color 0.2s'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.borderColor = ACCENT_COLOR;
+                            e.currentTarget.style.color = ACCENT_COLOR;
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.borderColor = '#ddd';
+                            e.currentTarget.style.color = '#b5b5b5';
+                          }}
                         >
-                          &times;
+                          +
                         </button>
                       )}
                     </div>
                   ))}
-                  {svgSources.length < 10 && (
-                    <button
-                      onClick={addSvgSource}
-                      className="text-sm text-gray-500 hover:text-gray-700"
-                    >
-                      + Add another source
-                    </button>
-                  )}
                 </div>
+              )}
 
-                {/* Used Fonts Checkbox */}
-                <label className="flex items-start gap-3 p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-gray-400 transition-colors">
+              {/* Checkbox and Submit Row */}
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px' }}>
+                <label style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  cursor: 'default',
+                  fontSize: '14px',
+                  color: '#555',
+                  border: '1px solid #ddd',
+                  borderRadius: '8px',
+                  padding: '0 12px',
+                  height: '42px',
+                  boxSizing: 'border-box',
+                  whiteSpace: 'nowrap'
+                }}>
                   <input
                     type="checkbox"
                     checked={usedFonts}
                     onChange={(e) => setUsedFonts(e.target.checked)}
-                    className="w-5 h-5 mt-0.5 cursor-pointer"
+                    style={{ width: '16px', height: '16px', cursor: 'pointer', accentColor: ACCENT_COLOR, flexShrink: 0 }}
                   />
-                  <span className="text-gray-700">
-                    I also used{' '}
+                  <span>
+                    i also used{' '}
                     <a
                       href="https://random-dafont.vercel.app/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#c00] hover:underline"
                       onClick={(e) => e.stopPropagation()}
+                      style={{ color: '#555', textDecoration: 'underline' }}
                     >
                       random-dafont.com
                     </a>{' '}
                     for this
-                    <span className="block text-xs text-gray-500 mt-1">
-                      for cross-posting on both websites
-                    </span>
+                  </span>
+                  <span
+                    style={{
+                      position: 'relative',
+                      width: '18px',
+                      height: '18px',
+                      borderRadius: '50%',
+                      border: '1px solid #ddd',
+                      fontSize: '11px',
+                      color: '#bbb',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'help',
+                      flexShrink: 0
+                    }}
+                    onMouseEnter={() => setShowTooltip(true)}
+                    onMouseLeave={() => setShowTooltip(false)}
+                  >
+                    ?
+                    {showTooltip && (
+                      <span style={{
+                        position: 'absolute',
+                        bottom: '100%',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        marginBottom: '6px',
+                        padding: '6px 10px',
+                        background: '#333',
+                        color: '#fff',
+                        fontSize: '12px',
+                        borderRadius: '6px',
+                        whiteSpace: 'nowrap',
+                        zIndex: 100,
+                        pointerEvents: 'none'
+                      }}>
+                        for cross-posting on both websites
+                      </span>
+                    )}
                   </span>
                 </label>
+                <button
+                  type="submit"
+                  disabled={!imageData || state === 'uploading'}
+                  style={{
+                    padding: '0 20px',
+                    background: showAnonymousHint ? '#22c55e' : (!imageData ? '#999' : ACCENT_COLOR),
+                    border: 'none',
+                    borderRadius: '8px',
+                    fontFamily: 'HealTheWeb, Arial, sans-serif',
+                    fontSize: '14px',
+                    fontWeight: 400,
+                    color: '#fff',
+                    cursor: !imageData || state === 'uploading' ? 'not-allowed' : 'pointer',
+                    minWidth: '120px',
+                    height: '42px',
+                    boxShadow: showAnonymousHint ? '0 0 0 6px rgba(34, 197, 94, 0.25)' : 'none',
+                    transition: 'background 0.2s, box-shadow 0.2s',
+                    flexShrink: 0
+                  }}
+                >
+                  {state === 'uploading' ? 'uploading...' : (showAnonymousHint ? 'yes' : 'submit')}
+                </button>
               </div>
-
-              {/* Submit Button */}
-              <button
-                onClick={handleSubmit}
-                disabled={!imageData || state === 'uploading'}
-                className="w-full mt-6 py-4 rounded-lg text-white font-semibold transition-all hover:scale-[1.01] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                style={{ backgroundColor: '#C6D000' }}
-              >
-                {state === 'uploading' ? 'Uploading...' : 'Submit for Review'}
-              </button>
-            </>
-          )}
-        </div>
+            </div>
+          </form>
+        )}
       </div>
+
+      <style jsx global>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes floatUpDown {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-5px); }
+        }
+        .upload-label-float {
+          animation: floatUpDown 2.5s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 }

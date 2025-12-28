@@ -54,7 +54,7 @@ export default function Home() {
 
   // Animation constants
   const SPIN_SPEED = 6; // degrees per frame at 60fps
-  const DECEL_DURATION = 500; // ms to slow down
+  const DECEL_DURATION = 100; // ms to slow down
 
   // Start spinning
   const startSpinning = useCallback(() => {

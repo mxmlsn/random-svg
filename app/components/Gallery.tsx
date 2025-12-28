@@ -346,7 +346,7 @@ export default function Gallery() {
               <div className="flex flex-col" style={{ fontSize: 14, color: '#d6d6d6', gap: 0 }}>
                 {currentPoster.fonts.map((font, i) => (
                   <span key={i} style={{ lineHeight: 1.3, whiteSpace: 'pre' }}>
-                    {i === 0 ? 'fonts:\t\t' : '\t\t\t'}{font}
+                    {i === 0 ? 'fonts:\t' : '\t\t'}{font}
                   </span>
                 ))}
               </div>

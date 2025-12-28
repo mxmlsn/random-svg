@@ -1197,7 +1197,7 @@ export default function Home() {
       {/* Right Column - 70% */}
       <main style={{ width: '70%', display: 'flex', flexDirection: 'column' }}>
         {/* SVG Grid */}
-        <div style={{ flex: 1, position: 'relative', padding: '52px 52px 0 0' }}>
+        <div style={{ position: 'relative', padding: '52px 52px 0 0' }}>
           {error && (
             <div style={{
               position: 'absolute',
@@ -1221,9 +1221,7 @@ export default function Home() {
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
-              gridTemplateRows: 'repeat(2, 1fr)',
-              gap: '21px',
-              height: '100%'
+              gap: '21px'
             }}
           >
             {svgItems.map((item, index) => (

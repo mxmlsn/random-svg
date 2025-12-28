@@ -258,7 +258,7 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
                 fontFamily: 'HealTheWeb, Arial, sans-serif',
                 fontSize: '14px',
                 fontWeight: 400,
-                color: '#fff',
+                color: '#000',
                 cursor: 'pointer',
                 minWidth: '120px',
                 height: '42px'
@@ -285,10 +285,11 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
                 position: 'relative',
                 border: `2px dashed ${isUploadHovered && !imagePreview ? ACCENT_COLOR : '#ddd'}`,
                 borderRadius: '8px',
-                minHeight: '240px',
+                height: '240px',
                 background: imagePreview ? 'transparent' : (isUploadHovered ? ACCENT_COLOR_LIGHT : '#e5e5e5'),
                 cursor: 'pointer',
-                transition: 'border-color 0.2s, background 0.2s'
+                transition: 'border-color 0.2s, background 0.2s',
+                overflow: 'hidden'
               }}
             >
               <input
@@ -301,12 +302,12 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
                 }}
               />
               {imagePreview ? (
-                <div style={{ position: 'relative', padding: '12px', zIndex: 15 }}>
+                <div style={{ position: 'relative', padding: '12px', zIndex: 15, height: '100%', boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={imagePreview}
                     alt="Preview"
-                    style={{ width: '100%', maxHeight: '200px', objectFit: 'contain', borderRadius: '6px' }}
+                    style={{ maxWidth: '100%', maxHeight: '216px', objectFit: 'contain', borderRadius: '6px' }}
                   />
                   <button
                     type="button"
@@ -338,7 +339,8 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
                   padding: '32px 20px',
                   textAlign: 'center',
                   color: '#888',
-                  minHeight: '240px'
+                  height: '100%',
+                  boxSizing: 'border-box'
                 }}>
                   {/* Placeholder SVG */}
                   <div style={{
@@ -512,7 +514,7 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
               )}
 
               {/* Checkbox and Submit Row */}
-              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '9px' }}>
                 <label style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -597,7 +599,7 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
                     fontFamily: 'HealTheWeb, Arial, sans-serif',
                     fontSize: '14px',
                     fontWeight: 400,
-                    color: '#fff',
+                    color: '#000',
                     cursor: !imageData || state === 'uploading' ? 'not-allowed' : 'pointer',
                     minWidth: '120px',
                     height: '42px',

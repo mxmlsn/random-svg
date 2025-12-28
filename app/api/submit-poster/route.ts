@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
     const cleanFontNames = fontNames?.filter(f => f.trim()) || [];
     const posterData = {
       instagram: cleanInstagram,
-      svg_sources: cleanFontNames, // Reusing svg_sources field for font names
+      fonts: cleanFontNames, // Same field as random-dafont uses
       used_fonts: usedFonts || false,
       used_svg: true,
       image_url: imageUrl,

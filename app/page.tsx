@@ -969,12 +969,14 @@ export default function Home() {
         {/* Wikimedia cooldown countdown - separate from checkboxes */}
         <div
           style={{
-            marginTop: '-35px',
+            marginTop: '20px',
             fontFamily: 'monospace',
             fontSize: '11px',
             color: '#9ca3af',
             opacity: wikiCooldown > 0 ? 1 : 0,
-            transition: 'opacity 0.15s ease-out',
+            maxHeight: wikiCooldown > 0 ? '200px' : '0',
+            overflow: 'hidden',
+            transition: 'opacity 0.15s ease-out, max-height 0.15s ease-out',
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'center',
@@ -1016,8 +1018,11 @@ export default function Home() {
           </span>
         </div>
 
+        {/* Spacer for initial card position */}
+        <div style={{ height: wikiCooldown > 0 ? '90px' : '70px', transition: 'height 0.15s ease-out' }} />
+
         {/* Cards Container */}
-        <div style={{ marginTop: wikiCooldown > 0 ? '19px' : '-41px', transition: 'margin-top 0.15s ease-out', position: 'sticky', top: '36px', zIndex: 10 }}>
+        <div style={{ position: 'sticky', top: '36px', zIndex: 10 }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
           {/* Submit Card */}
           <div

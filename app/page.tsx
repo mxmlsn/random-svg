@@ -1420,16 +1420,16 @@ export default function Home() {
               zIndex: 10,
               backgroundColor: updateBtnSpinning ? '#C1C1C1' : ACCENT_COLOR,
               cursor: loading ? 'not-allowed' : 'pointer',
-              border: updateBtnSpinning ? '3px solid #C1C1C1' : '3px solid #FFD34F',
-              outline: updateBtnSpinning ? '2px solid #C1C1C1' : '2px solid #FFD34F',
-              outlineOffset: '2px'
+              border: 'none',
+              outline: updateBtnSpinning ? '3px solid #C1C1C1' : '3px solid #FFD34F',
+              outlineOffset: '0px'
             }}
           >
             <img
               src="/upd_icon.svg"
               alt="Update"
-              width="80"
-              height="80"
+              width="96"
+              height="96"
               style={{
                 transform: `rotate(${updateBtnRotation + (updateBtnHovered && !updateBtnSpinning ? -10 : 0)}deg)`,
                 transition: updateBtnSpinning ? 'none' : 'transform 0.2s ease-out',

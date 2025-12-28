@@ -979,11 +979,12 @@ export default function Home() {
             opacity: wikiCooldown > 0 ? 1 : 0,
             maxHeight: wikiCooldown > 0 ? '200px' : '0',
             overflow: 'hidden',
-            transition: 'opacity 1.5s ease-in-out, max-height 1.5s ease-in-out',
-            display: wikiCooldown > 0 ? 'flex' : 'none',
+            transition: 'opacity 0.7s ease-in-out, max-height 0.7s ease-in-out',
+            display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'center',
-            gap: '7px'
+            gap: '7px',
+            pointerEvents: wikiCooldown > 0 ? 'auto' : 'none'
           }}
         >
           <span style={{

@@ -491,14 +491,22 @@ export default function Home() {
               onChange={() => toggleSource('publicdomainvectors')}
               style={{ display: 'none' }}
             />
-            <div style={{
+            <div className="checkbox-circle" style={{
               width: '66px',
               height: '66px',
               borderRadius: '9999px',
               backgroundColor: selectedSources.includes('publicdomainvectors') ? ACCENT_COLOR : 'transparent',
               border: selectedSources.includes('publicdomainvectors') ? 'none' : '1px solid #DEDEDE',
-              flexShrink: 0
-            }} />
+              flexShrink: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              position: 'relative'
+            }}>
+              <span className="checkbox-hover-text" style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: 'rgba(0,0,0,0.2)', opacity: 0, transition: 'opacity 0.15s' }}>
+                {selectedSources.includes('publicdomainvectors') ? 'OFF' : 'ON'}
+              </span>
+            </div>
             <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
               <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: selectedSources.includes('publicdomainvectors') ? '#374151' : '#9ca3af', lineHeight: '1.1', transition: 'color 0.2s' }}>publicdomainvectors.org</div>
               <div style={{ fontFamily: 'Arial', fontSize: '11px', color: '#9ca3af', lineHeight: '1.1', marginTop: '2px' }}>may contain boring corporate memphis</div>
@@ -526,14 +534,22 @@ export default function Home() {
               onChange={() => toggleSource('freesvg')}
               style={{ display: 'none' }}
             />
-            <div style={{
+            <div className="checkbox-circle" style={{
               width: '66px',
               height: '66px',
               borderRadius: '9999px',
               backgroundColor: selectedSources.includes('freesvg') ? ACCENT_COLOR : 'transparent',
               border: selectedSources.includes('freesvg') ? 'none' : '1px solid #DEDEDE',
-              flexShrink: 0
-            }} />
+              flexShrink: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              position: 'relative'
+            }}>
+              <span className="checkbox-hover-text" style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: 'rgba(0,0,0,0.2)', opacity: 0, transition: 'opacity 0.15s' }}>
+                {selectedSources.includes('freesvg') ? 'OFF' : 'ON'}
+              </span>
+            </div>
             <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
               <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: selectedSources.includes('freesvg') ? '#374151' : '#9ca3af', lineHeight: '1.1', transition: 'color 0.2s' }}>freesvg.org</div>
               <div style={{ fontFamily: 'Arial', fontSize: '11px', color: '#9ca3af', lineHeight: '1.1', marginTop: '2px' }}>perfect balance</div>
@@ -561,7 +577,7 @@ export default function Home() {
               onChange={() => toggleSource('wikimedia')}
               style={{ display: 'none' }}
             />
-            <div style={{
+            <div className="checkbox-circle" style={{
               width: '66px',
               height: '66px',
               borderRadius: '9999px',
@@ -569,8 +585,16 @@ export default function Home() {
               border: selectedSources.includes('wikimedia') ? 'none' : '1px solid #DEDEDE',
               flexShrink: 0,
               boxShadow: wikiGlow ? `0 0 20px 8px ${ACCENT_COLOR}` : 'none',
-              transition: 'box-shadow 0.3s ease-out'
-            }} />
+              transition: 'box-shadow 0.3s ease-out',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              position: 'relative'
+            }}>
+              <span className="checkbox-hover-text" style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: 'rgba(0,0,0,0.2)', opacity: 0, transition: 'opacity 0.15s' }}>
+                {selectedSources.includes('wikimedia') ? 'OFF' : 'ON'}
+              </span>
+            </div>
             <div style={{ flex: 1, textAlign: 'center', marginRight: '8px' }}>
               <div style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: selectedSources.includes('wikimedia') ? '#374151' : '#9ca3af', lineHeight: '1.1', transition: 'color 0.2s' }}>wikimedia.org</div>
               <div style={{ fontFamily: 'Arial', fontSize: '11px', color: '#9ca3af', lineHeight: '1.1', marginTop: '2px' }}>too many hieroglyphs and maps<br />but has unique scientific graphics</div>
@@ -1179,6 +1203,9 @@ export default function Home() {
         }
                 .checkbox-label:hover {
           background-color: rgba(0, 0, 0, 0.05) !important;
+        }
+        .checkbox-label:hover .checkbox-hover-text {
+          opacity: 1 !important;
         }
         .arrow-animate {
           display: inline-block;

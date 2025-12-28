@@ -136,11 +136,11 @@ export default function Gallery() {
                   style={{ height: isMobile ? 280 : 340, width: 'auto' }}
                   loading="lazy"
                 />
-                {poster.instagram && (
-                  <div
-                    className="flex justify-center items-center mt-0.5"
-                    style={{ fontSize: 14 }}
-                  >
+                <div
+                  className="flex justify-center items-center mt-0.5"
+                  style={{ fontSize: 14, minHeight: '1.5em' }}
+                >
+                  {poster.instagram ? (
                     <a
                       href={`https://instagram.com/${poster.instagram}`}
                       target="_blank"
@@ -151,8 +151,10 @@ export default function Gallery() {
                     >
                       @{poster.instagram}
                     </a>
-                  </div>
-                )}
+                  ) : (
+                    <span style={{ opacity: 0, fontSize: 14 }}>&nbsp;</span>
+                  )}
+                </div>
               </div>
             ))}
 

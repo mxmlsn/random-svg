@@ -247,9 +247,9 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
         {state === 'success' ? (
           /* Success State */
           <div style={{ textAlign: 'center', padding: '20px 0' }}>
-            <h4 style={{ fontSize: '20px', fontWeight: 700, color: '#222', marginBottom: '8px' }}>Thank you!</h4>
+            <h4 style={{ fontSize: '20px', fontWeight: 700, color: '#222', marginBottom: '8px' }}>done!</h4>
             <p style={{ fontSize: '14px', color: '#666', marginBottom: '24px' }}>
-              If your poster passes review, it typically appears in the gallery within 1-7 days. If it hasn&apos;t shown up after 2 weeks, either I&apos;m dead or it didn&apos;t make the cut—please don&apos;t resubmit it.
+              approved posters go live within 1-7 days. if you don&apos;t see yours after 2 weeks, either I&apos;m dead or it wasn&apos;t accepted—please submit something new instead.
             </p>
             <button
               onClick={handleSubmitAnother}
@@ -267,7 +267,7 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
                 height: '42px'
               }}
             >
-              Submit Another
+              submit another
             </button>
           </div>
         ) : (

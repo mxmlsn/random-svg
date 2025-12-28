@@ -971,14 +971,15 @@ export default function Home() {
         {/* Wikimedia cooldown countdown - separate from checkboxes */}
         <div
           style={{
-            marginTop: '20px',
+            marginTop: '16px',
+            paddingLeft: '55px',
             fontFamily: 'monospace',
             fontSize: '11px',
             color: '#9ca3af',
             opacity: wikiCooldown > 0 ? 1 : 0,
             maxHeight: wikiCooldown > 0 ? '200px' : '0',
             overflow: 'hidden',
-            transition: 'opacity 0.15s ease-out, max-height 0.15s ease-out',
+            transition: 'opacity 1.5s ease-in-out, max-height 1.5s ease-in-out',
             display: wikiCooldown > 0 ? 'flex' : 'none',
             alignItems: 'flex-start',
             justifyContent: 'center',
@@ -998,6 +999,7 @@ export default function Home() {
             images to avoid server overload.<br />
             live results will come back in <span style={{ display: 'inline-block', minWidth: '18px', textAlign: 'center' }}>{wikiCooldown}</span> sec
             <span
+              className="use-other-sources-link"
               onClick={() => {
                 setIsMinimized(false);
                 // Deselect wikimedia, select both others
@@ -1007,7 +1009,7 @@ export default function Home() {
                 fetchRandomSVGs(newSources);
               }}
               style={{
-                display: 'block',
+                display: 'inline-block',
                 marginTop: '2px',
                 textDecoration: 'underline',
                 cursor: 'pointer',
@@ -1021,7 +1023,7 @@ export default function Home() {
         </div>
 
         {/* Spacer for initial card position */}
-        <div style={{ height: wikiCooldown > 0 ? '90px' : '70px', transition: 'height 0.15s ease-out' }} />
+        <div style={{ height: wikiCooldown > 0 ? '90px' : '70px', transition: 'height 0.4s ease-out' }} />
 
         {/* Cards Container */}
         <div style={{ position: 'sticky', top: '36px', zIndex: 10 }}>
@@ -1626,6 +1628,16 @@ export default function Home() {
         }
         .download-btn {
           transition: opacity 0.05s, transform 0.1s !important;
+        }
+        .use-other-sources-link::after {
+          content: '';
+          opacity: 0;
+          margin-left: 4px;
+          transition: opacity 0.2s ease-out;
+        }
+        .use-other-sources-link:hover::after {
+          content: ' yes';
+          opacity: 1;
         }
         .download-btn:hover {
           transform: scale(1.16) !important;

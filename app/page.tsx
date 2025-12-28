@@ -1431,11 +1431,11 @@ export default function Home() {
             }}
           >
             <img
-              src="/upd_icon.svg"
+              src="/upd_icon.svg?v=2"
               alt="Update"
-              width="300"
-              height="300"
               style={{
+                width: '200px',
+                height: '200px',
                 transform: `rotate(${updateBtnRotation + (updateBtnHovered && !updateBtnSpinning ? -10 : 0)}deg)`,
                 transition: updateBtnSpinning ? 'none' : 'transform 0.2s ease-out',
                 pointerEvents: 'none'

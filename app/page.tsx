@@ -437,6 +437,7 @@ export default function Home() {
                 <div
                   key={originalIndex}
                   onClick={() => {
+                    setIsMinimized(false);
                     const allHidden = logoVisibility.every(v => !v);
                     if (allHidden) {
                       setLogoVisibility([true, true, true, true, true, true]);
@@ -471,6 +472,7 @@ export default function Home() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '19px' }}>
           <label
             className="checkbox-label"
+            onClick={() => setIsMinimized(false)}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -505,6 +507,7 @@ export default function Home() {
 
           <label
             className="checkbox-label"
+            onClick={() => setIsMinimized(false)}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -539,6 +542,7 @@ export default function Home() {
 
           <label
             className="checkbox-label"
+            onClick={() => setIsMinimized(false)}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -598,12 +602,12 @@ export default function Home() {
             marginTop: '2px'
           }} />
           <span style={{ textAlign: 'left', lineHeight: '1.3', fontFamily: 'GeistMono, monospace' }}>
-            temporarily showing cached<br />
-            <em>wiki</em> images to avoid server<br />
-            overload. live results will<br />
-            come back in <span style={{ display: 'inline-block', minWidth: '18px', textAlign: 'center' }}>{wikiCooldown}</span> sec
+            temporarily showing cached <em>wiki</em><br />
+            images to avoid server overload.<br />
+            live results will come back in <span style={{ display: 'inline-block', minWidth: '18px', textAlign: 'center' }}>{wikiCooldown}</span> sec
             <span
               onClick={() => {
+                setIsMinimized(false);
                 // Deselect wikimedia, select both others
                 const newSources: SourceType[] = ['freesvg', 'publicdomainvectors'];
                 setSelectedSources(newSources);
@@ -625,7 +629,7 @@ export default function Home() {
         </div>
 
         {/* Cards Container */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', marginTop: '0px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', marginTop: '-41px' }}>
           {/* Submit Card */}
           <div
             style={{
@@ -686,7 +690,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color: 'black', textDecoration: 'underline' }}
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => { setIsMinimized(false); e.stopPropagation(); }}
               >
                 instagram
               </a>
@@ -695,7 +699,7 @@ export default function Home() {
 
             <button
               className="submit-btn"
-              onClick={() => setSubmitModalOpen(true)}
+              onClick={() => { setIsMinimized(false); setSubmitModalOpen(true); }}
               style={{
                 display: 'block',
                 width: '100%',
@@ -736,7 +740,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color: 'black', textDecoration: 'underline' }}
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => { setIsMinimized(false); e.stopPropagation(); }}
               >
                 @mxmlsn
               </a>
@@ -748,6 +752,7 @@ export default function Home() {
             href="https://random-dafont.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => setIsMinimized(false)}
             style={{
               width: 334,
               height: 70,

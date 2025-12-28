@@ -36,7 +36,6 @@ export default function Home() {
   const [logoVisibility, setLogoVisibility] = useState<boolean[]>(Array(6).fill(true));
   const [showWarning, setShowWarning] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
-  const [scrollOffset, setScrollOffset] = useState(0);
   const [wikiCooldown, setWikiCooldown] = useState(0); // seconds remaining until live wiki
   const wikiCooldownRef = useRef(0); // ref for callbacks to access current cooldown
   const [wikiGlow, setWikiGlow] = useState(false); // glow effect when cooldown ends
@@ -176,16 +175,6 @@ export default function Home() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  }, []);
-
-  // Parallax effect for submit card
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setScrollOffset(scrollY * 0.1);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Load logo SVGs
@@ -477,11 +466,11 @@ export default function Home() {
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#F4F4F4', alignItems: 'flex-start' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#F4F4F4' }}>
       {/* Left Column - 30% */}
-      <aside style={{ width: '30%', padding: '36px', display: 'flex', flexDirection: 'column', gap: '52px', opacity: isMinimized ? 0.1 : 1, transition: 'opacity 0.3s' }}>
+      <aside style={{ width: '30%', padding: '36px', opacity: isMinimized ? 0.1 : 1, transition: 'opacity 0.3s', minHeight: '100vh' }}>
         {/* Logo */}
-        <div style={{ marginTop: '30px', marginBottom: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ marginTop: '30px', marginBottom: '72px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div style={{
             transform: logoVisibility.filter((_, i) => i !== 2).every(v => !v) ? 'scale(1.70)' : 'scale(1)',
             transformOrigin: 'top center',
@@ -1028,7 +1017,8 @@ export default function Home() {
         </div>
 
         {/* Cards Container */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', marginTop: wikiCooldown > 0 ? '19px' : '-41px', transition: 'margin-top 0.15s ease-out', position: 'sticky', top: '36px' }}>
+        <div style={{ marginTop: wikiCooldown > 0 ? '19px' : '-41px', transition: 'margin-top 0.15s ease-out', position: 'sticky', top: '36px', zIndex: 10 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
           {/* Submit Card */}
           <div
             style={{
@@ -1040,14 +1030,14 @@ export default function Home() {
               position: 'relative',
               transition: 'all 0.3s',
               textAlign: 'left',
-              transform: `rotate(-2deg) translateY(${scrollOffset}px)`
+              transform: `rotate(-2deg)`
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = `rotate(0deg) translateY(${scrollOffset}px)`;
+              e.currentTarget.style.transform = `rotate(0deg)`;
               e.currentTarget.style.boxShadow = '0 20px 50px rgba(248, 197, 43, 0.4)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.transform = `rotate(-2deg) translateY(${scrollOffset}px)`;
+              e.currentTarget.style.transform = `rotate(-2deg)`;
               e.currentTarget.style.boxShadow = 'none';
             }}
           >
@@ -1161,17 +1151,17 @@ export default function Home() {
               position: 'relative',
               transition: 'all 0.3s',
               textAlign: 'left',
-              transform: `rotate(-2deg) translateY(${scrollOffset}px) translateX(11px)`,
+              transform: `rotate(-2deg) translateX(11px)`,
               display: 'flex',
               alignItems: 'center',
               textDecoration: 'none'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = `rotate(0deg) translateY(${scrollOffset}px) translateX(11px)`;
+              e.currentTarget.style.transform = `rotate(0deg) translateX(11px)`;
               e.currentTarget.style.boxShadow = '0 20px 50px rgba(204, 0, 0, 0.4)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.transform = `rotate(-2deg) translateY(${scrollOffset}px) translateX(11px)`;
+              e.currentTarget.style.transform = `rotate(-2deg) translateX(11px)`;
               e.currentTarget.style.boxShadow = 'none';
             }}
           >
@@ -1189,6 +1179,7 @@ export default function Home() {
               random-dafont.com
             </p>
           </a>
+          </div>
         </div>
 
         </aside>
@@ -1549,6 +1540,9 @@ export default function Home() {
 
         {/* Gallery Section */}
         <Gallery />
+
+        {/* TEST: Temporary spacer for sticky testing */}
+        <div style={{ height: '2000px', background: 'transparent' }} />
       </main>
 
       {/* Submit Modal */}

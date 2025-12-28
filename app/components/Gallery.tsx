@@ -147,9 +147,19 @@ export default function Gallery() {
                       href={`https://instagram.com/${poster.instagram}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-500 no-underline transition-colors hover:text-[#c00]"
-                      style={{ fontSize: 14 }}
+                      className="no-underline transition-colors"
+                      style={{
+                        fontSize: 14,
+                        fontFamily: 'HealTheWeb, Arial, sans-serif',
+                        color: '#6b7280'
+                      }}
                       onClick={(e) => e.stopPropagation()}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = '#f8c52bff';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = '#6b7280';
+                      }}
                     >
                       @{poster.instagram}
                     </a>
@@ -301,14 +311,16 @@ export default function Gallery() {
               background: 'transparent',
               padding: isMobile ? '10px 16px' : 8,
               borderRadius: 3,
-              width: 192,
+              width: 220,
               minHeight: 56,
               gap: 4,
               zIndex: 2001,
-              fontFamily: '"Arial Narrow", Arial, sans-serif',
+              fontFamily: 'HealTheWeb, Arial, sans-serif',
               fontSize: isMobile ? 13 : 14,
               lineHeight: 1.3,
-            }}
+              tabSize: 8,
+              MozTabSize: 8,
+            } as React.CSSProperties}
           >
             {currentPoster.instagram && (
               <a

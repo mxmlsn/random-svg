@@ -45,7 +45,39 @@ export default function Home() {
   const [downloadBtnOpacities, setDownloadBtnOpacities] = useState<number[]>(Array(6).fill(0));
   const shownArchiveFilesRef = useRef<Set<string>>(new Set()); // Track shown wiki archive files to avoid repeats (ref for sync access)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [updateBtnRotation, setUpdateBtnRotation] = useState(0); // Current rotation angle
+  const [updateBtnHovered, setUpdateBtnHovered] = useState(false);
+  const updateBtnSpinning = useRef(false); // Is currently spinning (during loading)
+  const updateBtnRotationRef = useRef(0); // Ref for animation loop access
   const btnRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+
+  // Start spinning animation for update button
+  // SPEED CONFIG: Change this value to adjust spin speed (degrees per frame at 60fps)
+  // Higher = faster spin. Default: 6 degrees/frame = ~1 rotation per second
+  const UPDATE_BTN_SPIN_SPEED = 6;
+
+  const startUpdateBtnSpin = useCallback((currentRotation: number) => {
+    if (updateBtnSpinning.current) return;
+    updateBtnSpinning.current = true;
+
+    // Sync ref with current rotation value before starting
+    // This prevents the jerk when animation starts
+    updateBtnRotationRef.current = currentRotation;
+
+    const spin = () => {
+      if (!updateBtnSpinning.current) return;
+      updateBtnRotationRef.current += UPDATE_BTN_SPIN_SPEED;
+      setUpdateBtnRotation(updateBtnRotationRef.current);
+      requestAnimationFrame(spin);
+    };
+    requestAnimationFrame(spin);
+  }, []);
+
+  const stopUpdateBtnSpin = useCallback(() => {
+    updateBtnSpinning.current = false;
+    // Sync state with ref to prevent jerk when hover triggers after stop
+    setUpdateBtnRotation(updateBtnRotationRef.current);
+  }, []);
 
   const handleCardMouseMove = useCallback((e: React.MouseEvent, index: number) => {
     const card = cardRefs.current[index];
@@ -242,6 +274,9 @@ export default function Home() {
     // Rotate logos by ~25.7 degrees (360/14) in their random directions
     setLogoRotations(prev => prev.map((rot, i) => rot + logoDirections[i] * (360 / 14)));
 
+    // Start update button spinning (pass current rotation to sync ref)
+    startUpdateBtnSpin(updateBtnRotation);
+
     setLoading(true);
     setError(null);
     const emptySlots = Array(6).fill(null);
@@ -387,6 +422,10 @@ export default function Home() {
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error occurred');
     } finally {
+      // Stop update button spinning after 500ms delay
+      setTimeout(() => {
+        stopUpdateBtnSpin();
+      }, 500);
       setLoading(false);
     }
   };
@@ -665,7 +704,7 @@ export default function Home() {
         </div>
 
         {/* Cards Container */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', marginTop: wikiCooldown > 0 ? '19px' : '-41px', transition: 'margin-top 0.15s ease-out' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', marginTop: wikiCooldown > 0 ? '19px' : '-41px', transition: 'margin-top 0.15s ease-out', position: 'sticky', top: '36px' }}>
           {/* Submit Card */}
           <div
             style={{
@@ -997,8 +1036,15 @@ export default function Home() {
                       }}
                       title="Download SVG"
                     >
-                      <svg style={{ width: '27px', height: '27px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                      <svg width="27" height="27" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M51.624 32.3772L32.5578 56.553L13.3439 31.8493L24.6188 31.8704C24.6188 31.8704 23.1831 21.5877 28.8839 15.5068C34.5848 9.40482 47.8234 9.44706 47.8234 9.44706C47.8234 9.44706 41.9325 12.8042 39.7788 18.9907C37.6041 25.1772 38.7442 32.2082 38.7442 32.2082L51.624 32.3772Z" stroke="#323232" strokeWidth="1.5314"/>
+                        <path fillRule="evenodd" clipRule="evenodd" d="M47.5068 34.4886L39.8423 43.99C31.6922 42.1531 33.7614 35.0164 26.5193 33.5806C26.5193 33.5806 24.4711 24.776 28.5673 17.8505C32.5156 11.1573 43.5373 11.474 43.5373 11.474C43.5373 11.474 39.2722 13.881 37.3086 19.9197C35.345 25.9795 37.0764 34.3196 37.0764 34.3196L47.5068 34.4886Z" fill="url(#paint0_linear_download)"/>
+                        <defs>
+                          <linearGradient id="paint0_linear_download" x1="54.5679" y1="-0.788435" x2="14.8849" y2="51.9743" gradientUnits="userSpaceOnUse">
+                            <stop stopColor="white"/>
+                            <stop offset="1" stopColor="white" stopOpacity="0"/>
+                          </linearGradient>
+                        </defs>
                       </svg>
                     </button>
 
@@ -1012,6 +1058,8 @@ export default function Home() {
           <button
             onClick={() => fetchRandomSVGs()}
             disabled={loading}
+            onMouseEnter={() => setUpdateBtnHovered(true)}
+            onMouseLeave={() => setUpdateBtnHovered(false)}
             className="update-btn"
             style={{
               position: 'absolute',
@@ -1023,30 +1071,43 @@ export default function Home() {
               borderRadius: '9999px',
               color: 'black',
               fontWeight: '600',
-              boxShadow: loading ? 'none' : '0 25px 50px -12px rgba(248, 197, 43, 0.4)',
+              boxShadow: '0 25px 50px -12px rgba(248, 197, 43, 0.4)',
               transition: 'all 0.2s',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               zIndex: 10,
-              backgroundColor: loading ? '#9ca3af' : ACCENT_COLOR,
+              backgroundColor: ACCENT_COLOR,
               cursor: loading ? 'not-allowed' : 'pointer',
               border: 'none'
             }}
             title={loading ? 'Loading...' : 'Update SVGs'}
           >
             <svg
-              style={{ width: '40px', height: '40px', animation: loading ? 'spin 1s linear infinite' : 'none' }}
+              width="76"
+              height="76"
+              viewBox="0 0 103 103"
               fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              style={{
+                transform: `rotate(${updateBtnRotation + (updateBtnHovered && !loading ? -10 : 0)}deg)`,
+                transition: loading ? 'none' : 'transform 0.2s ease-out'
+              }}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-              />
+              <path fillRule="evenodd" clipRule="evenodd" d="M52.4326 45.0536L71.4989 69.2294L90.7128 44.5257L79.4378 44.5468C79.4378 44.5468 80.8736 34.2642 75.1727 28.1833C69.4719 22.0812 56.2333 22.1235 56.2333 22.1235C56.2333 22.1235 62.1242 25.4806 64.2778 31.6671C66.4526 37.8536 65.3124 44.8847 65.3124 44.8847L52.4326 45.0536Z" fill="#C1C1C1" stroke="#323232" strokeWidth="1.5314"/>
+              <path fillRule="evenodd" clipRule="evenodd" d="M50.3847 57.7644L31.3396 33.5885L12.1045 58.2922L23.3796 58.2711C23.3796 58.2711 21.9437 68.5537 27.6446 74.6346C33.3454 80.7366 46.6052 80.6944 46.6052 80.6944C46.6052 80.6944 40.7144 77.3373 38.5396 71.1508C36.3859 64.9643 37.526 57.9332 37.526 57.9332L50.3847 57.7644Z" fill="#C1C1C1" stroke="#323232" strokeWidth="1.5314"/>
+              <path fillRule="evenodd" clipRule="evenodd" d="M41.6431 48.1785L32.1206 36.629L16.4961 56.413L25.0896 56.3708C36.9558 55.5262 33.7253 48.4952 41.6431 48.1785Z" fill="url(#paint0_linear_update)"/>
+              <path fillRule="evenodd" clipRule="evenodd" d="M56.5498 47.165L64.2143 56.6664C72.3644 54.8295 70.2952 47.6928 77.5374 46.257C77.5374 46.257 79.5855 37.4524 75.4894 30.527C71.541 23.8337 60.5193 24.1504 60.5193 24.1504C60.5193 24.1504 64.7844 26.5574 66.748 32.5961C68.7117 38.6559 66.9803 46.9961 66.9803 46.9961L56.5498 47.165Z" fill="url(#paint1_linear_update)"/>
+              <defs>
+                <linearGradient id="paint0_linear_update" x1="14.5969" y1="31.8849" x2="42.0522" y2="64.5684" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="white"/>
+                  <stop offset="1" stopColor="white" stopOpacity="0"/>
+                </linearGradient>
+                <linearGradient id="paint1_linear_update" x1="49.4887" y1="11.888" x2="89.1718" y2="64.6507" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="white"/>
+                  <stop offset="1" stopColor="white" stopOpacity="0"/>
+                </linearGradient>
+              </defs>
             </svg>
           </button>
 

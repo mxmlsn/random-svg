@@ -1,5 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Rate limiting: max 5 submissions per hour per IP
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
+
+function checkRateLimit(ip: string): { allowed: boolean; remaining: number; resetIn: number } {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+
+  if (!record || now > record.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW });
+    return { allowed: true, remaining: RATE_LIMIT_MAX - 1, resetIn: RATE_LIMIT_WINDOW };
+  }
+
+  if (record.count >= RATE_LIMIT_MAX) {
+    return { allowed: false, remaining: 0, resetIn: record.resetAt - now };
+  }
+
+  record.count++;
+  return { allowed: true, remaining: RATE_LIMIT_MAX - record.count, resetIn: record.resetAt - now };
+}
+
 interface SubmitPosterBody {
   instagram?: string;
   usedFonts: boolean;
@@ -10,6 +32,25 @@ interface SubmitPosterBody {
 }
 
 export async function POST(request: NextRequest) {
+  // Rate limit check
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+             request.headers.get('x-real-ip') ||
+             'unknown';
+  const rateLimit = checkRateLimit(ip);
+
+  if (!rateLimit.allowed) {
+    const resetMinutes = Math.ceil(rateLimit.resetIn / 60000);
+    return NextResponse.json(
+      { error: `Too many submissions. Try again in ${resetMinutes} minutes.` },
+      {
+        status: 429,
+        headers: {
+          'Retry-After': String(Math.ceil(rateLimit.resetIn / 1000)),
+          'X-RateLimit-Remaining': '0',
+        }
+      }
+    );
+  }
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
   const cloudinaryCloudName = process.env.CLOUDINARY_CLOUD_NAME;

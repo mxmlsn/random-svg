@@ -18,9 +18,19 @@ export async function POST(request: NextRequest) {
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
   const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
+  const webhookSecret = process.env.TELEGRAM_WEBHOOK_SECRET;
 
   if (!supabaseUrl || !supabaseServiceKey || !telegramBotToken) {
     return NextResponse.json({ ok: true });
+  }
+
+  // Verify webhook secret if configured
+  if (webhookSecret) {
+    const requestSecret = request.headers.get('X-Telegram-Bot-Api-Secret-Token');
+    if (requestSecret !== webhookSecret) {
+      console.warn('Telegram webhook: invalid secret token');
+      return NextResponse.json({ ok: false, error: 'Unauthorized' }, { status: 401 });
+    }
   }
 
   try {

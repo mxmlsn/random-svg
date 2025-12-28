@@ -125,7 +125,7 @@ export default function Gallery() {
                 className="inline-block align-top cursor-pointer poster-card"
                 style={{
                   marginRight: isMobile ? 16 : 18,
-                  marginBottom: isMobile ? 16 * 0.6 : 18 * 0.6,
+                  marginBottom: 18,
                   transition: 'transform 0.1s ease-out'
                 }}
                 onClick={() => openLightbox(index)}
@@ -328,7 +328,7 @@ export default function Gallery() {
                   e.currentTarget.style.color = '#d6d6d6';
                 }}
               >
-                author:{'\t'}@{currentPoster.instagram}
+                {'author:\t@' + currentPoster.instagram}
               </a>
             )}
 
@@ -336,7 +336,7 @@ export default function Gallery() {
               <div className="flex flex-col" style={{ fontSize: 14, color: '#d6d6d6', gap: 0 }}>
                 {currentPoster.svg_sources.map((source, i) => (
                   <span key={i} style={{ lineHeight: 1.3, whiteSpace: 'pre' }}>
-                    {i === 0 ? 'sources:' : ''}{'\t'}{source}
+                    {i === 0 ? 'sources:\t' : '\t\t'}{source}
                   </span>
                 ))}
               </div>
@@ -346,7 +346,7 @@ export default function Gallery() {
               <div className="flex flex-col" style={{ fontSize: 14, color: '#d6d6d6', gap: 0 }}>
                 {currentPoster.fonts.map((font, i) => (
                   <span key={i} style={{ lineHeight: 1.3, whiteSpace: 'pre' }}>
-                    {i === 0 ? 'fonts:' : ''}{'\t\t'}{font}
+                    {i === 0 ? 'fonts:\t\t' : '\t\t\t'}{font}
                   </span>
                 ))}
               </div>

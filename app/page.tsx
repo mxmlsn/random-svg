@@ -279,51 +279,63 @@ export default function Home() {
 
       let newItems = [...emptySlots];
 
-      // Fetch SVGs with staggered timing for wikimedia to avoid rate limits
-      const fetchPromises = endpoints.map(async (endpoint, index) => {
-        // During cooldown, skip wikimedia API requests - use archive directly on client
-        if (endpoint.includes('wikimedia') && wikiCooldownRef.current > 0) {
-          // Add staggered delay for archive loading (similar to live mode feel)
-          // First card also has delay (300ms base + index * 300ms)
-          await new Promise(resolve => setTimeout(resolve, 300 + index * 300));
+      // Pre-select archive items for wikimedia slots to prevent duplicates
+      // This happens BEFORE parallel fetches start, ensuring unique selection
+      const wikiArchiveSelections: Map<number, { title: string; filename: string; wikimediaUrl: string } | null> = new Map();
+      if (wikiCooldownRef.current > 0) {
+        const wikiIndices = endpoints.map((e, i) => e.includes('wikimedia') ? i : -1).filter(i => i >= 0);
+        if (wikiIndices.length > 0) {
           try {
             const archiveRes = await fetch('/wikimedia-archive/index.json');
             if (archiveRes.ok) {
               const archive = await archiveRes.json();
               if (archive.length > 0) {
-                // Filter out already shown files (using ref for synchronous access across parallel fetches)
-                let availableItems = archive.filter((item: { filename: string }) => !shownArchiveFilesRef.current.has(item.filename));
+                // Select unique items for each wiki slot
+                for (const idx of wikiIndices) {
+                  let availableItems = archive.filter((item: { filename: string }) => !shownArchiveFilesRef.current.has(item.filename));
 
-                // If all files have been shown, reset the tracking
-                if (availableItems.length === 0) {
-                  shownArchiveFilesRef.current = new Set();
-                  availableItems = archive;
+                  // If all files have been shown, reset the tracking
+                  if (availableItems.length === 0) {
+                    shownArchiveFilesRef.current = new Set();
+                    availableItems = archive;
+                  }
+
+                  const randomItem = availableItems[Math.floor(Math.random() * availableItems.length)];
+                  shownArchiveFilesRef.current.add(randomItem.filename);
+                  wikiArchiveSelections.set(idx, randomItem);
                 }
-
-                const randomItem = availableItems[Math.floor(Math.random() * availableItems.length)];
-
-                // Track this file as shown immediately (synchronous, prevents duplicates in parallel fetches)
-                shownArchiveFilesRef.current.add(randomItem.filename);
-
-                const archiveData = {
-                  title: randomItem.title,
-                  previewImage: `/wikimedia-archive/${randomItem.filename}`,
-                  source: 'wikimedia.org',
-                  sourceUrl: randomItem.wikimediaUrl,
-                  downloadUrl: randomItem.wikimediaUrl,
-                  _debug_source: 'archive' as const
-                };
-                setSvgItems(prev => {
-                  const updated = [...prev];
-                  updated[index] = archiveData;
-                  newItems = updated;
-                  return updated;
-                });
-                return archiveData;
               }
             }
           } catch {
-            // Skip wikimedia during cooldown
+            // Archive fetch failed, will be handled per-slot
+          }
+        }
+      }
+
+      // Fetch SVGs with staggered timing for wikimedia to avoid rate limits
+      const fetchPromises = endpoints.map(async (endpoint, index) => {
+        // During cooldown, skip wikimedia API requests - use pre-selected archive item
+        if (endpoint.includes('wikimedia') && wikiCooldownRef.current > 0) {
+          // Add staggered delay for archive loading (similar to live mode feel)
+          await new Promise(resolve => setTimeout(resolve, 300 + index * 300));
+
+          const preSelectedItem = wikiArchiveSelections.get(index);
+          if (preSelectedItem) {
+            const archiveData = {
+              title: preSelectedItem.title,
+              previewImage: `/wikimedia-archive/${preSelectedItem.filename}`,
+              source: 'wikimedia.org',
+              sourceUrl: preSelectedItem.wikimediaUrl,
+              downloadUrl: preSelectedItem.wikimediaUrl,
+              _debug_source: 'archive' as const
+            };
+            setSvgItems(prev => {
+              const updated = [...prev];
+              updated[index] = archiveData;
+              newItems = updated;
+              return updated;
+            });
+            return archiveData;
           }
           return null;
         }
@@ -503,7 +515,7 @@ export default function Home() {
               justifyContent: 'center',
               position: 'relative'
             }}>
-              <span className="checkbox-hover-text" style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: '#D3A61B', opacity: 0, transition: 'opacity 0.15s' }}>
+              <span className="checkbox-hover-text" style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: selectedSources.includes('publicdomainvectors') ? '#D3A61B' : '#ACACAC', opacity: 0, transition: 'opacity 0.15s' }}>
                 {selectedSources.includes('publicdomainvectors') ? 'OFF' : 'ON'}
               </span>
             </div>
@@ -546,7 +558,7 @@ export default function Home() {
               justifyContent: 'center',
               position: 'relative'
             }}>
-              <span className="checkbox-hover-text" style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: '#D3A61B', opacity: 0, transition: 'opacity 0.15s' }}>
+              <span className="checkbox-hover-text" style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: selectedSources.includes('freesvg') ? '#D3A61B' : '#ACACAC', opacity: 0, transition: 'opacity 0.15s' }}>
                 {selectedSources.includes('freesvg') ? 'OFF' : 'ON'}
               </span>
             </div>
@@ -591,7 +603,7 @@ export default function Home() {
               justifyContent: 'center',
               position: 'relative'
             }}>
-              <span className="checkbox-hover-text" style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: '#D3A61B', opacity: 0, transition: 'opacity 0.15s' }}>
+              <span className="checkbox-hover-text" style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: selectedSources.includes('wikimedia') ? '#D3A61B' : '#ACACAC', opacity: 0, transition: 'opacity 0.15s' }}>
                 {selectedSources.includes('wikimedia') ? 'OFF' : 'ON'}
               </span>
             </div>

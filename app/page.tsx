@@ -1412,7 +1412,7 @@ export default function Home() {
               borderRadius: '9999px',
               color: 'black',
               fontWeight: '600',
-              boxShadow: updateBtnSpinning ? '0 25px 50px -12px rgba(193, 193, 193, 0.4)' : '0 25px 50px -12px rgba(248, 197, 43, 0.4)',
+              boxShadow: updateBtnSpinning ? '0 25px 60px -8px rgba(193, 193, 193, 0.6)' : '0 25px 60px -8px rgba(248, 197, 43, 0.6)',
               transition: 'all 0.2s',
               display: 'flex',
               alignItems: 'center',
@@ -1420,35 +1420,22 @@ export default function Home() {
               zIndex: 10,
               backgroundColor: updateBtnSpinning ? '#C1C1C1' : ACCENT_COLOR,
               cursor: loading ? 'not-allowed' : 'pointer',
-              border: 'none'
+              border: '3px solid #FFD34F',
+              outline: '2px solid #FFD34F',
+              outlineOffset: '2px'
             }}
           >
-            <svg
-              width="76"
-              height="76"
-              viewBox="0 0 103 103"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+            <img
+              src="/upd_icon.svg"
+              alt="Update"
+              width="80"
+              height="80"
               style={{
                 transform: `rotate(${updateBtnRotation + (updateBtnHovered && !updateBtnSpinning ? -10 : 0)}deg)`,
-                transition: updateBtnSpinning ? 'none' : 'transform 0.2s ease-out'
+                transition: updateBtnSpinning ? 'none' : 'transform 0.2s ease-out',
+                pointerEvents: 'none'
               }}
-            >
-              <path fillRule="evenodd" clipRule="evenodd" d="M52.4326 45.0536L71.4989 69.2294L90.7128 44.5257L79.4378 44.5468C79.4378 44.5468 80.8736 34.2642 75.1727 28.1833C69.4719 22.0812 56.2333 22.1235 56.2333 22.1235C56.2333 22.1235 62.1242 25.4806 64.2778 31.6671C66.4526 37.8536 65.3124 44.8847 65.3124 44.8847L52.4326 45.0536Z" fill="#C1C1C1" stroke="#323232" strokeWidth="1.5314"/>
-              <path fillRule="evenodd" clipRule="evenodd" d="M50.3847 57.7644L31.3396 33.5885L12.1045 58.2922L23.3796 58.2711C23.3796 58.2711 21.9437 68.5537 27.6446 74.6346C33.3454 80.7366 46.6052 80.6944 46.6052 80.6944C46.6052 80.6944 40.7144 77.3373 38.5396 71.1508C36.3859 64.9643 37.526 57.9332 37.526 57.9332L50.3847 57.7644Z" fill="#C1C1C1" stroke="#323232" strokeWidth="1.5314"/>
-              <path fillRule="evenodd" clipRule="evenodd" d="M41.6431 48.1785L32.1206 36.629L16.4961 56.413L25.0896 56.3708C36.9558 55.5262 33.7253 48.4952 41.6431 48.1785Z" fill="url(#paint0_linear_update)"/>
-              <path fillRule="evenodd" clipRule="evenodd" d="M56.5498 47.165L64.2143 56.6664C72.3644 54.8295 70.2952 47.6928 77.5374 46.257C77.5374 46.257 79.5855 37.4524 75.4894 30.527C71.541 23.8337 60.5193 24.1504 60.5193 24.1504C60.5193 24.1504 64.7844 26.5574 66.748 32.5961C68.7117 38.6559 66.9803 46.9961 66.9803 46.9961L56.5498 47.165Z" fill="url(#paint1_linear_update)"/>
-              <defs>
-                <linearGradient id="paint0_linear_update" x1="14.5969" y1="31.8849" x2="42.0522" y2="64.5684" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="white"/>
-                  <stop offset="1" stopColor="white" stopOpacity="0"/>
-                </linearGradient>
-                <linearGradient id="paint1_linear_update" x1="49.4887" y1="11.888" x2="89.1718" y2="64.6507" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="white"/>
-                  <stop offset="1" stopColor="white" stopOpacity="0"/>
-                </linearGradient>
-              </defs>
-            </svg>
+            />
           </button>
 
           {/* Undo/Redo buttons - Below grid, centered */}

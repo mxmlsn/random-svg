@@ -977,7 +977,7 @@ export default function Home() {
             maxHeight: wikiCooldown > 0 ? '200px' : '0',
             overflow: 'hidden',
             transition: 'opacity 0.15s ease-out, max-height 0.15s ease-out',
-            display: 'flex',
+            display: wikiCooldown > 0 ? 'flex' : 'none',
             alignItems: 'flex-start',
             justifyContent: 'center',
             gap: '7px'

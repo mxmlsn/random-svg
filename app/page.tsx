@@ -503,7 +503,7 @@ export default function Home() {
               justifyContent: 'center',
               position: 'relative'
             }}>
-              <span className="checkbox-hover-text" style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: 'rgba(0,0,0,0.2)', opacity: 0, transition: 'opacity 0.15s' }}>
+              <span className="checkbox-hover-text" style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: '#D3A61B', opacity: 0, transition: 'opacity 0.15s' }}>
                 {selectedSources.includes('publicdomainvectors') ? 'OFF' : 'ON'}
               </span>
             </div>
@@ -546,7 +546,7 @@ export default function Home() {
               justifyContent: 'center',
               position: 'relative'
             }}>
-              <span className="checkbox-hover-text" style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: 'rgba(0,0,0,0.2)', opacity: 0, transition: 'opacity 0.15s' }}>
+              <span className="checkbox-hover-text" style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: '#D3A61B', opacity: 0, transition: 'opacity 0.15s' }}>
                 {selectedSources.includes('freesvg') ? 'OFF' : 'ON'}
               </span>
             </div>
@@ -591,7 +591,7 @@ export default function Home() {
               justifyContent: 'center',
               position: 'relative'
             }}>
-              <span className="checkbox-hover-text" style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: 'rgba(0,0,0,0.2)', opacity: 0, transition: 'opacity 0.15s' }}>
+              <span className="checkbox-hover-text" style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '14px', color: '#D3A61B', opacity: 0, transition: 'opacity 0.15s' }}>
                 {selectedSources.includes('wikimedia') ? 'OFF' : 'ON'}
               </span>
             </div>
@@ -653,7 +653,7 @@ export default function Home() {
         </div>
 
         {/* Cards Container */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', marginTop: '-41px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', marginTop: wikiCooldown > 0 ? '19px' : '-41px', transition: 'margin-top 0.15s ease-out' }}>
           {/* Submit Card */}
           <div
             style={{

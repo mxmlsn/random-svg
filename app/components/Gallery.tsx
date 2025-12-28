@@ -8,6 +8,7 @@ interface Poster {
   image_url: string;
   svg_sources?: string[];
   used_fonts: boolean;
+  fonts?: string[];
   created_at: string;
 }
 
@@ -341,6 +342,16 @@ export default function Gallery() {
               </div>
             )}
 
+            {currentPoster.used_fonts && currentPoster.fonts && currentPoster.fonts.length > 0 && (
+              <div className="flex flex-col" style={{ fontSize: 14, color: '#d6d6d6', gap: 0 }}>
+                {currentPoster.fonts.map((font, i) => (
+                  <span key={i} style={{ lineHeight: 1.3, whiteSpace: 'pre' }}>
+                    {i === 0 ? 'fonts:' : ''}{'\t\t'}{font}
+                  </span>
+                ))}
+              </div>
+            )}
+
             {currentPoster.used_fonts && (
               <div style={{ fontSize: 14, color: '#d6d6d6' }}>
                 <a
@@ -356,7 +367,7 @@ export default function Gallery() {
                     e.currentTarget.style.color = '#d6d6d6';
                   }}
                 >
-                  includes fonts from{'\n'}random-dafont.com
+                  include assets from{'\n'}random-svg.com
                 </a>
               </div>
             )}

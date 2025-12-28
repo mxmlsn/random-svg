@@ -1552,9 +1552,6 @@ export default function Home() {
 
         {/* Gallery Section */}
         <Gallery />
-
-        {/* TEST: Temporary spacer for sticky testing */}
-        <div style={{ height: '2000px', background: 'transparent' }} />
       </main>
 
       {/* Submit Modal */}

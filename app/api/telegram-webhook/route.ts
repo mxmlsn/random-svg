@@ -95,9 +95,9 @@ export async function POST(request: NextRequest) {
         }),
       });
 
-      // Update message with new buttons showing status
-      const statusEmoji = newStatus === 'approved' ? '✅' : '❌';
-      const statusText = newStatus === 'approved' ? 'Approved' : 'Rejected';
+      // Update message with new buttons showing status (keep both buttons)
+      const approveText = newStatus === 'approved' ? '✅ Approved' : 'Approve';
+      const rejectText = newStatus === 'rejected' ? '❌ Rejected' : 'Reject';
 
       await fetch(`https://api.telegram.org/bot${telegramBotToken}/editMessageReplyMarkup`, {
         method: 'POST',
@@ -107,7 +107,10 @@ export async function POST(request: NextRequest) {
           message_id: message.message_id,
           reply_markup: {
             inline_keyboard: [
-              [{ text: `${statusEmoji} ${statusText}`, callback_data: 'noop' }],
+              [
+                { text: approveText, callback_data: `approve:${posterId}` },
+                { text: rejectText, callback_data: `reject:${posterId}` },
+              ],
             ],
           },
         }),

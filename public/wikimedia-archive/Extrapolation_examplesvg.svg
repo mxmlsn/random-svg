@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="600"
+   height="480"
+   viewBox="0 0 600 480"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45"
+   sodipodi:docname="Extrapolation_example.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   sodipodi:docbase="/home/berland/wikigp"
+   sodipodi:modified="true">
+  <metadata
+     id="metadata135">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     inkscape:window-height="588"
+     inkscape:window-width="822"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     guidetolerance="10.0"
+     gridtolerance="10.0"
+     objecttolerance="10.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     inkscape:zoom="0.78125"
+     inkscape:cx="300"
+     inkscape:cy="240"
+     inkscape:window-x="20"
+     inkscape:window-y="108"
+     inkscape:current-layer="svg2" />
+  <desc
+     id="desc4">Produced by GNUPLOT 4.0 patchlevel 0 </desc>
+  <defs
+     id="defs6">
+    <circle
+       id="gpDot"
+       r="1" />
+    <path
+       id="gpPt0"
+       style="stroke-width:0.111"
+       d="M-1,0 h2 M0,-1 v2" />
+    <path
+       id="gpPt1"
+       style="stroke-width:0.111"
+       d="M-1,-1 L1,1 M1,-1 L-1,1" />
+    <path
+       id="gpPt2"
+       style="stroke-width:0.111"
+       d="M-1,0 L1,0 M0,-1 L0,1 M-1,-1 L1,1 M-1,1 L1,-1" />
+    <rect
+       id="gpPt3"
+       style="stroke-width:0.111"
+       x="-1"
+       y="-1"
+       width="2"
+       height="2" />
+    <use
+       xlink:href="#gpPt3"
+       id="gpPt4"
+       style="fill:currentColor; stroke:none" />
+    <circle
+       id="gpPt5"
+       style="stroke-width:0.111"
+       cx="0"
+       cy="0"
+       r="1" />
+    <use
+       xlink:href="#gpPt5"
+       id="gpPt6"
+       style="fill:currentColor; stroke:none" />
+    <path
+       id="gpPt7"
+       style="stroke-width:0.111"
+       d="M0,-1.33 L-1.33,0.67 L1.33,0.67 z" />
+    <use
+       xlink:href="#gpPt7"
+       id="gpPt8"
+       style="fill:currentColor; stroke:none" />
+    <use
+       xlink:href="#gpPt7"
+       id="gpPt9"
+       transform="rotate(180)" />
+    <use
+       xlink:href="#gpPt9"
+       id="gpPt10"
+       style="fill:currentColor; stroke:none" />
+    <use
+       xlink:href="#gpPt3"
+       id="gpPt11"
+       transform="rotate(45)" />
+    <use
+       xlink:href="#gpPt11"
+       id="gpPt12"
+       style="fill:currentColor; stroke:none" />
+  </defs>
+  <g
+     style="fill:none; color:black; stroke:currentColor; stroke-width:1.00"
+     id="g22">
+    <path
+       d="M86,446 L104,446 "
+       id="path24" />
+    <g
+       transform="translate(69,455)"
+       style="stroke:none; fill:black; font-family:Helvetica; font-size:25.00; text-anchor:end"
+       id="g26">
+      <text
+         id="text28">-1</text>
+    </g>
+    <path
+       d="M86,240 L104,240 "
+       id="path30" />
+    <g
+       transform="translate(69,249)"
+       style="stroke:none; fill:black; font-family:Helvetica; font-size:25.00; text-anchor:end"
+       id="g32">
+      <text
+         id="text34"> 0</text>
+    </g>
+    <path
+       d="M86,34 L104,34 "
+       id="path36" />
+    <g
+       transform="translate(69,43)"
+       style="stroke:none; fill:black; font-family:Helvetica; font-size:25.00; text-anchor:end"
+       id="g38">
+      <text
+         id="text40"> 1</text>
+    </g>
+    <path
+       d="M144,240 L144,258 M144,240 L144,222 "
+       id="path42" />
+    <g
+       transform="translate(144,304)"
+       style="stroke:none; fill:black; font-family:Helvetica; font-size:25.00; text-anchor:middle"
+       id="g44">
+      <text
+         id="text46"> 1</text>
+    </g>
+    <path
+       d="M201,240 L201,258 M201,240 L201,222 "
+       id="path48" />
+    <g
+       transform="translate(201,304)"
+       style="stroke:none; fill:black; font-family:Helvetica; font-size:25.00; text-anchor:middle"
+       id="g50">
+      <text
+         id="text52"> 2</text>
+    </g>
+    <path
+       d="M259,240 L259,258 M259,240 L259,222 "
+       id="path54" />
+    <g
+       transform="translate(259,304)"
+       style="stroke:none; fill:black; font-family:Helvetica; font-size:25.00; text-anchor:middle"
+       id="g56">
+      <text
+         id="text58"> 3</text>
+    </g>
+    <path
+       d="M317,240 L317,258 M317,240 L317,222 "
+       id="path60" />
+    <g
+       transform="translate(317,304)"
+       style="stroke:none; fill:black; font-family:Helvetica; font-size:25.00; text-anchor:middle"
+       id="g62">
+      <text
+         id="text64"> 4</text>
+    </g>
+    <path
+       d="M374,240 L374,258 M374,240 L374,222 "
+       id="path66" />
+    <g
+       transform="translate(374,304)"
+       style="stroke:none; fill:black; font-family:Helvetica; font-size:25.00; text-anchor:middle"
+       id="g68">
+      <text
+         id="text70"> 5</text>
+    </g>
+    <path
+       d="M432,240 L432,258 M432,240 L432,222 "
+       id="path72" />
+    <g
+       transform="translate(432,304)"
+       style="stroke:none; fill:black; font-family:Helvetica; font-size:25.00; text-anchor:middle"
+       id="g74">
+      <text
+         id="text76"> 6</text>
+    </g>
+    <path
+       d="M489,240 L489,258 M489,240 L489,222 "
+       id="path78" />
+    <g
+       transform="translate(489,304)"
+       style="stroke:none; fill:black; font-family:Helvetica; font-size:25.00; text-anchor:middle"
+       id="g80">
+      <text
+         id="text82"> 7</text>
+    </g>
+    <path
+       d="M547,240 L547,258 M547,240 L547,222 "
+       id="path84" />
+    <g
+       transform="translate(547,304)"
+       style="stroke:none; fill:black; font-family:Helvetica; font-size:25.00; text-anchor:middle"
+       id="g86">
+      <text
+         id="text88"> 8</text>
+    </g>
+  </g>
+  <g
+     style="fill:none; color:gray; stroke:currentColor; stroke-width:1.00"
+     id="g90">
+    <path
+       d="M86,240 L547,240 "
+       id="path92" />
+  </g>
+  <g
+     style="fill:none; color:black; stroke:currentColor; stroke-width:1.00"
+     id="g94">
+    <path
+       d="M86,446 M547,446 M547,34 M86,34 L86,446 "
+       id="path96" />
+  </g>
+  <g
+     style="fill:none; color:red; stroke:currentColor; stroke-width:1.00"
+     id="g98">
+    <use
+       xlink:href="#gpPt6"
+       transform="translate(86,281) scale(4.50)"
+       id="use100" />
+    <use
+       xlink:href="#gpPt6"
+       transform="translate(115,250) scale(4.50)"
+       id="use102" />
+    <use
+       xlink:href="#gpPt6"
+       transform="translate(144,219) scale(4.50)"
+       id="use104" />
+    <use
+       xlink:href="#gpPt6"
+       transform="translate(172,168) scale(4.50)"
+       id="use106" />
+    <use
+       xlink:href="#gpPt6"
+       transform="translate(201,116) scale(4.50)"
+       id="use108" />
+    <use
+       xlink:href="#gpPt6"
+       transform="translate(230,100) scale(4.50)"
+       id="use110" />
+    <use
+       xlink:href="#gpPt6"
+       transform="translate(259,96) scale(4.50)"
+       id="use112" />
+    <use
+       xlink:href="#gpPt6"
+       transform="translate(288,127) scale(4.50)"
+       id="use114" />
+    <use
+       xlink:href="#gpPt6"
+       transform="translate(317,158) scale(4.50)"
+       id="use116" />
+    <use
+       xlink:href="#gpPt6"
+       transform="translate(345,184) scale(4.50)"
+       id="use118" />
+    <use
+       xlink:href="#gpPt6"
+       transform="translate(374,209) scale(4.50)"
+       id="use120" />
+  </g>
+  <g
+     style="fill:none; color:black; stroke:currentColor; stroke-width:1.00"
+     id="g122">
+    <path
+       d="M86,240 L91,240 L95,240 L100,240 L105,240 L109,240 L114,240 L119,240 L123,240 L128,240    L133,240 L137,240 L142,240 L147,240 L151,240 L156,240 L161,240 L165,240 L170,240 L174,240    L179,240 L184,240 L188,240 L193,240 L198,240 L202,240 L207,240 L212,240 L216,240 L221,240    L226,240 L230,240 L235,240 L240,240 L244,240 L249,240 L254,240 L258,240 L263,240 L268,240    L272,240 L277,240 L282,240 L286,240 L291,240 L296,240 L300,240 L305,240 L310,240 L314,240    L319,240 L323,240 L328,240 L333,240 L337,240 L342,240 L347,240 L351,240 L356,240 L361,240    L365,240 L370,240 L375,240 L379,240 L384,240 L389,240 L393,240 L398,240 L403,240 L407,240    L412,240 L417,240 L421,240 L426,240 L431,240 L435,240 L440,240 L445,240 L449,240 L454,240    L459,240 L463,240 L468,240 L472,240 L477,240 L482,240 L486,240 L491,240 L496,240 L500,240    L505,240 L510,240 L514,240 L519,240 L524,240 L528,240 L533,240 L538,240 L542,240 L547,240    "
+       id="path124" />
+  </g>
+  <g
+     style="fill:none; color:blue; stroke:currentColor; stroke-width:1.00"
+     id="g126">
+    <use
+       xlink:href="#gpPt3"
+       transform="translate(489,322) scale(9.00)"
+       id="use128" />
+  </g>
+  <g
+     style="fill:none; color:black; stroke:currentColor; stroke-width:1.00"
+     id="g130">
+    <path
+       d="M86,446 M547,446 M547,34 M86,34 L86,446 "
+       id="path132" />
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="500.48001"
+     y="337.91998"
+     id="text2287"
+     sodipodi:linespacing="100%"><tspan
+       sodipodi:role="line"
+       id="tspan2289"
+       x="500.48001"
+       y="337.91998"
+       style="font-size:50px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;font-family:Bitstream Vera Sans">?</tspan></text>
+</svg>

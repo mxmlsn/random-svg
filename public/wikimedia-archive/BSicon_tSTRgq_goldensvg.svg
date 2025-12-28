@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
+ <title>tSTRgq golden</title>
+ <path stroke="#D7C447" d="m 525,220 H 0 m 525,60 H 0" stroke-width="40" stroke-dasharray="50"/>
+ <path fill="#D7C447" d="m 200,100 50,-50 50,0 -50,50 50,50 -50,0"/>
+</svg>

@@ -1,0 +1,1478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1"
+	 id="Layer_1" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="1152 -378 2916 1548"
+	 enable-background="new 1152 -378 2916 1548" xml:space="preserve">
+<v:documentProperties  v:viewMarkup="false" v:langID="1033">
+	<v:userDefs>
+		<v:ud  v:val="VT0(1):26" v:nameU="msvNoAutoConnect"></v:ud>
+	</v:userDefs>
+</v:documentProperties>
+<g>
+	<title>Page-1</title>
+	<v:pageProperties  v:shadowOffsetY="-9" v:shadowOffsetX="9" v:drawingUnits="19" v:pageScale="1" v:drawingScale="1">
+		</v:pageProperties>
+	<v:layer  v:index="0" v:name="Connector"></v:layer>
+	<g id="shape1-1" transform="translate(665.591,-1012.02)">
+		<title>Sheet.1</title>
+		<desc>Division 1 (HQ at L-20)</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="103.389" cy="1496.31" cx="62.8968" width="125.8"></v:textRect>
+		
+			<rect x="1152" y="1066.6" fill="#FFC000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="125.8" height="103.4"/>
+		<text transform="matrix(1 0 0 1 1168.75 1111.71)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Division 1</text>
+		<text transform="matrix(1 0 0 1 1156.86 1138.1101)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">(</text>
+		<text transform="matrix(1 0 0 1 1164.1863 1138.1101)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">HQ at L-20)</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+		<v:newlineChar></v:newlineChar>
+	</g>
+	<g id="shape2-5" transform="translate(153.791,-813.778)">
+		<title>Sheet.2</title>
+		<desc>Battalion 1 (HQ at E-7)</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="103.389" cy="1496.31" cx="62.8968" width="125.8"></v:textRect>
+		
+			<rect x="1152" y="1066.6" fill="#FFC000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="125.8" height="103.4"/>
+		<text transform="matrix(1 0 0 1 1166.3199 1111.71)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Battalion 1</text>
+		<text transform="matrix(1 0 0 1 1162.36 1138.1101)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">(</text>
+		<text transform="matrix(1 0 0 1 1169.6862 1138.1101)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">HQ at E-7)</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+		<v:newlineChar></v:newlineChar>
+	</g>
+	<g id="shape3-9" transform="translate(444.049,-816.293)">
+		<title>Sheet.3</title>
+		<desc>Battalion 2 (HQ at E-24)</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="103.389" cy="1496.31" cx="62.8968" width="125.8"></v:textRect>
+		
+			<rect x="1152" y="1066.6" fill="#FFC000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="125.8" height="103.4"/>
+		<text transform="matrix(1 0 0 1 1166.3201 1111.71)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Battalion 2 </text>
+		<text transform="matrix(1 0 0 1 1156.86 1138.1101)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">(</text>
+		<text transform="matrix(1 0 0 1 1164.1863 1138.1101)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">HQ at E-24)</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+		<v:newlineChar></v:newlineChar>
+	</g>
+	<g id="shape4-13" transform="translate(665.591,-816.293)">
+		<title>Sheet.4</title>
+		<desc>Battalion 4 (HQ at E-15)</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="103.389" cy="1496.31" cx="62.8968" width="125.8"></v:textRect>
+		
+			<rect x="1152" y="1066.6" fill="#FFC000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="125.8" height="103.4"/>
+		<text transform="matrix(1 0 0 1 1166.3201 1111.71)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Battalion 4 </text>
+		<text transform="matrix(1 0 0 1 1156.86 1138.1101)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">(</text>
+		<text transform="matrix(1 0 0 1 1164.1863 1138.1101)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">HQ at E-15)</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+		<v:newlineChar></v:newlineChar>
+	</g>
+	<g id="shape5-17" transform="translate(919.985,-816.293)">
+		<title>Sheet.5</title>
+		<desc>Battalion 6 (HQ at L-3)</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="103.389" cy="1496.31" cx="62.8968" width="125.8"></v:textRect>
+		
+			<rect x="1152" y="1066.6" fill="#FFC000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="125.8" height="103.4"/>
+		<text transform="matrix(1 0 0 1 1166.3201 1111.71)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Battalion 6</text>
+		<text transform="matrix(1 0 0 1 1162.36 1138.1101)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">(</text>
+		<text transform="matrix(1 0 0 1 1169.6863 1138.1101)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">HQ at L-3)</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+		<v:newlineChar></v:newlineChar>
+	</g>
+	<g id="shape6-21" transform="translate(1146.62,-816.293)">
+		<title>Sheet.6</title>
+		<desc>Battalion 7 (HQ at E-3)</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="103.389" cy="1496.31" cx="62.8968" width="125.8"></v:textRect>
+		
+			<rect x="1152" y="1066.6" fill="#FFC000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="125.8" height="103.4"/>
+		<text transform="matrix(1 0 0 1 1166.3199 1111.71)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Battalion 7 </text>
+		<text transform="matrix(1 0 0 1 1162.36 1138.1101)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">(</text>
+		<text transform="matrix(1 0 0 1 1169.6862 1138.1101)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">HQ at E-3)</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+		<v:newlineChar></v:newlineChar>
+	</g>
+	<g id="shape12-25" transform="translate(719.488,-1012.02)">
+		<title>Dynamic connector.12</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1161,1170v92.3"/>
+	</g>
+	<g id="shape20-28" transform="translate(184.009,-688.235)">
+		<title>Sheet.20</title>
+		<desc>Engine 4</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.61 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1184.27 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">4</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape22-32" transform="translate(274.664,-688.235)">
+		<title>Sheet.22</title>
+		<desc>Tower 15</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1161.0601 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Tower </text>
+		<text transform="matrix(1 0 0 1 1178.77 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">15</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape23-36" transform="translate(184.009,-562.691)">
+		<title>Sheet.23</title>
+		<desc>Engine 6</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.61 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1184.27 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">6</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape24-40" transform="translate(184.009,-437.147)">
+		<title>Sheet.24</title>
+		<desc>Engine 7</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.61 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1184.27 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">7</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape27-44" transform="translate(274.664,-437.147)">
+		<title>Sheet.27</title>
+		<desc>Tower 1*</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1161.0601 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Tower </text>
+		<text transform="matrix(1 0 0 1 1178.77 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">1</text>
+		<text transform="matrix(1 0 0 1 1189.7701 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">*</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape31-48" transform="translate(184.009,-311.604)">
+		<title>Sheet.31</title>
+		<desc>Engine 10</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.61 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1178.77 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">10</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape35-52" transform="translate(274.664,-311.604)">
+		<title>Sheet.35</title>
+		<desc>Engine 10</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.61 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1178.77 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">10</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape37-56" transform="translate(159.9,-813.778)">
+		<title>Dynamic connector.37</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1161,1170v480"/>
+	</g>
+	<g id="shape38-59" transform="translate(185.455,-324.758)">
+		<title>Dynamic connector.38</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1150.6,1161h-15.1"/>
+	</g>
+	<g id="shape39-62" transform="translate(185.455,-442.917)">
+		<title>Dynamic connector.39</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1150.6,1161h-15.1"/>
+	</g>
+	<g id="shape40-65" transform="translate(185.455,-590.616)">
+		<title>Dynamic connector.40</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1150.6,1161h-15.1"/>
+	</g>
+	<g id="shape41-68" transform="translate(185.455,-708.774)">
+		<title>Dynamic connector.41</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1150.6,1161h-15.1"/>
+	</g>
+	<g id="shape43-71" transform="translate(276.109,-472.457)">
+		<title>Dynamic connector.43</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1150.6,1161h-15.1"/>
+	</g>
+	<g id="shape44-74" transform="translate(276.109,-723.544)">
+		<title>Dynamic connector.44</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1150.6,1161h-15.1"/>
+	</g>
+	<g id="shape45-77" transform="translate(276.109,-346.913)">
+		<title>Dynamic connector.45</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1150.6,1161h-15.1"/>
+	</g>
+	<g id="shape47-80" transform="translate(469.173,-682.175)">
+		<title>Sheet.47</title>
+		<desc>Engine 24</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.61 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1178.77 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">24</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape51-84" transform="translate(559.827,-682.175)">
+		<title>Sheet.51</title>
+		<desc>Ladder 5</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.63 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Ladder </text>
+		<text transform="matrix(1 0 0 1 1184.27 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">5</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape54-88" transform="translate(469.173,-556.631)">
+		<title>Sheet.54</title>
+		<desc>Engine 55</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.61 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1178.77 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">55</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape58-92" transform="translate(469.173,-431.087)">
+		<title>Sheet.58</title>
+		<desc>Squad 18</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" fill="#FFFF00" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1162.27 1119.09)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Squad </text>
+		<text transform="matrix(1 0 0 1 1178.77 1145.4901)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">18</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape59-96" transform="translate(469.173,-305.544)">
+		<title>Sheet.59</title>
+		<desc>Ladder 8</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.63 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Ladder </text>
+		<text transform="matrix(1 0 0 1 1184.27 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">8</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape60-100" transform="translate(469.173,-180)">
+		<title>Sheet.60</title>
+		<desc>Ladder 20</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.63 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Ladder </text>
+		<text transform="matrix(1 0 0 1 1178.77 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">20</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape61-104" transform="translate(436.279,-867.987)">
+		<title>Dynamic connector.61</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1159.8,1170h-13.5v658.4h16"/>
+	</g>
+	<g id="shape62-107" transform="translate(469.173,-200.54)">
+		<title>Dynamic connector.62</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-22.7"/>
+	</g>
+	<g id="shape63-110" transform="translate(469.173,-346.323)">
+		<title>Dynamic connector.63</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-38.8"/>
+	</g>
+	<g id="shape64-113" transform="translate(469.173,-462.943)">
+		<title>Dynamic connector.64</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-38.8"/>
+	</g>
+	<g id="shape65-116" transform="translate(469.173,-579.564)">
+		<title>Dynamic connector.65</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-38.8"/>
+	</g>
+	<g id="shape66-119" transform="translate(469.173,-709.142)">
+		<title>Dynamic connector.66</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-38.8"/>
+	</g>
+	<g id="shape67-122" transform="translate(561.273,-717.484)">
+		<title>Dynamic connector.67</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1150.6,1161h-15.1"/>
+	</g>
+	<g id="shape68-125" transform="translate(695.809,-682.175)">
+		<title>Sheet.68</title>
+		<desc>Engine 9</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.61 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1184.27 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">9</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape70-129" transform="translate(794.018,-682.175)">
+		<title>Sheet.70</title>
+		<desc>Ladder 6</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.63 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Ladder </text>
+		<text transform="matrix(1 0 0 1 1184.27 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">6</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape72-133" transform="translate(695.809,-556.631)">
+		<title>Sheet.72</title>
+		<desc>Engine 15</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.61 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1178.77 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">15</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape74-137" transform="translate(794.018,-556.631)">
+		<title>Sheet.74</title>
+		<desc>Tower 18</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1161.0601 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Tower </text>
+		<text transform="matrix(1 0 0 1 1178.77 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">18</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape76-141" transform="translate(695.809,-431.087)">
+		<title>Sheet.76</title>
+		<desc>Engine 28</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.61 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1178.77 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">28</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape78-145" transform="translate(794.018,-431.087)">
+		<title>Sheet.78</title>
+		<desc>Ladder 11</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.63 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Ladder </text>
+		<text transform="matrix(1 0 0 1 1178.77 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">11</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape79-149" transform="translate(660.368,-867.987)">
+		<title>Dynamic connector.79</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1157.2,1170h-13.5v392.6h21.1"/>
+	</g>
+	<g id="shape80-152" transform="translate(695.809,-466.397)">
+		<title>Dynamic connector.80</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-22.7"/>
+	</g>
+	<g id="shape81-155" transform="translate(794.018,-466.397)">
+		<title>Dynamic connector.81</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-22.7"/>
+	</g>
+	<g id="shape82-158" transform="translate(794.018,-591.94)">
+		<title>Dynamic connector.82</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-22.7"/>
+	</g>
+	<g id="shape83-161" transform="translate(794.018,-717.484)">
+		<title>Dynamic connector.83</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-22.7"/>
+	</g>
+	<g id="shape84-164" transform="translate(695.809,-579.564)">
+		<title>Dynamic connector.84</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-38.8"/>
+	</g>
+	<g id="shape86-167" transform="translate(695.809,-696.184)">
+		<title>Dynamic connector.86</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-38.8"/>
+	</g>
+	<g id="shape87-170" transform="translate(945.109,-682.175)">
+		<title>Sheet.87</title>
+		<desc>Engine 5</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.61 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1184.27 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">5</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape89-174" transform="translate(945.109,-556.631)">
+		<title>Sheet.89</title>
+		<desc>Engine 14</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.61 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1178.77 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">14</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape93-178" transform="translate(945.109,-431.087)">
+		<title>Sheet.93</title>
+		<desc>Engine 33</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.61 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1178.77 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">33</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape94-182" transform="translate(1043.32,-431.087)">
+		<title>Sheet.94</title>
+		<desc>Tower 9</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1161.0601 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Tower </text>
+		<text transform="matrix(1 0 0 1 1184.27 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">9</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape96-186" transform="translate(945.109,-305.544)">
+		<title>Sheet.96</title>
+		<desc>Ladder 3</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.63 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Ladder </text>
+		<text transform="matrix(1 0 0 1 1184.27 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">3</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape98-190" transform="translate(915.993,-867.987)">
+		<title>Dynamic connector.98</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1156,1170h-6.8v540.3h16.8"/>
+	</g>
+	<g id="shape99-193" transform="translate(946.555,-318.698)">
+		<title>Dynamic connector.99</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1150.6,1161h-15.1"/>
+	</g>
+	<g id="shape100-196" transform="translate(946.555,-466.397)">
+		<title>Dynamic connector.100</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1150.6,1161h-15.1"/>
+	</g>
+	<g id="shape101-199" transform="translate(1043.32,-466.397)">
+		<title>Dynamic connector.101</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-22.7"/>
+	</g>
+	<g id="shape102-202" transform="translate(946.555,-584.556)">
+		<title>Dynamic connector.102</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1150.6,1161h-15.1"/>
+	</g>
+	<g id="shape103-205" transform="translate(946.555,-702.714)">
+		<title>Dynamic connector.103</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1150.6,1161h-15.1"/>
+	</g>
+	<g id="shape106-208" transform="translate(1171.75,-682.175)">
+		<title>Sheet.106</title>
+		<desc>Engine 1</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.61 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1184.27 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">1</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape107-212" transform="translate(1269.95,-682.175)">
+		<title>Sheet.107</title>
+		<desc>Ladder 24</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.63 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Ladder </text>
+		<text transform="matrix(1 0 0 1 1178.77 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">24</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape108-216" transform="translate(1171.75,-556.631)">
+		<title>Sheet.108</title>
+		<desc>Engine 3</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.61 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1184.27 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">3</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape109-220" transform="translate(1269.95,-556.631)">
+		<title>Sheet.109</title>
+		<desc>Tower 12</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1161.0601 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Tower </text>
+		<text transform="matrix(1 0 0 1 1178.77 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">12</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape110-224" transform="translate(1171.75,-431.087)">
+		<title>Sheet.110</title>
+		<desc>Engine 26</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.61 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1178.77 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">26</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape111-228" transform="translate(1171.75,-305.544)">
+		<title>Sheet.111</title>
+		<desc>Engine 34</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1158.61 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1178.77 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">34</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape112-232" transform="translate(1269.95,-305.544)">
+		<title>Sheet.112</title>
+		<desc>Tower 21</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="88.619" cy="1503.69" cx="37.7727" width="75.55"></v:textRect>
+		
+			<rect x="1152" y="1081.4" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="75.5" height="88.6"/>
+		<text transform="matrix(1 0 0 1 1161.0601 1119.09)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Tower </text>
+		<text transform="matrix(1 0 0 1 1178.77 1145.4901)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">21</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape113-236" transform="translate(1142.63,-867.987)">
+		<title>Dynamic connector.113</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1156,1170h-6.8v510.8h16.8"/>
+	</g>
+	<g id="shape114-239" transform="translate(1173.19,-348.238)">
+		<title>Dynamic connector.114</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1150.6,1161h-15.1"/>
+	</g>
+	<g id="shape115-242" transform="translate(1269.95,-340.853)">
+		<title>Dynamic connector.115</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-22.7"/>
+	</g>
+	<g id="shape116-245" transform="translate(1173.19,-466.397)">
+		<title>Dynamic connector.116</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1150.6,1161h-15.1"/>
+	</g>
+	<g id="shape117-248" transform="translate(1269.95,-591.94)">
+		<title>Dynamic connector.117</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-22.7"/>
+	</g>
+	<g id="shape118-251" transform="translate(1173.19,-584.556)">
+		<title>Dynamic connector.118</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1150.6,1161h-15.1"/>
+	</g>
+	<g id="shape119-254" transform="translate(1269.95,-717.484)">
+		<title>Dynamic connector.119</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-22.7"/>
+	</g>
+	<g id="shape120-257" transform="translate(1173.19,-702.714)">
+		<title>Dynamic connector.120</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1150.6,1161h-15.1"/>
+	</g>
+	<g id="shape124-260" transform="translate(2044.26,-1020.5)">
+		<title>Sheet.124</title>
+		<desc>Division 3 (HQ at L-25)</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="94.9118" cy="1500.54" cx="66.1397" width="132.28"></v:textRect>
+		
+			<rect x="1152" y="1075.1" fill="#FFC000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="132.3" height="94.9"/>
+		<text transform="matrix(1 0 0 1 1172 1115.9399)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Division 3 </text>
+		<text transform="matrix(1 0 0 1 1160.1001 1142.3401)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">(</text>
+		<text transform="matrix(1 0 0 1 1167.4263 1142.3401)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">HQ at L-25)</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+		<v:newlineChar></v:newlineChar>
+	</g>
+	<g id="shape125-264" transform="translate(1455.17,-814.941)">
+		<title>Sheet.125</title>
+		<desc>Battalion 8 (HQ at E-8)</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="104.741" cy="1495.63" cx="66.1397" width="132.28"></v:textRect>
+		
+			<rect x="1152" y="1065.3" fill="#FFC000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="132.3" height="104.7"/>
+		<text transform="matrix(1 0 0 1 1169.5601 1111.03)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Battalion 8</text>
+		<text transform="matrix(1 0 0 1 1165.6 1137.4302)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">(</text>
+		<text transform="matrix(1 0 0 1 1172.9261 1137.4302)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">HQ at E-8)</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+		<v:newlineChar></v:newlineChar>
+	</g>
+	<g id="shape126-268" transform="translate(1719.73,-814.941)">
+		<title>Sheet.126</title>
+		<desc>Battalion 9 (HQ at E-54)</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="104.741" cy="1495.63" cx="66.1397" width="132.28"></v:textRect>
+		
+			<rect x="1152" y="1065.3" fill="#FFC000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="132.3" height="104.7"/>
+		<text transform="matrix(1 0 0 1 1169.5601 1111.03)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Battalion 9 </text>
+		<text transform="matrix(1 0 0 1 1160.1 1137.4302)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">(</text>
+		<text transform="matrix(1 0 0 1 1167.4261 1137.4302)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">HQ at E-54)</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+		<v:newlineChar></v:newlineChar>
+	</g>
+	<g id="shape127-272" transform="translate(2044.26,-814.941)">
+		<title>Sheet.127</title>
+		<desc>Battalion 10 (HQ at E-22)</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="104.741" cy="1495.63" cx="66.1397" width="132.28"></v:textRect>
+		
+			<rect x="1152" y="1065.3" fill="#FFC000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="132.3" height="104.7"/>
+		<text transform="matrix(1 0 0 1 1164.0601 1111.03)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Battalion 10</text>
+		<text transform="matrix(1 0 0 1 1160.1001 1137.4302)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">(</text>
+		<text transform="matrix(1 0 0 1 1167.4263 1137.4302)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">HQ at E-22)</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+		<v:newlineChar></v:newlineChar>
+	</g>
+	<g id="shape128-276" transform="translate(2331.42,-817.284)">
+		<title>Sheet.128</title>
+		<desc>Battalion 11 (HQ at E-76)</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="104.741" cy="1495.63" cx="66.1397" width="132.28"></v:textRect>
+		
+			<rect x="1152" y="1065.3" fill="#FFC000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="132.3" height="104.7"/>
+		<text transform="matrix(1 0 0 1 1164.0601 1111.03)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Battalion 11</text>
+		<text transform="matrix(1 0 0 1 1160.1001 1137.4302)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">(</text>
+		<text transform="matrix(1 0 0 1 1167.4263 1137.4302)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">HQ at E-76)</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+		<v:newlineChar></v:newlineChar>
+	</g>
+	<g id="shape129-280" transform="translate(2612.51,-817.284)">
+		<title>Sheet.129</title>
+		<desc>Battalion 12 (HQ at E-35)</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="104.741" cy="1495.63" cx="66.1397" width="132.28"></v:textRect>
+		
+			<rect x="1152" y="1065.3" fill="#FFC000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="132.3" height="104.7"/>
+		<text transform="matrix(1 0 0 1 1164.0601 1111.03)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Battalion 12</text>
+		<text transform="matrix(1 0 0 1 1160.1001 1137.4302)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">(</text>
+		<text transform="matrix(1 0 0 1 1167.4263 1137.4302)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">HQ at E-35)</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+		<v:newlineChar></v:newlineChar>
+	</g>
+	<g id="shape130-284" transform="translate(2101.4,-1020.5)">
+		<title>Dynamic connector.130</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1161,1170v100.8"/>
+	</g>
+	<g id="shape135-287" transform="translate(1504.78,-684.015)">
+		<title>Sheet.135</title>
+		<desc>Engine 8</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1801 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1187.84 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">8</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape136-291" transform="translate(1603.99,-684.015)">
+		<title>Sheet.136</title>
+		<desc>Ladder 2</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1899 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Ladder </text>
+		<text transform="matrix(1 0 0 1 1187.84 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">2</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape137-295" transform="translate(1529.12,-615.643)">
+		<title>Sheet.137</title>
+		<rect x="1152" y="1111.8" fill="none" width="279.3" height="58.2"/>
+	</g>
+	<g id="shape138-297" transform="translate(1504.78,-553.089)">
+		<title>Sheet.138</title>
+		<desc>Engine 16</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1801 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1182.34 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">16</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape139-301" transform="translate(1603.99,-553.089)">
+		<title>Sheet.139</title>
+		<desc>Tower 7*</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1164.63 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Tower </text>
+		<text transform="matrix(1 0 0 1 1182.34 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">7</text>
+		<text transform="matrix(1 0 0 1 1193.3401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">*</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape140-305" transform="translate(1504.78,-432.346)">
+		<title>Sheet.140</title>
+		<desc>Engine21</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1156.6801 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine2</text>
+		<text transform="matrix(1 0 0 1 1187.84 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">1</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape141-309" transform="translate(1504.78,-311.604)">
+		<title>Sheet.141</title>
+		<desc>Engine 65</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1801 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1182.34 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">65</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape142-313" transform="translate(1462.71,-814.941)">
+		<title>Dynamic connector.26</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1161,1170v471.3"/>
+	</g>
+	<g id="shape143-316" transform="translate(1504.78,-334.608)">
+		<title>Dynamic connector.27</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape144-319" transform="translate(1504.78,-465.534)">
+		<title>Dynamic connector.28</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape145-322" transform="translate(1504.78,-596.46)">
+		<title>Dynamic connector.29</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape146-325" transform="translate(1504.78,-727.385)">
+		<title>Dynamic connector.30</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape147-328" transform="translate(1604.72,-589.913)">
+		<title>Dynamic connector.31</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1151.3,1161h-16.5"/>
+	</g>
+	<g id="shape148-331" transform="translate(1604.72,-720.839)">
+		<title>Dynamic connector.32</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1151.3,1161h-16.5"/>
+	</g>
+	<g id="shape149-334" transform="translate(1769.34,-684.015)">
+		<title>Sheet.149</title>
+		<desc>Engine 23</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1801 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1182.34 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">23</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape150-338" transform="translate(1769.34,-553.089)">
+		<title>Sheet.150</title>
+		<desc>Engine 40</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1801 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1182.34 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">40</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape151-342" transform="translate(1868.55,-553.089)">
+		<title>Sheet.151</title>
+		<desc>Tower 35</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1164.63 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Tower </text>
+		<text transform="matrix(1 0 0 1 1182.34 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">35</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape152-346" transform="translate(1769.34,-432.346)">
+		<title>Sheet.152</title>
+		<desc>Engine 54</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1801 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1182.34 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">54</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape153-350" transform="translate(1868.55,-432.346)">
+		<title>Sheet.153</title>
+		<desc>Ladder 4</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1899 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Ladder </text>
+		<text transform="matrix(1 0 0 1 1187.84 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">4</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape154-354" transform="translate(1769.34,-311.604)">
+		<title>Sheet.154</title>
+		<desc>Rescue 1</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" fill="#0070C0" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1161.5699 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Rescue </text>
+		<text transform="matrix(1 0 0 1 1187.84 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">1</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape155-358" transform="translate(1727.27,-814.941)">
+		<title>Dynamic connector.155</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1161,1170v471.3"/>
+	</g>
+	<g id="shape156-361" transform="translate(1769.34,-334.608)">
+		<title>Dynamic connector.156</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape157-364" transform="translate(1769.34,-465.534)">
+		<title>Dynamic connector.157</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape158-367" transform="translate(1769.34,-596.46)">
+		<title>Dynamic connector.158</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape159-370" transform="translate(1769.34,-727.385)">
+		<title>Dynamic connector.159</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape160-373" transform="translate(1869.28,-589.913)">
+		<title>Dynamic connector.160</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1151.3,1161h-16.5"/>
+	</g>
+	<g id="shape161-376" transform="translate(1869.28,-469.17)">
+		<title>Dynamic connector.161</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1151.3,1161h-16.5"/>
+	</g>
+	<g id="shape162-379" transform="translate(2093.86,-684.015)">
+		<title>Sheet.162</title>
+		<desc>Engine 22</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1799 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1182.3401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">22</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape163-383" transform="translate(2193.07,-684.015)">
+		<title>Sheet.163</title>
+		<desc>Tower 13</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1164.6299 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Tower </text>
+		<text transform="matrix(1 0 0 1 1182.3401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">13</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape164-387" transform="translate(2093.86,-553.089)">
+		<title>Sheet.164</title>
+		<desc>Engine 39</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1799 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1182.3401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">39</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape165-391" transform="translate(2193.07,-553.089)">
+		<title>Sheet.165</title>
+		<desc>Ladder 16</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1899 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Ladder </text>
+		<text transform="matrix(1 0 0 1 1182.3401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">16</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape166-395" transform="translate(2093.86,-432.346)">
+		<title>Sheet.166</title>
+		<desc>Engine 44</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1799 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1182.3401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">44</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape167-399" transform="translate(2093.86,-311.604)">
+		<title>Sheet.167</title>
+		<desc>Engine 53</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1799 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1182.3401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">53</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape168-403" transform="translate(2193.07,-311.604)">
+		<title>Sheet.168</title>
+		<desc>Ladder 43</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1899 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Ladder </text>
+		<text transform="matrix(1 0 0 1 1182.3401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">43</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape169-407" transform="translate(2051.79,-814.941)">
+		<title>Dynamic connector.54</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1161,1170v471.3"/>
+	</g>
+	<g id="shape170-410" transform="translate(2093.86,-334.608)">
+		<title>Dynamic connector.55</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape171-413" transform="translate(2193.8,-348.428)">
+		<title>Dynamic connector.56</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1151.3,1161h-16.5"/>
+	</g>
+	<g id="shape172-416" transform="translate(2093.86,-465.534)">
+		<title>Dynamic connector.57</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape173-419" transform="translate(2193.8,-589.913)">
+		<title>Dynamic connector.58</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1151.3,1161h-16.5"/>
+	</g>
+	<g id="shape174-422" transform="translate(2093.86,-596.46)">
+		<title>Dynamic connector.59</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape175-425" transform="translate(2193.8,-720.839)">
+		<title>Dynamic connector.60</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1151.3,1161h-16.5"/>
+	</g>
+	<g id="shape176-428" transform="translate(2093.86,-727.385)">
+		<title>Dynamic connector.176</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape177-431" transform="translate(2381.02,-686.358)">
+		<title>Sheet.177</title>
+		<desc>Engine 37</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1799 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1182.3401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">37</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape178-435" transform="translate(2480.23,-686.358)">
+		<title>Sheet.178</title>
+		<desc>Ladder 40</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1899 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Ladder </text>
+		<text transform="matrix(1 0 0 1 1182.3401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">40</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape179-439" transform="translate(2381.02,-555.432)">
+		<title>Sheet.179</title>
+		<desc>Engine 47</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1799 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1182.3401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">47</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape180-443" transform="translate(2381.02,-424.506)">
+		<title>Sheet.180</title>
+		<desc>Engine74</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1156.6799 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine7</text>
+		<text transform="matrix(1 0 0 1 1187.8401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">4</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape181-447" transform="translate(2381.02,-313.946)">
+		<title>Sheet.181</title>
+		<desc>Engine 76</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1799 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1182.3401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">76</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape182-451" transform="translate(2480.23,-313.946)">
+		<title>Sheet.182</title>
+		<desc>Tower 22</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1164.6299 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Tower </text>
+		<text transform="matrix(1 0 0 1 1182.3401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">22</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape183-455" transform="translate(2381.02,-203.387)">
+		<title>Sheet.183</title>
+		<desc>Ladder 25</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1899 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Ladder </text>
+		<text transform="matrix(1 0 0 1 1182.3401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">25</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape184-459" transform="translate(2480.96,-350.77)">
+		<title>Dynamic connector.69</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1151.3,1161h-16.5"/>
+	</g>
+	<g id="shape185-462" transform="translate(2480.96,-723.182)">
+		<title>Dynamic connector.70</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1151.3,1161h-16.5"/>
+	</g>
+	<g id="shape186-465" transform="translate(2338.95,-817.284)">
+		<title>Dynamic connector.71</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1161,1170v576.1"/>
+	</g>
+	<g id="shape187-468" transform="translate(2381.02,-232.21)">
+		<title>Dynamic connector.72</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape188-471" transform="translate(2381.02,-336.95)">
+		<title>Dynamic connector.73</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape189-474" transform="translate(2381.02,-467.876)">
+		<title>Dynamic connector.74</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape190-477" transform="translate(2381.02,-598.802)">
+		<title>Dynamic connector.75</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape191-480" transform="translate(2381.02,-729.728)">
+		<title>Dynamic connector.76</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape192-483" transform="translate(2662.12,-686.358)">
+		<title>Sheet.192</title>
+		<desc>Engine 35</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1799 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1182.3401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">35</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape193-487" transform="translate(2761.33,-686.358)">
+		<title>Sheet.193</title>
+		<desc>Tower 14*</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1164.6299 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Tower </text>
+		<text transform="matrix(1 0 0 1 1176.8401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">14</text>
+		<text transform="matrix(1 0 0 1 1198.8401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">*</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape194-491" transform="translate(2662.12,-555.432)">
+		<title>Sheet.194</title>
+		<desc>Engine 58</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1799 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1182.3401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">58</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape195-495" transform="translate(2761.33,-555.432)">
+		<title>Sheet.195</title>
+		<desc>Ladder 26</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" fill="#FF0000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1899 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Ladder </text>
+		<text transform="matrix(1 0 0 1 1182.3401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">26</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape196-499" transform="translate(2662.12,-424.506)">
+		<title>Sheet.196</title>
+		<desc>Engine 91</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="91.6481" cy="1502.18" cx="41.3373" width="82.68"></v:textRect>
+		
+			<rect x="1152" y="1078.3" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="82.7" height="91.6"/>
+		<text transform="matrix(1 0 0 1 1162.1799 1117.58)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Engine </text>
+		<text transform="matrix(1 0 0 1 1182.3401 1143.9801)" fill="#FFFFFF" font-family="'TimesNewRomanPSMT'" font-size="22.0001">91</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape197-503" transform="translate(2620.05,-817.284)">
+		<title>Dynamic connector.197</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1161,1170v340.4"/>
+	</g>
+	<g id="shape198-506" transform="translate(2662.12,-467.876)">
+		<title>Dynamic connector.198</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape199-509" transform="translate(2662.12,-598.802)">
+		<title>Dynamic connector.199</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape200-512" transform="translate(2662.12,-729.728)">
+		<title>Dynamic connector.85</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161h-33.1"/>
+	</g>
+	<g id="shape201-515" transform="translate(2762.06,-723.182)">
+		<title>Dynamic connector.201</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1151.3,1161h-16.5"/>
+	</g>
+	<g id="shape202-518" transform="translate(2762.06,-592.256)">
+		<title>Dynamic connector.87</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1151.3,1161h-16.5"/>
+	</g>
+	<g id="shape203-521" transform="translate(1521.31,-919.682)">
+		<title>Dynamic connector.203</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1170v-148.3h522.9"/>
+	</g>
+	<g id="shape205-524" transform="translate(2678.65,-922.024)">
+		<title>Dynamic connector.205</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1170v-145.9H649.9"/>
+	</g>
+	<g id="shape206-527" transform="translate(1773,-919.682)">
+		<title>Dynamic connector</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1161,1170v-150.6"/>
+	</g>
+	<g id="shape207-530" transform="translate(2385,-922.024)">
+		<title>Dynamic connector.207</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1161,1170v-145.9"/>
+	</g>
+	<g id="shape208-533" transform="translate(791.384,-1069.48)">
+		<title>Dynamic connector.208</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1170h418.1v149.8"/>
+	</g>
+	<g id="shape209-536" transform="translate(981,-919.682)">
+		<title>Dynamic connector.209</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1161,1170v-149.8"/>
+	</g>
+	<g id="shape213-539" transform="translate(665.591,-1060.48)">
+		<title>Dynamic connector.213</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1161H702.4"/>
+	</g>
+	<g id="shape214-542" transform="translate(207,-917.167)">
+		<title>Dynamic connector.214</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1161,1170v-152.3"/>
+	</g>
+	<g id="shape215-545" transform="translate(495,-919.682)">
+		<title>Dynamic connector.215</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1161,1170v-149.8"/>
+	</g>
+	<g id="shape218-548" transform="translate(1278,-1315.35)">
+		<title>Sheet.218</title>
+		<desc>Manhattan Borough Command (HQ at E-7)</desc>
+		<v:textBlock  v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  height="144.545" cy="1475.73" cx="109.727" width="219.46"></v:textRect>
+		
+			<rect x="1152" y="1025.5" fill="#FFC000" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" width="219.5" height="144.5"/>
+		<text transform="matrix(1 0 0 1 1173.4399 1077.9301)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Manhattan Borough </text>
+		<text transform="matrix(1 0 0 1 1215.9 1104.3302)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">Command</text>
+		<text transform="matrix(1 0 0 1 1209.1899 1130.7302)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">(</text>
+		<text transform="matrix(1 0 0 1 1216.5162 1130.7302)" font-family="'TimesNewRomanPSMT'" font-size="22.0001">HQ at E-7)</text>
+		<v:paragraph  v:horizAlign="1"></v:paragraph>
+		<v:tabList></v:tabList>
+	</g>
+	<g id="shape220-553" transform="translate(728.488,-1115.41)">
+		<title>Dynamic connector.220</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1170v-114.8h657.5"/>
+	</g>
+	<g id="shape222-556" transform="translate(2110.4,-1115.41)">
+		<title>Dynamic connector.222</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1152,1170v-114.8H427.6"/>
+	</g>
+	<g id="shape223-559" transform="translate(1377,-1315.35)">
+		<title>Dynamic connector.223</title>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M1161,1170v85.1"/>
+	</g>
+</g>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="2308.6" y1="694.6" x2="2291.9" y2="694.6"/>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="2308.6" y1="576.4" x2="2291.9" y2="576.4"/>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="2291.9" y1="477" x2="2291.9" y2="458.3"/>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="2298.6" y1="458.3" x2="2291.9" y2="458.3"/>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="2298.6" y1="458.3" x2="2308.6" y2="458.3"/>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="2082" y1="458.3" x2="2065.2" y2="458.3"/>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="2082" y1="576.4" x2="2065.2" y2="576.4"/>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="2082" y1="694.6" x2="2072" y2="694.6"/>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="2072" y1="694.6" x2="2065.2" y2="694.6"/>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="1809" y1="581.4" x2="1804.1" y2="581.4"/>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="1809" y1="464.8" x2="1804.1" y2="463.3"/>
+</svg>

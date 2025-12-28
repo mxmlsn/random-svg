@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="NATO Map Symbol"
+   height="600"
+   width="600"
+   version="1.1">
+  <path
+     id="Hostile Fill"
+     style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:1.5;stroke-dasharray:none;stroke-opacity:1"
+     d="M 6.999995,300 300,7 593,300 300,593 Z" />
+  <g
+     id="ICON"
+	 transform="translate(0 100)">
+  <g
+     id="RArty">
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path2987"
+       d="m 340.00721,234.89375 a 43.552527,43.552527 0 1 1 -87.10505,0 43.552527,43.552527 0 1 1 87.10505,0 z" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path2994"
+       d="m 225.93402,209.46864 70.52067,-53.96428 70.52068,53.96428" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path2994-7"
+       d="m 225.93402,179.3008 70.52067,-53.96428 70.52068,53.96428" />
+  </g>
+  <path
+     style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:#000000;stroke-width:10"
+     d="m 215.40054,292.5 c -51.4861,0 -93.22383,-41.01389 -93.22383,-92.5 0,-51.4861 41.73773,-92.5 93.22383,-92.5 h 169.19892 c 51.4861,0 93.22383,41.0139 93.22383,92.5 0,51.48611 -41.73773,92.5 -93.22383,92.5 z"
+     id="ARMOUR" />
+  </g>
+  <path
+     id="Hostile Frame"
+     style="fill:none;stroke:#ff0000;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:1.5;stroke-dasharray:none;stroke-opacity:1"
+     d="M 7,300 300,7 593,300 300,593 Z" />
+</svg>

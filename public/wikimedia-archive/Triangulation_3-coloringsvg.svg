@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="342" height="360" viewBox="0 0 342 360"
+	 overflow="visible" enable-background="new 0 0 342 360" xml:space="preserve">
+<polygon fill="#F4F4F4" stroke="#000000" stroke-width="2" points="318.833,79.96 309.833,268.96 92.825,342.373 21.833,133.961
+	176.23,71.22 75.833,16.96 237.833,34.96 156.833,151.961 120.833,124.96 111.833,250.96 219.833,115.96 "/>
+<polyline fill="none" stroke="#000000" stroke-width="2" points="237.833,34.96 174.833,70.96 156.833,151.961 "/>
+<polyline fill="none" stroke="#000000" stroke-width="2" points="21.833,133.961 120.833,124.96 174.833,70.96 "/>
+<polyline fill="none" stroke="#000000" stroke-width="2" points="92.825,342.373 111.833,250.96 21.833,133.961 "/>
+<polyline fill="none" stroke="#000000" stroke-width="2" points="111.833,250.96 309.833,268.96 219.833,115.96 "/>
+<circle fill="#FF0000" stroke="#000000" stroke-width="2" cx="75.833" cy="16.96" r="9"/>
+<circle fill="#FF0000" stroke="#000000" stroke-width="2" cx="156.833" cy="151.961" r="9"/>
+<circle fill="#FF0000" stroke="#000000" stroke-width="2" cx="21.833" cy="133.961" r="9"/>
+<circle fill="#FF0000" stroke="#000000" stroke-width="2" cx="309.833" cy="268.96" r="9"/>
+<circle fill="#003CFF" stroke="#000000" stroke-width="2" cx="174.833" cy="70.96" r="9"/>
+<circle fill="#003CFF" stroke="#000000" stroke-width="2" cx="111.833" cy="250.96" r="9"/>
+<circle fill="#003CFF" stroke="#000000" stroke-width="2" cx="320.167" cy="81.039" r="9"/>
+<circle fill="#00FF00" stroke="#000000" stroke-width="2" cx="237.833" cy="34.96" r="9"/>
+<circle fill="#00FF00" stroke="#000000" stroke-width="2" cx="120.833" cy="124.96" r="9"/>
+<circle fill="#00FF00" stroke="#000000" stroke-width="2" cx="219.833" cy="115.96" r="9"/>
+<circle fill="#00FF00" stroke="#000000" stroke-width="2" cx="94.167" cy="343.04" r="9"/>
+<rect fill="none" width="342" height="360"/>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1600" viewBox="0 0 2400 1600">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #0768a9;
+      }
+
+      .cls-2 {
+        fill: #fc0;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        fill: #bf0811;
+      }
+    </style>
+  </defs>
+  <rect id="Rectángulo_1" data-name="Rectángulo 1" class="cls-1" x="800" width="800" height="1600"/>
+  <rect id="Rectángulo_1-2" data-name="Rectángulo 1" class="cls-2" x="1600" width="800" height="1600"/>
+  <rect id="Rectángulo_1-3" data-name="Rectángulo 1" class="cls-3" width="800" height="1600"/>
+  <rect id="Rectángulo_2" data-name="Rectángulo 2" class="cls-4" x="1168" y="406" width="64" height="788"/>
+  <rect id="Rectángulo_2-2" data-name="Rectángulo 2" class="cls-4" x="858" y="590" width="684" height="64"/>
+</svg>

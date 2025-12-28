@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   height="433.98309"
+   width="697.71667"
+   id="svg2"
+   fill-rule="evenodd"
+   preserveAspectRatio="xMidYMid"
+   viewBox="0 0 21000 29700"
+   version="1.0">
+  <metadata
+     id="metadata82">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient951">
+      <stop
+         style="stop-color:#44162c;stop-opacity:1"
+         offset="0"
+         id="stop947" />
+      <stop
+         style="stop-color:#983265;stop-opacity:1"
+         offset="1"
+         id="stop949" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient127">
+      <stop
+         id="stop123"
+         offset="0"
+         style="stop-color:#42426e;stop-opacity:1" />
+      <stop
+         id="stop125"
+         offset="1"
+         style="stop-color:#8585dc;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient76">
+      <stop
+         id="stop72"
+         offset="0"
+         style="stop-color:#9c88e2;stop-opacity:1;" />
+      <stop
+         id="stop74"
+         offset="1"
+         style="stop-color:#56568f;stop-opacity:1" />
+    </linearGradient>
+    <font
+       horiz-adv-x="2048"
+       id="EmbeddedFont_1">
+      <font-face
+         id="font-face7"
+         descent="450"
+         ascent="1852"
+         units-per-em="2048"
+         font-family="Arial embedded" />
+      <missing-glyph
+         id="missing-glyph9"
+         horiz-adv-x="2048">
+        <path
+           id="path11"
+           d="M 0,2048 L 2047,2048 2047,1 0,1 0,2048 Z"
+           style="fill:none;stroke:black;stroke-width:33" />
+      </missing-glyph>
+      <glyph
+         id="glyph13"
+         horiz-adv-x="979"
+         unicode=" " />
+      <glyph
+         id="glyph15"
+         horiz-adv-x="1112"
+         unicode="П">
+        <path
+           id="path17"
+           d="M 160,1466 L 1313,1466 1313,0 1118,0 1118,1293 354,1293 354,0 160,0 160,1466 Z" />
+      </glyph>
+      <glyph
+         id="glyph19"
+         horiz-adv-x="954"
+         unicode="а">
+        <path
+           id="path21"
+           d="M 828,131 C 761,74 697,34 636,11 574,-12 508,-24 437,-24 320,-24 231,5 168,62 105,119 74,191 74,280 74,332 86,380 110,423 133,466 164,500 203,526 241,552 284,572 332,585 367,594 421,603 492,612 637,629 744,650 813,674 814,699 814,714 814,721 814,794 797,846 763,876 717,917 649,937 558,937 473,937 411,922 371,893 330,863 300,810 281,735 281,735 281,735 105,759 121,834 147,895 184,942 221,988 274,1024 343,1049 412,1074 493,1086 584,1086 675,1086 748,1075 805,1054 862,1033 903,1006 930,974 957,941 975,900 986,851 992,820 995,765 995,685 995,685 995,685 995,445 995,278 999,172 1007,128 1014,83 1029,41 1052,0 1052,0 1052,0 864,0 845,37 833,81 828,131 Z M 813,533 C 748,506 650,484 519,465 445,454 393,442 362,429 331,416 308,396 291,371 274,345 266,316 266,285 266,237 284,197 321,165 357,133 410,117 480,117 549,117 611,132 665,163 719,193 759,234 784,287 803,328 813,388 813,467 813,467 813,467 813,533 Z" />
+      </glyph>
+      <glyph
+         id="glyph23"
+         horiz-adv-x="954"
+         unicode="е">
+        <path
+           id="path25"
+           d="M 862,342 C 862,342 862,342 1048,319 1019,210 964,126 885,66 806,6 704,-24 581,-24 426,-24 303,24 212,120 121,215 75,349 75,522 75,701 121,839 213,938 305,1037 424,1086 571,1086 713,1086 829,1038 919,941 1009,844 1054,708 1054,533 1054,522 1054,506 1053,485 1053,485 1053,485 261,485 268,368 301,279 360,217 419,155 493,124 582,124 648,124 704,141 751,176 798,211 835,266 862,342 Z M 271,633 C 271,633 271,633 864,633 856,722 833,789 796,834 739,903 664,938 573,938 490,938 421,910 365,855 308,800 277,726 271,633 Z" />
+      </glyph>
+      <glyph
+         id="glyph27"
+         horiz-adv-x="848"
+         unicode="и">
+        <path
+           id="path29"
+           d="M 135,1062 L 315,1062 315,252 814,1062 1008,1062 1008,0 828,0 828,805 329,0 135,0 135,1062 Z" />
+      </glyph>
+      <glyph
+         id="glyph31"
+         horiz-adv-x="848"
+         unicode="н">
+        <path
+           id="path33"
+           d="M 136,1062 L 316,1062 316,620 815,620 815,1062 995,1062 995,0 815,0 815,471 316,471 316,0 136,0 136,1062 Z" />
+      </glyph>
+      <glyph
+         id="glyph35"
+         horiz-adv-x="954"
+         unicode="о">
+        <path
+           id="path37"
+           d="M 68,531 C 68,728 123,873 232,968 323,1047 435,1086 566,1086 712,1086 831,1038 924,943 1017,847 1063,715 1063,546 1063,409 1043,302 1002,224 961,145 901,84 823,41 744,-2 659,-24 566,-24 417,-24 297,24 206,119 114,214 68,352 68,531 Z M 253,531 C 253,395 283,293 342,226 401,158 476,124 566,124 655,124 730,158 789,226 848,294 878,398 878,537 878,668 848,768 789,836 729,903 655,937 566,937 476,937 401,903 342,836 283,769 253,667 253,531 Z" />
+      </glyph>
+      <glyph
+         id="glyph39"
+         horiz-adv-x="822"
+         unicode="п">
+        <path
+           id="path41"
+           d="M 136,1062 L 974,1062 974,0 794,0 794,913 316,913 316,0 136,0 136,1062 Z" />
+      </glyph>
+      <glyph
+         id="glyph43"
+         horiz-adv-x="901"
+         unicode="р">
+        <path
+           id="path45"
+           d="M 135,-407 C 135,-407 135,-407 135,1062 135,1062 135,1062 299,1062 299,1062 299,1062 299,924 338,978 381,1019 430,1046 479,1073 538,1086 607,1086 698,1086 778,1063 847,1016 916,969 969,904 1004,819 1039,734 1057,640 1057,539 1057,430 1038,333 999,246 960,159 903,92 829,46 754,-1 676,-24 594,-24 534,-24 480,-11 433,14 385,39 346,71 315,110 315,110 315,110 315,-407 315,-407 315,-407 135,-407 Z M 298,525 C 298,388 326,287 381,222 436,157 503,124 582,124 662,124 731,158 788,226 845,293 873,398 873,540 873,675 845,777 790,844 734,911 667,945 590,945 513,945 446,909 387,838 328,766 298,662 298,525 Z" />
+      </glyph>
+      <glyph
+         id="glyph47"
+         horiz-adv-x="848"
+         unicode="т">
+        <path
+           id="path49"
+           d="M 38,1062 L 901,1062 901,913 559,913 559,0 380,0 380,913 38,913 38,1062 Z" />
+      </glyph>
+      <glyph
+         id="glyph51"
+         horiz-adv-x="980"
+         unicode="ц">
+        <path
+           id="path53"
+           d="M 138,1062 L 318,1062 318,148 816,148 816,1062 996,1062 996,148 1112,148 1112,-301 964,-301 964,0 138,0 138,1062 Z" />
+      </glyph>
+    </font>
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       y2="7267.8936"
+       x2="15334.89"
+       y1="20767.641"
+       x1="1375.9708"
+       id="linearGradient78"
+       xlink:href="#linearGradient76" />
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       y2="275.82834"
+       x2="372.50916"
+       y1="362.36588"
+       x1="251.65504"
+       id="linearGradient129"
+       xlink:href="#linearGradient127" />
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       y2="22614.109"
+       x2="19763.236"
+       y1="27825.258"
+       x1="23613.973"
+       id="linearGradient943"
+       xlink:href="#linearGradient951" />
+  </defs>
+  <g
+     transform="translate(-1970.6648,6950.8464)"
+     style="visibility:visible"
+     id="Domyślnie"
+     visibility="visible">
+    <desc
+       id="desc56">Master slide</desc>
+  </g>
+  <g
+     transform="translate(-1970.6648,6950.8464)"
+     style="visibility:visible"
+     id="page1"
+     visibility="visible">
+    <desc
+       id="desc59">Slide</desc>
+    <g
+       transform="translate(157.55968,1418.0371)"
+       id="g61">
+      <desc
+         id="desc63">OLE2</desc>
+      <g
+         id="g65">
+        <g
+           transform="matrix(1,0,0,1.1730704,-1336.9382,-17519.182)"
+           id="g67"
+           style="fill:#ffffff;stroke:none">
+          <path
+             id="path46-1"
+             transform="matrix(68.435846,0,0,58.339078,-10224.372,7800.2978)"
+             d="m 144.89062,153.34766 14.92188,149.8125 c -0.17355,8.24365 1.13116,16.47405 3.89062,24.54296 21.15996,60.78111 118.68781,99.53937 217.8379,86.57032 l 0.0215,-0.002 c 1.31438,-0.17206 3.97674,-0.67458 5.2793,-0.86328 L 386.22461,257.82812 384.5,153.75781 Z"
+             style="visibility:visible;opacity:0.87920006;vector-effect:none;fill:url(#linearGradient129);fill-opacity:1;stroke:none;stroke-width:4.6668067;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+          <text
+             transform="translate(-157.55968,-1418.0371)"
+             id="text2235"
+             y="8030.4595"
+             x="4484.3135"
+             style="font-style:normal;font-weight:normal;line-height:0%;font-family:'Arial Black';fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+             xml:space="preserve"><tspan
+               style="font-size:22px;line-height:1.25"
+               y="8030.4595"
+               x="4484.3135"
+               id="tspan2237">Паретто принцип</tspan></text>
+          <path
+             d="M 16224.085,22840.091 A 13718.245,6421.6118 0 0 1 -54.760429,17900.088 13718.245,6421.6118 0 0 1 10497.909,10279.697 13718.245,6421.6118 0 0 1 26777.366,15219.259 13718.245,6421.6118 0 0 1 16225.64,22839.936"
+             id="path46"
+             style="opacity:1;vector-effect:none;fill:#9c3368;fill-opacity:1;stroke:none;stroke-width:304.74789429;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+          <path
+             d="M 16207.271,22841.767 A 13718.25,6421.6123 0 0 1 1487.8336,19776.165 13718.25,6421.6123 0 0 1 3144.2885,12274.661 13718.25,6421.6123 0 0 1 18892.07,10683.255 a 13718.25,6421.6123 0 0 1 8119.923,6513.543 l -13650.602,-636.943 z"
+             id="path46-0"
+             style="visibility:visible;opacity:1;vector-effect:none;fill:url(#linearGradient78);fill-opacity:1;stroke:none;stroke-width:304.74795532;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+          <path
+             id="path46-1-7"
+             d="m 25880.84,19166.366 c -1105.455,958.811 -2015.645,1522.449 -3710.942,2257.784 -1779.425,771.826 -5962.662,1417.603 -5962.662,1417.603 l 42.238,9076.398 c 2749.508,-351.469 5191.319,-1177.867 6929.679,-2345.257 1738.36,-1167.39 2671.388,-2607.354 2647.864,-4086.512 l 1233.048,-8699.929 c 0,0 -261.443,1583.879 -1179.225,2379.913 z"
+             style="visibility:visible;opacity:0.87920006;vector-effect:none;fill:url(#linearGradient943);fill-opacity:1;stroke:none;stroke-width:294.87734985;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

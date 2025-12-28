@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   id="NATO Map Symbol"
+   height="600"
+   width="600">
+  <path
+     id="Hostile Fill"
+     style="fill:#ffffff;stroke:none"
+     d="M 7,300 300,7 593,300 300,593 Z" />
+  <g
+     id="ICON"
+	 transform="translate(0 100)">
+  <g
+     id="SpLvl"
+	 style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:butt">
+  <path
+     id="Corps"
+     d="M 483.125,90.125 445,200 483.125,309.9" />
+  </g>
+  <g
+     style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4"
+     id="Maint2">
+    <path
+       d="M 209.10077,200 H 392.41514"
+       id="Maint-0" />
+    <path
+       d="m 159.93304,152.34818 c 26.31737,0 47.65182,21.33445 47.65182,47.65182 0,26.31737 -21.33445,47.65182 -47.65182,47.65182"
+       id="Maint-1" />
+    <path
+       d="m 440.06696,152.34818 c -26.31738,0 -47.65182,21.33445 -47.65182,47.65182 0,26.31738 21.33444,47.65182 47.65182,47.65182"
+       id="Maint-2" />
+  </g>
+  <g
+     style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4"
+     id="Wheels">
+  <path
+     d="m 438.42874,289.02077 a 31.357262,31.357262 0 1 1 -62.71452,0 31.357262,31.357262 0 1 1 62.71452,0 z"
+     id="Wheel-1" />
+  <path
+     d="m 224.28578,289.03052 a 31.357262,31.357262 0 1 1 -62.71451,0 31.357262,31.357262 0 1 1 62.71451,0 z"
+     id="Wheel2" />
+  <path
+       d="M 160,257.65 H 440"
+       id="Bed" />
+  </g>
+  </g>
+  <path
+     id="Hostile Frame"
+     style="fill:none;stroke:#ff0000;stroke-width:10;stroke-linejoin:miter;stroke-miterlimit:1.5"
+     d="M 7,300 300,7 593,300 300,593 Z" />
+</svg>

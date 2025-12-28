@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   id="NATO Map Symbol"
+   height="400"
+   width="600">
+  <path
+     id="Neutral Fill"
+     style="fill:#96ff96;stroke:none"
+     d="M 105,5 H 495 V 395 H 105 Z" />
+  <path
+     id="Recce"
+     style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:butt"
+     d="M 495,5 105,395" />
+  <g
+     id="RADAR"
+	 style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4">
+    <path
+       d="M 339.85093,73.12644 321.94031,87.34267 C 309.08075,95.999383 291.02517,95.59846 278.49595,86.505965 265.86717,77.815614 259.47351,61.201493 263.0405,46.289266 265.02966,37.04098 275.45304,25.705554 278.21253,23.22177 l 6.85843,-6.173193" />
+    <path
+       d="m 267.40924,77.995382 37.5941,-31.775964 -1.34264,19.692146 34.0137,-28.643122" />
+  </g>
+  <path
+     d="m 378,200 a 78,78 0 0 1 -78,78 78,78 0 0 1 -78,-78 78,78 0 0 1 78,-78 78,78 0 0 1 78,78 z"
+     id="Arty"
+     style="fill:#000000;stroke:none" />
+   <path
+      id="ARMOUR"
+      d="m 215.40054,292.5 c -51.4861,0 -93.22383,-41.01389 -93.22383,-92.5 0,-51.4861 41.73773,-92.5 93.22383,-92.5 h 169.19892 c 51.4861,0 93.22383,41.0139 93.22383,92.5 0,51.48611 -41.73773,92.5 -93.22383,92.5 z"
+      style="fill:none;stroke:#000000;stroke-width:10" />
+    <g
+       id="Wheeled"
+	   style="fill:none;stroke:#000000;stroke-width:10">
+      <path
+         id="Wheel-L"
+         d="m 250.28578,338.88127 a 31.357262,31.357262 0 1 1 -62.71451,0 31.357262,31.357262 0 1 1 62.71451,0 z" />
+      <path
+         id="Wheel-C"
+         d="m 331.35727,338.88127 a 31.357262,31.357262 0 1 1 -62.71452,0 31.357262,31.357262 0 1 1 62.71452,0 z" />
+      <path
+         id="Wheel-R"
+         d="m 412.42874,338.88127 a 31.357262,31.357262 0 1 1 -62.71452,0 31.357262,31.357262 0 1 1 62.71452,0 z" />
+    </g>
+  <path
+     id="Neutral Frame"
+     style="fill:none;stroke:#000000;stroke-width:10;stroke-linejoin:miter;stroke-miterlimit:4"
+     d="M 105,5 H 495 V 395 H 105 Z" />
+</svg>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.0"
+   width="600"
+   height="660"
+   id="svg2"
+   sodipodi:docname="Fauconberg arms.svg"
+   inkscape:version="0.92.0 r15299">
+  <metadata
+     id="metadata5111">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     id="namedview5109"
+     showgrid="false"
+     inkscape:zoom="1.011377"
+     inkscape:cx="261.99612"
+     inkscape:cy="432.5808"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <desc
+     id="desc4">Flag of Canton of Valais (Wallis)</desc>
+  <defs
+     id="defs6">
+    <linearGradient
+       id="linearGradient2893">
+      <stop
+         style="stop-color:white;stop-opacity:0.3137255"
+         offset="0"
+         id="stop2895" />
+      <stop
+         style="stop-color:white;stop-opacity:0.25098041"
+         offset="0.19"
+         id="stop2897" />
+      <stop
+         style="stop-color:#6b6b6b;stop-opacity:0.1254902"
+         offset="0.60000002"
+         id="stop2901" />
+      <stop
+         style="stop-color:black;stop-opacity:0.1254902"
+         offset="1"
+         id="stop2899" />
+    </linearGradient>
+    <radialGradient
+       cx="221.44487"
+       cy="226.33101"
+       r="300"
+       fx="221.44487"
+       fy="226.33101"
+       id="radialGradient3163"
+       xlink:href="#linearGradient2893"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.353218,0,0,1.348928,-77.62935,-85.74693)" />
+  </defs>
+  <g
+     style="display:inline"
+     id="layer3"
+     sodipodi:insensitive="true">
+    <path
+       d="m 300,658.5 c 0,0 298.50001,-112.32031 298.50001,-397.77183 0,-285.451524 0,-258.5516935 0,-258.5516935 H 1.5 V 260.72817 C 1.5,546.17969 300,658.5 300,658.5 Z"
+       style="fill:#fcef3c;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path2855"
+       inkscape:connector-curvature="0"
+       sodipodi:insensitive="true" />
+  </g>
+  <g
+     id="layer4"
+     sodipodi:insensitive="true">
+    <path
+       d="m 1.5,218.5 v 42.21875 C 1.5,320.79127 14.717984,373.19601 35.59375,418.5 h 528.8125 C 585.28202,373.196 598.5,320.79127 598.5,260.71875 c 0,-46.61489 0,-10.78581 0,-42.21875 z"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#2b5df2;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none"
+       id="rect2792"
+       inkscape:connector-curvature="0"
+       sodipodi:insensitive="true" />
+  </g>
+  <g
+     id="layer2"
+     sodipodi:insensitive="true">
+    <path
+       d="m 300.00001,658.5 c 0,0 298.5,-112.32031 298.5,-397.77183 0,-285.451504 0,-258.5516835 0,-258.5516835 H 1.5 V 260.72817 C 1.5,546.17969 300.00001,658.5 300.00001,658.5 Z"
+       style="opacity:1;fill:url(#radialGradient3163);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="path2875"
+       inkscape:connector-curvature="0"
+       sodipodi:insensitive="true" />
+  </g>
+  <g
+     transform="matrix(0.9998873,0,0,1.1004046,299.71361,329.38014)"
+     id="g4540"
+     sodipodi:insensitive="true">
+    <path
+       id="path4128"
+       style="fill:#ff0000;stroke:#000000;stroke-width:1.17555547"
+       d="m -189.74836,-297.9015 h 64.95864 v 197.33254 l -32.47932,0.0311 -32.47932,-0.0311 z"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       sodipodi:insensitive="true" />
+    <path
+       sodipodi:nodetypes="cccccc"
+       inkscape:connector-curvature="0"
+       d="m -32.095639,-298.46979 h 64.967 v 196.90589 l -32.4835003,0.0311 -32.4834997,-0.0311 z"
+       style="fill:#ff0000;stroke:#000000;stroke-width:1.17435944"
+       id="path4128-8"
+       sodipodi:insensitive="true" />
+    <path
+       sodipodi:nodetypes="cccccc"
+       inkscape:connector-curvature="0"
+       d="m 123.15149,-297.88482 h 64.96142 v 196.43692 l -32.48071,0.031 -32.48071,-0.031 z"
+       style="fill:#ff0000;stroke:#000000;stroke-width:1.17290986"
+       id="path4128-4"
+       inkscape:transform-center-x="110.94575"
+       inkscape:transform-center-y="8.907215"
+       sodipodi:insensitive="true" />
+  </g>
+  <g
+     id="layer1"
+     sodipodi:insensitive="true">
+    <path
+       d="m 299.99999,658.50028 c 0,0 -298.49999,-112.32036 -298.49999,-397.772 0,-285.451616 0,-258.5517843 0,-258.5517843 H 598.49999 V 260.72828 c 0,285.45164 -298.5,397.772 -298.5,397.772 z"
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:3.00000048;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path1411"
+       inkscape:connector-curvature="0"
+       sodipodi:insensitive="true" />
+  </g>
+</svg>

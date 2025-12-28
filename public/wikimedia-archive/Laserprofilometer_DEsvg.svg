@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://inkscape.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.0"
+   width="85.999992mm"
+   height="97mm"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.43"
+   sodipodi:docname="Laserprofilometer_DE_Wiki.svg"
+   sodipodi:docbase="C:\Documents and Settings\gwiora\My Documents\Wiki">
+  <metadata
+     id="metadata1374">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     inkscape:window-height="744"
+     inkscape:window-width="1280"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.6397146"
+     inkscape:cx="163.69258"
+     inkscape:cy="179.4761"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:current-layer="svg2" />
+  <defs
+     id="defs4">
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       style="overflow:visible"
+       id="Arrow2Lend">
+      <path
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.97309,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="matrix(-1.1,0,0,-1.1,5.5,0)"
+         style="font-size:12px;fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         id="path22242" />
+    </marker>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       style="overflow:visible"
+       id="StopL">
+      <path
+         d="M 0,5.65 L 0,-5.65"
+         transform="scale(0.8,0.8)"
+         style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         id="path22153" />
+    </marker>
+    <linearGradient
+       id="GradientSchwarzGrau">
+      <stop
+         style="stop-color:#000000;stop-opacity:1"
+         offset="0"
+         id="stop15925" />
+      <stop
+         style="stop-color:#b5b5b5;stop-opacity:1"
+         offset="1"
+         id="stop15927" />
+    </linearGradient>
+    <linearGradient
+       id="GradientBlau">
+      <stop
+         style="stop-color:#e2e5ff;stop-opacity:1"
+         offset="0"
+         id="stop6041" />
+      <stop
+         style="stop-color:#5d6bef;stop-opacity:1"
+         offset="1"
+         id="stop6043" />
+    </linearGradient>
+    <linearGradient
+       id="GradientRot">
+      <stop
+         style="stop-color:#fed2d2;stop-opacity:1"
+         offset="0"
+         id="stop6035" />
+      <stop
+         style="stop-color:#ee6155;stop-opacity:1"
+         offset="1"
+         id="stop6037" />
+    </linearGradient>
+    <linearGradient
+       id="GradientGruen">
+      <stop
+         style="stop-color:#bcfbc1;stop-opacity:1"
+         offset="0"
+         id="stop3256" />
+      <stop
+         style="stop-color:#7ac985;stop-opacity:1"
+         offset="1"
+         id="stop3258" />
+    </linearGradient>
+    <linearGradient
+       x1="309.07349"
+       y1="167.24403"
+       x2="309.07349"
+       y2="158.98438"
+       id="linearGradient10667"
+       xlink:href="#GradientGruen"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       x1="261.17285"
+       y1="220.38579"
+       x2="269.7384"
+       y2="205.5498"
+       id="linearGradient15048"
+       xlink:href="#GradientBlau"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-10.31139,5.700858)"
+       spreadMethod="reflect" />
+    <linearGradient
+       x1="141.73228"
+       y1="325.27557"
+       x2="141.73228"
+       y2="344.40942"
+       id="linearGradient16812"
+       xlink:href="#GradientSchwarzGrau"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-4.745844e-6,35.4331)" />
+    <linearGradient
+       x1="199.94284"
+       y1="92.933655"
+       x2="250.42856"
+       y2="92.93367"
+       id="linearGradient16814"
+       xlink:href="#GradientRot"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.708864,0,0,1.410709,3.003699e-6,-6.007394e-8)"
+       spreadMethod="reflect" />
+    <linearGradient
+       x1="141.73228"
+       y1="325.27557"
+       x2="141.73228"
+       y2="344.40942"
+       id="linearGradient17691"
+       xlink:href="#GradientSchwarzGrau"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-1.64737e-5,-1.763717e-5)" />
+  </defs>
+  <g
+     style="display:inline"
+     id="layer1"
+     transform="translate(-47.27697,-40.93494)">
+    <path
+       d="M 199.46859,196.41491 C 219.44128,195.12601 239.95962,199.44843 258.60189,210.05452 C 258.80082,210.1677 258.99878,210.28367 259.19728,210.39827 C 277.99761,221.25265 292.20659,237.00074 301.1811,255.11809 C 281.00419,256.40485 260.27708,251.94648 241.47675,241.0921 C 222.67642,230.23773 208.45182,214.5167 199.46859,196.41491 z "
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;opacity:1;color:#000000;fill:url(#linearGradient15048);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.7086612;stroke-linecap:butt;stroke-linejoin:bevel;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:1;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;font-family:Times New Roman"
+       id="Linse" />
+    <rect
+       width="70.866142"
+       height="141.73228"
+       x="106.29921"
+       y="60.236198"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;opacity:1;color:#000000;fill:url(#linearGradient16814);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.70866144;stroke-linecap:butt;stroke-linejoin:bevel;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:1;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;font-family:Times New Roman"
+       id="Laser " />
+    <path
+       d="M 141.73228,60.236198 L 141.73228,201.96848"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:1.41732287;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:11.33858268, 2.83464567, 1.41732283, 2.83464567;stroke-dashoffset:0;stroke-opacity:1;font-family:Times New Roman"
+       id="LaserMitte" />
+    <path
+       d="M 141.73228,201.96848 L 141.73228,325.98423 L 308.26772,177.16533"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;opacity:0.5;color:#000000;fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#757575;stroke-width:1.41732287;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:4.2519685, 1.41732283;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;font-family:Times New Roman"
+       id="Strahlengang" />
+    <rect
+       width="106.29921"
+       height="17.716536"
+       x="88.58268"
+       y="361.4173"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;opacity:1;color:#000000;fill:url(#linearGradient16812);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.41732287;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;font-family:Times New Roman"
+       id="Objekt" />
+    <rect
+       width="106.29921"
+       height="17.716536"
+       x="88.58268"
+       y="325.98422"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;opacity:0.23553718;color:#000000;fill:url(#linearGradient17691);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.41732287;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:4.25196862, 1.41732287;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;font-family:Times New Roman"
+       id="Objekt2" />
+    <path
+       d="M 141.73228,201.96848 L 141.73228,361.4173 L 301.1811,166.53541"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;opacity:0.74793384;fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#ff810c;stroke-width:1.41732287;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;font-family:Times New Roman"
+       id="Strahlengang1" />
+    <path
+       d="M 141.73228,361.4173 L 199.7498,196.648 L 293.65296,176.05046 L 300.96033,254.67656 L 141.73228,361.4173 z "
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;opacity:0.74793384;color:#000000;fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#ff810c;stroke-width:0.70866144;stroke-linecap:butt;stroke-linejoin:bevel;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;font-family:Times New Roman"
+       id="Strahlengang2 " />
+    <text
+       x="233.85826"
+       y="116.92912"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Times New Roman"
+       id="text_CCD"
+       xml:space="preserve"
+       sodipodi:linespacing="105.99999%"><tspan
+         x="233.85826"
+         y="116.92912"
+         id="tspan21195">CCD/PSD - Sensor</tspan></text>
+    <text
+       x="142.11548"
+       y="56.443581"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Times New Roman"
+       id="text21205"
+       xml:space="preserve"
+       sodipodi:linespacing="105.99999%"><tspan
+         x="142.11548"
+         y="56.443581"
+         id="tspan21207">Laser</tspan></text>
+    <g
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;font-family:Times New Roman"
+       id="g22270">
+      <text
+         x="60.236221"
+         y="347.76425"
+         style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Times New Roman"
+         id="text21209"
+         xml:space="preserve"
+         sodipodi:linespacing="105.99999%"><tspan
+           x="60.236221"
+           y="347.76425"
+           id="tspan21211"><tspan
+             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;font-family:Symbol"
+             id="tspan21213">DZ</tspan></tspan></text>
+      <path
+         d="M 77.952756,361.4173 L 77.952756,333.07084"
+         style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;opacity:1;color:#000000;fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:0.7086612;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:url(#StopL);marker-mid:none;marker-end:url(#Arrow2Lend);stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;font-family:Times New Roman"
+         id="path21215" />
+    </g>
+    <g
+       transform="matrix(0.866025,0.5,-0.5,0.866025,98.65147,-128.7629)"
+       style="font-size:14.00000477px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;font-family:Times New Roman"
+       id="CCD">
+      <rect
+         width="124.01553"
+         height="17.716507"
+         x="248.38583"
+         y="149.1732"
+         style="font-size:14.00000477px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;opacity:1;color:#000000;fill:url(#linearGradient10667);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.70866024;stroke-linecap:butt;stroke-linejoin:bevel;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:1;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;font-family:Times New Roman"
+         id="rect8837" />
+      <path
+         d="M 265.13894,148.81888 L 265.13894,166.53541"
+         style="font-size:14.00000477px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Times New Roman"
+         id="path9723" />
+      <use
+         style="font-size:14.00000477px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;fill:#0000ff;stroke:#0000ff;font-family:Times New Roman"
+         id="use9764"
+         x="0"
+         y="0"
+         width="744.09448"
+         height="1052.3622"
+         xlink:href="#path9723" />
+      <use
+         transform="translate(17.81653,0)"
+         style="font-size:14.00000477px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;fill:#0000ff;stroke:#0000ff;font-family:Times New Roman"
+         id="use9766"
+         x="0"
+         y="0"
+         width="744.09448"
+         height="1052.3622"
+         xlink:href="#path9723" />
+      <use
+         transform="translate(35.63307,0)"
+         style="font-size:14.00000477px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;fill:#0000ff;stroke:#0000ff;font-family:Times New Roman"
+         id="use9768"
+         x="0"
+         y="0"
+         width="744.09448"
+         height="1052.3622"
+         xlink:href="#path9723" />
+      <use
+         transform="translate(53.44961,0)"
+         style="font-size:14.00000477px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;fill:#0000ff;stroke:#0000ff;font-family:Times New Roman"
+         id="use9770"
+         x="0"
+         y="0"
+         width="744.09448"
+         height="1052.3622"
+         xlink:href="#path9723" />
+      <use
+         transform="translate(71.26614,0)"
+         style="font-size:14.00000477px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;fill:#0000ff;stroke:#0000ff;font-family:Times New Roman"
+         id="use9772"
+         x="0"
+         y="0"
+         width="744.09448"
+         height="1052.3622"
+         xlink:href="#path9723" />
+      <use
+         transform="translate(89.08268,0)"
+         style="font-size:14.00000477px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;fill:#0000ff;stroke:#0000ff;font-family:Times New Roman"
+         id="use9774"
+         x="0"
+         y="0"
+         width="744.09448"
+         height="1052.3622"
+         xlink:href="#path9723" />
+    </g>
+    <g
+       transform="matrix(0.866025,0.5,-0.5,0.866025,131.5803,-72.94023)"
+       id="g23270">
+      <path
+         d="M 261.30158,113.3858 L 275.4748,113.3858"
+         style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:0.70866144;stroke-linecap:butt;stroke-linejoin:miter;marker-start:url(#StopL);marker-end:url(#Arrow2Lend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path22383" />
+      <text
+         x="271.04068"
+         y="107.8425"
+         style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Times New Roman"
+         id="text23260"
+         xml:space="preserve"
+         sodipodi:linespacing="105.99999%"><tspan
+           x="271.04068"
+           y="107.8425"
+           id="tspan23262"><tspan
+             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;font-family:Symbol"
+             id="tspan23264">D</tspan><tspan
+             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:middle;font-family:Times New Roman"
+             id="tspan23268">z</tspan></tspan></text>
+    </g>
+  </g>
+  <g
+     style="display:inline"
+     id="layer3"
+     transform="translate(-47.27697,-40.93494)">
+    <text
+       x="289.78235"
+       y="272.39249"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Times New Roman"
+       id="text25171"
+       xml:space="preserve"
+       sodipodi:linespacing="105.99999%"><tspan
+         x="289.78235"
+         y="272.39249"
+         id="tspan25173">Objektiv</tspan></text>
+    <text
+       x="200.96016"
+       y="355.10812"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:105.99999428%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Times New Roman"
+       id="text25175"
+       xml:space="preserve"
+       sodipodi:linespacing="105.99999%"><tspan
+         x="200.96016"
+         y="355.10812"
+         id="tspan25177">Messobjekt</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   id="NATO Map Symbol"
+   height="400"
+   width="600">
+  <g
+     style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:none;stroke-linejoin:miter;stroke-miterlimit:4"
+     id="Obs">
+  <path
+     id="Surv"
+     d="M 482.97799,330.27386 H 117.022 L 300,71.503893 Z" />
+    <path
+       id="Recce"
+       d="M 117,330.3 C 208.5,287 300,244 391.5,200.9" />
+  </g>
+  <path
+     id="Neutral Frame"
+     style="fill:none;stroke:#00af00;stroke-width:10;stroke-linejoin:miter;stroke-miterlimit:4"
+     d="M 105,5 H 495 V 395 H 105 Z" />
+</svg>

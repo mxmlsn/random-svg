@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
+<title>tvSTR+4 red</title>
+<defs>
+ <mask id="M">
+  <path d="M -100,-100 H 1200 V 1200 H -100 Z" fill="white" />
+  <path d="M 375,500 V 453.1 A 590.7,590.7 0 0 0 202,35.4 L 83.3,-83.3 M 125,500 V 416.9 A 303.9,303.9 0 0 0 35.4,202 L -83.3,83.3" stroke-width="20" stroke="black" fill="none" />
+ </mask>
+</defs>
+<g mask="url(#M)" stroke="#EF161E" stroke-width="100" fill="none">
+ <path d="M 375,525 V 453.1 A 590.7,590.7 0 0 0 202,35.4 L 83.3,-83.3" stroke-dasharray="50,46.25" />
+ <path d="M 125,525 V 416.9 A 303.9,303.9 0 0 0 35.4,202 L -83.3,83.3" stroke-dasharray="50,47.2" />
+</g>
+</svg>

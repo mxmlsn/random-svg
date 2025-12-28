@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="140.31754mm"
+   height="135.0094mm"
+   viewBox="0 0 140.31754 135.0094"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   sodipodi:docname="gold-2020-shiny.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.5795504"
+     inkscape:cx="248.80498"
+     inkscape:cy="255.13589"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer2" />
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient36244">
+      <stop
+         style="stop-color:#ffde8a;stop-opacity:1;"
+         offset="0"
+         id="stop36240" />
+      <stop
+         style="stop-color:#ffcc00;stop-opacity:1;"
+         offset="1"
+         id="stop36242" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient5135">
+      <stop
+         style="stop-color:#fff8dc;stop-opacity:1;"
+         offset="0"
+         id="stop5131" />
+      <stop
+         style="stop-color:#ffeeaa;stop-opacity:0.75;"
+         offset="1"
+         id="stop5133" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5135"
+       id="linearGradient5137"
+       x1="28.67749"
+       y1="98.221169"
+       x2="156.41461"
+       y2="98.221169"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient36244"
+       id="linearGradient36246"
+       x1="34.157503"
+       y1="89.851058"
+       x2="163.92741"
+       y2="89.851058"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Lager 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-23.766891,-31.582863)">
+    <ellipse
+       style="fill:#806600;fill-opacity:1;stroke-width:0.264583"
+       id="path739"
+       cx="95.297943"
+       cy="99.95536"
+       rx="68.786491"
+       ry="66.636909" />
+    <ellipse
+       style="fill:#ffcc00;fill-opacity:1;stroke-width:0.264583"
+       id="path739-7"
+       cx="92.553383"
+       cy="98.219772"
+       rx="68.786491"
+       ry="66.636909" />
+    <ellipse
+       style="fill:url(#linearGradient5137);fill-opacity:1;stroke-width:0.247232;opacity:1"
+       id="path739-0"
+       cx="92.546051"
+       cy="98.221169"
+       rx="63.868561"
+       ry="62.663509" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Lager 2"
+     transform="matrix(0.92173869,0,0,1.2269324,5.2583319,-14.012808)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:60.6778px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#806600;fill-opacity:1;stroke-width:0.300781"
+       x="32.950916"
+       y="112.25101"
+       id="text6900"
+       transform="matrix(0.93113164,0,0,1.073962,-23.766891,-31.582863)"><tspan
+         sodipodi:role="line"
+         id="tspan6898"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:60.6778px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#806600;fill-opacity:1;stroke-width:0.300781"
+         x="32.950916"
+         y="112.25101">2020</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:60.6778px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:url(#linearGradient36246);fill-opacity:1;stroke-width:0.300781"
+       x="31.698393"
+       y="111.27198"
+       id="text6900-8"
+       transform="matrix(0.93113164,0,0,1.073962,-23.766891,-31.582863)"><tspan
+         sodipodi:role="line"
+         id="tspan6898-3"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:60.6778px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:url(#linearGradient36246);fill-opacity:1;stroke-width:0.300781"
+         x="31.698393"
+         y="111.27198">2020</tspan></text>
+  </g>
+</svg>

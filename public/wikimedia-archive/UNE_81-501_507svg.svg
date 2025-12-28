@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="499.69791"
+   zoomAndPan="magnify"
+   viewBox="0 0 374.77343 177.01171"
+   height="236.01562"
+   preserveAspectRatio="xMidYMid"
+   version="1.0"
+   id="svg7988"
+   sodipodi:docname="UNE 81-501 5.07.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7990"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false" />
+  <defs
+     id="defs7962">
+    <clipPath
+       id="6af8de858f">
+      <path
+         d="M 0,94.34375 H 375 V 271.35547 H 0 Z m 0,0"
+         clip-rule="nonzero"
+         id="path7941" />
+    </clipPath>
+    <clipPath
+       id="7916924780">
+      <path
+         d="m 96.46875,137.51172 h 70.29687 V 237.73828 H 96.46875 Z m 0,0"
+         clip-rule="nonzero"
+         id="path7944" />
+    </clipPath>
+    <clipPath
+       id="e88121c74b">
+      <path
+         d="m 96.46875,187.5 49.98828,-49.98828 v 24.99219 h 20.30859 v 49.99218 h -20.30859 v 24.99219 z m 0,0"
+         clip-rule="nonzero"
+         id="path7947" />
+    </clipPath>
+    <clipPath
+       id="2e07492dc5">
+      <path
+         d="m 33.40625,154.55469 h 46.328125 v 66.05468 H 33.40625 Z m 0,0"
+         clip-rule="nonzero"
+         id="path7950" />
+    </clipPath>
+    <clipPath
+       id="b44c2405d1">
+      <path
+         d="m 33.40625,187.5 32.945312,-32.94531 v 16.47265 h 13.382813 v 32.94532 H 66.351562 v 16.47265 z m 0,0"
+         clip-rule="nonzero"
+         id="path7953" />
+    </clipPath>
+    <clipPath
+       id="0ff8ae83ff">
+      <path
+         d="m 256.09766,142 h 88.48828 v 108.4375 h -88.48828 z m 0,0"
+         clip-rule="nonzero"
+         id="path7956" />
+    </clipPath>
+    <clipPath
+       id="705c6a31cb">
+      <path
+         d="m 263,115.4375 h 31 V 146 h -31 z m 0,0"
+         clip-rule="nonzero"
+         id="path7959" />
+    </clipPath>
+  </defs>
+  <g
+     clip-path="url(#6af8de858f)"
+     id="g7966"
+     transform="translate(0,-94.343751)">
+    <path
+       fill="#328237"
+       d="M 0,94.34375 H 374.77344 V 271.35547 H 0 Z m 0,0"
+       fill-opacity="1"
+       fill-rule="nonzero"
+       id="path7964" />
+  </g>
+  <g
+     clip-path="url(#7916924780)"
+     id="g7972"
+     transform="translate(0,-94.343751)">
+    <g
+       clip-path="url(#e88121c74b)"
+       id="g7970">
+      <path
+         fill="#ffffff"
+         d="m 96.46875,137.51172 h 70.29687 v 99.95312 H 96.46875 Z m 0,0"
+         fill-opacity="1"
+         fill-rule="nonzero"
+         id="path7968" />
+    </g>
+  </g>
+  <g
+     clip-path="url(#2e07492dc5)"
+     id="g7978"
+     transform="translate(0,-94.343751)">
+    <g
+       clip-path="url(#b44c2405d1)"
+       id="g7976">
+      <path
+         fill="#ffffff"
+         d="m 33.40625,154.55469 h 46.328125 v 65.87109 H 33.40625 Z m 0,0"
+         fill-opacity="1"
+         fill-rule="nonzero"
+         id="path7974" />
+    </g>
+  </g>
+  <g
+     clip-path="url(#0ff8ae83ff)"
+     id="g7982"
+     transform="translate(0,-94.343751)">
+    <path
+       fill="#ffffff"
+       d="m 293.57422,142.90625 c -3.60938,4.41016 -9.10156,7.22656 -15.25,7.22656 -1.83985,0 -3.61719,-0.2539 -5.3125,-0.73047 v 29.42969 h -16.90625 v 12.40234 h 28.07031 v -20.05468 l 12.67188,21.14062 -20.72657,20.53516 v 37.30078 h 11.70703 v -31.17969 l 21.24219,-19.93359 v 38.04687 h 34.39453 v -11.69531 h -20.59765 v -40.07031 l -18.08203,-29.31641 h 15.40234 l 14.40625,24.83594 9.99609,-5.02344 -17.8789,-32.91406 h -33.13672"
+       fill-opacity="1"
+       fill-rule="nonzero"
+       id="path7980" />
+  </g>
+  <g
+     clip-path="url(#705c6a31cb)"
+     id="g7986"
+     transform="translate(0,-94.343751)">
+    <path
+       fill="#ffffff"
+       d="m 293.22266,130.44141 c 0,-8.22657 -6.67188,-14.89063 -14.89844,-14.89063 -8.23047,0 -14.89844,6.66406 -14.89844,14.89063 0,8.21484 6.66797,14.88281 14.89844,14.88281 8.22656,0 14.89844,-6.66797 14.89844,-14.88281"
+       fill-opacity="1"
+       fill-rule="nonzero"
+       id="path7984" />
+  </g>
+</svg>

@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="600cm"
+   height="500cm"
+   viewBox="0 0 29869.566 24877.149"
+   id="svg3336"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="Deutsch Viereck 2018-01-10 06.svg">
+  <metadata
+     id="metadata3608">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3606">
+    <clipPath
+       id="clip1">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3345"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip2">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3358"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip3">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3371"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip4">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3384"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip5">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3397"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip6">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3410"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip7">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3423"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip8">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3436"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip9">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3449"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip10">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3462"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip11">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3475"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip12">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3488"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip13">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3501"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip14">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3514"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip15">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3527"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip16">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3540"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip17">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3553"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip18">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3566"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip19">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3579"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip20">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3592"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip19-7">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3579-3"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip18-9">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3566-7"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip3-0">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3371-3"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip4-2">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3384-1"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip5-8">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3397-7"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip6-7">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3410-6"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip7-0">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3423-2"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip8-4">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3436-4"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip9-3">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3449-1"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip10-5">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3462-9"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip12-0">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3488-2"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip13-7">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3501-7"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip15-6">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3527-5"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip16-4">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3540-7"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip19-79">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3579-8"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip18-9-4">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3566-7-8"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip19-7-0">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3579-3-9"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip5-4">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3397-4"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip5-4-7">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3397-4-1"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip5-5">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3397-0"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip19-7-04">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3579-3-2"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip18-9-6">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3566-7-88"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip19-7-04-0">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3579-3-2-4"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip18-9-6-1">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3566-7-88-5"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip19-7-04-3">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3579-3-2-44"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip18-9-6-9">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3566-7-88-2"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip19-7-04-0-3">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3579-3-2-4-7"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip18-9-6-1-5">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3566-7-88-5-9"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip16-4-7">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3540-7-8"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clip15-6-7">
+      <path
+         d="m 0,0 0,407 460,0 0,-407 z"
+         id="path3527-5-4"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1600"
+     inkscape:window-height="1137"
+     id="namedview3604"
+     showgrid="false"
+     inkscape:zoom="0.10693847"
+     inkscape:cx="15976.091"
+     inkscape:cy="11474.201"
+     inkscape:window-x="1592"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3336"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       position="30900.979,47323.041"
+       orientation="0,1"
+       id="guide3517" />
+  </sodipodi:namedview>
+  <g
+     style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
+     id="misc"
+     transform="translate(0,24486.074)" />
+  <!-- default stroke -->
+  <g
+     style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
+     id="misc-2"
+     transform="translate(30822.668,35880.857)" />
+  <g
+     style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
+     clip-path="url(#clip9-3)"
+     id="g3451-1"
+     transform="matrix(55.46595,0,0,55.46595,2062.6896,879.15621)">
+    <g
+       id="g3453-8"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none">
+      <path
+         d="m 73,269 c 0,1.66 -1.343,3 -3,3 -1.657,0 -3,-1.34 -3,-3 0,-1.66 1.343,-3 3,-3 1.657,0 3,1.34 3,3 z"
+         id="path3455-5"
+         inkscape:connector-curvature="0" />
+      <title
+         id="title3457-5">Punkt A</title>
+      <desc
+         id="desc3459-9">Punkt A: Punkt auf xAchse</desc>
+    </g>
+    <!-- drawing style -->
+  </g>
+  <g
+     style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
+     clip-path="url(#clip10-5)"
+     id="g3464-8"
+     transform="matrix(55.46595,0,0,55.46595,2062.6896,879.15621)">
+    <g
+       id="g3466-9"
+       style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1">
+      <path
+         d="m 73,269 c 0,1.66 -1.343,3 -3,3 -1.657,0 -3,-1.34 -3,-3 0,-1.66 1.343,-3 3,-3 1.657,0 3,1.34 3,3 z"
+         id="path3468-2"
+         inkscape:connector-curvature="0" />
+      <title
+         id="title3470-2">Punkt A</title>
+      <desc
+         id="desc3472-3">Punkt A: Punkt auf xAchse</desc>
+    </g>
+    <!-- drawing style -->
+  </g>
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:#c80000;stroke-width:98.34831238;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 8732.6845,4668.9911 22593.501,15742.778"
+     id="path3588-1"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cc" />
+  <g
+     style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
+     clip-path="url(#clip12-0)"
+     id="g3490-5"
+     transform="matrix(55.46595,0,0,55.46595,2062.6896,879.15621)">
+    <g
+       id="g3492-0"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none">
+      <path
+         d="m 373,269 c 0,1.66 -1.34,3 -3,3 -1.66,0 -3,-1.34 -3,-3 0,-1.66 1.34,-3 3,-3 1.66,0 3,1.34 3,3 z"
+         id="path3494-4"
+         inkscape:connector-curvature="0" />
+      <title
+         id="title3496-4">Punkt B</title>
+      <desc
+         id="desc3498-1">Punkt B: Punkt auf xAchse</desc>
+    </g>
+    <!-- drawing style -->
+  </g>
+  <g
+     style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
+     clip-path="url(#clip13-7)"
+     id="g3503-3"
+     transform="matrix(55.46595,0,0,55.46595,2062.6896,879.15621)">
+    <g
+       id="g3505-9"
+       style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1">
+      <path
+         d="m 373,269 c 0,1.66 -1.34,3 -3,3 -1.66,0 -3,-1.34 -3,-3 0,-1.66 1.34,-3 3,-3 1.66,0 3,1.34 3,3 z"
+         id="path3507-6"
+         inkscape:connector-curvature="0" />
+      <title
+         id="title3509-5">Punkt B</title>
+      <desc
+         id="desc3511-3">Punkt B: Punkt auf xAchse</desc>
+    </g>
+    <!-- drawing style -->
+  </g>
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:#00c800;stroke-width:98.34831238;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 8844.1659,4706.1513 22606.639,7364.0505"
+     id="path3588-4"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cc" />
+  <g
+     style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
+     clip-path="url(#clip15-6)"
+     id="g3529-5"
+     transform="matrix(55.46595,0,0,55.46595,2062.6896,879.15621)">
+    <g
+       id="g3531-9"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none">
+      <path
+         d="m 123,69 c 0,1.657 -1.34,3 -3,3 -1.66,0 -3,-1.343 -3,-3 0,-1.657 1.34,-3 3,-3 1.66,0 3,1.343 3,3 z"
+         id="path3533-9"
+         inkscape:connector-curvature="0" />
+      <title
+         id="title3535-6">Punkt C</title>
+      <desc
+         id="desc3537-3">C = (-1, 4)</desc>
+    </g>
+    <!-- drawing style -->
+  </g>
+  <g
+     style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
+     clip-path="url(#clip16-4)"
+     id="g3542-1"
+     transform="matrix(55.46595,0,0,55.46595,2062.6896,879.15621)">
+    <g
+       id="g3544-8"
+       style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1">
+      <path
+         d="m 123,69 c 0,1.657 -1.34,3 -3,3 -1.66,0 -3,-1.343 -3,-3 0,-1.657 1.34,-3 3,-3 1.66,0 3,1.343 3,3 z"
+         id="path3546-5"
+         inkscape:connector-curvature="0" />
+      <title
+         id="title3548-3">Punkt C</title>
+      <desc
+         id="desc3550-6">C = (-1, 4)</desc>
+    </g>
+    <!-- drawing style -->
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1404.97595215px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="4403.7925"
+     y="17090.531"
+     id="text4668-6"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan4670-1"
+       x="4403.7925"
+       y="17090.531">A</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1404.97595215px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="23321.285"
+     y="16710.799"
+     id="text4668-8-8"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan4670-6-5"
+       x="23321.285"
+       y="16710.799">B</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1404.97595215px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="7305.1694"
+     y="4001.9541"
+     id="text4668-7-6"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan4670-8-3"
+       x="7305.1694"
+       y="4001.9541">D</tspan></text>
+  <g
+     style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
+     clip-path="url(#clip15-6-7)"
+     id="g3529-5-3"
+     transform="matrix(55.46595,0,0,55.46595,15950.386,3550.668)">
+    <g
+       id="g3531-9-9"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none">
+      <path
+         d="m 123,69 c 0,1.657 -1.34,3 -3,3 -1.66,0 -3,-1.343 -3,-3 0,-1.657 1.34,-3 3,-3 1.66,0 3,1.343 3,3 z"
+         id="path3533-9-1"
+         inkscape:connector-curvature="0" />
+      <title
+         id="title3535-6-5">Punkt C</title>
+      <desc
+         id="desc3537-3-7">C = (-1, 4)</desc>
+    </g>
+    <!-- drawing style -->
+  </g>
+  <g
+     style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
+     clip-path="url(#clip16-4-7)"
+     id="g3542-1-0"
+     transform="matrix(55.46595,0,0,55.46595,15950.386,3550.668)">
+    <g
+       id="g3544-8-3"
+       style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1">
+      <path
+         d="m 123,69 c 0,1.657 -1.34,3 -3,3 -1.66,0 -3,-1.343 -3,-3 0,-1.657 1.34,-3 3,-3 1.66,0 3,1.343 3,3 z"
+         id="path3546-5-1"
+         inkscape:connector-curvature="0" />
+      <title
+         id="title3548-3-4">Punkt C</title>
+      <desc
+         id="desc3550-6-6">C = (-1, 4)</desc>
+    </g>
+    <!-- drawing style -->
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1404.97595215px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="23273.846"
+     y="6339.0225"
+     id="text4668-7-6-4"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan4670-8-3-5"
+       x="23273.846"
+       y="6339.0225">C</tspan></text>
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:98.34831574;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+     d="m 6094.2995,15779.939 16499.2015,0"
+     id="path3588"
+     inkscape:connector-curvature="0" />
+</svg>
+<!-- bounding box -->
+

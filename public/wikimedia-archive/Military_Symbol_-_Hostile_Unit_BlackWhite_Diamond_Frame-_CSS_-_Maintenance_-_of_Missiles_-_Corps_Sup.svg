@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   id="NATO Map Symbol"
+   height="600"
+   width="600">
+  <g
+     id="ICON"
+	 transform="translate(0 100)">
+  <g
+     id="SpLvl"
+	 style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:butt">
+  <path
+     id="Corps"
+     d="M 483.125,90.125 445,200 483.125,309.9" />
+  </g>
+  <g
+     id="Maint"
+     style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4">
+  <path
+     id="Maint-0"
+     d="M 209.10077,200 H 392.41514"/>
+  <path
+     id="Maint-1"
+     d="m 159.93304,152.34818 c 26.31737,0 47.65182,21.33445 47.65182,47.65182 0,26.31737 -21.33445,47.65182 -47.65182,47.65182"/>
+  <path
+     id="Maint-2"
+     d="m 440.06696,152.34818 c -26.31738,0 -47.65182,21.33445 -47.65182,47.65182 0,26.31738 21.33444,47.65182 47.65182,47.65182"/>
+  </g>
+  <g
+     id="Missile"
+     style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;">
+    <path
+       d="M 281,96 V 42 c 0,-9.543303 12.40576,-23 19,-23 6.59424,0 19,13.456697 19,23 v 54"
+       id="Msl1"/>
+    <path
+       d="M 300,19 V 96"
+       id="Msl2" />
+  </g>
+  </g>
+  <path
+     id="Hostile Frame"
+     style="fill:none;stroke:#000000;stroke-width:10;stroke-linejoin:miter;stroke-miterlimit:1.5"
+     d="M 7,300 300,7 593,300 300,593 Z" />
+</svg>

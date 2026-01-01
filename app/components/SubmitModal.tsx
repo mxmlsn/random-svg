@@ -544,7 +544,7 @@ export default function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
                   <span>
                     i also used{' '}
                     <a
-                      href="https://random-dafont.vercel.app/"
+                      href="https://random-dafont.com/"
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}

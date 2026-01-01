@@ -376,7 +376,7 @@ export default function Gallery() {
             {currentPoster.used_fonts && (
               <div style={{ fontSize: 14, color: '#d6d6d6' }}>
                 <a
-                  href="https://random-dafont.vercel.app/"
+                  href="https://random-dafont.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline transition-colors"

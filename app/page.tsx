@@ -870,7 +870,7 @@ export default function Home() {
 
           {/* Random Dafont Card (Red) */}
           <a
-            href="https://random-dafont.vercel.app/"
+            href="https://random-dafont.com/"
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -1581,7 +1581,7 @@ export default function Home() {
 
           {/* Random Dafont Card */}
           <a
-            href="https://random-dafont.vercel.app/"
+            href="https://random-dafont.com/"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setIsMinimized(false)}

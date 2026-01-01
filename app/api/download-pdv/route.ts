@@ -23,9 +23,17 @@ export async function GET(request: NextRequest) {
 
     const svgContent = await response.arrayBuffer();
 
-    // Extract filename from URL
-    const urlPath = new URL(url).pathname;
-    const filename = decodeURIComponent(urlPath.split('/').pop() || 'download.svg');
+    // Extract filename from URL - for publicdomainvectors.org, the filename is in the 'file' query param
+    const parsedUrl = new URL(url);
+    let filename = parsedUrl.searchParams.get('file');
+    if (!filename) {
+      // Fallback to pathname if no file param
+      filename = decodeURIComponent(parsedUrl.pathname.split('/').pop() || 'download.svg');
+    }
+    // Ensure .svg extension
+    if (!filename.endsWith('.svg')) {
+      filename = filename + '.svg';
+    }
 
     return new NextResponse(svgContent, {
       headers: {

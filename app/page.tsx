@@ -852,7 +852,7 @@ export default function Home() {
 
           {/* Instagram Card (Yellow) */}
           <a
-            href="https://instagram.com/randomsvg"
+            href="https://www.instagram.com/random__svg/"
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -1518,7 +1518,7 @@ export default function Home() {
               <br />
               featured on{' '}
               <a
-                href="https://instagram.com/randomsvg"
+                href="https://www.instagram.com/random__svg/"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color: 'black', textDecoration: 'underline' }}

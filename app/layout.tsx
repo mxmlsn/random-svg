@@ -14,7 +14,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Random SVG - Discover Random SVG Images",
-  description: "Discover random SVG images from across the web. Fresh SVG graphics at every click.",
+  description: "Free website to get random SVG's and share posters made with them",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({

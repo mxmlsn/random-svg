@@ -1,17 +1,33 @@
 import { NextResponse } from 'next/server';
 import * as cheerio from 'cheerio';
 
+// List of available categories
+const CATEGORIES = [
+  'animals',
+  'architecture',
+  'backgrounds',
+  'business',
+  'flags',
+  'food-and-drink',
+  'health-medical',
+  'nature',
+  'objects',
+  'people',
+  'signs-symbols',
+  'transportation'
+];
+
 export async function GET() {
   try {
-    // Step 1: Get a random page from publicdomainvectors.org (38-788)
-    const randomPage = Math.floor(Math.random() * (788 - 38 + 1)) + 38;
-    const pageUrl = `https://publicdomainvectors.org/en/free-clipart/${randomPage}/`;
+    // Step 1: Select a random category
+    const randomCategory = CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)];
+    const categoryUrl = `https://publicdomainvectors.org/en/free-clipart/${randomCategory}`;
 
-    // Fetch the page
-    const pageResponse = await fetch(pageUrl);
+    // Fetch the category page
+    const pageResponse = await fetch(categoryUrl);
 
     if (!pageResponse.ok) {
-      console.error('PDV page fetch error:', pageResponse.status, pageResponse.statusText);
+      console.error('PDV category fetch error:', pageResponse.status, pageResponse.statusText);
       return NextResponse.json({
         error: 'Failed to fetch from publicdomainvectors.org',
         details: `HTTP ${pageResponse.status}: ${pageResponse.statusText}`
@@ -26,14 +42,18 @@ export async function GET() {
     // Find all SVG preview items with their thumbnails
     const items: { href: string; thumb: string; title: string }[] = [];
 
-    $('.vector').each((_, element) => {
-      const link = $(element).find('a').first();
-      const href = link.attr('href');
+    // Look for links to individual SVG pages
+    $('a[href*="/en/free-clipart/"][href$=".html"]').each((_, element) => {
+      const href = $(element).attr('href');
+      if (!href) return;
+      
+      // Find image within the link
       const img = $(element).find('img').first();
       const thumb = img.attr('src');
       const title = img.attr('alt') || img.attr('title') || '';
 
-      if (href && href.includes('/en/free-clipart/') && thumb) {
+      if (thumb && !href.includes('/free-clipart/people') && !href.includes('/free-clipart/animals')) {
+        // Exclude category links, only individual SVG pages
         items.push({
           href: href.startsWith('http') ? href : `https://publicdomainvectors.org${href}`,
           thumb: thumb.startsWith('http') ? thumb : `https://publicdomainvectors.org${thumb}`,
@@ -43,7 +63,7 @@ export async function GET() {
     });
 
     if (items.length === 0) {
-      return NextResponse.json({ error: 'No SVG images found on this page' }, { status: 404 });
+      return NextResponse.json({ error: 'No SVG images found in this category' }, { status: 404 });
     }
 
     // Step 2: Select a random item from the page

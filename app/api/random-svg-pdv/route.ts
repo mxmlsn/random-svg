@@ -1,75 +1,72 @@
 import { NextResponse } from 'next/server';
 import * as cheerio from 'cheerio';
 
-// List of available categories
-const CATEGORIES = [
-  'animals',
-  'architecture',
-  'backgrounds',
-  'business',
-  'flags',
-  'food-and-drink',
-  'health-medical',
-  'nature',
-  'objects',
-  'people',
-  'signs-symbols',
-  'transportation'
-];
+// Use old SVG IDs to avoid AI-generated corporate memphis style
+// IDs below ~80000 are vintage/hand-drawn vectors (2010-2020)
+// IDs above ~90000 are AI-generated (2024+)
+const MIN_ID = 1000;
+const MAX_ID = 80000;
 
 export async function GET() {
   try {
-    // Step 1: Select a random category
-    const randomCategory = CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)];
-    const categoryUrl = `https://publicdomainvectors.org/en/free-clipart/${randomCategory}`;
-
-    // Fetch the category page
-    const pageResponse = await fetch(categoryUrl);
-
-    if (!pageResponse.ok) {
-      console.error('PDV category fetch error:', pageResponse.status, pageResponse.statusText);
+    // Step 1: Generate a random ID from vintage range
+    const randomId = Math.floor(Math.random() * (MAX_ID - MIN_ID + 1)) + MIN_ID;
+    
+    // Try to fetch the page directly by ID
+    // We don't know the URL slug, so we need to search for it
+    const searchUrl = `https://publicdomainvectors.org/search?lang=en&sort=oldest&page=${Math.floor(randomId / 20)}`;
+    
+    const searchResponse = await fetch(searchUrl);
+    
+    if (!searchResponse.ok) {
+      console.error('PDV search error:', searchResponse.status, searchResponse.statusText);
       return NextResponse.json({
         error: 'Failed to fetch from publicdomainvectors.org',
-        details: `HTTP ${pageResponse.status}: ${pageResponse.statusText}`
+        details: `HTTP ${searchResponse.status}: ${searchResponse.statusText}`
       }, { status: 502 });
     }
 
-    const pageHtml = await pageResponse.text();
+    const searchHtml = await searchResponse.text();
+    const $ = cheerio.load(searchHtml);
 
-    // Parse the HTML
-    const $ = cheerio.load(pageHtml);
-
-    // Find all SVG preview items with their thumbnails
+    // Find all SVG links on the page
     const items: { href: string; thumb: string; title: string }[] = [];
 
-    // Look for links to individual SVG pages
     $('a[href*="/en/free-clipart/"][href$=".html"]').each((_, element) => {
       const href = $(element).attr('href');
       if (!href) return;
       
-      // Find image within the link
-      const img = $(element).find('img').first();
-      const thumb = img.attr('src');
-      const title = img.attr('alt') || img.attr('title') || '';
+      // Extract ID from URL
+      const idMatch = href.match(/\/(\d+)\.html$/);
+      if (!idMatch) return;
+      
+      const id = parseInt(idMatch[1]);
+      
+      // Only include items in our vintage ID range
+      if (id >= MIN_ID && id <= MAX_ID) {
+        const img = $(element).find('img').first();
+        const thumb = img.attr('src');
+        const title = img.attr('alt') || img.attr('title') || '';
 
-      if (thumb && !href.includes('/free-clipart/people') && !href.includes('/free-clipart/animals')) {
-        // Exclude category links, only individual SVG pages
-        items.push({
-          href: href.startsWith('http') ? href : `https://publicdomainvectors.org${href}`,
-          thumb: thumb.startsWith('http') ? thumb : `https://publicdomainvectors.org${thumb}`,
-          title
-        });
+        if (thumb) {
+          items.push({
+            href: href.startsWith('http') ? href : `https://publicdomainvectors.org${href}`,
+            thumb: thumb.startsWith('http') ? thumb : `https://publicdomainvectors.org${thumb}`,
+            title
+          });
+        }
       }
     });
 
     if (items.length === 0) {
-      return NextResponse.json({ error: 'No SVG images found in this category' }, { status: 404 });
+      // Fallback: try a different page
+      return NextResponse.json({ error: 'No vintage SVG images found, try again' }, { status: 404 });
     }
 
     // Step 2: Select a random item from the page
     const randomItem = items[Math.floor(Math.random() * items.length)];
 
-    // Fetch the detail page to get higher quality preview and download link
+    // Fetch the detail page
     const detailResponse = await fetch(randomItem.href);
 
     if (!detailResponse.ok) {
@@ -89,13 +86,11 @@ export async function GET() {
     // Find the main preview image (in /photos/ directory)
     let previewImage = '';
 
-    // Try multiple selectors to find the main preview image
-    // Images can be .png, .jpg, or other formats
     $detail('img').each((_, element) => {
       const src = $detail(element).attr('src');
       if (src && src.includes('/photos/')) {
         previewImage = src.startsWith('http') ? src : `https://publicdomainvectors.org${src}`;
-        return false; // Stop after finding first match
+        return false;
       }
     });
 
@@ -106,9 +101,9 @@ export async function GET() {
 
     // Find the download link
     let downloadUrl = '';
-    $detail('.download a').each((_, element) => {
+    $detail('.download a, a[href*="/download/"]').each((_, element) => {
       const href = $detail(element).attr('href');
-      if (href && href.includes('download.php')) {
+      if (href && (href.includes('download.php') || href.includes('/download/'))) {
         downloadUrl = href.startsWith('http') ? href : `https://publicdomainvectors.org${href}`;
         return false;
       }

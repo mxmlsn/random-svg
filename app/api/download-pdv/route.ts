@@ -1,5 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+function getFilename(url: string, contentDisposition: string | null) {
+  const headerMatch = contentDisposition?.match(/filename\*?=(?:UTF-8'')?"?([^";]+)"?/i);
+  if (headerMatch?.[1]) {
+    return decodeURIComponent(headerMatch[1]);
+  }
+
+  const parsedUrl = new URL(url);
+  const queryFilename = parsedUrl.searchParams.get('file');
+  if (queryFilename) {
+    return queryFilename.endsWith('.svg') ? queryFilename : `${queryFilename}.svg`;
+  }
+
+  const pathName = decodeURIComponent(parsedUrl.pathname.split('/').pop() || 'download');
+  return pathName.includes('.') ? pathName : `${pathName}.zip`;
+}
+
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const url = searchParams.get('url');
@@ -13,7 +29,7 @@ export async function GET(request: NextRequest) {
     const response = await fetch(url, {
       headers: {
         'Referer': 'https://publicdomainvectors.org/',
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
       },
     });
 
@@ -22,22 +38,12 @@ export async function GET(request: NextRequest) {
     }
 
     const svgContent = await response.arrayBuffer();
-
-    // Extract filename from URL - for publicdomainvectors.org, the filename is in the 'file' query param
-    const parsedUrl = new URL(url);
-    let filename = parsedUrl.searchParams.get('file');
-    if (!filename) {
-      // Fallback to pathname if no file param
-      filename = decodeURIComponent(parsedUrl.pathname.split('/').pop() || 'download.svg');
-    }
-    // Ensure .svg extension
-    if (!filename.endsWith('.svg')) {
-      filename = filename + '.svg';
-    }
+    const contentType = response.headers.get('content-type') || 'application/octet-stream';
+    const filename = getFilename(url, response.headers.get('content-disposition'));
 
     return new NextResponse(svgContent, {
       headers: {
-        'Content-Type': 'image/svg+xml',
+        'Content-Type': contentType,
         'Content-Disposition': `attachment; filename="${filename}"`,
       },
     });

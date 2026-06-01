@@ -1495,7 +1495,7 @@ export default function Home() {
                 letterSpacing: '-0.3px'
               }}
             >
-              free website to get random SVG's and share posters made with them
+              free website to get random SVG&apos;s and share posters made with them
             </p>
 
             <p

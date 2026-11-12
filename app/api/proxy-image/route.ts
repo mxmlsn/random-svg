@@ -1,36 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-
-/**
- * PROXY IMAGE ROUTE
- * =================
- *
- * Proxies images from external sources (Wikimedia, FreeSVG, etc.)
- *
- * RATE LIMIT HANDLING:
- * When Wikimedia returns 429, this proxy:
- * 1. Sets wikimediaRateLimitedUntil timestamp
- * 2. Returns 429 to client
- * 3. Client should switch to ARCHIVE mode
- */
+import { WIKIMEDIA_USER_AGENT } from '../../lib/wikimedia';
 
 // In-memory cache to avoid hammering external servers
 const imageCache = new Map<string, { buffer: ArrayBuffer; contentType: string; timestamp: number }>();
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 const MAX_CACHE_SIZE = 100;
-
-// Shared rate limit state for Wikimedia CDN
-// Exported so wikimedia route can check it
-export let wikimediaRateLimitedUntil: number = 0;
-const RATE_LIMIT_COOLDOWN = 60 * 1000; // 60 seconds
-
-export function isWikimediaRateLimited(): boolean {
-  return Date.now() < wikimediaRateLimitedUntil;
-}
-
-function setWikimediaRateLimited(): void {
-  wikimediaRateLimitedUntil = Date.now() + RATE_LIMIT_COOLDOWN;
-  console.log(`[proxy] Wikimedia rate limited! Cooldown until ${new Date(wikimediaRateLimitedUntil).toISOString()}`);
-}
 
 function cleanCache() {
   const now = Date.now();
@@ -60,7 +34,7 @@ export async function GET(request: NextRequest) {
     const allowedDomains = ['publicdomainvectors.org', 'freesvg.org', 'upload.wikimedia.org', 'commons.wikimedia.org'];
     const urlObj = new URL(url);
 
-    if (!allowedDomains.some(domain => urlObj.hostname.includes(domain))) {
+    if (urlObj.protocol !== 'https:' || !allowedDomains.includes(urlObj.hostname)) {
       return NextResponse.json({ error: 'Domain not allowed' }, { status: 403 });
     }
 
@@ -77,12 +51,13 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // Use standard browser User-Agent for all requests
+    // Identify this application to Wikimedia; other sources require browser headers.
     const userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
 
     const response = await fetch(url, {
+      signal: AbortSignal.timeout(8000),
       headers: {
-        'User-Agent': userAgent,
+        'User-Agent': urlObj.hostname.endsWith('.wikimedia.org') ? WIKIMEDIA_USER_AGENT : userAgent,
         'Accept': 'image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
         // FreeSVG rejects an origin-only Referer without the trailing slash.
         'Referer': `${urlObj.origin}/`,
@@ -90,10 +65,6 @@ export async function GET(request: NextRequest) {
     });
 
     if (!response.ok) {
-      // Track rate limits for Wikimedia
-      if (response.status === 429 && urlObj.hostname.includes('wikimedia.org')) {
-        setWikimediaRateLimited();
-      }
       return NextResponse.json({ error: 'Failed to fetch image' }, { status: response.status });
     }
 

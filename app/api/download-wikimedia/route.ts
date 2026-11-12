@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { WIKIMEDIA_USER_AGENT } from '../../lib/wikimedia';
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -9,10 +10,17 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    // Fetch SVG from wikimedia
+    const source = new URL(url);
+    if (source.protocol !== 'https:' || source.hostname !== 'upload.wikimedia.org'
+      || !source.pathname.startsWith('/wikipedia/commons/') || !source.pathname.toLowerCase().endsWith('.svg')) {
+      return NextResponse.json({ error: 'Invalid Wikimedia SVG URL' }, { status: 400 });
+    }
+
+    // Fetch SVG from Wikimedia only when the direct browser download is unavailable.
     const response = await fetch(url, {
+      signal: AbortSignal.timeout(8000),
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
+        'User-Agent': WIKIMEDIA_USER_AGENT,
       },
     });
 

@@ -1,28 +1,13 @@
-/**
- * WIKIMEDIA STATUS API
- * ====================
- * Returns the current rate limit status for Wikimedia.
- * Combines both CDN rate limit (from proxy) and API rate limit (from wikimedia route).
- * Used by frontend to show countdown timer.
- */
-
 import { NextResponse } from 'next/server';
-import { wikimediaRateLimitedUntil } from '../proxy-image/route';
-import { apiRateLimitedUntil } from '../random-svg-wikimedia/route';
+import { getWikimediaApiRetryAt } from '../../lib/wikimedia-server';
 
 export async function GET() {
-  const now = Date.now();
-
-  // Use the later of the two rate limits
-  const effectiveLimitedUntil = Math.max(wikimediaRateLimitedUntil, apiRateLimitedUntil);
-  const isLimited = now < effectiveLimitedUntil;
-  const secondsRemaining = isLimited
-    ? Math.ceil((effectiveLimitedUntil - now) / 1000)
-    : 0;
-
+  const limitedUntil = getWikimediaApiRetryAt();
+  const secondsRemaining = Math.max(0, Math.ceil((limitedUntil - Date.now()) / 1000));
   return NextResponse.json({
-    isLimited,
+    isLimited: secondsRemaining > 0,
     secondsRemaining,
-    limitedUntil: isLimited ? effectiveLimitedUntil : null,
-  });
+    limitedUntil: secondsRemaining > 0 ? limitedUntil : null,
+    scope: 'server-api',
+  }, { headers: { 'Cache-Control': 'no-store' } });
 }

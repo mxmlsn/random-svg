@@ -49,6 +49,8 @@ This project is configured for deployment on Vercel:
 
 ## How It Works
 
+Instagram promotion is hidden on desktop and mobile. To restore the original promo text and card, set `SHOW_INSTAGRAM_PROMO = true` in `app/page.tsx` and redeploy.
+
 ### freesvg.org Source
 1. Discovers the current pagination range from freesvg.org (cached for an hour).
 2. Reads only the paginated catalog grid. Repeated Trending/recommendation grids and paid adverts are excluded.

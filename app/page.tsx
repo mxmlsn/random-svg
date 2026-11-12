@@ -21,6 +21,9 @@ type SourceType = 'freesvg' | 'publicdomainvectors' | 'wikimedia';
 // Акцентный цвет - меняй здесь
 const ACCENT_COLOR = '#f8c52bff';
 
+// Set to true to restore Instagram promotion on both desktop and mobile.
+const SHOW_INSTAGRAM_PROMO = false;
+
 // Hook for detecting mobile
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -864,7 +867,7 @@ export default function Home() {
           </div>
 
           {/* Instagram Card (Yellow) */}
-          <a
+          {SHOW_INSTAGRAM_PROMO && <a
             href="https://www.instagram.com/random__svg/"
             target="_blank"
             rel="noopener noreferrer"
@@ -879,7 +882,7 @@ export default function Home() {
             <p style={{ fontFamily: 'HealTheWeb, Arial', fontSize: '11px', color: 'black', textDecoration: 'underline' }}>
               see all posters on our instagram
             </p>
-          </a>
+          </a>}
 
           {/* Random Dafont Card (Red) */}
           <a
@@ -1528,9 +1531,10 @@ export default function Home() {
               >
                 →
               </span>
-              <br />
-              featured on{' '}
-              <a
+              {SHOW_INSTAGRAM_PROMO && <>
+                <br />
+                featured on{' '}
+                <a
                 href="https://www.instagram.com/random__svg/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -1538,8 +1542,9 @@ export default function Home() {
                 onClick={(e) => { setIsMinimized(false); e.stopPropagation(); }}
               >
                 instagram
-              </a>
-              {' '}as well
+                </a>
+                {' '}as well
+              </>}
             </p>
 
             <button

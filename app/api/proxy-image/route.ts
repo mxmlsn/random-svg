@@ -84,7 +84,8 @@ export async function GET(request: NextRequest) {
       headers: {
         'User-Agent': userAgent,
         'Accept': 'image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
-        'Referer': urlObj.origin,
+        // FreeSVG rejects an origin-only Referer without the trailing slash.
+        'Referer': `${urlObj.origin}/`,
       },
     });
 

@@ -49,8 +49,8 @@ This project is configured for deployment on Vercel:
 ## How It Works
 
 ### freesvg.org Source
-1. Fetches a random page from freesvg.org (pages 1-2132)
-2. Parses the HTML to find all SVG preview items
+1. Discovers the current pagination range from freesvg.org (cached for an hour), then fetches a random page
+2. Finds free SVG cards by their thumbnail URLs, excluding paid stock adverts
 3. Randomly selects one and navigates to its detail page
 4. Extracts high-quality PNG preview and download link
 5. Returns preview image for display

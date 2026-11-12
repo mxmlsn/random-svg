@@ -1,124 +1,74 @@
 import { NextResponse } from 'next/server';
-import * as cheerio from 'cheerio';
+import { FREESVG_URL, parseFreeSvgDetail, parseFreeSvgListing } from '../../lib/freesvg';
+
+const FREESVG_HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+  'Accept': 'text/html,application/xhtml+xml',
+  'Referer': `${FREESVG_URL}/`,
+};
 
 export async function GET() {
   try {
-    // Step 1: Get a random page from freesvg.org (1-2132)
-    const randomPage = Math.floor(Math.random() * 2132) + 1;
-    const pageUrl = `https://freesvg.org/?page=${randomPage}`;
+    // Discover the current page range, cached across requests for an hour.
+    const homeResponse = await fetch(`${FREESVG_URL}/`, {
+      headers: FREESVG_HEADERS,
+      next: { revalidate: 3600 },
+      signal: AbortSignal.timeout(10000),
+    });
 
-    // Fetch the page
-    const pageResponse = await fetch(pageUrl);
-
-    if (!pageResponse.ok) {
-      console.error('FreeSVG page fetch error:', pageResponse.status, pageResponse.statusText);
-      return NextResponse.json({
-        error: 'Failed to fetch from freesvg.org',
-        details: `HTTP ${pageResponse.status}: ${pageResponse.statusText}`
-      }, { status: 502 });
+    if (!homeResponse.ok) {
+      return NextResponse.json({ error: 'Failed to fetch from freesvg.org' }, { status: 502 });
     }
 
-    const pageHtml = await pageResponse.text();
+    const home = parseFreeSvgListing(await homeResponse.text());
+    const randomPage = Math.floor(Math.random() * home.maxPage) + 1;
+    let items = home.items;
 
-    // Parse the HTML
-    const $ = cheerio.load(pageHtml);
+    if (randomPage !== 1) {
+      const pageResponse = await fetch(`${FREESVG_URL}/?page=${randomPage}`, {
+        headers: FREESVG_HEADERS,
+        cache: 'no-store',
+        signal: AbortSignal.timeout(10000),
+      });
 
-    // Find all SVG preview items with their thumbnails
-    const items: { href: string; thumb: string; title: string }[] = [];
-
-    $('.svg-image-box').each((_, element) => {
-      const link = $(element).find('a').first();
-      const href = link.attr('href');
-      const img = $(element).find('img').first();
-      const thumb = img.attr('src');
-      const title = img.attr('alt') || img.attr('title') || '';
-
-      if (href && href.startsWith('https://freesvg.org/') && thumb) {
-        items.push({
-          href,
-          thumb: thumb.startsWith('http') ? thumb : `https://freesvg.org${thumb}`,
-          title
-        });
+      if (pageResponse.ok) {
+        const page = parseFreeSvgListing(await pageResponse.text());
+        // An empty/out-of-range page must not discard a usable home listing.
+        if (page.items.length > 0) items = page.items;
       }
-    });
+    }
 
     if (items.length === 0) {
-      return NextResponse.json({ error: 'No SVG images found on this page' }, { status: 404 });
+      return NextResponse.json({ error: 'No SVG images found on freesvg.org' }, { status: 502 });
     }
 
-    // Step 2: Select a random item from the page
-    const randomItem = items[Math.floor(Math.random() * items.length)];
-
-    // Fetch the detail page to get higher quality preview and download link
-    const detailResponse = await fetch(randomItem.href);
+    const item = items[Math.floor(Math.random() * items.length)];
+    const detailResponse = await fetch(item.href, {
+      headers: FREESVG_HEADERS,
+      cache: 'no-store',
+      signal: AbortSignal.timeout(10000),
+    });
 
     if (!detailResponse.ok) {
-      console.error('FreeSVG detail page fetch error:', detailResponse.status, detailResponse.statusText);
-      return NextResponse.json({
-        error: 'Failed to fetch detail page from freesvg.org',
-        details: `HTTP ${detailResponse.status}: ${detailResponse.statusText}`
-      }, { status: 502 });
+      return NextResponse.json({ error: 'Failed to fetch detail page from freesvg.org' }, { status: 502 });
     }
 
-    const detailHtml = await detailResponse.text();
-    const $detail = cheerio.load(detailHtml);
-
-    // Get the title from the detail page
-    const title = $detail('h1').first().text().trim() || randomItem.title;
-
-    // Find the main preview image (higher quality PNG)
-    let previewImage = '';
-
-    // Look for the main image in /img/ directory (higher quality than thumb)
-    const mainImgMatch = detailHtml.match(/content="https:\/\/freesvg\.org\/(img\/[^"]+\.png)"/);
-    if (mainImgMatch) {
-      previewImage = `https://freesvg.org/${mainImgMatch[1]}`;
-    }
-
-    // Fallback: look for contentUrl meta tag
-    if (!previewImage) {
-      const contentUrl = $detail('meta[itemprop="contentUrl"]').attr('content');
-      if (contentUrl) {
-        previewImage = contentUrl.startsWith('http') ? contentUrl : `https://freesvg.org${contentUrl}`;
-      }
-    }
-
-    // Fallback to thumbnail
-    if (!previewImage) {
-      previewImage = randomItem.thumb;
-    }
-
-    // Find the download ID from the page
-    let downloadId = '';
-    $detail('a').each((_, element) => {
-      const href = $detail(element).attr('href');
-      if (href && href.includes('/download/')) {
-        const match = href.match(/\/download\/(\d+)/);
-        if (match) {
-          downloadId = match[1];
-        }
-        return false;
-      }
-    });
-
-    // Use our proxy endpoint for downloading (adds required Referer header)
-    const downloadUrl = downloadId
-      ? `/api/download-freesvg?id=${downloadId}`
-      : randomItem.href;
+    const detail = parseFreeSvgDetail(await detailResponse.text());
 
     return NextResponse.json({
-      title,
-      previewImage,
+      title: detail.title || item.title,
+      previewImage: detail.previewImage || item.thumb,
       source: 'freesvg.org',
-      sourceUrl: randomItem.href,
-      downloadUrl,
+      sourceUrl: item.href,
+      downloadUrl: detail.downloadId
+        ? `/api/download-freesvg?id=${detail.downloadId}`
+        : item.href,
     });
-
   } catch (error) {
     console.error('Error fetching random SVG:', error);
     return NextResponse.json({
       error: 'Failed to fetch random SVG',
-      details: error instanceof Error ? error.message : 'Unknown error'
-    }, { status: 500 });
+      details: error instanceof Error ? error.message : 'Unknown error',
+    }, { status: 502 });
   }
 }

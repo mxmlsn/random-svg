@@ -5,6 +5,7 @@ import { parseFreeSvgListing, parseFreeSvgDetail } from '../app/lib/freesvg.ts';
 test('redesigned listing extracts free cards, excluding adverts and duplicates', () => {
   const listing = parseFreeSvgListing(`
     <a href="https://stock.adobe.com/image/123"><img src="https://as2.ftcdn.net/stock.jpg"></a>
+    <section><h2>Latest Free SVG Clipart</h2>
     <a href="/1544561650" class="aspect-square checkerboard-hover">
       <img src="https://freesvg.org/thumbs/1544561650.png?mode=contain" alt="Woman">
     </a>
@@ -13,7 +14,10 @@ test('redesigned listing extracts free cards, excluding adverts and duplicates',
     <a href="https://example.com/paid"><img src="/thumbs/paid.png"></a>
     <a href="/?page=2">2</a><a href="https://freesvg.org?page=5762">5,762</a>
     <a href="https://example.com/?page=99999">External</a>
-    <a href="/?page=invalid">Invalid</a>
+    <a href="/?page=invalid">Invalid</a></section>
+    <section><h2>Trending Vectors</h2>
+      <a href="/popular-rose"><img src="/thumbs/rose.png" alt="Popular Rose"></a>
+    </section>
   `);
   assert.equal(listing.maxPage, 5762);
   assert.deepEqual(listing.items, [
@@ -55,4 +59,13 @@ test('legacy metadata, relative downloads and missing detail fields', () => {
   assert.deepEqual(parseFreeSvgDetail('<h1>Fallback</h1>'), {
     title: 'Fallback', previewImage: undefined, downloadId: undefined,
   });
+});
+
+
+test('recommendations alone must never become a fallback catalog', () => {
+  assert.deepEqual(parseFreeSvgListing(`
+    <section><h2>Trending Vectors</h2>
+      <a href="/popular-rose"><img src="/thumbs/rose.png" alt="Popular Rose"></a>
+    </section>
+  `), { items: [], maxPage: 1 });
 });

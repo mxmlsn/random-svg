@@ -19,8 +19,7 @@ export function parseFreeSvgListing(html: string) {
   const seen = new Set<string>();
   let maxPage = 1;
 
-  // Match preview URLs rather than presentation classes that change on redesigns.
-  // Only FreeSVG thumbnails qualify; the listing also contains paid stock adverts.
+  // Pagination belongs to the actual catalog, not to the repeated Trending grid.
   $('a[href]').each((_, element) => {
     const link = sourceUrl($(element).attr('href'));
     if (!link) return;
@@ -29,6 +28,19 @@ export function parseFreeSvgListing(html: string) {
     if (link.pathname === '/' && Number.isSafeInteger(page) && page > maxPage) {
       maxPage = page;
     }
+  });
+
+  const catalog = $('section').filter((_, section) =>
+    $(section).find('a[href]').toArray().some(element => {
+      const link = sourceUrl($(element).attr('href'));
+      return link?.pathname === '/' && Number(link.searchParams.get('page')) >= 1;
+    })).first();
+
+  // Fail closed on an unknown redesign instead of sampling recommendations.
+  const links = catalog.length ? catalog.find('a[href]') : $('.svg-image-box a[href]');
+  links.each((_, element) => {
+    const link = sourceUrl($(element).attr('href'));
+    if (!link) return;
 
     const img = $(element).find('img').first();
     const thumb = sourceUrl(img.attr('src') || img.attr('data-src'));

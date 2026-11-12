@@ -50,11 +50,12 @@ This project is configured for deployment on Vercel:
 ## How It Works
 
 ### freesvg.org Source
-1. Discovers the current pagination range from freesvg.org (cached for an hour), then fetches a random page
-2. Finds free SVG cards by their thumbnail URLs, excluding paid stock adverts
-3. Randomly selects one and navigates to its detail page
-4. Extracts high-quality PNG preview and download link
-5. Returns preview image for display
+1. Discovers the current pagination range from freesvg.org (cached for an hour).
+2. Reads only the paginated catalog grid. Repeated Trending/recommendation grids and paid adverts are excluded.
+3. `POST /api/random-svg` accepts `{ count: 1..6, exclude: string[] }`. Each slot samples a different, randomly shuffled band of the full page range, with at most three upstream workers. `GET` preserves the single-image response.
+4. Deduplicates by download ID and canonical image filename, including aliases and thumbnail/full-size URL variations. Failed deep pages retry within their band instead of silently falling back to the latest home grid.
+5. The browser keeps the full shown-image history in memory and localStorage, so exclusions survive reloads. The request carries up to 10,000 recent identity keys; all older history is still checked by the browser, which requests replacements rather than displaying repeats. History is never automatically recycled.
+6. Batch responses include sampled page numbers for coverage diagnostics. Unknown catalog markup fails closed instead of sampling recommendations.
 
 ### publicdomainvectors.org Source
 1. Fetches a random page from publicdomainvectors.org (pages 38-788)

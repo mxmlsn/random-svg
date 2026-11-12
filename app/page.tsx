@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import Gallery from './components/Gallery';
 import SubmitModal from './components/SubmitModal';
 import { loadWikimediaBatch, loadWikimediaArchive } from './lib/wikimedia';
+import { loadFreeSvgBatch, readFreeSvgHistory, saveFreeSvgHistory } from './lib/freesvg-selection';
 
 interface SVGData {
   title: string;
@@ -59,6 +60,9 @@ export default function Home() {
   const wikiCooldownEndRef = useRef(0); // Respect Retry-After from the browser API only
   const [downloadBtnOpacities, setDownloadBtnOpacities] = useState<number[]>(Array(6).fill(0));
   const shownArchiveFilesRef = useRef<Set<string>>(new Set()); // Track shown wiki archive files to avoid repeats (ref for sync access)
+  const freeSvgSeenRef = useRef<Set<string>>(new Set());
+  const freeSvgHistoryLoadedRef = useRef(false);
+  const refreshInProgressRef = useRef(false);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [updateBtnHovered, setUpdateBtnHovered] = useState(false);
   const [updateBtnSpinning, setUpdateBtnSpinning] = useState(false);
@@ -288,11 +292,14 @@ export default function Home() {
   };
 
   const fetchRandomSVGs = async (overrideSources?: SourceType[]) => {
+    if (refreshInProgressRef.current) return;
     const sources = overrideSources || selectedSources;
     if (sources.length === 0) {
       setError('Please select at least one source');
       return;
     }
+
+    refreshInProgressRef.current = true;
 
     // Rotate logos by ~25.7 degrees (360/14) in their random directions
     setLogoRotations(prev => prev.map((rot, i) => rot + logoDirections[i] * (360 / 14)));
@@ -351,12 +358,42 @@ export default function Home() {
           })
         : Promise.resolve([]);
 
+      // FreeSVG has one coordinated batch and a persistent exclusion history.
+      const freeSvgIndices = endpoints.flatMap((endpoint, index) =>
+        endpoint === '/api/random-svg' ? [index] : []);
+      if (!freeSvgHistoryLoadedRef.current) {
+        try {
+          freeSvgSeenRef.current = readFreeSvgHistory(window.localStorage);
+        } catch {
+          // Keep an in-memory history when storage is disabled.
+        }
+        freeSvgHistoryLoadedRef.current = true;
+      }
+      const freeSvgBatch = freeSvgIndices.length
+        ? loadFreeSvgBatch(freeSvgIndices.length, freeSvgSeenRef.current)
+          .then(items => {
+            try {
+              saveFreeSvgHistory(window.localStorage, freeSvgSeenRef.current);
+            } catch {
+              // The current session still excludes every previously shown image.
+            }
+            return items;
+          })
+          .catch(err => {
+            setError(err instanceof Error ? err.message : 'FreeSVG is temporarily unavailable');
+            return [];
+          })
+        : Promise.resolve([]);
+
       const fetchPromises = endpoints.map(async (endpoint, index) => {
         try {
           let data: SVGData | undefined;
           if (endpoint.includes('wikimedia')) {
             const items = await wikiBatch;
             data = items[wikiIndices.indexOf(index)];
+          } else if (endpoint === '/api/random-svg') {
+            const items = await freeSvgBatch;
+            data = items[freeSvgIndices.indexOf(index)];
           } else {
             const response = await fetch(endpoint);
             if (response.ok) data = await response.json();
@@ -390,6 +427,7 @@ export default function Home() {
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error occurred');
     } finally {
+      refreshInProgressRef.current = false;
       // Stop update button spinning after 500ms delay
       setTimeout(() => {
         stopSpinning();
